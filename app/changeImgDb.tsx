@@ -17,7 +17,7 @@ export default function ChangeImgDb() {
 		const supabase = createClient("https://zatxagpbdhgsckpmktsz.supabase.co", process.env.SUPABASE_SUPABASE_KEY!);
 
 		async function fetchData() {
-			const { data: news, error } = await supabase.from("news").select("*").eq("id", 2840);
+			const { data: news, error } = await supabase.from("news").select("*");
 
 			// console.log(news?.[0].content);
 			news?.forEach(async (single) => {
@@ -29,38 +29,42 @@ export default function ChangeImgDb() {
 						regexMain.lastIndex++;
 					}
 
-					// let n;
-					// while ((n = regexTrg.exec(m[1])) !== null) {
-					// 	// This is necessary to avoid infinite loops with zero-width matches
-					// 	if (n.index === regexTrg.lastIndex) {
-					// 		regexTrg.lastIndex++;
-					// 	}
-					// 	array.push("https://zatxagpbdhgsckpmktsz.supabase.co/storage/v1/object/public/archive/" + n[1]);
-					// }
+					let n;
+					while ((n = regexTrg.exec(m[1])) !== null) {
+						if (n.index === regexTrg.lastIndex) {
+							regexTrg.lastIndex++;
+						}
+						array.push("https://zatxagpbdhgsckpmktsz.supabase.co/storage/v1/object/public/archive/" + n[1]);
+					}
 
 					// let n;
-					// while ((n = regexImg.exec(m[1])) !== null) {
-					// 	// This is necessary to avoid infinite loops with zero-width matches
-					// 	if (n.index === regexImg.lastIndex) {
-					// 		regexImg.lastIndex++;
-					// 	}
-					// 	array.push("https://zatxagpbdhgsckpmktsz.supabase.co/storage/v1/object/public/archive/" + n[1]);
-					// }
+					while ((n = regexImg.exec(m[1])) !== null) {
+						if (n.index === regexImg.lastIndex) {
+							regexImg.lastIndex++;
+						}
+						array.push("https://zatxagpbdhgsckpmktsz.supabase.co/storage/v1/object/public/archive/" + n[1]);
+					}
 
 					// let n;
-					// while ((n = regexLo.exec(m[1])) !== null) {
-					// 	// This is necessary to avoid infinite loops with zero-width matches
-					// 	if (n.index === regexLo.lastIndex) {
-					// 		regexLo.lastIndex++;
-					// 	}
-					// 	array.push("https://zatxagpbdhgsckpmktsz.supabase.co/storage/v1/object/public/archive/" + n[1]);
-					// }
+					while ((n = regexLo.exec(m[1])) !== null) {
+						if (n.index === regexLo.lastIndex) {
+							regexLo.lastIndex++;
+						}
+						array.push("https://zatxagpbdhgsckpmktsz.supabase.co/storage/v1/object/public/archive/" + n[1]);
+					}
 
 					// array.push(m[1])
 				}
 
 				if (array.length != 0) {
-					await supabase.from("news").update({ image_tag: array }).eq("id", single.id);
+					await supabase.from("news").update({ title_image: array[0] }).eq("id", single.id);
+
+					array.shift();
+
+					await supabase
+						.from("news")
+						.update({ images_gallery: array.length != 0 ? array : null })
+						.eq("id", single.id);
 				}
 			});
 		}
