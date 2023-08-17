@@ -12,7 +12,11 @@ const config: Config = {
 				MainPurple: "#6835F1",
 				MainDarkGray: "#222222",
 			},
-			padding: { "50px": "50px", "25px": "25px" },
+			padding: {
+				"50px": "50px",
+				"25px": "25px",
+				"0.75": "3px",
+			},
 			gap: { "50px": "50px" },
 			borderRadius: { "4xl": "3rem" },
 		},
