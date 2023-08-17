@@ -6,6 +6,11 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
+const poppingsFont800 = Poppins({
+	weight: "800",
+	subsets: ["latin"],
+});
+
 const poppingsFont700 = Poppins({
 	weight: "700",
 	subsets: ["latin"],
@@ -53,7 +58,26 @@ export default function QuickMenu() {
 			</div>
 
 			<div className="row-span-2 rounded-4xl bg-PurplePattern bg-cover bg-center"></div>
-			<div className="rounded-4xl bg-MainGreen"></div>
+
+			<div className="rounded-4xl bg-MainGreen pt-[30px] pb-5 px-[25px] flex flex-col items-center justify-between">
+				<div className="flex gap-[20px] justify-center ">
+					<p className={`text-MainDarkGray rounded-full text-3xl bg-white text-center w-[68px] p-4 ${plusJakartaSansFont800.className}`}>2</p>
+					<p className={`text-white text-2xl leading-7 ${poppingsFont800.className}`}>
+						Szczęśliwy <br /> numerek
+					</p>
+				</div>
+
+				<div className={`bg-white w-fit flex gap-x-2.5 rounded-full p-1 ${plusJakartaSansFont800.className}`}>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">21</div>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">32</div>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">3</div>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">12</div>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">19</div>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">25</div>
+					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">7</div>
+				</div>
+			</div>
+
 			<div className="rounded-4xl bg-MainDarkGray"></div>
 		</div>
 	);

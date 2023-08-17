@@ -10,6 +10,7 @@ const config: Config = {
 			colors: {
 				MainGreen: "#44D375",
 				MainPurple: "#6835F1",
+				LightPurple: "#E8E1FD",
 				MainDarkGray: "#222222",
 			},
 			padding: {
