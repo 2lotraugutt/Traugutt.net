@@ -36,7 +36,7 @@ export default function QuickMenu() {
 					<h3
 						className={`from-MainDarkGray/0 via-MainDarkGray/50 bg-gradient-to-b 3xl:text-4xl md:text-lg 4xl:text-5xl to-MainDarkGray/80 pt-4 w-full text-base xs:text-2xl lg:text-3xl absolute xs:-translate-y-full -translate-y-2/3 xs:px-6 md:px-8 left-0 px-3 ${poppingsFont700.className}`}
 					>
-						That's the most popular post in this month
+						That&apos;s the most popular post in this month
 					</h3>
 
 					<p
