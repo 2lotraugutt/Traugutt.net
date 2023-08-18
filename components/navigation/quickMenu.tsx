@@ -23,20 +23,24 @@ const poppingsFont400 = Poppins({
 
 export default function QuickMenu() {
 	return (
-		<div className="w-full grid grid-cols-2 lg:grid-cols-4 grid-rows-4 lg:grid-rows-2 gap-y-2.5 gap-x-[15px]">
-			<div className="group overflow-hidden cursor-pointer relative rounded-4xl aspect-[25/16] col-span-2 row-span-2">
-				<div className={`bg-white text-MainDarkGray absolute top-8 left-8 w-fit rounded-2xl py-0.75 px-8 ${plusJakartaSansFont800.className}`}>TOP #1</div>
+		<div className="w-full grid auto-rows-min grid-cols-2 grid-rows-4 md:grid-rows-2 md:grid-cols-4 gap-y-2.5 gap-x-[15px]">
+			<div className="group col-span-2 row-span-2 md:col-span-2 overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16] ">
+				<div
+					className={`bg-white text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs sm:text-base 2xl:text-xl rounded-2xl py-0.75 px-4 sm:px-8 ${plusJakartaSansFont800.className}`}
+				>
+					TOP #1
+				</div>
 				<Image className="w-full h-full object-cover" src={"/Archiwum.png"} alt="Top 1 image" height={1080} width={1920} />
 
-				<div className="bg-MainDarkGray/80 px-8 flex flex-col text-white group-hover:-translate-y-full transition-all -translate-y-10">
+				<div className="bg-MainDarkGray/80 flex flex-col text-white xs:group-hover:-translate-y-full transition-all -translate-y-10">
 					<h3
-						className={`from-MainDarkGray/0 via-MainDarkGray/50 bg-gradient-to-b to-MainDarkGray/80 pt-4 w-full text-2xl absolute -translate-y-full left-0 px-8 ${poppingsFont700.className}`}
+						className={`from-MainDarkGray/0 via-MainDarkGray/50 bg-gradient-to-b 3xl:text-4xl md:text-lg 4xl:text-5xl to-MainDarkGray/80 pt-4 w-full text-base xs:text-2xl lg:text-3xl absolute xs:-translate-y-full -translate-y-2/3 xs:px-6 md:px-8 left-0 px-3 ${poppingsFont700.className}`}
 					>
 						That's the most popular post in this month
 					</h3>
 
 					<p
-						className={`group-hover:delay-75 text-transparent transition-all w-full truncate-overflow group-hover:text-white text-sm mt-2 mb-8 ${poppingsFont400.className}`}
+						className={`group-hover:delay-75 text-transparent transition-all w-full truncate-overflow xs:group-hover:text-white 4xl:text-lg 2xl:text-base 2xl:mt-4 text-sm mt-2 mb-8 xs:px-6 md:px-8 px-3 ${poppingsFont400.className}`}
 					>
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi eius modi quibusdam laboriosam facilis quaerat molestias. Quis, soluta assumenda quidem
 						culpa excepturi natus in, facere eligendi amet inventore iusto repellendus architecto voluptatum, minima nihil nostrum enim! Modi sint nesciunt hic
@@ -45,40 +49,41 @@ export default function QuickMenu() {
 						facere eligendi amet inventore iusto repellendus architecto voluptatum, minima nihil nostrum enim! Modi sint nesciunt hic commodi ipsum itaque optio
 						voluptatum fugiat eaque error architecto fuga ab, vero expedita possimus reprehenderit quLorem ipsum dolor, sit amet consectetur adipisicing elit.
 						Animi eius modi quibusdam laboriosam facilis quaerat molestias. Quis, soluta assumenda quidem culpa excepturi natus in, facere eligendi amet inventore
-						iusto repellendus architecto voluptatum, minima nihil nostrum enim! Modi sint nesciunt hic commodi ipsum itaque optio voluptatum fugiat eaque error
-						architecto fuga ab, vero expedita possimus reprehenderit quLorem ipsum dolor, sit amet consectetur adipisicing elit. Animi eius modi quibusdam
-						laboriosam facilis quaerat molestias. Quis, soluta assumenda quidem culpa excepturi natus in, facere eligendi amet inventore iusto repellendus
-						architecto voluptatum, minima nihil nostrum enim! Modi sint nesciunt hic commodi ipsum itaque optio voluptatum fugiat eaque error architecto fuga ab,
-						vero expedita possimus reprehenderit quLorem ipsum dolor, sit amet consectetur adipisicing elit. Animi eius modi quibusdam laboriosam facilis quaerat
-						molestias. Quis, soluta assumenda quidem culpa excepturi natus in, facere eligendi amet inventore iusto repellendus architecto voluptatum, minima nihil
-						nostrum enim! Modi sint nesciunt hic commodi ipsum itaque optio voluptatum fugiat eaque error architecto fuga ab, vero expedita possimus reprehenderit
-						qu
+						iusto repellendus architecto voluptatum, minima nihil nostrum enim!
 					</p>
 				</div>
 			</div>
 
-			<div className="row-span-2 rounded-4xl bg-PurplePattern bg-cover bg-center"></div>
+			<div className="rounded-3xl md:col-span-1 row-span-2 xs:rounded-4xl bg-PurplePattern bg-cover bg-center"></div>
 
-			<div className="rounded-4xl bg-MainGreen pt-[30px] pb-5 px-[25px] flex flex-col items-center justify-between">
-				<div className="flex gap-[20px] justify-center ">
-					<p className={`text-MainDarkGray rounded-full text-3xl bg-white text-center w-[68px] p-4 ${plusJakartaSansFont800.className}`}>2</p>
-					<p className={`text-white text-2xl leading-7 ${poppingsFont800.className}`}>
+			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl gap-y-3 bg-MainGreen py-2 px-3 flex flex-col items-center justify-around">
+				<div className="flex gap-1 flex-col sm:gap-4 2xl:gap-7 lg:flex-row lg:gap-4 items-center md:gap-2">
+					<p
+						className={`text-MainDarkGray rounded-full 3xl:text-6xl 4xl:p-5 3xl:p-4 3xl:w-[92px] 4xl:w-[100px] xs:text-3xl lg:p-2.5 lg:w-[60px] lg:text-4xl sm:text-4xl md:p-1 sm:p-3.5 xs:p-2.5 md:text-2xl text-lg 2xl:text-5xl 2xl:w-[68px] bg-white xs:w-14 sm:w-[68px] text-center md:w-10 w-[36px] p-1 ${plusJakartaSansFont800.className}`}
+					>
+						2
+					</p>
+					<p
+						className={`text-white text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
+					>
 						Szczęśliwy <br /> numerek
 					</p>
 				</div>
 
-				<div className={`bg-white w-fit flex gap-x-2.5 rounded-full p-1 ${plusJakartaSansFont800.className}`}>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">21</div>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">32</div>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">3</div>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">12</div>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">19</div>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">25</div>
-					<div className="w-[30px] text-center bg-LightPurple rounded-full p-0.75">7</div>
+				<div
+					className={`bg-white w-fit text-sm xl:flex hidden gap-x-2.5 2xl:gap-x-3 2xl:text-base 3xl:text-lg text-center 2xl:p-1.5 rounded-full p-1 ${plusJakartaSansFont800.className}`}
+				>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">21</div>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">32</div>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">3</div>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">12</div>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">19</div>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">25</div>
+					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">7</div>
 				</div>
 			</div>
 
-			<div className="rounded-4xl bg-MainDarkGray"></div>
+			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl bg-MainDarkGray"></div>
 		</div>
 	);
 }

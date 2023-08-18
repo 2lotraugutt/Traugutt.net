@@ -23,6 +23,7 @@ const config: Config = {
 			screens: {
 				"4xl": "2048px",
 				"3xl": "1792px",
+				xs: "512px",
 			},
 		},
 	},
