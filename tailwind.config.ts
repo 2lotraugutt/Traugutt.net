@@ -20,6 +20,10 @@ const config: Config = {
 			},
 			gap: { "50px": "50px" },
 			borderRadius: { "4xl": "3rem" },
+			screens: {
+				"4xl": "2048px",
+				"3xl": "1792px",
+			},
 		},
 	},
 	plugins: [],
