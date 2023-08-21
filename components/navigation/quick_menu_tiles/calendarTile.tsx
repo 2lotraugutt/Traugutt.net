@@ -19,7 +19,7 @@ export default function CalendarTile() {
 				<FontAwesomeIcon icon={faCalendarDays} className="text-white w-6 xs:w-10 sm:w-14 md:w-7 lg:w-11 xl:w-12 2xl:w-14 3xl:w-16 4xl:w-[70px]" />
 
 				<p
-					className={`text-white text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
+					className={`text-white text-xs 2xs:text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
 				>
 					Kalendarz <br />
 					wydarzeń

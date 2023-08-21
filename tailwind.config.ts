@@ -24,6 +24,7 @@ const config: Config = {
 				"4xl": "2048px",
 				"3xl": "1792px",
 				xs: "512px",
+				"2xs": "384px",
 			},
 		},
 	},

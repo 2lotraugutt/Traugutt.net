@@ -20,7 +20,7 @@ export default function LuckyNumbersTile(props: { numbers: number[] }) {
 					{props.numbers[0]}
 				</p>
 				<p
-					className={`text-white text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
+					className={`text-white text-xs 2xs:text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
 				>
 					Szczęśliwy <br />
 					numerek
