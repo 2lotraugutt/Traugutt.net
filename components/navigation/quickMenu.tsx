@@ -1,8 +1,16 @@
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-regular-svg-icons";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
+	subsets: ["latin"],
+});
+
+const plusJakartaSansFont700 = Plus_Jakarta_Sans({
+	weight: "700",
 	subsets: ["latin"],
 });
 
@@ -53,9 +61,7 @@ export default function QuickMenu() {
 					</p>
 				</div>
 			</div>
-
 			<div className="rounded-3xl md:col-span-1 row-span-2 xs:rounded-4xl bg-PurplePattern bg-cover bg-center"></div>
-
 			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl gap-y-3 bg-MainGreen py-2 px-3 flex flex-col items-center justify-around">
 				<div className="flex gap-1 flex-col sm:gap-4 2xl:gap-7 lg:flex-row lg:gap-4 items-center md:gap-2">
 					<p
@@ -66,7 +72,8 @@ export default function QuickMenu() {
 					<p
 						className={`text-white text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
 					>
-						Szczęśliwy <br /> numerek
+						Szczęśliwy <br />
+						numerek
 					</p>
 				</div>
 
@@ -83,7 +90,29 @@ export default function QuickMenu() {
 				</div>
 			</div>
 
-			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl bg-MainDarkGray"></div>
+			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl gap-y-3 bg-MainDarkGray py-2 3xl:px-12 px-3 xl:items-start xl:px-8 flex flex-col items-center justify-around">
+				<div className="flex gap-2 flex-col sm:gap-5 2xl:gap-7 lg:flex-row lg:gap-5 items-center md:gap-3">
+					<FontAwesomeIcon icon={faCalendarDays} className="text-white w-6 xs:w-10 sm:w-14 md:w-7 lg:w-11 xl:w-12 2xl:w-14 3xl:w-16 4xl:w-[70px]" />
+
+					<p
+						className={`text-white text-sm xl:text-xl lg:text-left md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
+					>
+						Kalendarz <br />
+						wydarzeń
+					</p>
+				</div>
+
+				<div className={`w-full xl:flex hidden gap-x-3 flex-row items-center ${plusJakartaSansFont700.className}`}>
+					<FontAwesomeIcon
+						icon={faBell}
+						className="text-MainDarkGray bg-white h-8 w-8 2xl:w-10 2xl:h-10 3xl:w-12 2xl:p-2 4xl:p-3 3xl:h-12 4xl:w-14 4xl:h-14 p-1.5 rounded-full"
+					/>
+					<p className="flex flex-col text-white text-xs 2xl:text-sm w-full 3xl:text-base truncate 4xl:text-lg">
+						Za 3 dni imieniny obchodzi
+						<span className="text-sm 2xl:text-base 4xl:text-xl 3xl:text-lg text-MainGreen truncate">Jarosław Skrzypczyk</span>
+					</p>
+				</div>
+			</div>
 		</div>
 	);
 }
