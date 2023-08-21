@@ -1,5 +1,6 @@
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -16,9 +17,12 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function TopOnePost(props: { title: string; description: string; image: string }) {
+export default function TopOnePost(props: { id: string; title: string; description: string; image: string }) {
 	return (
-		<div className="group col-span-2 row-span-2 md:col-span-2 overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16] ">
+		<Link
+			href={"/post/" + props.id}
+			className="group col-span-2 row-span-2 md:col-span-2 overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]"
+		>
 			<div
 				className={`bg-white text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs sm:text-base 2xl:text-xl rounded-2xl py-0.75 px-4 sm:px-8 ${plusJakartaSansFont800.className}`}
 			>
@@ -40,6 +44,6 @@ export default function TopOnePost(props: { title: string; description: string; 
 					{props.description}
 				</p>
 			</div>
-		</div>
+		</Link>
 	);
 }

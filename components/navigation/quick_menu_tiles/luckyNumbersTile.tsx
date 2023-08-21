@@ -1,4 +1,5 @@
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import Link from "next/link";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -12,7 +13,7 @@ const poppingsFont800 = Poppins({
 
 export default function LuckyNumbersTile(props: { numbers: number[] }) {
 	return (
-		<div className="rounded-3xl md:col-span-1 xs:rounded-4xl gap-y-3 bg-MainGreen py-2 px-3 flex flex-col items-center justify-around">
+		<Link href={"/calendar"} className="rounded-3xl md:col-span-1 xs:rounded-4xl gap-y-3 bg-MainGreen py-2 px-3 flex flex-col items-center justify-around">
 			<div className="flex gap-1 flex-col sm:gap-4 2xl:gap-7 lg:flex-row lg:gap-4 items-center md:gap-2">
 				<p
 					className={`text-MainDarkGray rounded-full 3xl:text-6xl 4xl:p-5 3xl:p-4 3xl:w-[92px] 4xl:w-[100px] xs:text-3xl lg:p-2.5 lg:w-[60px] lg:text-4xl sm:text-4xl md:p-1 sm:p-3.5 xs:p-2.5 md:text-2xl text-lg 2xl:text-5xl 2xl:w-[68px] bg-white xs:w-14 sm:w-[68px] text-center md:w-10 w-[36px] p-1 ${plusJakartaSansFont800.className}`}
@@ -36,6 +37,6 @@ export default function LuckyNumbersTile(props: { numbers: number[] }) {
 					</div>
 				))}
 			</div>
-		</div>
+		</Link>
 	);
 }
