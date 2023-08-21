@@ -25,7 +25,7 @@ export default function TopOnePost(props: { title: string; description: string; 
 				TOP #1
 			</div>
 
-			<Image className="w-full h-full object-cover" src={props.image} alt="Top 1 image" height={1080} width={1920} />
+			<Image className="w-full h-full object-cover" src={props.image} alt="Top 1 image" height={1080} width={1920} blurDataURL="./Loading.png" placeholder="blur" />
 
 			<div className="bg-MainDarkGray/80 flex flex-col text-white xs:group-hover:-translate-y-full transition-all -translate-y-10">
 				<h3

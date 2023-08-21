@@ -31,7 +31,9 @@ export default function LuckyNumbersTile(props: { numbers: number[] }) {
 				className={`bg-white w-fit text-sm xl:flex hidden gap-x-2.5 2xl:gap-x-3 2xl:text-base 3xl:text-lg text-center 2xl:p-1.5 rounded-full p-1 ${plusJakartaSansFont800.className}`}
 			>
 				{props.numbers.slice(1).map((number) => (
-					<div className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">{number}</div>
+					<div key={number} className="w-[26px] 3xl:w-10 2xl:p-1 2xl:w-8 3xl:p-1.5 bg-LightPurple rounded-full p-0.75">
+						{number}
+					</div>
 				))}
 			</div>
 		</div>
