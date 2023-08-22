@@ -11,15 +11,17 @@ const poppingsFont600 = Poppins({
 
 export default function PostContainer() {
 	const [posts, setPosts] = useState<PostDataType[]>([]);
+	const [count, setCount] = useState<number>(1);
 
 	useEffect(() => {
 		fetchPosts();
 	}, []);
 
 	async function fetchPosts() {
-		const posts = await(await fetch("api/posts")).json();
+		const posts = await(await fetch(`api/posts/${count * 12}`)).json();
 
 		setPosts(posts);
+		setCount((oldCount) => oldCount + 1);
 	}
 
 	return (
@@ -31,6 +33,7 @@ export default function PostContainer() {
 			</div>
 
 			<button
+				onClick={() => fetchPosts()}
 				className={`text-MainDarkGray bg-white border-MainDarkGray border-2 text-xs xs:text-sm md:text-base xl:text-lg px-8 py-1.5 2xl:text-lg 3xl:text-xl 3xl:py-2 3xl:px-12 rounded-3xl hover:bg-MainDarkGray hover:text-white transition-all duration-200 ease-out ${poppingsFont600.className}`}
 			>
 				Załaduj więcej

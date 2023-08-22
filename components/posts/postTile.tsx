@@ -18,12 +18,17 @@ const poppingsFont400 = Poppins({
 });
 
 export default function PostTile(props: { postData: PostDataType }) {
+	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+
+	let date = new Date(props.postData.createdAt);
+	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+
 	return (
 		<Link href={"/post/" + props.postData.id} className="group h-fit overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]">
 			<div
 				className={`bg-white text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-8 rounded-2xl sm:py-1 py-0.75 px-3 sm:px-6 ${plusJakartaSansFont800.className}`}
 			>
-				{props.postData.createdAt.toString()}
+				{dateToDisplay}
 			</div>
 
 			<Image
