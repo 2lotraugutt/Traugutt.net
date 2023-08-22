@@ -1,5 +1,8 @@
+"use client";
+
 import { Poppins } from "next/font/google";
 import PostTile from "./postTile";
+import { useEffect, useState } from "react";
 
 const poppingsFont600 = Poppins({
 	weight: "600",
@@ -7,47 +10,23 @@ const poppingsFont600 = Poppins({
 });
 
 export default function PostContainer() {
-	const examplePosts = [
-		{
-			id: 0,
-			title: "To jest pierwszy testowy post",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum provident nam accusantium rerum explicabo tenetur non voluptates corrupti, vero deleniti cupiditate dolor repellendus ullam quasi recusandae est perferendis dolorem necessitatibus incidunt.Quae repellendus necessitatibus deserunt ut voluptate magni, hic alias.",
-			image: "/Archiwum.png",
-			date: "21-08-2023",
-		},
-		{
-			id: 1,
-			title: "To jest juz drugi testowy post - środkowy",
+	const [posts, setPosts] = useState<PostDataType[]>([]);
 
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum provident nam accusantium rerum explicabo tenetur non voluptates corrupti, vero deleniti cupiditate dolor repellendus ullam quasi recusandae est perferendis dolorem necessitatibus incidunt.Quae repellendus necessitatibus deserunt ut voluptate magni, hic alias.",
-			image: "/Archiwum.png",
-			date: "21-08-2023",
-		},
-		{
-			id: 2,
-			title: "To jest az trzeci i ostani testowy post",
+	useEffect(() => {
+		fetchPosts();
+	}, []);
 
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum provident nam accusantium rerum explicabo tenetur non voluptates corrupti, vero deleniti cupiditate dolor repellendus ullam quasi recusandae est perferendis dolorem necessitatibus incidunt.Quae repellendus necessitatibus deserunt ut voluptate magni, hic alias.",
-			image: "/Archiwum.png",
-			date: "21-08-2023",
-		},
-	];
+	async function fetchPosts() {
+		const posts = await(await fetch("api/posts")).json();
+
+		setPosts(posts);
+	}
 
 	return (
 		<section className="w-full flex flex-col items-center gap-y-5 md:gap-y-8 xl:gap-y-10 2xl:gap-y-14 4xl:gap-y-16">
 			<div className="grid grid-cols-1 gap-y-3 md:grid-cols-2 md:gap-2 lg:gap-3 4xl:grid-cols-3">
-				{examplePosts.map((examplePost) => (
-					<PostTile
-						id={examplePost.id}
-						date={examplePost.date}
-						description={examplePost.description}
-						title={examplePost.title}
-						image={examplePost.image}
-						key={examplePost.id}
-					/>
+				{posts.map((postData: PostDataType) => (
+					<PostTile postData={postData} key={postData.id} />
 				))}
 			</div>
 
