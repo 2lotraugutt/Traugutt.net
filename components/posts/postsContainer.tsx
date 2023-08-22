@@ -26,7 +26,7 @@ export default function PostContainer() {
 
 	return (
 		<section className="w-full flex flex-col items-center gap-y-5 md:gap-y-8 xl:gap-y-10 2xl:gap-y-14 4xl:gap-y-16">
-			<div className="grid grid-cols-1 gap-y-3 md:grid-cols-2 md:gap-2 lg:gap-3 4xl:grid-cols-3">
+			<div className="grid grid-cols-1 gap-y-3 md:grid-cols-2 md:gap-2 lg:gap-3 xl:gap-5 4xl:gap-6 4xl:grid-cols-3">
 				{posts.map((postData: PostDataType) => (
 					<PostTile postData={postData} key={postData.id} />
 				))}

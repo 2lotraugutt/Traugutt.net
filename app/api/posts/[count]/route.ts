@@ -11,7 +11,5 @@ export async function GET(request: Request, { params }: { params: { count: strin
 		],
 	});
 
-	const postsToReturn: PostDataType[] = posts;
-
-	return NextResponse.json(postsToReturn);
+	return NextResponse.json(posts);
 }

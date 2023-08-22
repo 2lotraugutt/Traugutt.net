@@ -33,13 +33,13 @@ export default function TopOnePost(props: { id: string; title: string; descripti
 
 			<div className="bg-MainDarkGray/80 flex flex-col text-white xs:group-hover:-translate-y-full duration-300 ease-out transition-all -translate-y-10">
 				<h3
-					className={`from-MainDarkGray/0 via-MainDarkGray/50 bg-gradient-to-b 3xl:text-4xl md:text-lg 4xl:text-5xl to-MainDarkGray/80 pt-4 w-full text-base xs:text-2xl lg:text-3xl absolute xs:-translate-y-full -translate-y-2/3 xs:px-6 md:px-8 left-0 px-3 ${poppingsFont700.className}`}
+					className={`from-MainDarkGray/0 truncate-overflow-2 via-MainDarkGray/50 bg-gradient-to-b 3xl:text-4xl md:text-lg 4xl:text-5xl to-MainDarkGray/80 pt-4 w-full text-base xs:text-2xl lg:text-3xl absolute xs:-translate-y-full -translate-y-2/3 xs:px-6 md:px-8 left-0 px-3 ${poppingsFont700.className}`}
 				>
 					{props.title}
 				</h3>
 
 				<p
-					className={`group-hover:delay-75 text-transparent duration-300 ease-out transition-all w-full truncate-overflow xs:group-hover:text-white 4xl:text-lg 2xl:text-base 2xl:mt-4 text-sm mt-2 mb-8 xs:px-6 md:px-8 px-3 ${poppingsFont400.className}`}
+					className={`group-hover:delay-75 text-transparent duration-300 ease-out transition-all w-full truncate-overflow-6 xs:group-hover:text-white 4xl:text-lg 2xl:text-base 2xl:mt-4 text-sm mt-2 mb-8 xs:px-6 md:px-8 px-3 ${poppingsFont400.className}`}
 				>
 					{props.description}
 				</p>
