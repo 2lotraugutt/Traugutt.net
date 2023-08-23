@@ -60,7 +60,7 @@ export default function Page({ params }: { params: { id: string } }) {
 						</div>
 
 						<h1
-							className={`4xl:text-6xl text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+							className={`4xl:text-6xl text-base !leading-[150%] h-fit sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
 						>
 							{post.title}
 						</h1>
