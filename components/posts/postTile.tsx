@@ -31,15 +31,7 @@ export default function PostTile(props: { postData: PostDataType }) {
 				{dateToDisplay}
 			</div>
 
-			<Image
-				className="w-full h-full object-cover"
-				src={props.postData.titleImage}
-				alt="Top 1 image"
-				height={1080}
-				width={1920}
-				blurDataURL="./Loading.png"
-				placeholder="blur"
-			/>
+			<Image className="w-full h-full object-cover" src={props.postData.titleImage} alt="Top 1 image" height={1080} width={1920} />
 
 			<div className="bg-MainDarkGray/80 flex flex-col text-white xs:group-hover:-translate-y-full transition-all -translate-y-10">
 				<h3

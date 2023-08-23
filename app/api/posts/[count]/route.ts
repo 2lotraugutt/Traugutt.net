@@ -9,6 +9,7 @@ export async function GET(request: Request, { params }: { params: { count: strin
 				createdAt: "desc",
 			},
 		],
+		where: { published: true },
 	});
 
 	return NextResponse.json(posts);
