@@ -9,7 +9,7 @@ const poppingsFont = Poppins({
 
 export default function Navbar() {
 	return (
-		<nav className="top-0 bg-white z-20 sticky grid-cols-3 w-full items-center py-3 px-2 md:px-5 lg:px-12 grid">
+		<nav className="top-0 bg-white z-20 sticky grid-cols-3 w-full items-center py-3 px-2 md:px-5 lg:px-12 grid 4xl:px-0">
 			<Link href={"/"} className={`invisible md:visible justify-self-start text-xl 2xl:text-2xl tracking-widest ${poppingsFont.className}`}>
 				II LO. TRAUGUTT
 			</Link>

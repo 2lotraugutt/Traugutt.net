@@ -26,6 +26,9 @@ const config: Config = {
 				xs: "512px",
 				"2xs": "384px",
 			},
+			fontSize: {
+				"2xs": "0.6rem",
+			},
 		},
 	},
 	plugins: [],
