@@ -32,8 +32,7 @@ declare global {
 		id: String;
 		email: String;
 		emailVerified: DateTime?;
-		firstName: String;
-		lastName: String;
+		name: string;
 		profilePicture: String;
 	};
 }
