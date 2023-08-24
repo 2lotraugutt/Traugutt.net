@@ -14,8 +14,7 @@ model User {
   id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email           String    @unique
   emailVerified   DateTime?
-  firstName       String
-  lastName        String
+  name       String
   profilePicture  String
   
   posts           Post[] @relation("Author") 
@@ -37,7 +36,7 @@ model Post {
   authorId    String    @db.Uuid
   author      User      @relation("Author", fields: [authorId], references: [id])
 
-  publishedById String? @default("e0c8b275-dcf5-4038-9eac-d3c62f0027b7") @db.Uuid
+  publishedById String? @db.Uuid
   publishedBy User?     @relation("Published", fields: [publishedById], references: [id])
 }
 
