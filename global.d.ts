@@ -11,6 +11,7 @@ declare global {
 		views: number;
 		authorId: string;
 		published: boolean;
+		publishedById: string;
 	};
 
 	type PostDataTypeWithAuthor = {
@@ -24,6 +25,7 @@ declare global {
 		authorId: string;
 		author: UserDataType;
 		published: boolean;
+		publishedById: string;
 	};
 
 	type UserDataType = {

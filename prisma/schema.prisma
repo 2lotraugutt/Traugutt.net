@@ -17,9 +17,11 @@ model User {
   firstName       String
   lastName        String
   profilePicture  String
-  posts           Post[]
+  
+  posts           Post[] @relation("Author") 
   accounts        Account[]
   sessions        Session[]
+  published       Post[] @relation("Published") 
 }
 
 model Post {
@@ -29,10 +31,14 @@ model Post {
   content     String?
   published   Boolean   @default(false)
   views       Int       @default(0)
-  authorId    String    @db.Uuid
-  author      User      @relation(fields: [authorId], references: [id])
   titleImage  String
   gallery     String[]  @default([])
+
+  authorId    String    @db.Uuid
+  author      User      @relation("Author", fields: [authorId], references: [id])
+
+  publishedById String? @default("e0c8b275-dcf5-4038-9eac-d3c62f0027b7") @db.Uuid
+  publishedBy User?     @relation("Published", fields: [publishedById], references: [id])
 }
 
 model Session {
