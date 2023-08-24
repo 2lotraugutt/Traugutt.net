@@ -33,10 +33,10 @@
 }
 
 #markdown-container  ul > li {
-  @apply list-disc 
+  @apply list-disc my-0.5
 }
 #markdown-container ol > li {
-  @apply list-decimal
+  @apply list-decimal my-0.5
 }
 
 #markdown-container p, ul, ol , .block-quote{
@@ -44,7 +44,7 @@
 }
 
 #markdown-container .block-quote{
-  @apply italic px-4  border-l-2 border-MainPurple py-2
+  @apply italic px-5 border-l-2 border-MainPurple py-2 my-2 sm:my-3.5 md:my-6 sm:py-5 xs:px-8 md:py-7 xl:py-8 2xs:px-6 sm:px-10 lg:px-14 lg:py-6 bg-LightGray/30
 }
 
 #markdown-container .inline-code{
@@ -56,10 +56,10 @@
 }
 
 #markdown-container h1 {
-  @apply 4xl:text-6xl text-base !leading-[150%] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl my-2 lg:my-4
+  @apply 4xl:text-6xl text-base !leading-[150%] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl my-1 lg:my-4
 }
 #markdown-container h2 {
-  @apply !leading-[130%] text-sm 4xl:text-5xl sm:text-base md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl my-1.5 lg:my-3.5
+  @apply !leading-[130%] text-sm 4xl:text-5xl sm:text-base md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl my-1 lg:my-3.5
 }
 #markdown-container h3 {
   @apply text-xs 4xl:text-4xl sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-1 lg:my-3
