@@ -7,13 +7,12 @@ export const metadata = {
 	title: "Traugutt",
 };
 
-export default function RootLayout({ children, props }: { children: React.ReactNode; props: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<AuthProvider>
 				<body className="max-w-screen-4xl mx-auto">
 					<Navbar />
-					{props}
 					{children}
 					<Footer />
 				</body>
