@@ -1,14 +1,14 @@
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
+import { MyAdapter } from "@/lib/prismaAdapter";
 import prisma from "@/lib/prisma";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 
 const handler = NextAuth({
 	pages: {
 		signIn: "/auth/signin",
 		signOut: "/auth/signout",
 	},
-	adapter: PrismaAdapter(prisma),
+	adapter: MyAdapter(prisma),
 	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
 		GitHubProvider({
