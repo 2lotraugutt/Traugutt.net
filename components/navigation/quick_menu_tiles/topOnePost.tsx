@@ -37,7 +37,7 @@ export default function TopOnePost() {
 		return (
 			<Link
 				href={"/post/" + topOnePost.id}
-				className="group col-span-2 row-span-2 md:col-span-2 overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]"
+				className="group z-10 col-span-2 row-span-2 md:col-span-2 overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]"
 			>
 				<div
 					className={`bg-white text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs sm:text-base 2xl:text-xl rounded-2xl py-0.75 px-4 sm:px-8 ${plusJakartaSansFont800.className}`}
@@ -46,7 +46,7 @@ export default function TopOnePost() {
 				</div>
 
 				<Image
-					className="w-full h-full object-cover"
+					className="w-full h-full object-cover absolute"
 					src={topOnePost.titleImage}
 					alt="Top 1 image"
 					height={1080}
@@ -54,6 +54,8 @@ export default function TopOnePost() {
 					blurDataURL="./Loading.png"
 					placeholder="blur"
 				/>
+
+				<div className="w-full rounded-3xl xs:rounded-4xl aspect-[25/16] bg-MainDarkGray "></div>
 
 				<div className="bg-MainDarkGray/80 flex flex-col text-white xs:group-hover:-translate-y-full duration-300 ease-out transition-all -translate-y-10">
 					<h3
