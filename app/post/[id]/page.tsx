@@ -1,19 +1,14 @@
 "use client";
 
+import PostHeading from "@/components/post/postHeading";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
 import TopPostTile from "@/components/posts/topPostTile";
 import markdownToHTML from "@/lib/markdownToHTML";
 import { Poppins } from "next/font/google";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
-	subsets: ["latin"],
-});
-
-const poppingsFont600 = Poppins({
-	weight: "600",
 	subsets: ["latin"],
 });
 
@@ -30,7 +25,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 		fetchTopPosts();
 		async function fetchTopPosts() {
-			const posts = await (await fetch("/api/topPosts/?count=2")).json();
+			const posts = await(await fetch("/api/topPosts/?count=3")).json();
 
 			setTopPost(posts);
 		}
@@ -42,63 +37,35 @@ export default function Page({ params }: { params: { id: string } }) {
 		}
 	}, []);
 
-	if (post) {
-		const months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
-
-		let date = new Date(post?.createdAt);
-		const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
-
-		return (
-			<div className="flex flex-col w-full">
-				<div className="relative">
-					<Image
-						alt="Title image"
-						src={post.titleImage}
-						width={1920}
-						height={1080}
-						className="aspect-[16/12] w-full md:aspect-[16/9] xl:aspect-[2] 2xl:aspect-[16/7] object-cover"
-					/>
-
-					<div className="flex bg-gradient-to-t md:gap-y-2.5 sm:gap-y-2 from-MainDarkGray via-MainDarkGray/80 to-MainDarkGray/0 flex-col absolute text-white left-0 bottom-0 pb-4 px-3 xl:pb-20 xs:px-7 md:pb-12 lg:px-24 lg:pb-14 xl:px-28 md:px-16 xs:pb-6 2xs:px-5 sm:px-10 sm:pb-9 2xl:px-48 3xl:px-64 4xl:px-80 w-full gap-y-1 xl:gap-y-4">
-						<div className="flex flex-row items-center gap-x-2 xl:gap-x-4">
-							<p className={`text-xs sm:text-sm md:text-base 3xl:text-lg 4xl:text-xl ${poppingsFont600.className}`}>
-								{post.author.firstName + " " + post.author.lastName}
-							</p>
-
-							<div className="bg-white xl:h-1.5 w-1 xl:w-1.5 h-1 rounded-full"></div>
-
-							<p className={`text-xs md:text-sm 4xl:text-lg ${poppingsFont400.className}`}>{dateToDisplay}</p>
-						</div>
-
-						<h1
-							className={`4xl:text-6xl text-base 2xs:text-lg !leading-[150%] h-fit sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
-						>
-							{post.title}
-						</h1>
-					</div>
-				</div>
-
-				<div
-					id="markdown-container"
-					className={`px-3 xs:px-7 flex-col flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 py-4 xl:py-20 md:py-12 lg:py-14 sm:py-9 xs:py-6 ${poppingsFont400.className}`}
-				>
-					{markdownToHTML(post.content!)}
-				</div>
-
-				<div className="lg:mx-12 mx-3 xs:mx-7 2xs:mx-5 sm:mx-10 md:mx-5 4xl:mx-0">
-					<h2
-						className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+	return (
+		<div className="flex flex-col w-full">
+			{post ? (
+				<>
+					<PostHeading post={post} />
+					<div
+						id="markdown-container"
+						className={`px-3 xs:px-7 flex-col flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 py-4 xl:py-20 md:py-12 lg:py-14 sm:py-9 xs:py-6 ${poppingsFont400.className}`}
 					>
-						Najpopularniejsze posty w tym miesiącu
-					</h2>
-
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full md:gap-2 lg:gap-4 xl:gap-7 4xl:gap-10">
-						{topPosts
-							? topPosts.map((postData: PostDataType, i) => <TopPostTile postData={postData} key={postData.id} index={i + 1} />)
-							: [...Array(2)].map((i) => <PostTileSkeleton key={i} />)}
+						{markdownToHTML(post!.content!)}
 					</div>
+				</>
+			) : (
+				<></>
+			)}
+
+			<div className="lg:mx-12 mx-3 xs:mx-7 2xs:mx-5 sm:mx-10 md:mx-5 4xl:mx-0">
+				<h2
+					className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+				>
+					Najpopularniejsze posty w tym miesiącu
+				</h2>
+
+				<div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3 w-full md:gap-2 lg:gap-4 xl:gap-7 4xl:gap-10 last:text-black">
+					{topPosts
+						? topPosts.map((postData: PostDataType, i) => <TopPostTile postData={postData} key={postData.id} index={i + 1} />)
+						: [...Array(3)].map((i) => <PostTileSkeleton key={i} />)}
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 }
