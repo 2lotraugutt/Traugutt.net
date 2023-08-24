@@ -4,8 +4,6 @@ import { PrismaClient } from "@prisma/client";
 
 export function MyAdapter(prisma: PrismaClient): Adapter {
 	return {
-		...PrismaAdapter(prisma),
-
 		async createUser(user: any) {
 			return prisma.user.create({
 				data: {
@@ -15,5 +13,6 @@ export function MyAdapter(prisma: PrismaClient): Adapter {
 				},
 			});
 		},
+		...PrismaAdapter(prisma),
 	};
 }
