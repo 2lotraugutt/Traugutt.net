@@ -1,6 +1,7 @@
 "use client";
 
 import PostHeading from "@/components/post/postHeading";
+import PostSkeleton from "@/components/post/postSkeleton";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
 import TopPostTile from "@/components/posts/topPostTile";
 import markdownToHTML from "@/lib/markdownToHTML";
@@ -25,7 +26,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 		fetchTopPosts();
 		async function fetchTopPosts() {
-			const posts = await(await fetch("/api/topPosts/?count=3")).json();
+			const posts = await (await fetch("/api/topPosts/?count=3")).json();
 
 			setTopPost(posts);
 		}
@@ -50,7 +51,9 @@ export default function Page({ params }: { params: { id: string } }) {
 					</div>
 				</>
 			) : (
-				<></>
+				<>
+					<PostSkeleton />
+				</>
 			)}
 
 			<div className="lg:mx-12 mx-3 xs:mx-7 2xs:mx-5 sm:mx-10 md:mx-5 4xl:mx-0">

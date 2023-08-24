@@ -31,8 +31,9 @@ export default function PostHeading(props: { post: PostDataTypeWithAuthor }) {
 				src={props.post.titleImage}
 				width={1920}
 				height={1080}
-				className="aspect-[16/12] w-full md:aspect-[16/9] xl:aspect-[2] 2xl:aspect-[16/7] object-cover"
+				className="aspect-[16/12] w-full absolute top-0  md:aspect-[16/9] xl:aspect-[2] 2xl:aspect-[16/7] object-cover"
 			/>
+			<div className="aspect-[16/12] w-full md:aspect-[16/9] xl:aspect-[2] 2xl:aspect-[16/7] bg-MainDarkGray"></div>
 
 			<div className="flex bg-gradient-to-t md:gap-y-2.5 sm:gap-y-2 from-MainDarkGray via-MainDarkGray/80 to-MainDarkGray/0 flex-col absolute text-white left-0 bottom-0 pb-4 px-3 xl:pb-20 xs:px-7 md:pb-12 lg:px-24 lg:pb-14 xl:px-28 md:px-16 xs:pb-6 2xs:px-5 sm:px-10 sm:pb-9 2xl:px-48 3xl:px-64 4xl:px-80 w-full gap-y-1 xl:gap-y-4">
 				<div className="flex flex-row items-center gap-x-2 xl:gap-x-4">
