@@ -12,6 +12,7 @@ const config: Config = {
 				MainPurple: "#6835F1",
 				LightPurple: "#E8E1FD",
 				MainDarkGray: "#222222",
+				LightGray: "#D9D9D9",
 			},
 			padding: {
 				"50px": "50px",

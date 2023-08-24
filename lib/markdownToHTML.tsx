@@ -51,7 +51,7 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 				newLines.shift();
 			}
 
-			elements.push(<div className="blackQuote">{blackQuotes}</div>);
+			elements.push(<div className="block-quote">{blackQuotes}</div>);
 		} else {
 			const text = newLines[0];
 			elements.push(<p>{inlineMarkdownToHtml(text)}</p>);
@@ -64,7 +64,7 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 }
 
 function inlineMarkdownToHtml(markdown: string) {
-	const regex = /(\*\*|\*|__|_|~~|`)(.*?)\1/g;
+	const regex = /(\*\*|\*|__|_|`|~~)(.*?)\1/g;
 	const regexLink = / \[(.*?)\]\((.*?)\)/g;
 
 	const parts: (string | JSX.Element)[] = [];
@@ -92,9 +92,9 @@ function inlineMarkdownToHtml(markdown: string) {
 		if (marker == "~~") parts.push(<s key={index}>{content}</s>);
 		if (marker == "`")
 			parts.push(
-				<div key={index} className="inline-code">
+				<span key={index} className="inline-code">
 					{content}
-				</div>
+				</span>
 			);
 
 		lastIndex = index + match.length; // Update the last index

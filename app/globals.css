@@ -16,3 +16,31 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+#markdown-container h1{
+  @apply font-bold 
+}
+
+#markdown-container a{
+  @apply text-MainPurple font-semibold hover:underline
+}
+
+#markdown-container ul {
+  @apply list-inside list-disc
+}
+
+#markdown-container ol {
+  @apply list-decimal list-inside
+}
+
+#markdown-container p, ul, ol , .block-quote{
+  @apply 3xl:text-xl text-2xs 2xs:text-xs sm:text-sm md:text-base xl:text-lg
+}
+
+#markdown-container .block-quote{
+  @apply italic px-4 border-l-2 border-MainPurple py-2 font-semibold
+}
+
+#markdown-container .inline-code{
+  @apply  bg-LightGray w-fit px-1 xl:px-2 py-0.5 xl:py-1 rounded
+}
