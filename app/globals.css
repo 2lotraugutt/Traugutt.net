@@ -25,7 +25,7 @@
 }
 
 #markdown-container p, ul, ol , .block-quote{
-  @apply 3xl:text-xl text-2xs 2xs:text-xs sm:text-sm md:text-base xl:text-lg
+  @apply 3xl:text-xl text-xs 2xs:text-sm sm:text-base md:text-base xl:text-lg
 }
 
 #markdown-container .block-quote{

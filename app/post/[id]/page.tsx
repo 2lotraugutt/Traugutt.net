@@ -1,5 +1,8 @@
 "use client";
 
+import PostTile from "@/components/posts/postTile";
+import PostTileSkeleton from "@/components/posts/postTileSkeleton";
+import TopOnePostTile from "@/components/posts/topOnePostTile";
 import markdownToHTML from "@/lib/markdownToHTML";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -22,9 +25,17 @@ const poppingsFont400 = Poppins({
 
 export default function Page({ params }: { params: { id: string } }) {
 	const [post, setPost] = useState<PostDataTypeWithAuthor | undefined>();
+	const [topPosts, setTopPost] = useState<PostDataType[] | undefined>();
 
 	useEffect(() => {
 		fetchPosts();
+		fetchTopPosts();
+		async function fetchTopPosts() {
+			const posts = await (await fetch("/api/topPosts/?count=2")).json();
+
+			setTopPost(posts);
+		}
+
 		async function fetchPosts() {
 			const post = await (await fetch(`/api/post/${params.id}`)).json();
 
@@ -61,7 +72,7 @@ export default function Page({ params }: { params: { id: string } }) {
 						</div>
 
 						<h1
-							className={`4xl:text-6xl text-base !leading-[150%] h-fit sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+							className={`4xl:text-6xl text-base 2xs:text-lg !leading-[150%] h-fit sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
 						>
 							{post.title}
 						</h1>
@@ -70,9 +81,23 @@ export default function Page({ params }: { params: { id: string } }) {
 
 				<div
 					id="markdown-container"
-					className={`px-3 xs:px-7 flex-col flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 pt-4 xl:pt-20 md:pt-12 lg:pt-14 sm:pt-9 xs:pt-6 ${poppingsFont400.className}`}
+					className={`px-3 xs:px-7 flex-col flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 py-4 xl:py-20 md:py-12 lg:py-14 sm:py-9 xs:py-6 ${poppingsFont400.className}`}
 				>
 					{markdownToHTML(post.content!)}
+				</div>
+
+				<div className="lg:mx-12 mx-3 xs:mx-7 2xs:mx-5 sm:mx-10 md:mx-5 4xl:mx-0">
+					<h2
+						className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+					>
+						Najpopularniejsze posty w tym miesiącu
+					</h2>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full md:gap-2 lg:gap-4 xl:gap-7 4xl:gap-10">
+						{topPosts
+							? topPosts.map((postData: PostDataType, i) => <TopOnePostTile postData={postData} key={postData.id} index={i + 1} />)
+							: [...Array(2)].map((i) => <PostTileSkeleton key={i} />)}
+					</div>
 				</div>
 			</div>
 		);
