@@ -1,4 +1,5 @@
 import Navbar from "@/components/navigation/navbar";
+import Footer from "@/components/navigation/footer";
 import "./globals.css";
 
 export const metadata = {
@@ -11,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className="max-w-screen-4xl mx-auto">
 				<Navbar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
