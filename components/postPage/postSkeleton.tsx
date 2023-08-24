@@ -11,6 +11,10 @@ export default function PostSkeleton() {
 						<div className="bg-white xl:h-1.5 w-1 xl:w-1.5 h-1 rounded-full"></div>
 
 						<div className="h-2.5 bg-white/80 w-1/12 rounded-sm md:h-3.5 3xl:h-4 4xl:h-5"></div>
+
+						<div className="bg-white xl:h-1.5 w-1 xl:w-1.5 h-1 rounded-full"></div>
+
+						<div className="h-2.5 bg-white/80 w-1/12 rounded-sm md:h-3.5 3xl:h-4 4xl:h-5"></div>
 					</div>
 
 					<div className="bg-white/80 4xl:h-14 rounded animate-pulse h-4 2xs:text-lg sm:h-5 md:h-6 lg:h-7 xl:h-1 2xl:h-12 w-11/12"></div>

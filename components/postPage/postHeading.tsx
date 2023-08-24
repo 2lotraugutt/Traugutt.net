@@ -24,6 +24,13 @@ export default function PostHeading(props: { post: PostDataTypeWithAuthor }) {
 		return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 	}
 
+	function returnViews() {
+		const views = props.post.views;
+		if (views == 1) return views + " wyświetlenie";
+		else if (views < 5) return views + " wyświetlenia";
+		else return views + " wyświetleń";
+	}
+
 	return (
 		<div className="relative">
 			<Image
@@ -44,6 +51,10 @@ export default function PostHeading(props: { post: PostDataTypeWithAuthor }) {
 					<div className="bg-white xl:h-1.5 w-1 xl:w-1.5 h-1 rounded-full"></div>
 
 					<p className={`text-xs md:text-sm 4xl:text-lg ${poppingsFont400.className}`}>{returnDate()}</p>
+
+					<div className="bg-white xl:h-1.5 w-1 xl:w-1.5 h-1 rounded-full"></div>
+
+					<p className={`text-xs md:text-sm 4xl:text-lg ${poppingsFont400.className}`}>{returnViews()}</p>
 				</div>
 
 				<h1
