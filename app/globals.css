@@ -26,11 +26,17 @@
 }
 
 #markdown-container ul {
-  @apply list-inside list-disc
+  @apply ps-4 md:ps-5 lg:ps-6 list-none 
+}
+#markdown-container ol {
+  @apply list-inside list-none 
 }
 
-#markdown-container ol {
-  @apply list-decimal list-inside
+#markdown-container  ul > li {
+  @apply list-disc 
+}
+#markdown-container ol > li {
+  @apply list-decimal
 }
 
 #markdown-container p, ul, ol , .block-quote{
@@ -38,9 +44,23 @@
 }
 
 #markdown-container .block-quote{
-  @apply italic px-4 border-l-2 border-MainPurple py-2 font-semibold
+  @apply italic px-4  border-l-2 border-MainPurple py-2
 }
 
 #markdown-container .inline-code{
   @apply  bg-LightGray w-fit px-1 xl:px-2 py-0.5 xl:py-1 rounded
+}
+
+#markdown-container h1 , h2, h3 {
+  @apply w-full tracking-wide
+}
+
+#markdown-container h1 {
+  @apply 4xl:text-6xl text-base !leading-[150%] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl my-2 lg:my-4
+}
+#markdown-container h2 {
+  @apply !leading-[130%] text-sm 4xl:text-5xl sm:text-base md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl my-1.5 lg:my-3.5
+}
+#markdown-container h3 {
+  @apply text-xs 4xl:text-4xl sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-1 lg:my-3
 }

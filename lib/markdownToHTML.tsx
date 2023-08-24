@@ -15,17 +15,10 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 			const headingLevel = newLines[0].match(/^#+/)?.[0].length || 1;
 			const headingText = newLines[0].replace(/^#+\s*/, "");
 
-			elements.push(React.createElement(`h${headingLevel}`, {}, headingText));
+			if (headingLevel < 4) elements.push(React.createElement(`h${headingLevel}`, { class: ["__className_3e3188 "] }, headingText));
+			else elements.push(<p>{inlineMarkdownToHtml(headingText)}</p>);
 		} else if (newLines[0].startsWith("- ") || newLines[0].startsWith("* ")) {
-			let points: JSX.Element[] = [];
-
-			while (newLines[0].startsWith("- ") || newLines[0].startsWith("* ")) {
-				const text = newLines[0].replace(/[-*]\s/g, "");
-				points.push(<li>{inlineMarkdownToHtml(text)}</li>);
-				newLines.shift();
-			}
-
-			elements.push(<ul>{points}</ul>);
+			elements.push(<ul>{createLists(1)}</ul>);
 		} else if (/^[0-9]+\.\s/.test(newLines[0])) {
 			let points: JSX.Element[] = [];
 
@@ -37,27 +30,52 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 
 			elements.push(<ol>{points}</ol>);
 		} else if (newLines[0].startsWith("> ")) {
-			let blackQuotes: JSX.Element[] = [];
-
-			while (newLines[0].startsWith("> ")) {
-				const text = newLines[0].replace(/^>\s*/, "");
-
-				blackQuotes.push(
-					<>
-						{inlineMarkdownToHtml(text)} <br></br>
-					</>
-				);
-
-				newLines.shift();
-			}
-
-			elements.push(<div className="block-quote">{blackQuotes}</div>);
+			elements.push(<div className="block-quote __className_153980">{createBlockQuote(1)}</div>);
 		} else {
 			const text = newLines[0];
 			elements.push(<p>{inlineMarkdownToHtml(text)}</p>);
 		}
 
 		newLines.shift();
+	}
+
+	function createLists(i: number) {
+		let points: JSX.Element[] = [];
+
+		while (newLines[0].startsWith("- ".repeat(i)) || newLines[0].startsWith("* ".repeat(i))) {
+			let text = newLines[0].replace("- ".repeat(i), "");
+			text = text.replace("* ".repeat(i), "");
+
+			if (newLines[0].startsWith("- ".repeat(i + 1)) || newLines[0].startsWith("* ".repeat(i + 1))) {
+				points.push(<ul>{createLists(2)}</ul>);
+			} else {
+				points.push(<li>{inlineMarkdownToHtml(text)}</li>);
+				newLines.shift();
+			}
+		}
+
+		return points;
+	}
+
+	function createBlockQuote(i: number) {
+		let blockQuotes: JSX.Element[] = [];
+
+		while (newLines[0].startsWith("> ".repeat(i))) {
+			const text = newLines[0].replace("> ".repeat(i), "");
+			console.log(text);
+			if (newLines[0].startsWith("> ".repeat(i + 1))) {
+				blockQuotes.push(<div className="block-quote __className_153980">{createBlockQuote(2)}</div>);
+			} else {
+				blockQuotes.push(
+					<>
+						{text} <br></br>
+					</>
+				);
+				newLines.shift();
+			}
+		}
+
+		return blockQuotes;
 	}
 
 	return elements;
@@ -75,7 +93,7 @@ function inlineMarkdownToHtml(markdown: string) {
 		let insideLastIndex = 0;
 
 		newMarkdown.slice(insideLastIndex).replace(regexLink, (match, name, link, insideIndex) => {
-			parts.push(markdown.slice(insideLastIndex, insideIndex)); // Add text before the match
+			parts.push(markdown.slice(insideLastIndex, insideIndex + 1)); // Add text before the match
 			parts.push(<a href={link}> {name}</a>);
 
 			insideLastIndex = insideIndex + match.length; // Update the last index
@@ -104,8 +122,8 @@ function inlineMarkdownToHtml(markdown: string) {
 
 	if (lastIndex < markdown.length) {
 		markdown.slice(lastIndex).replace(regexLink, (match, name, link, index) => {
-			parts.push(markdown.slice(lastIndex, index)); // Add text before the match
-			parts.push(<a href={link}> {name}</a>);
+			parts.push(markdown.slice(lastIndex, index + 1)); // Add text before the match
+			parts.push(<a href={link}>{name}</a>);
 
 			lastIndex = lastIndex + index + match.length; // Update the last index
 			return match;

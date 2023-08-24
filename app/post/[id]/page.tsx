@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const poppingsFont700 = Poppins({
 	weight: "700",
 	subsets: ["latin"],
+	variable: "--poppins-700",
 });
 
 const poppingsFont600 = Poppins({
@@ -70,7 +71,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
 				<div
 					id="markdown-container"
-					className={`px-3 xs:px-7 flex-col flex gap-y-4 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 pt-4 xl:pt-20 md:pt-12 lg:pt-14 sm:pt-9 xs:pt-6 ${poppingsFont400.className}`}
+					className={`px-3 xs:px-7 flex-col flex gap-y-2 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 pt-4 xl:pt-20 md:pt-12 lg:pt-14 sm:pt-9 xs:pt-6 ${poppingsFont400.className}`}
 				>
 					{markdownToHTML(post.content!)}
 				</div>
