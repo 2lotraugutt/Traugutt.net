@@ -1,8 +1,7 @@
 "use client";
 
-import PostTile from "@/components/posts/postTile";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
-import TopOnePostTile from "@/components/posts/topOnePostTile";
+import TopPostTile from "@/components/posts/topPostTile";
 import markdownToHTML from "@/lib/markdownToHTML";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -95,7 +94,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full md:gap-2 lg:gap-4 xl:gap-7 4xl:gap-10">
 						{topPosts
-							? topPosts.map((postData: PostDataType, i) => <TopOnePostTile postData={postData} key={postData.id} index={i + 1} />)
+							? topPosts.map((postData: PostDataType, i) => <TopPostTile postData={postData} key={postData.id} index={i + 1} />)
 							: [...Array(2)].map((i) => <PostTileSkeleton key={i} />)}
 					</div>
 				</div>
