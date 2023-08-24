@@ -1,5 +1,6 @@
 "use client";
 
+import markdownToHTML from "@/lib/markdownToHTML";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -68,9 +69,9 @@ export default function Page({ params }: { params: { id: string } }) {
 				</div>
 
 				<div
-					className={`3xl:text-xl text-2xs 2xs:text-xs sm:text-sm md:text-base xl:text-lg px-3 xs:px-7 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 pt-4 xl:pt-20 md:pt-12 lg:pt-14 sm:pt-9 xs:pt-6 ${poppingsFont400.className}`}
+					className={`px-3 xs:px-7 flex-col flex gap-y-4 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 pt-4 xl:pt-20 md:pt-12 lg:pt-14 sm:pt-9 xs:pt-6 ${poppingsFont400.className}`}
 				>
-					{post.content}
+					{markdownToHTML(post.content!)}
 				</div>
 			</div>
 		);
