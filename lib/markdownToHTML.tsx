@@ -1,4 +1,10 @@
+import { Plus_Jakarta_Sans } from "next/font/google";
 import React from "react";
+
+const PlusJakartaSans300 = Plus_Jakarta_Sans({
+	weight: "300",
+	subsets: ["latin"],
+});
 
 export default function markdownToHtml(markdown: string): JSX.Element[] {
 	const lines = markdown.trim().split("\n");
@@ -30,7 +36,7 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 
 			elements.push(<ol>{points}</ol>);
 		} else if (newLines[0].startsWith("> ")) {
-			elements.push(<div className="block-quote __className_153980">{createBlockQuote(1)}</div>);
+			elements.push(<div className={`block-quote ${PlusJakartaSans300.className}`}>{createBlockQuote(1)}</div>);
 		} else {
 			const text = newLines[0];
 			elements.push(<p>{inlineMarkdownToHtml(text)}</p>);
@@ -64,7 +70,7 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 			const text = newLines[0].replace("> ".repeat(i), "");
 			console.log(text);
 			if (newLines[0].startsWith("> ".repeat(i + 1))) {
-				blockQuotes.push(<div className="block-quote __className_153980">{createBlockQuote(2)}</div>);
+				blockQuotes.push(<div className={`block-quote ${PlusJakartaSans300.className}`}>{createBlockQuote(2)}</div>);
 			} else {
 				blockQuotes.push(
 					<>

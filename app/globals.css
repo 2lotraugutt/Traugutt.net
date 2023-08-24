@@ -29,7 +29,7 @@
 }
 
 #markdown-container .block-quote{
-  @apply italic px-5 border-l-2 border-MainPurple py-2 my-2 sm:my-3.5 md:my-6 sm:py-5 xs:px-8 md:py-7 xl:py-8 2xs:px-6 sm:px-10 lg:px-14 lg:py-6 bg-LightGray/30
+  @apply italic px-5 border-l-2 border-MainPurple py-2 my-2 sm:my-3.5 md:my-6 sm:py-5 xs:px-8 md:py-7 xl:py-8 2xs:px-6 sm:px-10 lg:px-14 lg:py-6 bg-LightGray/30 font-light
 }
 
 #markdown-container .inline-code{

@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 const poppingsFont700 = Poppins({
 	weight: "700",
 	subsets: ["latin"],
-	variable: "--poppins-700",
 });
 
 const poppingsFont600 = Poppins({
