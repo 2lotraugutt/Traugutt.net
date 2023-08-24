@@ -19,7 +19,7 @@ export default function PostContainer() {
 	}, []);
 
 	async function fetchPosts() {
-		const posts = await (await fetch(`api/posts/${count * 12}`)).json();
+		const posts = await(await fetch(`api/posts?count=${count * 12}`)).json();
 
 		setPosts(posts);
 		setCount((oldCount) => oldCount + 1);
