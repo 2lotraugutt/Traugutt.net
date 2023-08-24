@@ -49,3 +49,11 @@
 #markdown-container h3 {
   @apply text-xs 4xl:text-4xl sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-1 lg:my-3
 }
+
+#top-posts-container > *:nth-child(2){
+  @apply hidden md:block
+}
+
+#top-posts-container > *:nth-child(3){
+  @apply hidden 2xl:block
+}

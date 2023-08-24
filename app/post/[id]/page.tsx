@@ -63,7 +63,7 @@ export default function Page({ params }: { params: { id: string } }) {
 					Najpopularniejsze posty w tym miesiącu
 				</h2>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3 w-full md:gap-2 lg:gap-4 xl:gap-7 4xl:gap-10 last:text-black">
+				<div id="top-posts-container" className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3 w-full md:gap-2 lg:gap-4 xl:gap-7 4xl:gap-10 last:text-black">
 					{topPosts
 						? topPosts.map((postData: PostDataType, i) => <TopPostTile postData={postData} key={postData.id} index={i + 1} />)
 						: [...Array(3)].map((i) => <PostTileSkeleton key={i} />)}
