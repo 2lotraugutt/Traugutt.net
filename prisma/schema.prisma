@@ -14,13 +14,25 @@ model User {
   id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email           String    @unique
   emailVerified   DateTime?
-  name       String
+  name            String
   profilePicture  String
   
-  posts           Post[] @relation("Author") 
+  verified        Boolean?
+  role            Role      @default(USER)
+
+  posts           Post[]    @relation("Author") 
   accounts        Account[]
   sessions        Session[]
-  published       Post[] @relation("Published") 
+  published       Post[]    @relation("Published") 
+}
+
+enum Role {
+  USER      // default type
+  STUDENT   // Can suggest new posts
+  EDITOR    // Can edit and approve posts
+  MANAGER   // Can manage people
+  TEACHER   // Teacher, can edit, approve, create and manage users
+  ADMIN     // Can do everything
 }
 
 model Post {
@@ -64,7 +76,7 @@ model Account {
   providerAccountId  String
   refresh_token      String?  @db.Text
   access_token       String?  @db.Text
-  expires_at        Int?
+  expires_at         Int?
   token_type         String?
   scope              String?
   id_token           String?  @db.Text
