@@ -32,9 +32,16 @@ export default function Page({ params }: { params: { id: string } }) {
 		}
 
 		async function fetchPosts() {
-			const post = await (await fetch(`/api/post/${params.id}`)).json();
+			const hasViewed = localStorage.getItem(`viewed_${params.id}`);
+
+			const post = await(await fetch(`/api/post/${params.id}`)).json();
 
 			setPost(post);
+			if (!hasViewed) {
+				fetch(`/api/views/${params.id}`);
+
+				localStorage.setItem(`viewed_${params.id}`, "true");
+			}
 		}
 	}, []);
 
