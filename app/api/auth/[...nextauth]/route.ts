@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import FacebookProvider from "next-auth/providers/facebook";
-import InstagramProvider from "next-auth/providers/instagram";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import { MyAdapter } from "@/lib/prismaAdapter";
@@ -17,10 +16,6 @@ const handler = NextAuth({
 		FacebookProvider({
 			clientId: process.env.FACEBOOK_ID as string,
 			clientSecret: process.env.FACEBOOK_SECRET as string,
-		}),
-		InstagramProvider({
-			clientId: process.env.INSTAGRAM_ID as string,
-			clientSecret: process.env.INSTAGRAM_SECRET as string,
 		}),
 		GoogleProvider({
 			clientId: process.env.GOOGLE_ID as string,

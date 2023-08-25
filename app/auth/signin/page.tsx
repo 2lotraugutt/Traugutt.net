@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord, faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -48,10 +48,6 @@ export default function Page() {
 						<button onClick={() => signIn("facebook", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faFacebook} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
 							Sign in with Facebook
-						</button>
-						<button disabled onClick={() => signIn("instagram", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
-							<FontAwesomeIcon icon={faInstagram} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
-							Sign in with Instagram
 						</button>
 						<button onClick={() => signIn("discord", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faDiscord} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
