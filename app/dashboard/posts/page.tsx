@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import DashboardPostTile from "./dashboardPostTile";
+import Link from "next/link";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -12,39 +13,59 @@ const poppingsFont700 = Poppins({
 });
 
 export default function Page() {
-	const [userSession, setSession] = useState<any>();
+	const [userSession, setSession] = useState<SessionDataType>();
 	const [posts, setPosts] = useState<PostDataTypeWithAuthor[]>();
+	const [postsCount, setPostsCount] = useState<number>(1);
 	const router = useRouter();
 
 	useEffect(() => {
-		async function name() {
+		async function initFunction() {
 			const session = (await getSession()) as SessionDataType;
 
 			if (session) {
 				if (session.user.role == "USER") router.push("/dashboard");
-				else setSession(session);
-
-				if (session.user.role == "ADMIN" || session.user.role == "EDITOR" || session.user.role == "TEACHER") {
-					const returnedPosts = await (await fetch(`/api/posts-dashboard?count=50`)).json();
-					setPosts(returnedPosts);
-				} else {
-					const returnedPosts = await (await fetch(`/api/posts-dashboard?user=${session.user.id}`)).json();
-					setPosts(returnedPosts);
+				else {
+					fetchPosts(session);
+					setSession(session);
 				}
 			} else router.push("/");
 		}
-		name();
+		initFunction();
 	}, []);
 
-	if (posts)
+	async function fetchPosts(session: SessionDataType) {
+		if (session.user.role == "ADMIN" || session.user.role == "EDITOR" || session.user.role == "TEACHER") {
+			const returnedPosts = await (await fetch(`/api/posts-dashboard?count=${postsCount * 30}`)).json();
+			setPosts(returnedPosts);
+		} else {
+			const returnedPosts = await (await fetch(`/api/posts-dashboard?user=${session.user.id}&count=${postsCount * 30}`)).json();
+			setPosts(returnedPosts);
+		}
+
+		setPostsCount((oldCount) => oldCount + 1);
+	}
+
+	if (posts && userSession)
 		return (
 			<div className="flex flex-col gap-y-10 sm:gap-y-12 py-20 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 bg-LightGray/30 border-y-2 border-LightGray/70">
 				<h1 className={`text-MainDarkGray text-center text-6xl ${poppingsFont700.className}`}>Posty</h1>
 
+				<Link
+					href={"dashboard/post"}
+					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGreen/20 border-dotted border-MainGreen transition-all duration-300 py-6 rounded-2xl ${poppingsFont700.className}`}
+				>
+					Dodaj nowy post
+				</Link>
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{posts.map((postData: PostDataTypeWithAuthor) => (
 						<DashboardPostTile postData={postData} key={postData.id} />
 					))}
+					<button
+						onClick={() => fetchPosts(userSession)}
+						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className}`}
+					>
+						Załaduj więcej
+					</button>
 				</div>
 			</div>
 		);
