@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
+import FacebookProvider from "next-auth/providers/Facebook";
+import InstagramProvider from "next-auth/providers/Instagram";
+import GoogleProvider from "next-auth/providers/google";
 import { MyAdapter } from "@/lib/prismaAdapter";
 import prisma from "@/lib/prisma";
 
@@ -11,9 +13,17 @@ const handler = NextAuth({
 	adapter: MyAdapter(prisma),
 	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
-		GitHubProvider({
-			clientId: process.env.GITHUB_ID as string,
-			clientSecret: process.env.GITHUB_SECRET as string,
+		FacebookProvider({
+			clientId: process.env.FACEBOOK_ID as string,
+			clientSecret: process.env.FACEBOOK_SECRET as string,
+		}),
+		InstagramProvider({
+			clientId: process.env.INSTAGRAM_ID as string,
+			clientSecret: process.env.INSTAGRAM_SECRET as string,
+		}),
+		GoogleProvider({
+			clientId: process.env.GOOGLE_ID as string,
+			clientSecret: process.env.GOOGLE_SECRET as string,
 		}),
 	],
 });

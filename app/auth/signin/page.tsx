@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -40,13 +40,27 @@ export default function Page() {
 					<h1 className={`text-3xl sm:text-5xl xl:text-6xl ${poppingsFont700.className}`}>Sign in</h1>
 					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>We are happy to see you again!</h2>
 
-					<div className="flex flex-col gap-y-1">
+					<div className="flex flex-col gap-y-1 sm:gap-y-2 2xl:gap-y-3">
 						<button
-							onClick={() => signIn("github", { callbackUrl: "/" })}
+							onClick={() => signIn("google", { callbackUrl: "/" })}
 							className={`flex items-center sm:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
 						>
-							<FontAwesomeIcon icon={faGithub} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
-							Sign in with GitHub
+							<FontAwesomeIcon icon={faGoogle} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
+							Sign in with Google
+						</button>
+						<button
+							onClick={() => signIn("facebook", { callbackUrl: "/" })}
+							className={`flex items-center sm:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
+						>
+							<FontAwesomeIcon icon={faFacebook} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
+							Sign in with Facebook
+						</button>
+						<button
+							onClick={() => signIn("instagram", { callbackUrl: "/" })}
+							className={`flex items-center sm:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
+						>
+							<FontAwesomeIcon icon={faInstagram} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
+							Sign in with Instagram
 						</button>
 					</div>
 				</div>
