@@ -29,7 +29,7 @@ export default function Page() {
 				<Image src="/Wave.svg" width="1920" height="1080" className="hidden xl:block absolute top-0 left-0 w-full h-full object-left object-cover" alt="" />
 			</div>
 
-			<div className="right-0 h-full absolute w-full xl:w-fit flex items-center justify-center xl:px-12 2xl:px-20">
+			<div className="right-0 h-full absolute w-full xl:w-fit 3xl:w-2/5 flex items-center justify-center xl:px-12 2xl:px-20">
 				<div className="p-4 md:p-20 text-center items-center flex flex-col gap-6 pb-12 md:pb-40 xl:gap-y-8 lg:pb-32">
 					<Image src="/Glasses.svg" width="250" height="100" alt="Glasses icon" />
 

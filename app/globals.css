@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.login-button{
+  @apply flex text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-8 xs:px-10 py-2.5
+}
+
 #markdown-container h1{
   @apply font-bold 
 }

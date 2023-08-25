@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord, faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -33,7 +33,7 @@ export default function Page() {
 				<Image src="/Wave.svg" width="1920" height="1080" className="hidden xl:block absolute top-0 left-0 w-full h-full object-left object-cover" alt="" />
 			</div>
 
-			<div className="right-0 h-full absolute w-full xl:w-fit flex items-center justify-center xl:px-12 2xl:px-20">
+			<div className="right-0 h-full absolute w-full xl:w-fit 3xl:w-2/5 flex items-center justify-center xl:px-12 2xl:px-20">
 				<div className="p-4 md:p-20 text-center items-center flex flex-col gap-6 pb-12 md:pb-40 xl:gap-y-8 lg:pb-32">
 					<Image src="/Glasses.svg" width="250" height="100" alt="Glasses icon" />
 
@@ -41,26 +41,21 @@ export default function Page() {
 					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>We are happy to see you again!</h2>
 
 					<div className="flex flex-col gap-y-1 sm:gap-y-2 2xl:gap-y-3">
-						<button
-							onClick={() => signIn("google", { callbackUrl: "/" })}
-							className={`flex items-center sm:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
-						>
+						<button onClick={() => signIn("google", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faGoogle} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
 							Sign in with Google
 						</button>
-						<button
-							onClick={() => signIn("facebook", { callbackUrl: "/" })}
-							className={`flex items-center sm:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
-						>
+						<button onClick={() => signIn("facebook", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faFacebook} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
 							Sign in with Facebook
 						</button>
-						<button
-							onClick={() => signIn("instagram", { callbackUrl: "/" })}
-							className={`flex items-center sm:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
-						>
+						<button disabled onClick={() => signIn("instagram", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faInstagram} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
 							Sign in with Instagram
+						</button>
+						<button onClick={() => signIn("discord", { callbackUrl: "/" })} className={`login-button ${poppingsFont700.className}`}>
+							<FontAwesomeIcon icon={faDiscord} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
+							Sign in with Discord
 						</button>
 					</div>
 				</div>
