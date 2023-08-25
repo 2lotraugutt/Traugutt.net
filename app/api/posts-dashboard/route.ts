@@ -13,9 +13,9 @@ export async function GET(request: NextRequest) {
 			},
 		],
 		where: {
-			published: true,
 			authorId: user ?? undefined,
 		},
+		include: { author: true },
 	});
 
 	return NextResponse.json(posts);

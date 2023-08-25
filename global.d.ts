@@ -35,4 +35,17 @@ declare global {
 		name: string;
 		profilePicture: String;
 	};
+
+	type SessionDataType = {
+		user: {
+			id: string;
+			email: string;
+			emailVerified: null;
+			name: string;
+			image: string;
+			verified: Boolean;
+			role: string;
+		};
+		expires: string;
+	};
 }
