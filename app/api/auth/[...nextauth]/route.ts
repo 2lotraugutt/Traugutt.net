@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
-import FacebookProvider from "next-auth/providers/Facebook";
-import InstagramProvider from "next-auth/providers/Instagram";
+import FacebookProvider from "next-auth/providers/facebook";
+import InstagramProvider from "next-auth/providers/instagram";
 import GoogleProvider from "next-auth/providers/google";
 import { MyAdapter } from "@/lib/prismaAdapter";
 import prisma from "@/lib/prisma";
