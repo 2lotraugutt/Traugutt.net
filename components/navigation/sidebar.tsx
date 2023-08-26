@@ -1,11 +1,11 @@
 import { faBell, faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getSession } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -36,11 +36,15 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 				{userSession ? (
 					<>
-						<div className="flex items-center gap-x-4  hover:bg-MainDarkGray/30 rounded-xl">
-							<Image alt="User icon" src={userSession?.user.image} className="border-2 border-white/30 rounded-xl" height={55} width={55} />
-							<div className={`text-white grow text-lg leading-5 ${poppingsFont700.className}`}>{userSession.user.name}</div>
-							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-5 h-5 text-MainPurple bg-white rounded-full p-2" />
+						<div className="flex items-center gap-x-4">
+							<Link href={"dashboard/account"} className="flex grow items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-2xl -ms-3 py-2 px-3">
+								<Image alt="User icon" src={userSession?.user.image} className="border-2 border-white/30 rounded-xl" height={55} width={55} />
+								<div className={`text-white grow text-lg leading-5 ${poppingsFont700.className}`}>{userSession.user.name}</div>
+							</Link>
+
+							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4 text-MainPurple bg-white rounded-full p-2" />
 						</div>
+
 						<div className="flex flex-col gap-y-1">
 							<Link className="flex items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-xl" href={"/dashboard/post"}>
 								<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-[17px]" />
@@ -57,7 +61,13 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 						</div>
 					</>
 				) : (
-					<></>
+					<div className="flex items-center gap-x-4">
+						<button onClick={() => signIn()} className="flex grow items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-2xl -ms-3 py-2 px-3">
+							<FontAwesomeIcon icon={faUser} className="border-2 bg-white text-MainGreen p-3 aspect-square border-white/30 rounded-xl w-5 h-5" />
+							<div className={`text-white grow text-lg leading-5 ${poppingsFont700.className}`}>Zaloguj się</div>
+						</button>
+						<FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4 text-MainPurple bg-white rounded-full p-2" />
+					</div>
 				)}
 
 				<div className="h-1 bg-[#9471F3]"></div>
