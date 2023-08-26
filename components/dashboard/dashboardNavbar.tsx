@@ -30,7 +30,8 @@ export default function DashboardNavbar(props: { session: any }) {
 	if (userSession) {
 		const userRole = userSession.user.role;
 
-		const postsVisible = userRole != "USER";
+		const yourPostsVisible = userRole != "USER";
+		const postsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "EDITOR";
 		const eventsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
 		const usersVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
 
@@ -38,6 +39,13 @@ export default function DashboardNavbar(props: { session: any }) {
 			<div className={`flex fixed w-full border-b-2 bg-white gap-x-2 flex-row lg:px-12 px-2 md:px-5 4xl:px-0 py-2 ${poppingsFont600.className}`}>
 				<Link href={"/dashboard"} className={`dashboard-link ${pathname == "/dashboard" ? "active-dashboard-link" : ""}`}>
 					Panel sterowania
+				</Link>
+
+				<Link
+					href={"/dashboard/personal-posts"}
+					className={`${yourPostsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/personal-posts" ? "active-dashboard-link" : ""}`}
+				>
+					Twoje posty
 				</Link>
 
 				<Link href={"/dashboard/posts"} className={`${postsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/posts" ? "active-dashboard-link" : ""}`}>
