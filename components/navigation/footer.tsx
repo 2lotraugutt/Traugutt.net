@@ -36,19 +36,19 @@ export default function Footer() {
 			</div>
 
 			<div className="w-full flex items-center justify-center gap-x-4">
-				<Link href={""}>
+				<Link href={"https://www.facebook.com/trauguttnet"}>
 					<FontAwesomeIcon
 						icon={faFacebook}
 						className="h-10 lg:w-12 w-10 lg:h-12 p-2 lg:p-3 2xl:p-3.5 2xl:w-14 2xl:h-14 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
 					/>
 				</Link>
-				<Link href={""}>
+				<Link href={"https://www.instagram.com/2lotraugutt/"}>
 					<FontAwesomeIcon
 						icon={faInstagram}
 						className="h-10 lg:w-12 w-10 lg:h-12 p-2 lg:p-3 2xl:p-3.5 2xl:w-14 2xl:h-14 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
 					/>
 				</Link>
-				<Link href={""}>
+				<Link href={"https://www.tiktok.com/@traugutt_czestochowa"}>
 					<FontAwesomeIcon
 						icon={faTiktok}
 						className="h-10 lg:w-12 w-10 lg:h-12 p-2 lg:p-3 2xl:p-3.5 2xl:w-14 2xl:h-14 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
