@@ -33,7 +33,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchPosts() {
-		const returnedPosts = await (await fetch(`/api/posts-dashboard?count=${postsCount * 30}`)).json();
+		const returnedPosts = await(await fetch(`/api/postsDashboard?count=${postsCount * 30}`)).json();
 		setPosts(returnedPosts);
 
 		setPostsCount((oldCount) => oldCount + 1);
