@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
 	const user = request.nextUrl.searchParams.get("user");
 
-	const session = (await getServerSession(authOptions)) as SessionDataType;
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 	const role = session.user.role;
 
 	if (user == undefined && !(role == "ADMIN" || role == "TEACHER" || role == "EDITOR"))

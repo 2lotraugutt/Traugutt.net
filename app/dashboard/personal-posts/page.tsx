@@ -21,7 +21,7 @@ export default function Page() {
 
 	useEffect(() => {
 		async function initFunction() {
-			const session = (await getSession()) as SessionDataType;
+			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
 				if (session.user.role == "USER") router.push("/dashboard");

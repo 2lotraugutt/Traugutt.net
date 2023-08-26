@@ -20,7 +20,7 @@ export default function Page() {
 
 	useEffect(() => {
 		async function initFunction() {
-			const session = (await getSession()) as SessionDataType;
+			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
 				if (session.user.role == "ADMIN" || session.user.role == "EDITOR" || session.user.role == "TEACHER") {

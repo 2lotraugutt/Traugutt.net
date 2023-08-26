@@ -6,7 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
 	const status = request.nextUrl.searchParams.get("toggle") == "true" ? true : false;
 
-	const session = (await getServerSession(authOptions)) as SessionDataType;
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 	const role = session.user.role;
 
 	if (role == "ADMIN" || role == "TEACHER" || role == "EDITOR") {
