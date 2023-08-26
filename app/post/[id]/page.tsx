@@ -1,5 +1,6 @@
 "use client";
 
+import PostGallery from "@/components/postPage/postGallery";
 import PostHeading from "@/components/postPage/postHeading";
 import PostSkeleton from "@/components/postPage/postSkeleton";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
@@ -56,6 +57,8 @@ export default function Page({ params }: { params: { id: string } }) {
 					>
 						{markdownToHTML(post.content ?? "# Brak opisu...")}
 					</div>
+
+					<PostGallery post={post} />
 				</>
 			) : (
 				<>
