@@ -1,11 +1,11 @@
-import NextAuth, { Awaitable } from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import { MyAdapter } from "@/lib/prismaAdapter";
 import prisma from "@/lib/prisma";
 
-const handler = NextAuth({
+export const authOptions: AuthOptions = {
 	pages: {
 		signIn: "/auth/signin",
 		signOut: "/auth/signout",
@@ -32,6 +32,8 @@ const handler = NextAuth({
 			return session;
 		},
 	},
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
