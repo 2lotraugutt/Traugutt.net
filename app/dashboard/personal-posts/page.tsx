@@ -35,7 +35,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchPosts(session: SessionDataType) {
-		const returnedPosts = await(await fetch(`/api/postsDashboard?user=${session.user.id}&count=${postsCount * 30}`)).json();
+		const returnedPosts = await(await fetch(`/api/dashboard/posts?user=${session.user.id}&count=${postsCount * 30}`)).json();
 		setPosts(returnedPosts);
 
 		setPostsCount((oldCount) => oldCount + 1);

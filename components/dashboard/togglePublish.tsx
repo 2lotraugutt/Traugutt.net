@@ -15,18 +15,22 @@ export default function TogglePublish(props: { postData: PostDataTypeWithAuthor 
 	async function togglePost() {
 		setText("Ładowanie...");
 
-		const newStatus = await (await fetch(`/api/togglePublishPost/${props.postData.id}?toggle=${!status}`)).json();
+		const newStatus = await(await fetch(`/api/dashboard/publishPost/${props.postData.id}?toggle=${!status}`)).json();
 
 		setStatus(newStatus);
 		setText(newStatus ? "Ukryj" : "Opublikuj");
 	}
 
 	return (
-		<button
-			onClick={() => togglePost()}
-			className={`w-32 transition-all duration-200 flex-none text-center rounded-lg py-1 bg-LightGray hover:text-MainRed hover:bg-LightRed ${plusJakartaSansFont800.className}`}
-		>
-			{text}
-		</button>
+		<>
+			<div className={`w-3 h-3 rounded-full flex-none ${status ? "bg-MainGreen" : "bg-MainPurple"}`}></div>
+
+			<button
+				onClick={() => togglePost()}
+				className={`w-32 transition-all duration-200 flex-none text-center rounded-lg py-1 bg-LightGray hover:text-MainRed hover:bg-LightRed ${plusJakartaSansFont800.className}`}
+			>
+				{text}
+			</button>
+		</>
 	);
 }

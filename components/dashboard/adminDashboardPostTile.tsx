@@ -21,8 +21,6 @@ export default function AdminDashboardPostTile(props: { postData: PostDataTypeWi
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 	return (
 		<div className="group h-fit w-full items-center border-2 hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 flex gap-x-7 rounded-2xl">
-			<div className={`w-3 h-3 rounded-full flex-none ${props.postData.published ? "bg-MainGreen" : "bg-MainPurple"}`}></div>
-
 			<TogglePublish postData={props.postData} />
 
 			<p className={`truncate ${poppingsFont600.className}`}>{props.postData.title}</p>
