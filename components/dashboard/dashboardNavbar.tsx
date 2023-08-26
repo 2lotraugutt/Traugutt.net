@@ -20,7 +20,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 	const usersVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
 
 	return (
-		<div className={`flex fixed w-full border-b-2 bg-white gap-x-2 flex-row lg:px-12 px-2 md:px-5 4xl:px-0 py-2 ${poppingsFont600.className}`}>
+		<div className={`flex overflow-x-auto fixed w-full border-b-2 bg-white gap-x-1 sm:gap-x-2 flex-row lg:px-12 px-2 md:px-5 4xl:px-0 ${poppingsFont600.className}`}>
 			<Link href={"/dashboard"} className={`dashboard-link ${pathname == "/dashboard" ? "active-dashboard-link" : ""}`}>
 				Panel sterowania
 			</Link>

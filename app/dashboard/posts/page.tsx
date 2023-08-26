@@ -41,8 +41,8 @@ export default function Page() {
 
 	if (posts && userSession)
 		return (
-			<div className="flex flex-col gap-y-10 sm:gap-y-12 py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 bg-LightGray/30 border-y-2 border-LightGray/70">
-				<h1 className={`text-MainDarkGray text-center text-6xl ${poppingsFont700.className}`}>Posty</h1>
+			<div className="dashboard-page">
+				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Posty</h1>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{posts.map((postData: PostDataTypeWithAuthor) => (
