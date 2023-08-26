@@ -11,7 +11,7 @@ const poppingsFont600 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function DashboardNavbar(props: { session: any }) {
+export default function DashboardNavbar() {
 	const [userSession, setSession] = useState<SessionDataType>();
 
 	useEffect(() => {

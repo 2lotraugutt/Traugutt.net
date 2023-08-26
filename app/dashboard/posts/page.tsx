@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import DashboardPostTile from "@/components/dashboard/dashboardPostTile";
+import AdminDashboardPostTile from "@/components/dashboard/adminDashboardPostTile";
 import LoadingLayout from "@/components/dashboard/loadingLayout";
 
 const poppingsFont700 = Poppins({
@@ -46,7 +46,7 @@ export default function Page() {
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{posts.map((postData: PostDataTypeWithAuthor) => (
-						<DashboardPostTile postData={postData} key={postData.id} />
+						<AdminDashboardPostTile postData={postData} key={postData.id} />
 					))}
 					<button
 						onClick={() => fetchPosts()}
