@@ -1,6 +1,7 @@
 import DashboardNavbar from "@/components/dashboard/dashboardNavbar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import SigninForm from "@/app/auth/signin/signinForm";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
@@ -12,4 +13,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				{children}
 			</>
 		);
+	else {
+		return <SigninForm redirect="/dashboard" />;
+	}
 }
