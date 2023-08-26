@@ -13,7 +13,7 @@ export default function DashboardNavbar() {
 	const pathname = usePathname();
 
 	return (
-		<div className={`flex gap-x-2 flex-row lg:px-12 px-2 md:px-5 4xl:px-0 py-2 ${poppingsFont600.className}`}>
+		<div className={`flex fixed w-full border-b-2 bg-white gap-x-2 flex-row lg:px-12 px-2 md:px-5 4xl:px-0 py-2 ${poppingsFont600.className}`}>
 			<Link href={"/dashboard/posts"} className={`dashboard-link ${pathname == "/dashboard/posts" ? "active-dashboard-link" : ""}`}>
 				Posty
 			</Link>

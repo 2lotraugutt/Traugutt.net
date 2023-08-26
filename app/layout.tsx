@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<AuthProvider>
 				<body className="max-w-screen-4xl mx-auto">
 					<Navbar />
-					{children}
+					<div className="relative"> {children}</div>
 					<Footer />
 				</body>
 			</AuthProvider>
