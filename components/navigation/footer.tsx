@@ -39,19 +39,19 @@ export default function Footer() {
 				<Link href={"https://www.facebook.com/trauguttnet"}>
 					<FontAwesomeIcon
 						icon={faFacebook}
-						className="h-10 lg:w-12 w-10 lg:h-12 p-2 lg:p-3 2xl:p-3.5 2xl:w-14 2xl:h-14 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
+						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
 					/>
 				</Link>
 				<Link href={"https://www.instagram.com/2lotraugutt/"}>
 					<FontAwesomeIcon
 						icon={faInstagram}
-						className="h-10 lg:w-12 w-10 lg:h-12 p-2 lg:p-3 2xl:p-3.5 2xl:w-14 2xl:h-14 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
+						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
 					/>
 				</Link>
 				<Link href={"https://www.tiktok.com/@traugutt_czestochowa"}>
 					<FontAwesomeIcon
 						icon={faTiktok}
-						className="h-10 lg:w-12 w-10 lg:h-12 p-2 lg:p-3 2xl:p-3.5 2xl:w-14 2xl:h-14 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
+						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
 					/>
 				</Link>
 			</div>
