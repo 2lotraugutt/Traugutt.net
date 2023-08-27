@@ -7,7 +7,7 @@
 }
 
 .dashboard-link{
-  @apply text-MainDarkGray/70 xs:text-sm sm:text-base text-2xs whitespace-nowrap transition-all hover:bg-LightGray/50 py-1 px-1.5 md:px-3 rounded relative before:block before:absolute before:transition-all before:bg-transparent before:w-full before:h-0.5 before:left-0 before:-bottom-2 my-2
+  @apply text-MainDarkGray/70 xs:text-xs sm:text-sm text-2xs whitespace-nowrap transition-all hover:bg-LightGray/50 py-1 px-1.5 md:px-3 rounded relative before:block before:absolute before:transition-all before:bg-transparent before:w-full before:h-0.5 before:left-0 before:-bottom-2 my-2
 }
 
 .active-dashboard-link{
@@ -19,7 +19,11 @@
 }
 
 .dashboard-page{
-  @apply flex flex-col gap-y-10 sm:gap-y-12 py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 bg-LightGray/30 border-y-2 border-LightGray/70
+  @apply flex flex-col gap-y-10 sm:gap-y-12 py-16 sm:py-20 md:py-28 lg:py-36 xl:py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 bg-LightGray/30 border-y-2 border-LightGray/70
+}
+
+.sidebar-button{
+  @apply flex items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-xl text-white grow text-sm md:text-lg sm:text-base leading-5 
 }
 
 #markdown-container h1{
