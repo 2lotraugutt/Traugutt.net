@@ -1,11 +1,11 @@
 // import { faBell, faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getSession, signIn } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { faClose, faMagnifyingGlass, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChartLine, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -22,6 +22,7 @@ const poppingsFont400 = Poppins({
 
 export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 	const [userSession, setSession] = useState<SessionDataType | undefined>();
+	const [accountSettings, setAccountSettings] = useState(false);
 
 	useEffect(() => {
 		async function initFunction() {
@@ -43,12 +44,15 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 				{userSession ? (
 					<>
-						<div className="flex items-center gap-x-2.5 sm:gap-x-4">
-							<Link href={"dashboard/account"} className="flex grow items-center gap-x-3 sm:gap-x-4 rounded-2xl">
+						<div className="flex items-center gap-x-2.5 sm:gap-x-4 relative">
+							<div
+								onClick={() => setAccountSettings((old) => !old)}
+								className="flex group grow items-center gap-x-3 sm:gap-x-4 rounded-2xl cursor-pointer hover:bg-MainDarkGray/30"
+							>
 								<Image
 									alt="User icon"
 									src={userSession?.user.image}
-									className="border-2 border-white/30 w-12 sm:w-14 h-12 sm:h-14 rounded-xl"
+									className="border-2 z-50 group-hover:scale-110 transition-all group-hover:-rotate-3 border-white/30 w-12 sm:w-14 h-12 sm:h-14 rounded-xl"
 									height={55}
 									width={55}
 								/>
@@ -58,7 +62,27 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 										{userRoles[userSession.user.role as "USER" | "TEACHER" | "ADMIN" | "MANAGER" | "EDITOR" | "STUDENT"]}
 									</div>
 								</div>
-							</Link>
+							</div>
+
+							{accountSettings ? (
+								<div className="flex flex-col absolute w-full gap-y-1 bg-MainPurple rounded-2xl p-3 top-full left-0 shadow-lg mt-3 -mx-3">
+									<Link className="sidebar-button" href={"/dashboard/account"}>
+										<FontAwesomeIcon icon={faUser} className="w-6 h-6 text-white py-3 px-[17px]" />
+										<div className={`${poppingsFont600.className}`}>ustawienia konta</div>
+									</Link>
+									<Link className="sidebar-button" href={"/dashboard"}>
+										<FontAwesomeIcon icon={faChartLine} className="w-6 h-6 text-white py-3 px-[17px]" />
+										<div className={`${poppingsFont600.className}`}>panel sterowania</div>
+									</Link>
+
+									<Link className="sidebar-button" href={"/auth/signout"}>
+										<FontAwesomeIcon icon={faSignOut} className="w-6 h-6 text-white py-3 px-[17px]" />
+										<div className={`${poppingsFont600.className}`}>wyloguj się</div>
+									</Link>
+								</div>
+							) : (
+								<></>
+							)}
 
 							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-3 h-3 sm:w-5 sm:h-5 text-MainPurple cursor-pointer bg-white rounded-full p-1 sm:p-2" />
 						</div>
