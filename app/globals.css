@@ -26,6 +26,10 @@
   @apply flex items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-xl text-white grow text-sm md:text-lg sm:text-base leading-5 
 }
 
+.dashboard-post-page{
+  @apply w-screen h-screen absolute left-0 top-0 z-30 bg-white flex flex-col items-center
+}
+
 #markdown-container h1{
   @apply font-bold 
 }
@@ -48,7 +52,7 @@
   @apply list-decimal my-0.5
 }
 
-#markdown-container p, ul, ol , .block-quote{
+#markdown-container p, ul, ol , .block-quote, textarea{
   @apply 3xl:text-xl text-xs 2xs:text-sm sm:text-base md:text-base xl:text-lg
 }
 

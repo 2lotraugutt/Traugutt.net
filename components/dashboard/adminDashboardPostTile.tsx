@@ -27,7 +27,7 @@ export default function AdminDashboardPostTile(props: { postData: PostDataTypeWi
 			<p className="flex-none me-auto">{dateToDisplay}</p>
 			<p className={poppingsFont600.className}>{props.postData.views}</p>
 			<p className={`flex-none ${poppingsFont500.className}`}>{props.postData.author.name}</p>
-			<Link href={"dashboard/post/" + props.postData.id}>
+			<Link href={"/dashboard/post/" + props.postData.id}>
 				<FontAwesomeIcon icon={faPen} className="h-5 w-5 text-MainDarkGray hover:text-white transition-all hover:bg-MainDarkGray/70 p-2 rounded-lg" />
 			</Link>
 		</div>

@@ -27,6 +27,10 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 				Panel sterowania
 			</Link>
 
+			<Link href={"/dashboard/post"} className={`${yourPostsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/post" ? "active-dashboard-link" : ""}`}>
+				Nowy post
+			</Link>
+
 			<Link
 				href={"/dashboard/personal-posts"}
 				className={`${yourPostsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/personal-posts" ? "active-dashboard-link" : ""}`}
