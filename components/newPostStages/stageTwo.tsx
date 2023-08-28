@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Cabin_Condensed, Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import { useRouter } from "next/navigation";
+import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -35,8 +34,6 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 			props.setImageName(imageName);
 			props.up();
 		}
-
-		console.log(imageName);
 	}
 
 	return (
@@ -76,7 +73,7 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 					</label>
 				</div>
 
-				<div className="flex justify-between w-full">
+				<div className="flex justify-between w-full max-w-2xl">
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>

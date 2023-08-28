@@ -14,6 +14,12 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
+
+const poppingsFont600 = Poppins({
+	weight: "600",
+	subsets: ["latin"],
+});
+
 const poppingsFont400 = Poppins({
 	weight: "400",
 	subsets: ["latin"],
@@ -28,8 +34,8 @@ export default function StageZero(props: { up: Function }) {
 				<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Stworz nowy post</h1>
 				<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 					Tutaj zaczyna się przygoda twojego nowego postu! <br />
-					Od tego momenu jego wygląd zależy tylko od ciebie. Mam nadzieję, że stowrzysz dzieło, które już niedługo pojawi się na stronie szkolnej!{" "}
-					<b className="text-MainPurple">Gotowy?</b>
+					Od tego momenu jego wygląd zależy tylko od ciebie. Mam nadzieję, że stowrzysz dzieło, które już niedługo pojawi się na stronie szkolnej!
+					<b className={`text-MainPurple ${poppingsFont600.className}`}> Gotowy?</b>
 				</p>
 
 				<div className="flex justify-between">
