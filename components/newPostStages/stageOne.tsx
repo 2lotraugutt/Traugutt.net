@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const plusJakartaSans = Plus_Jakarta_Sans({

@@ -33,7 +33,7 @@ export default function StageZero(props: { up: Function }) {
 				</p>
 
 				<div className="flex justify-between">
-					<button onClick={() => router.push("/")} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => router.back()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Nie,&nbsp; zabierz mnie stąd
 					</button>
 					<button onClick={() => props.up()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>

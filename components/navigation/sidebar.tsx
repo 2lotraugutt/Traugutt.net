@@ -69,16 +69,26 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 									accountSettings ? "" : "hidden"
 								}`}
 							>
-								<Link className="sidebar-button" href={"/dashboard/account"} onClick={() => props.toggle()}>
+								<Link
+									className="sidebar-button"
+									href={"/dashboard/account"}
+									onClick={() => {
+										props.toggle();
+										setAccountSettings(false);
+									}}
+								>
 									<FontAwesomeIcon icon={faUser} className="w-6 h-6 text-white py-3 px-[17px]" />
 									<div className={`${poppingsFont600.className}`}>ustawienia konta</div>
 								</Link>
-								<Link className="sidebar-button" href={"/dashboard"} onClick={() => props.toggle()}>
-									<FontAwesomeIcon icon={faChartLine} className="w-6 h-6 text-white py-3 px-[17px]" />
-									<div className={`${poppingsFont600.className}`}>panel sterowania</div>
-								</Link>
 
-								<Link className="sidebar-button" href={"/auth/signout"} onClick={() => props.toggle()}>
+								<Link
+									className="sidebar-button"
+									href={"/auth/signout"}
+									onClick={() => {
+										props.toggle();
+										setAccountSettings(false);
+									}}
+								>
 									<FontAwesomeIcon icon={faSignOut} className="w-6 h-6 text-white py-3 px-[17px]" />
 									<div className={`${poppingsFont600.className}`}>wyloguj się</div>
 								</Link>
@@ -100,6 +110,11 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 								<FontAwesomeIcon icon={faBell} className="w-6 h-6 text-white py-3 px-[17px]" />
 								<div className={`${poppingsFont600.className}`}>powiadomienia</div>
 							</Link> */}
+
+							<Link className="sidebar-button" href={"/dashboard"} onClick={() => props.toggle()}>
+								<FontAwesomeIcon icon={faChartLine} className="w-6 h-6 text-white py-3 px-[17px]" />
+								<div className={`${poppingsFont600.className}`}>panel sterowania</div>
+							</Link>
 
 							<button className="sidebar-button sm:hidden" onClick={() => props.toggle()}>
 								<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-[17px]" />

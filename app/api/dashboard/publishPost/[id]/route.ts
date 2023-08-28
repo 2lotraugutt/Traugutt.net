@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 		if (role == "ADMIN" || role == "TEACHER" || role == "EDITOR") {
 			const post = await prisma.post.update({
 				where: { id: params.id },
-				data: { published: status },
+				data: { published: status, publishedById: session.user.id },
 			});
 
 			return NextResponse.json(post.published);
