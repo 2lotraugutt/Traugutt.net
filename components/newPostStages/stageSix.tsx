@@ -31,7 +31,7 @@ const poppingsFont400 = Poppins({
 export default function StageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
 	return (
 		<div className="dashboard-post-page">
-			<Image src="/newPost/Wave-1.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
+			<Image src="/newPost/Wave-6.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
 			<div className="flex flex-col items-center gap-y-10 absolute top-1/2 max-w-xl -translate-y-1/2">
 				<div className="flex flex-col gap-y-3">
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Publikacja</h1>
@@ -43,13 +43,9 @@ export default function StageSix(props: { down: Function; upload: Function; uplo
 					</p>
 				</div>
 
-				<div className="flex flex-col gap-y-3">
-					<h3 className={`text-xl text-center ${poppingsFont600.className}`}>Czyń honory</h3>
-
-					<button onClick={() => props.upload()} className={`bg-MainGreen text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}>
-						Opublikuj!
-					</button>
-				</div>
+				<button onClick={() => props.upload()} className={`bg-MainGreen text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}>
+					Opublikuj!
+				</button>
 
 				<div className="flex flex-col gap-y-6 justify-between w-full">
 					<p className={`text-center px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
