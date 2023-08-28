@@ -22,8 +22,18 @@ export default function Page() {
 	}
 
 	if (stage == 0) return <StageZero up={stageUp} />;
-	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} />;
-	if (stage == 2) return <StageTwo down={stageDown} up={stageUp} setImage={(image: File) => setImage(image)} setImageName={(name: string) => setImageName(name)} />;
+	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} initTitle={title} />;
+	if (stage == 2)
+		return (
+			<StageTwo
+				down={stageDown}
+				up={stageUp}
+				setImage={(image: File) => setImage(image)}
+				setImageName={(name: string) => setImageName(name)}
+				initImageName={imageName}
+				initImage={image}
+			/>
+		);
 	if (stage == 3) return <StageThree initContent={content} down={stageDown} up={stageUp} setContent={(content: string) => setContent(content)} />;
 	if (stage == 4) {
 		if (content != "") return <StageFour down={stageDown} up={stageUp} content={content} />;

@@ -24,15 +24,15 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function StageOne(props: { down: Function; up: Function; setTitle: Function }) {
-	const [title, setTitle] = useState("");
+export default function StageOne(props: { down: Function; up: Function; setTitle: Function; initTitle: string }) {
+	const [title, setTitle] = useState(props.initTitle);
 	const [empty, setEmpty] = useState(false);
 
 	function nextStage() {
 		if (title.trim() == "") {
 			setEmpty(true);
 		} else {
-			setTitle(title);
+			props.setTitle(title);
 			props.up();
 		}
 	}

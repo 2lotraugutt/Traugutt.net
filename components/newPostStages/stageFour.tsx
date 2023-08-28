@@ -27,13 +27,13 @@ const poppingsFont400 = Poppins({
 export default function StageFour(props: { down: Function; up: Function; content: string }) {
 	return (
 		<div className="dashboard-post-page">
-			<Image src="/newPost/Wave-2.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
+			<Image src="/newPost/Wave-4.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
 			<div className="flex flex-col items-center gap-y-10 absolute top-1/2 w-full -translate-y-1/2">
 				<div className="flex flex-col gap-y-3 max-w-xl">
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Sprawdź treść</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
-						Przyszedł czas na najważniejsze! To ten moment, na który czekaliśmy! Czas się rozpisać, napisać treść twojego postu.
-						<b className={`text-MainPurple ${poppingsFont600.className}`}> Do roboty!</b>
+						Teraz się skup! Sprawdź czy wszystko się zgadza. Przeczytaj wszystko jeszcze raz i zobacz czy ładnie wygląda. Został nam już tylko
+						<b className={`text-MainPurple ${poppingsFont600.className}`}> jeden krok</b> i wszystko będzie gotowe.
 					</p>
 				</div>
 

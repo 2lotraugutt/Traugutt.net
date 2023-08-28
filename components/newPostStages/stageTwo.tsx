@@ -24,9 +24,9 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function StageTwo(props: { down: Function; up: Function; setImage: Function; setImageName: Function }) {
-	const [image, setImage] = useState<File>();
-	const [imageName, setImageName] = useState("");
+export default function StageTwo(props: { down: Function; up: Function; setImage: Function; setImageName: Function; initImageName: string; initImage: File | undefined }) {
+	const [image, setImage] = useState<File | undefined>(props.initImage);
+	const [imageName, setImageName] = useState(props.initImageName);
 
 	function nextStage() {
 		if (image) {

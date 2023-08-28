@@ -34,7 +34,7 @@ export default function StageThree(props: { down: Function; up: Function; setCon
 
 	return (
 		<div className="dashboard-post-page">
-			<Image src="/newPost/Wave-2.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
+			<Image src="/newPost/Wave-3.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
 			<div className="flex flex-col items-center gap-y-10 absolute top-1/2 w-full -translate-y-1/2">
 				<div className="flex flex-col gap-y-3 max-w-xl">
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Napisz posta</h1>
