@@ -45,43 +45,44 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 		}
 	}
 
-	function createLists(i: number) {
-		let points: JSX.Element[] = [];
+function createLists(i: number) {
+	let points: JSX.Element[] = [];
 
-		while (newLines[0].startsWith("- ".repeat(i)) || newLines[0].startsWith("* ".repeat(i))) {
-			let text = newLines[0].replace("- ".repeat(i), "");
-			text = text.replace("* ".repeat(i), "");
+	while (newLines.length > 0 && (newLines[0].startsWith("- ".repeat(i)) || newLines[0].startsWith("* ".repeat(i)))) {
+		let text = newLines[0].replace("- ".repeat(i), "");
+		text = text.replace("* ".repeat(i), "");
 
-			if (newLines[0].startsWith("- ".repeat(i + 1)) || newLines[0].startsWith("* ".repeat(i + 1))) {
-				points.push(<ul>{createLists(2)}</ul>);
-			} else {
-				points.push(<li>{inlineMarkdownToHtml(text)}</li>);
-				newLines.shift();
-			}
+		if (newLines[0].startsWith("- ".repeat(i + 1)) || newLines[0].startsWith("* ".repeat(i + 1))) {
+			points.push(<ul key={points.length}>{createLists(i + 1)}</ul>);
+		} else {
+			points.push(<li key={points.length}>{inlineMarkdownToHtml(text)}</li>);
+			newLines.shift();
 		}
-
-		return points;
 	}
 
-	function createBlockQuote(i: number) {
-		let blockQuotes: JSX.Element[] = [];
+	return points;
+}
 
-		while (newLines[0].startsWith("> ".repeat(i))) {
-			const text = newLines[0].replace("> ".repeat(i), "");
-			if (newLines[0].startsWith("> ".repeat(i + 1))) {
-				blockQuotes.push(<div className={`block-quote ${PlusJakartaSans300.className}`}>{createBlockQuote(2)}</div>);
-			} else {
-				blockQuotes.push(
-					<>
-						{text} <br></br>
-					</>
-				);
-				newLines.shift();
-			}
+function createBlockQuote(i: number) {
+	let blockQuotes: JSX.Element[] = [];
+
+	while (newLines.length > 0 && newLines[0].startsWith("> ".repeat(i))) {
+		const text = newLines[0].replace("> ".repeat(i), "");
+
+		if (newLines[0].startsWith("> ".repeat(i + 1))) {
+			blockQuotes.push(<div className={`block-quote ${PlusJakartaSans300.className}`}>{createBlockQuote(i + 1)}</div>);
+		} else {
+			blockQuotes.push(
+				<React.Fragment key={text}>
+					{text} <br />
+				</React.Fragment>
+			);
+			newLines.shift();
 		}
-
-		return blockQuotes;
 	}
+
+	return blockQuotes;
+}
 
 	return elements;
 }
