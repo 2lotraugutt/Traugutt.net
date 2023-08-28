@@ -59,7 +59,7 @@ export default function StageOne(props: { down: Function; up: Function; setTitle
 					<p className={`text-MainRed text-center h-4 mt-1 ${poppingsFont600.className}`}>{empty ? "Uzupełnij tytuj!" : ""} </p>
 				</div>
 
-				<div className="flex justify-between">
+				<div className="flex justify-between w-full">
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>
