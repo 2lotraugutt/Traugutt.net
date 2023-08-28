@@ -68,7 +68,6 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 
 		while (newLines[0].startsWith("> ".repeat(i))) {
 			const text = newLines[0].replace("> ".repeat(i), "");
-			console.log(text);
 			if (newLines[0].startsWith("> ".repeat(i + 1))) {
 				blockQuotes.push(<div className={`block-quote ${PlusJakartaSans300.className}`}>{createBlockQuote(2)}</div>);
 			} else {
