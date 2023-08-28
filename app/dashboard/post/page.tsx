@@ -3,6 +3,7 @@
 import StageFive from "@/components/newPostStages/stageFive";
 import StageFour from "@/components/newPostStages/stageFour";
 import StageOne from "@/components/newPostStages/stageOne";
+import StageSix from "@/components/newPostStages/stageSix";
 import StageThree from "@/components/newPostStages/stageThree";
 import StageTwo from "@/components/newPostStages/stageTwo";
 import StageZero from "@/components/newPostStages/stageZero";
@@ -16,6 +17,8 @@ export default function Page() {
 	const [content, setContent] = useState("");
 	const [gallery, setGallery] = useState<{ name: string; image: File }[]>([]);
 
+	const [uploaded, setUploaded] = useState(false);
+
 	function stageUp() {
 		setStage((oldStage) => oldStage + 1);
 	}
@@ -23,6 +26,7 @@ export default function Page() {
 		if (stage == 5 && content == "") setStage(3);
 		else setStage((oldStage) => oldStage - 1);
 	}
+	function upload() {}
 
 	if (stage == 0) return <StageZero up={stageUp} />;
 	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} initTitle={title} />;
@@ -46,5 +50,6 @@ export default function Page() {
 		}
 	}
 	if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
+	if (stage == 6) return <StageSix down={stageDown} upload={upload} uploaded={uploaded} />;
 	else setStage(0);
 }

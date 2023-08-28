@@ -39,32 +39,9 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 					</p>
 				</div>
 
-				<div className="grid grid-cols-3 gap-5 w-1/2 aspect-[3/2] overflow-y-auto p-3 border-2 border-dotted border-MainGreen rounded-lg">
-					<label>
-						<input
-							type="file"
-							hidden
-							onChange={({ target }) => {
-								if (target.files) {
-									const file = target.files[0];
-									setGallery((oldGallery) => {
-										console.log(oldGallery);
-										oldGallery.push({ name: URL.createObjectURL(file), image: file });
-										return oldGallery;
-									});
-									setImageKey((prev) => prev + 1);
-								}
-							}}
-						/>
-						<div
-							className={`w-full aspect-[25/16] rounded border-MainPurple flex items-center justify-center border-2 border-dashed cursor-pointer ${poppingsFont600.className}`}
-						>
-							Dodaj zdjęcie
-						</div>
-					</label>
-
-					{gallery.map((image, index) => (
-						<label key={index}>
+				<div className="w-1/2 aspect-[3/2] overflow-y-auto p-3 border-2 border-dotted border-MainGreen rounded-lg">
+					<div className="grid grid-cols-3 gap-5 h-fit">
+						<label>
 							<input
 								type="file"
 								hidden
@@ -72,18 +49,43 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 									if (target.files) {
 										const file = target.files[0];
 										setGallery((oldGallery) => {
-											oldGallery[index] = { name: URL.createObjectURL(file), image: file };
+											console.log(oldGallery);
+											oldGallery.push({ name: URL.createObjectURL(file), image: file });
 											return oldGallery;
 										});
 										setImageKey((prev) => prev + 1);
 									}
 								}}
 							/>
-							<div className={`w-full rounded flex items-center justify-center cursor-pointer ${poppingsFont600.className}`}>
-								<img key={imageKey} src={image.name} className="object-cover aspect-[25/16]" alt="" />
+							<div
+								className={`w-full aspect-[25/16] rounded border-MainPurple flex items-center justify-center border-2 border-dashed cursor-pointer ${poppingsFont600.className}`}
+							>
+								Dodaj zdjęcie
 							</div>
 						</label>
-					))}
+
+						{gallery.map((image, index) => (
+							<label key={index}>
+								<input
+									type="file"
+									hidden
+									onChange={({ target }) => {
+										if (target.files) {
+											const file = target.files[0];
+											setGallery((oldGallery) => {
+												oldGallery[index] = { name: URL.createObjectURL(file), image: file };
+												return oldGallery;
+											});
+											setImageKey((prev) => prev + 1);
+										}
+									}}
+								/>
+								<div className={`w-full rounded flex items-center justify-center cursor-pointer ${poppingsFont600.className}`}>
+									<img key={imageKey} src={image.name} className="object-cover aspect-[25/16]" alt="" />
+								</div>
+							</label>
+						))}
+					</div>
 				</div>
 
 				<div className="flex justify-between w-full max-w-xl">

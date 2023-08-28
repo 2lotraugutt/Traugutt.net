@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<AuthProvider>
-				<body className="max-w-screen-4xl mx-auto">
+				<body className="max-w-screen-4xl mx-auto text-MainDarkGray">
 					<Navbar />
 					<div>{children}</div>
 					<Footer />
