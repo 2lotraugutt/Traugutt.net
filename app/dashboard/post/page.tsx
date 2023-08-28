@@ -1,5 +1,6 @@
 "use client";
 
+import StageFour from "@/components/newPostStages/stageFour";
 import StageOne from "@/components/newPostStages/stageOne";
 import StageThree from "@/components/newPostStages/stageThree";
 import StageTwo from "@/components/newPostStages/stageTwo";
@@ -23,6 +24,9 @@ export default function Page() {
 	if (stage == 0) return <StageZero up={stageUp} />;
 	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} />;
 	if (stage == 2) return <StageTwo down={stageDown} up={stageUp} setImage={(image: File) => setImage(image)} setImageName={(name: string) => setImageName(name)} />;
-	if (stage == 3) return <StageThree down={stageDown} up={stageUp} setContent={(content: string) => setContent(content)} />;
-	else setStage(0);
+	if (stage == 3) return <StageThree initContent={content} down={stageDown} up={stageUp} setContent={(content: string) => setContent(content)} />;
+	if (stage == 4) {
+		if (content != "") return <StageFour down={stageDown} up={stageUp} content={content} />;
+		else stageUp();
+	} else setStage(0);
 }
