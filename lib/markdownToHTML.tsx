@@ -23,6 +23,7 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 
 			if (headingLevel < 4) elements.push(React.createElement(`h${headingLevel}`, { class: ["__className_3e3188 "] }, headingText));
 			else elements.push(<p>{inlineMarkdownToHtml(headingText)}</p>);
+			newLines.shift();
 		} else if (newLines[0].startsWith("- ") || newLines[0].startsWith("* ")) {
 			elements.push(<ul>{createLists(1)}</ul>);
 		} else if (/^[0-9]+\.\s/.test(newLines[0])) {
@@ -40,9 +41,8 @@ export default function markdownToHtml(markdown: string): JSX.Element[] {
 		} else {
 			const text = newLines[0];
 			elements.push(<p>{inlineMarkdownToHtml(text)}</p>);
+			newLines.shift();
 		}
-
-		newLines.shift();
 	}
 
 	function createLists(i: number) {
