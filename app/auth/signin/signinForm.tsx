@@ -30,21 +30,21 @@ export default function SigninForm(props: { redirect: string }) {
 				<div className="p-4 md:p-20 text-center items-center flex flex-col gap-6 pb-12 md:pb-40 xl:gap-y-8 lg:pb-32">
 					<Image src="/Glasses.svg" width="250" height="100" alt="Glasses icon" />
 
-					<h1 className={`text-3xl sm:text-5xl xl:text-6xl ${poppingsFont700.className}`}>Sign in</h1>
-					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>We are happy to see you again!</h2>
+					<h1 className={`text-3xl sm:text-5xl xl:text-6xl ${poppingsFont700.className}`}>Zaloguj się</h1>
+					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>Miło nam widzieć cię ponownie!</h2>
 
 					<div className="flex flex-col gap-y-1 sm:gap-y-2 2xl:gap-y-3">
 						<button onClick={() => signIn("google", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faGoogle} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
-							Sign in with Google
+							Zaloguj się z Google
 						</button>
 						<button onClick={() => signIn("facebook", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faFacebook} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
-							Sign in with Facebook
+							Zaloguj się z Facebook
 						</button>
 						<button onClick={() => signIn("discord", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faDiscord} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
-							Sign in with Discord
+							Zaloguj się z Discord
 						</button>
 					</div>
 				</div>

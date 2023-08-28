@@ -32,7 +32,7 @@ export default function Navbar() {
 
 			<Sidebar visible={sidebarVisible} toggle={() => setSidebarVisible((old) => !old)} />
 
-			{sidebarVisible ? <div onClick={() => setSidebarVisible(false)} className="w-screen absolute top-0 left-0 z-30 h-screen"></div> : <></>}
+			{sidebarVisible ? <div onClick={() => setSidebarVisible(false)} className="w-full absolute top-0 left-0 z-30 h-screen"></div> : <></>}
 		</>
 	);
 }
