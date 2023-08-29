@@ -8,9 +8,9 @@ export async function GET(request: NextRequest) {
 	const user = request.nextUrl.searchParams.get("user");
 
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
-	
+
 	if (session) {
-		const role = session.user.role;
+		const role = session.user.roleTag;
 
 		if (user == undefined && !(role == "ADMIN" || role == "TEACHER" || role == "EDITOR"))
 			return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
@@ -33,5 +33,4 @@ export async function GET(request: NextRequest) {
 			} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 		}
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
-
 }

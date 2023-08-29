@@ -12,7 +12,7 @@ const poppingsFont600 = Poppins({
 export default function DashboardNavbar(props: { session: SessionDataType }) {
 	const pathname = usePathname();
 
-	const userRole = props.session.user.role;
+	const userRole = props.session.user.roleTag;
 
 	const yourPostsVisible = userRole != "USER";
 	const postsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "EDITOR";

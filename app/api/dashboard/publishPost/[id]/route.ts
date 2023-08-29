@@ -10,7 +10,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 	
 	
 	if (session) {
-		const role = session.user.role;
+		const role = session.user.roleTag;
 
 		if (role == "ADMIN" || role == "TEACHER" || role == "EDITOR") {
 			const post = await prisma.post.update({

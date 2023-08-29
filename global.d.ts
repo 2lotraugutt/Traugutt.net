@@ -1,3 +1,4 @@
+import { Role } from "./node_modules/.prisma/client/index.d";
 export {};
 
 declare global {
@@ -29,23 +30,44 @@ declare global {
 	};
 
 	type UserDataType = {
-		id: String;
-		email: String;
-		emailVerified: DateTime?;
+		id: string;
+		email: string;
 		name: string;
-		profilePicture: String;
+		image: string;
+		verified: Boolean;
+		roleTag: string;
+	};
+
+	type UserDataTypeWithRole = {
+		id: string;
+		email: string;
+		name: string;
+		image: string;
+		verified: Boolean;
+		role: RoleDataType;
+		roleTag: string;
 	};
 
 	type SessionDataType = {
-		user: {
-			id: string;
-			email: string;
-			emailVerified: null;
-			name: string;
-			image: string;
-			verified: Boolean;
-			role: string;
-		};
+		id: string;
+		sessionToken: string;
+		userId: string;
+		user: UserDataType;
 		expires: string;
+	};
+
+	type RoleDataType = {
+		id: String;
+		tag: String;
+		name: String;
+
+		createPosts: Boolean;
+		publishPosts: Boolean;
+		editPosts: Boolean;
+		deletePosts: Boolean;
+		deleteUsers: Boolean;
+		manageUserRoles: Boolean;
+		manageEvents: Boolean;
+		createRoles: Boolean;
 	};
 }

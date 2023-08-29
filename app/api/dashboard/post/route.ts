@@ -9,7 +9,7 @@ export async function PUT(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
-		const role = session.user.role;
+		const role = session.user.roleTag;
 
 		if (role == "USER") return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 		else {
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
-		const role = session.user.role;
+		const role = session.user.roleTag;
 
 		if (role == "USER") return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 		else {
@@ -96,7 +96,10 @@ export async function POST(request: NextRequest) {
 			}
 
 			const post = await prisma.post.update({
-				where: { id: id, authorId: role == "USER" || role == "TEACHER" || role == "ADMIN" ? undefined : session.user.id },
+				where: {
+					id: id,
+					authorId: role == "USER" || role == "TEACHER" || role == "ADMIN" ? undefined : session.user.id,
+				},
 				data: {
 					title: title,
 					content: content,

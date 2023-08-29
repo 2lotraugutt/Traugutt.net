@@ -21,9 +21,9 @@ export default function Page() {
 	useEffect(() => {
 		async function initFunction() {
 			const session = (await getSession()) as SessionDataType | undefined;
-
+			console.log(session);
 			if (session) {
-				if (session.user.role == "ADMIN" || session.user.role == "EDITOR" || session.user.role == "TEACHER") {
+				if (session.user.roleTag == "ADMIN" || session.user.roleTag == "EDITOR" || session.user.roleTag == "TEACHER") {
 					fetchPosts();
 					setSession(session);
 				} else router.push("/dashboard");

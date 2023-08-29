@@ -59,7 +59,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 								<div className="grow flex flex-col h-fit">
 									<div className={`text-white text-sm sm:text-lg sm:leading-4 ${poppingsFont700.className}`}>{userSession.user.name}</div>
 									<div className={`text-LightGray text-sm sm:text-base ${plusJakraSansFont500.className}`}>
-										{userRoles[userSession.user.role as "USER" | "TEACHER" | "ADMIN" | "MANAGER" | "EDITOR" | "STUDENT"]}
+										{userRoles[userSession.user.roleTag as "USER" | "TEACHER" | "ADMIN" | "MANAGER" | "EDITOR" | "STUDENT"]}
 									</div>
 								</div>
 							</div>

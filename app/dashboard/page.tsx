@@ -10,7 +10,7 @@ const poppingsFont700 = Poppins({
 
 export default async function Page() {
 	const session = (await getServerSession(authOptions)) as SessionDataType;
-	const userRole = session.user.role;
+	const userRole = session.user.roleTag;
 
 	const yourPostsVisible = userRole != "USER";
 	const postsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "EDITOR";
