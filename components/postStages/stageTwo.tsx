@@ -29,7 +29,7 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 	const [imageName, setImageName] = useState(props.initImageName);
 
 	function nextStage() {
-		if (image) {
+		if (imageName) {
 			props.setImage(image);
 			props.setImageName(imageName);
 			props.up();

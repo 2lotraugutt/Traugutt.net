@@ -24,8 +24,8 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function StageFive(props: { down: Function; up: Function; setGallery: Function; initGallery: { name: string; image: File }[] }) {
-	const [gallery, setGallery] = useState<{ name: string; image: File }[]>(props.initGallery);
+export default function StageFive(props: { down: Function; up: Function; setGallery: Function; initGallery: { name: string; image: File | undefined }[] }) {
+	const [gallery, setGallery] = useState<{ name: string; image: File | undefined }[]>(props.initGallery);
 	const [imageKey, setImageKey] = useState(1);
 
 	return (
@@ -63,7 +63,6 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 								Dodaj zdjęcie
 							</div>
 						</label>
-						;
 						{gallery.map((image, index) => (
 							<label key={index}>
 								<input
