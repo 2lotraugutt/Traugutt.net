@@ -24,7 +24,7 @@ export default function Page() {
 			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
-				if (session.user.roleTag == "USER") router.push("/dashboard");
+				if (!session.user.role.createPosts) router.push("/dashboard");
 				else {
 					fetchPosts(session);
 					setSession(session);

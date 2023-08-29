@@ -23,7 +23,7 @@ export default function Page() {
 			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
-				if (session.user.roleTag == "ADMIN" || session.user.roleTag == "EDITOR" || session.user.roleTag == "TEACHER") {
+				if (session.user.role.managePosts) {
 					fetchPosts();
 					setSession(session);
 				} else router.push("/dashboard");

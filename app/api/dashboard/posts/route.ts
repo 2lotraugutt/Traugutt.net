@@ -10,27 +10,21 @@ export async function GET(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
-		const role = session.user.roleTag;
-
-		if (user == undefined && !(role == "ADMIN" || role == "TEACHER" || role == "EDITOR"))
-			return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
-		else {
-			if (role != "USER") {
-				const posts = await prisma.post.findMany({
-					take: count != 0 ? count : undefined,
-					orderBy: [
-						{
-							createdAt: "desc",
-						},
-					],
-					where: {
-						authorId: user ?? undefined,
+		if (user != undefined || session.user.role.managePosts) {
+			const posts = await prisma.post.findMany({
+				take: count != 0 ? count : undefined,
+				orderBy: [
+					{
+						createdAt: "desc",
 					},
-					include: { author: true },
-				});
+				],
+				where: {
+					authorId: user ?? undefined,
+				},
+				include: { author: true },
+			});
 
-				return NextResponse.json(posts);
-			} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
-		}
+			return NextResponse.json(posts);
+		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }

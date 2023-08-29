@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth";
 import { Poppins } from "next/font/google";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import Link from "next/link";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -9,13 +8,7 @@ const poppingsFont700 = Poppins({
 });
 
 export default async function Page() {
-	const session = (await getServerSession(authOptions)) as SessionDataType;
-	const userRole = session.user.roleTag;
-
-	const yourPostsVisible = userRole != "USER";
-	const postsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "EDITOR";
-	const eventsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
-	const usersVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
+	// const session = (await getServerSession(authOptions)) as SessionDataType;
 
 	return (
 		<div className="dashboard-page">
