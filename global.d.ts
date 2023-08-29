@@ -65,11 +65,10 @@ declare global {
 
 		createPosts: Boolean;
 		publishPosts: Boolean;
-		editPosts: Boolean;
-		deletePosts: Boolean;
-		deleteUsers: Boolean;
+		managePosts: Boolean;
+		manageUsers: Boolean;
 		manageUserRoles: Boolean;
 		manageEvents: Boolean;
-		createRoles: Boolean;
+		manageRoles: Boolean;
 	};
 }

@@ -12,12 +12,7 @@ const poppingsFont600 = Poppins({
 export default function DashboardNavbar(props: { session: SessionDataType }) {
 	const pathname = usePathname();
 
-	const userRole = props.session.user.roleTag;
-
-	const yourPostsVisible = userRole != "USER";
-	const postsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "EDITOR";
-	const eventsVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
-	const usersVisible = userRole == "TEACHER" || userRole == "ADMIN" || userRole == "MANAGER";
+	const userRole = props.session.user.role;
 
 	return (
 		<div
@@ -27,26 +22,40 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 				Panel sterowania
 			</Link>
 
-			<Link href={"/dashboard/post"} className={`${yourPostsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/post" ? "active-dashboard-link" : ""}`}>
+			<Link
+				href={"/dashboard/post"}
+				className={`${userRole.createPosts ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/post" ? "active-dashboard-link" : ""}`}
+			>
 				Nowy post
 			</Link>
 
 			<Link
 				href={"/dashboard/personal-posts"}
-				className={`${yourPostsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/personal-posts" ? "active-dashboard-link" : ""}`}
+				className={`${userRole.createPosts ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/personal-posts" ? "active-dashboard-link" : ""}`}
 			>
 				Twoje posty
 			</Link>
 
-			<Link href={"/dashboard/posts"} className={`${postsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/posts" ? "active-dashboard-link" : ""}`}>
+			<Link
+				href={"/dashboard/posts"}
+				className={`${userRole.managePosts || userRole.publishPosts ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/posts" ? "active-dashboard-link" : ""}`}
+			>
 				Posty
 			</Link>
 
-			<Link href={"/dashboard/events"} className={`${eventsVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/events" ? "active-dashboard-link" : ""}`}>
+			<Link
+				href={"/dashboard/events"}
+				className={`${userRole.manageEvents ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/events" ? "active-dashboard-link" : ""}`}
+			>
 				Wydarzenia
 			</Link>
 
-			<Link href={"/dashboard/users"} className={`${usersVisible ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/users" ? "active-dashboard-link" : ""}`}>
+			<Link
+				href={"/dashboard/users"}
+				className={`${userRole.manageUserRoles ?? userRole.manageUsers ? "" : "hidden"} dashboard-link ${
+					pathname == "/dashboard/users" ? "active-dashboard-link" : ""
+				}`}
+			>
 				Użytkownicy
 			</Link>
 

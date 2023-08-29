@@ -35,12 +35,14 @@ model Role {
 
   createPosts     Boolean   @default(false)
   publishPosts    Boolean   @default(false)
-  editPosts       Boolean   @default(false)
-  deletePosts     Boolean   @default(false)
-  deleteUsers     Boolean   @default(false)
+  managePosts     Boolean   @default(false)
+
+  manageUsers     Boolean   @default(false)
   manageUserRoles Boolean   @default(false)
+
   manageEvents    Boolean   @default(false)
-  createRoles     Boolean   @default(false)
+
+  manageRoles     Boolean   @default(false)
 
   users           User[]    @relation("Role") 
 }

@@ -19,7 +19,13 @@ export function MyAdapter(prisma: PrismaClient): Adapter {
 		async getSessionAndUser(sessionToken) {
 			const userAndSession = await prisma.session.findUnique({
 				where: { sessionToken },
-				include: { user: { include: { role: true } } },
+				include: {
+					user: {
+						include: {
+							role: true, // Include the user's role
+						},
+					},
+				},
 			});
 			if (!userAndSession) return null;
 			const { user, ...session } = userAndSession;

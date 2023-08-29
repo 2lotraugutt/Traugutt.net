@@ -33,7 +33,6 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 		initFunction();
 	}, []);
 
-	const userRoles = { USER: "Uzytkownic", TEACHER: "Nauczyciel", ADMIN: "Administrator", MANAGER: "Zarzadający", EDITOR: "Redaktor", STUDENT: "Uczeń" };
 
 	return (
 		<div className={`fixed z-40 top-0 h-screen w-full 2xs:w-96 duration-500 ease-out transition-all right-0 p-2 ${props.visible ? "translate-x-0" : "translate-x-full"}`}>
@@ -58,9 +57,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 								/>
 								<div className="grow flex flex-col h-fit">
 									<div className={`text-white text-sm sm:text-lg sm:leading-4 ${poppingsFont700.className}`}>{userSession.user.name}</div>
-									<div className={`text-LightGray text-sm sm:text-base ${plusJakraSansFont500.className}`}>
-										{userRoles[userSession.user.roleTag as "USER" | "TEACHER" | "ADMIN" | "MANAGER" | "EDITOR" | "STUDENT"]}
-									</div>
+									<div className={`text-LightGray text-sm sm:text-base ${plusJakraSansFont500.className}`}>{userSession.user.role.name}</div>
 								</div>
 							</div>
 
