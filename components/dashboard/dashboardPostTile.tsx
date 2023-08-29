@@ -74,16 +74,6 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 			</div>
 
 			<div className="flex justify-between xl:justify-normal gap-y-2 xl:flex-col gap-x-5">
-				<button
-					onClick={() => {}}
-					className={`group/button xl:w-fit xl:px-12 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${plusJakartaSansFont700.className}`}
-				>
-					Usuń post
-					<FontAwesomeIcon
-						icon={faTrash}
-						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
-					/>
-				</button>
 				<Link
 					href={"/dashboard/post/" + props.postData.id}
 					className={`group/button transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${plusJakartaSansFont700.className}`}
@@ -94,6 +84,16 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
 					/>
 				</Link>
+				<button
+					onClick={() => {}}
+					className={`group/button xl:w-fit xl:px-12 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${plusJakartaSansFont700.className}`}
+				>
+					Usuń post
+					<FontAwesomeIcon
+						icon={faTrash}
+						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
+					/>
+				</button>
 			</div>
 		</Link>
 	);

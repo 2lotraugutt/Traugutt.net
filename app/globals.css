@@ -19,7 +19,7 @@
 }
 
 .dashboard-page{
-  @apply flex flex-col gap-y-10 sm:gap-y-12 py-16 sm:py-20 md:py-28 lg:py-36 xl:py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 bg-LightGray/30 border-y-2 border-LightGray/70
+  @apply flex flex-col gap-y-10 sm:gap-y-12 py-16 sm:py-20 md:py-28 lg:py-36 xl:py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 
 }
 
 .sidebar-button{
