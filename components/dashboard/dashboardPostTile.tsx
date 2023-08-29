@@ -1,5 +1,5 @@
 import removeMarkdown from "@/lib/removeMarkdown";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
@@ -26,14 +26,18 @@ const poppingsFont700 = Poppins({
 
 export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthor }) {
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
-
 	let date = new Date(props.postData.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+
+	function returnViews() {
+		const views = props.postData.views;
+		if (views == 1) return views + " wyświetlenie";
+		else if (views < 5) return views + " wyświetlenia";
+		else return views + " wyświetleń";
+	}
+
 	return (
-		<Link
-			href={"/post/" + props.postData.id}
-			className="h-fit w-full flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 md:py-5 md:px-8 py-3 px-5 lg:px-7 xl:px-10 lg:py-5 xl:py-8 flex gap-y-4 md:gap-y-6 lg:gap-y-10 rounded-2xl"
-		>
+		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 md:py-5 md:px-8 py-3 px-5 lg:px-7 xl:px-10 lg:py-5 xl:py-8 flex gap-y-4 md:gap-y-6 lg:gap-y-10 rounded-2xl">
 			<div className="flex xl:max-w-2xl 2xl:max-w-3xl grow 3xl:max-w-4xl 4xl:max-w-screen-lg flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5">
 				<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl ${poppingsFont700.className}`}>
 					<span className="me-5">{props.postData.title}</span>
@@ -63,17 +67,31 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 				</div>
 
 				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Data: </p>
+					<p className="h-fit">Utworzony: </p>
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{dateToDisplay}</div>
 				</div>
 
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Wyświetlenia: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.views} wyświetleń</div>
+					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{returnViews()}</div>
 				</div>
 			</div>
 
-			<div className="flex justify-between xl:justify-normal gap-y-2 xl:flex-col gap-x-5">
+			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
+				<Link
+					href={"/post/" + props.postData.id}
+					className={`${
+						props.postData.published ? "" : "hidden"
+					} group/button transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${
+						plusJakartaSansFont700.className
+					}`}
+				>
+					Zobacz post
+					<FontAwesomeIcon
+						icon={faArrowRight}
+						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
+					/>
+				</Link>
 				<Link
 					href={"/dashboard/post/" + props.postData.id}
 					className={`group/button transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${plusJakartaSansFont700.className}`}
@@ -95,6 +113,6 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 					/>
 				</button>
 			</div>
-		</Link>
+		</div>
 	);
 }
