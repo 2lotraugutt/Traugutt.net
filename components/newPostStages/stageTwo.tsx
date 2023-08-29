@@ -55,11 +55,11 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 						<input
 							type="file"
 							hidden
-							onChange={({ target }) => {
-								if (target.files) {
-									const file = target.files[0];
+							onChange={(e) => {
+								if (e.target.files) {
+									const file = e.target.files[0];
 									setImageName(URL.createObjectURL(file));
-									setImage(file);
+									setImage(e.target.files?.[0]);
 								}
 							}}
 						/>

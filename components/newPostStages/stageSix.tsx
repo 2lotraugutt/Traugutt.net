@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const plusJakartaSans800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -29,6 +32,29 @@ const poppingsFont400 = Poppins({
 });
 
 export default function StageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
+	const [seconds, setSeconds] = useState(10);
+	let secondsCound = 10;
+
+	const router = useRouter();
+
+	useEffect(() => {
+		if (props.uploaded == true) {
+			setTimeout(() => {
+				countDown();
+			}, 1000);
+		}
+	}, [props.uploaded]);
+
+	function countDown() {
+		if (secondsCound > 1) {
+			setTimeout(() => {
+				secondsCound -= 1;
+				setSeconds((prev) => prev - 1);
+				countDown();
+			}, 1000);
+		} else router.push("/");
+	}
+
 	return (
 		<div className="dashboard-post-page">
 			<Image src="/newPost/Wave-6.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
@@ -43,15 +69,29 @@ export default function StageSix(props: { down: Function; upload: Function; uplo
 					</p>
 				</div>
 
-				<button onClick={() => props.upload()} className={`bg-MainGreen text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}>
-					Opublikuj!
+				<button
+					disabled={props.uploaded}
+					onClick={() => props.upload()}
+					className={`bg-MainGreen text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+				>
+					{props.uploaded ? "Opublikowano!" : "Opublikuj!"}
 				</button>
+
+				<p className={`text-center -mt-10 px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
+					Zostaniesz przekierowany za {seconds} sekund.{" "}
+					<Link href={"/"} className={`hover:text-MainPurple ${plusJakartaSans600.className}`}>
+						Przekieruj mnie.
+					</Link>
+				</p>
 
 				<div className="flex flex-col gap-y-6 justify-between w-full">
 					<p className={`text-center px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
 						Daj nam chwile na zweryfikowanie posta. <br /> Post powinien pojawić się na stronie maksymalnie po kilku dniach.
 					</p>
-					<button onClick={() => props.down()} className={`bg-MainDarkGray w-fit px-8 py-3 text-white rounded-3xl ${plusJakartaSans600.className}`}>
+					<button
+						onClick={() => props.down()}
+						className={`bg-MainDarkGray w-fit px-8 py-3 text-white rounded-3xl ${props.uploaded ? "hidden" : ""} ${plusJakartaSans600.className}`}
+					>
 						Powrót
 					</button>
 				</div>

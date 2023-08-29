@@ -12,7 +12,7 @@ import { useState } from "react";
 export default function Page() {
 	const [stage, setStage] = useState(0);
 	const [title, setTitle] = useState("");
-	const [image, setImage] = useState<File>();
+	const [image, setImage] = useState<File | any>();
 	const [imageName, setImageName] = useState("");
 	const [content, setContent] = useState("");
 	const [gallery, setGallery] = useState<{ name: string; image: File }[]>([]);
@@ -26,7 +26,29 @@ export default function Page() {
 		if (stage == 5 && content == "") setStage(3);
 		else setStage((oldStage) => oldStage - 1);
 	}
-	function upload() {}
+	async function upload() {
+		try {
+			const data = new FormData();
+			data.set("title", title);
+			data.set("image", image);
+			data.set("content", content);
+			for (const file of gallery) {
+				data.append("gallery[]", file.image as any, file.image.name);
+			}
+
+			const res = await fetch("/api/dashboard/post", {
+				method: "POST",
+				body: data,
+			});
+			// handle the error
+			if (!res.ok) throw new Error(await res.text());
+
+			if (res.ok) setUploaded(true);
+		} catch (e: any) {
+			// Handle errors here
+			console.error(e);
+		}
+	}
 
 	if (stage == 0) return <StageZero up={stageUp} />;
 	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} initTitle={title} />;

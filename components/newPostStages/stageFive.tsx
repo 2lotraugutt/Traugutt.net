@@ -47,9 +47,9 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 								hidden
 								onChange={({ target }) => {
 									if (target.files) {
-										const file = target.files[0];
+										const file = target.files?.[0];
+
 										setGallery((oldGallery) => {
-											console.log(oldGallery);
 											oldGallery.push({ name: URL.createObjectURL(file), image: file });
 											return oldGallery;
 										});
@@ -63,7 +63,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 								Dodaj zdjęcie
 							</div>
 						</label>
-
+						;
 						{gallery.map((image, index) => (
 							<label key={index}>
 								<input
@@ -71,7 +71,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 									hidden
 									onChange={({ target }) => {
 										if (target.files) {
-											const file = target.files[0];
+											const file = target.files?.[0];
 											setGallery((oldGallery) => {
 												oldGallery[index] = { name: URL.createObjectURL(file), image: file };
 												return oldGallery;
