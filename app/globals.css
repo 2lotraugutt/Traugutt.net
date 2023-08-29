@@ -31,11 +31,11 @@
 }
 
 .dashboardPostTileDataRow {
-  @apply flex justify-between text-2xs 2xs:text-xs border-t-2 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0
+  @apply flex justify-between xl:flex-col xl:h-full xl:justify-start md:gap-x-2 items-center text-2xs xs:text-xs md:text-sm 2xl:text-base border-t-2 md:border-0 md:p-0 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0 text-MainDarkGray/60
 }
 
 .dashboardPostTileData {
-  @apply text-MainDarkGray text-2xs 2xs:text-xs xs:text-sm rounded-3xl
+  @apply text-MainDarkGray text-2xs 2xs:text-xs 2xl:text-xl 4xl:text-2xl xs:text-sm rounded-lg md:text-base lg:text-lg p-0
 }
 
 #markdown-container h1{
