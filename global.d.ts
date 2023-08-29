@@ -31,19 +31,21 @@ declare global {
 
 	type UserDataType = {
 		id: string;
+		emailVerified: Date | null;
 		email: string;
 		name: string;
 		image: string;
-		verified: Boolean;
+		verified: Boolean | null;
 		roleTag: string;
 	};
 
 	type UserDataTypeWithRole = {
 		id: string;
+		emailVerified: Date | null;
 		email: string;
 		name: string;
 		image: string;
-		verified: Boolean;
+		verified: Boolean | null;
 		role: RoleDataType;
 		roleTag: string;
 	};
@@ -52,7 +54,7 @@ declare global {
 		id: string;
 		sessionToken: string;
 		userId: string;
-		user: UserDataType;
+		user: UserDataTypeWithRole;
 		expires: string;
 	};
 

@@ -4,15 +4,26 @@ import { PrismaClient } from "@prisma/client";
 
 export function MyAdapter(prisma: PrismaClient): Adapter {
 	return {
+		...PrismaAdapter(prisma),
 		async createUser(user: any) {
-			return prisma.user.create({
+			const fetchedUser: UserDataType = await prisma.user.create({
 				data: {
 					name: user.name,
 					email: user.email,
 					image: user.image,
 				},
 			});
+			return fetchedUser;
 		},
-		...PrismaAdapter(prisma),
+
+		async getSessionAndUser(sessionToken) {
+			const userAndSession = await prisma.session.findUnique({
+				where: { sessionToken },
+				include: { user: { include: { role: true } } },
+			});
+			if (!userAndSession) return null;
+			const { user, ...session } = userAndSession;
+			return { user, session };
+		},
 	};
 }
