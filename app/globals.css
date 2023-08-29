@@ -30,6 +30,14 @@
   @apply w-screen h-screen absolute left-0 top-0 z-30 bg-white flex flex-col items-center
 }
 
+.dashboardPostTileDataRow {
+  @apply flex justify-between text-2xs 2xs:text-xs border-t-2 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0
+}
+
+.dashboardPostTileData {
+  @apply text-MainDarkGray text-2xs 2xs:text-xs xs:text-sm rounded-3xl
+}
+
 #markdown-container h1{
   @apply font-bold 
 }

@@ -46,13 +46,6 @@ export default function Page() {
 			<div className="dashboard-page">
 				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Twoje posty</h1>
 
-				<Link
-					href={"dashboard/post"}
-					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGreen/20 border-dotted border-MainGreen transition-all duration-300 py-6 rounded-2xl ${poppingsFont700.className}`}
-				>
-					Dodaj nowy post
-				</Link>
-
 				{posts.length != 0 ? (
 					<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 						{posts.map((postData: PostDataTypeWithAuthor) => (
@@ -60,7 +53,7 @@ export default function Page() {
 						))}
 						<button
 							onClick={() => fetchPosts(userSession)}
-							className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className}`}
+							className={`text-MainDarkGray border-MainDarkGray border-2 text-xs xs:text-sm md:text-base xl:text-lg px-8 py-1.5 2xl:text-lg 3xl:text-xl 3xl:py-2 3xl:px-12 rounded-3xl hover:bg-MainDarkGray hover:text-white w-fit mx-auto transition-all duration-200 ease-out ${poppingsFont700.className}`}
 						>
 							Załaduj więcej
 						</button>
