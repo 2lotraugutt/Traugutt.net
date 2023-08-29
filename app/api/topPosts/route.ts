@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
 				},
 			],
 			where: {
+				id: { notIn: topPosts.map((post) => post.id) },
 				published: true,
 			},
 		});

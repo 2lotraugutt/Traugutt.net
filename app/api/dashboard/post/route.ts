@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 
 export async function PUT(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
@@ -23,13 +23,13 @@ export async function PUT(request: NextRequest) {
 
 			const bytes = await image.arrayBuffer();
 			const buffer = Buffer.from(bytes);
-			const name = uuid() + "." + image.name.split(".").pop();
+			const name = uuid_v4() + "." + image.name.split(".").pop();
 			const path = `public/postImages/${name}`;
 			const imgPath = `/postImages/${name}`;
 			await writeFile(path, buffer);
 
 			for (const image of gallery) {
-				const name = uuid() + "." + image.name.split(".").pop();
+				const name = uuid_v4() + "." + image.name.split(".").pop();
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
 				const path = `public/postImages/${name}`;
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
 			else {
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
-				const name = uuid() + "." + image.name.split(".").pop();
+				const name = uuid_v4() + "." + image.name.split(".").pop();
 				const path = `public/postImages/${name}`;
 				imgPath = `/postImages/${name}`;
 				await writeFile(path, buffer);
@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
 			for (const image of gallery) {
 				if (image == "") imgPaths.push(galleryNames[gallery.indexOf(image)]);
 				else {
-					const name = uuid() + "." + image.name.split(".").pop();
+					const name = uuid_v4() + "." + image.name.split(".").pop();
 					const bytes = await image.arrayBuffer();
 					const buffer = Buffer.from(bytes);
 					const path = `public/postImages/${name}`;
@@ -103,6 +103,8 @@ export async function POST(request: NextRequest) {
 					authorId: session.user.id,
 					titleImage: imgPath,
 					gallery: imgPaths,
+					published: false,
+					publishedById: null,
 				},
 			});
 
