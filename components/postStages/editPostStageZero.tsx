@@ -32,17 +32,15 @@ export default function EditPostStageZero(props: { up: Function }) {
 			<div className="flex flex-col gap-y-10 absolute top-1/2 max-w-xl -translate-y-1/2">
 				<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Edytuj post</h1>
 				<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
-					Tutaj zaczyna się przygoda twojego nowego postu! <br />
-					Od tego momenu jego wygląd zależy tylko od ciebie. Mam nadzieję, że stowrzysz dzieło, które już niedługo pojawi się na stronie szkolnej!
-					<b className={`text-MainPurple ${poppingsFont600.className}`}> Gotowy?</b>
+					Widzimi się już poraz kolejny. Mimo wszystko to bardzo dobrze, że edytujesz swoje posty! Dobrze jest cię tu widzieć ponownie. Idziemy dalej?
 				</p>
 
 				<div className="flex justify-between">
 					<button onClick={() => router.back()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
-						Nie,&nbsp; zabierz mnie stąd
+						Anuluj
 					</button>
 					<button onClick={() => props.up()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
-						Tak,&nbsp; jestem gotowy!
+						Do roboty!
 					</button>
 				</div>
 			</div>

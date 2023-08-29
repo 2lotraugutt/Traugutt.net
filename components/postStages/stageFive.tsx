@@ -36,6 +36,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Galleria zdjęć</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						<b className={`text-MainPurple ${poppingsFont600.className}`}>To już ostatni krok! </b>
+						Dodaj tyle zdjęć ile chcesz. Tylko nie przesadź, bo zrobi się bałagan i nikt na nie nie spojrzy. <br /> (Zalecamy dodawanie od około 4 do 9 zdjęć.)
 					</p>
 				</div>
 

@@ -60,12 +60,12 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 			<Image src="/newPost/Wave-6.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
 			<div className="flex flex-col items-center gap-y-10 absolute top-1/2 max-w-xl -translate-y-1/2">
 				<div className="flex flex-col gap-y-3">
-					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Publikacja</h1>
+					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Publikacja zmian</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						Nareszcie nastał ten wyczekiwany moment.
 						<br />
-						<b className={`text-MainPurple ${poppingsFont600.className}`}>Możesz opublikować swój post!</b> To najwaniejszy element jego podrózy. Ten, na którego
-						czekaliśmy tak bardzo!
+						<b className={`text-MainPurple ${poppingsFont600.className}`}>Możesz opublikować wszystkie zmiany w twoim poście.</b> Cieszymy się, że dopracowałeś
+						swoje dzieło!
 					</p>
 				</div>
 
@@ -86,7 +86,8 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 
 				<div className="flex flex-col gap-y-6 justify-between w-full">
 					<p className={`text-center px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
-						Daj nam chwile na zweryfikowanie posta. <br /> Post powinien pojawić się na stronie maksymalnie po kilku dniach.
+						Ze względu na wprowadzone zmiany twój post został ustawiony na prywatny. <br />
+						Daj nam chwilę na sprawdzenie czy wszystko gra. Twoim postem zajmiemy się priorytetowo!
 					</p>
 					<button
 						onClick={() => props.down()}
