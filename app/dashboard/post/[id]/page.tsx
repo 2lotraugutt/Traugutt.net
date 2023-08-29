@@ -12,6 +12,7 @@ import EditPostStageSix from "@/components/postStages/editPostStageSix";
 
 export default function Page({ params }: { params: { id: string } }) {
 	const [stage, setStage] = useState(0);
+	const [id, setId] = useState("");
 	const [title, setTitle] = useState("");
 	const [image, setImage] = useState<File | any>();
 	const [imageName, setImageName] = useState("");
@@ -28,6 +29,7 @@ export default function Page({ params }: { params: { id: string } }) {
 			const post = (await (await fetch(`/api/post/${params.id}`)).json()) as PostDataTypeWithAuthor;
 
 			if (post) {
+				setId(post.id);
 				var img = new Image();
 				img.src = post.titleImage;
 				setTitle(post.title);
@@ -56,11 +58,15 @@ export default function Page({ params }: { params: { id: string } }) {
 	async function upload() {
 		try {
 			const data = new FormData();
+			data.set("id", id);
+
 			data.set("title", title);
-			data.set("image", image);
+			data.set("image", image ?? "");
+			data.set("imageName", imageName);
 			data.set("content", content);
 			for (const file of gallery) {
-				data.append("gallery[]", file.image as any);
+				data.append("gallery[]", file.image ?? "");
+				data.append("galleryNames[]", file.name as string);
 			}
 
 			const res = await fetch("/api/dashboard/post", {

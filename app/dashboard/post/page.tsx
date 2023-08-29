@@ -37,7 +37,7 @@ export default function Page() {
 			}
 
 			const res = await fetch("/api/dashboard/post", {
-				method: "POST",
+				method: "PUT",
 				body: data,
 			});
 			// handle the error
