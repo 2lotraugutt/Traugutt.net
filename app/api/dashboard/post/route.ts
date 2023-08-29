@@ -11,8 +11,7 @@ export async function POST(request: NextRequest) {
 	if (session) {
 		const role = session.user.role;
 
-		if (!(role == "ADMIN" || role == "TEACHER" || role == "EDITOR"))
-			return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
+		if (role == "USER") return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 		else {
 			const data = await request.formData();
 			const image: File = data.get("image") as unknown as File;

@@ -1,12 +1,12 @@
 "use client";
 
-import StageFive from "@/components/newPostStages/stageFive";
-import StageFour from "@/components/newPostStages/stageFour";
-import StageOne from "@/components/newPostStages/stageOne";
-import StageSix from "@/components/newPostStages/stageSix";
-import StageThree from "@/components/newPostStages/stageThree";
-import StageTwo from "@/components/newPostStages/stageTwo";
-import StageZero from "@/components/newPostStages/stageZero";
+import StageSix from "@/components/postStages/newPostStageSix";
+import StageZero from "@/components/postStages/newPostStageZero";
+import StageFive from "@/components/postStages/stageFive";
+import StageFour from "@/components/postStages/stageFour";
+import StageOne from "@/components/postStages/stageOne";
+import StageThree from "@/components/postStages/stageThree";
+import StageTwo from "@/components/postStages/stageTwo";
 import { useState } from "react";
 
 export default function Page() {
