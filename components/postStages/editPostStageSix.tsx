@@ -31,7 +31,7 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function NewPostStageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
+export default function EditPostStageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
 	const [seconds, setSeconds] = useState(10);
 	let secondsCound = 10;
 

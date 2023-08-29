@@ -1,7 +1,7 @@
 "use client";
 
-import StageSix from "@/components/postStages/newPostStageSix";
-import StageZero from "@/components/postStages/newPostStageZero";
+import NewPostStageSix from "@/components/postStages/newPostStageSix";
+import NewPostStageZero from "@/components/postStages/newPostStageZero";
 import StageFive from "@/components/postStages/stageFive";
 import StageFour from "@/components/postStages/stageFour";
 import StageOne from "@/components/postStages/stageOne";
@@ -50,7 +50,7 @@ export default function Page() {
 		}
 	}
 
-	if (stage == 0) return <StageZero up={stageUp} />;
+	if (stage == 0) return <NewPostStageZero up={stageUp} />;
 	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} initTitle={title} />;
 	if (stage == 2)
 		return (
@@ -72,6 +72,6 @@ export default function Page() {
 		}
 	}
 	if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
-	if (stage == 6) return <StageSix down={stageDown} upload={upload} uploaded={uploaded} />;
+	if (stage == 6) return <NewPostStageSix down={stageDown} upload={upload} uploaded={uploaded} />;
 	else setStage(0);
 }

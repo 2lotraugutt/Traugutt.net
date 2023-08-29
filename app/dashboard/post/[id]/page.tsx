@@ -1,7 +1,5 @@
 "use client";
 
-import StageSix from "@/components/postStages/newPostStageSix";
-import StageZero from "@/components/postStages/newPostStageZero";
 import StageFive from "@/components/postStages/stageFive";
 import StageFour from "@/components/postStages/stageFour";
 import StageOne from "@/components/postStages/stageOne";
@@ -9,6 +7,8 @@ import StageThree from "@/components/postStages/stageThree";
 import StageTwo from "@/components/postStages/stageTwo";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import EditPostStageZero from "@/components/postStages/editPostStageZero";
+import EditPostStageSix from "@/components/postStages/editPostStageSix";
 
 export default function Page({ params }: { params: { id: string } }) {
 	const [stage, setStage] = useState(0);
@@ -20,11 +20,6 @@ export default function Page({ params }: { params: { id: string } }) {
 
 	const [uploaded, setUploaded] = useState(false);
 	const router = useRouter();
-
-	async function url2blob(url: string) {
-		const res = await fetch(url);
-		return await res.blob();
-	}
 
 	useEffect(() => {
 		fetchPosts();
@@ -82,7 +77,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		}
 	}
 
-	if (stage == 0) return <StageZero up={stageUp} />;
+	if (stage == 0) return <EditPostStageZero up={stageUp} />;
 	if (stage == 1) return <StageOne down={stageDown} up={stageUp} setTitle={(text: string) => setTitle(text)} initTitle={title} />;
 	if (stage == 2)
 		return (
@@ -104,6 +99,6 @@ export default function Page({ params }: { params: { id: string } }) {
 		}
 	}
 	if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
-	if (stage == 6) return <StageSix down={stageDown} upload={upload} uploaded={uploaded} />;
+	if (stage == 6) return <EditPostStageSix down={stageDown} upload={upload} uploaded={uploaded} />;
 	else setStage(0);
 }

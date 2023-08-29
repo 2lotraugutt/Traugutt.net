@@ -14,7 +14,6 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-
 const poppingsFont600 = Poppins({
 	weight: "600",
 	subsets: ["latin"],
@@ -25,13 +24,13 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function NewPostStageZero(props: { up: Function }) {
+export default function EditPostStageZero(props: { up: Function }) {
 	const router = useRouter();
 	return (
 		<div className="dashboard-post-page">
 			<Image src="/newPost/Wave-0.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
 			<div className="flex flex-col gap-y-10 absolute top-1/2 max-w-xl -translate-y-1/2">
-				<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Stworz nowy post</h1>
+				<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Edytuj post</h1>
 				<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 					Tutaj zaczyna się przygoda twojego nowego postu! <br />
 					Od tego momenu jego wygląd zależy tylko od ciebie. Mam nadzieję, że stowrzysz dzieło, które już niedługo pojawi się na stronie szkolnej!
