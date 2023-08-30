@@ -14,7 +14,7 @@ const poppingsFont500 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function AdminDashboardPostTile(props: { postData: PostDataTypeWithAuthor }) {
+export default function AdminDashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher }) {
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
 
 	let date = new Date(props.postData.createdAt);

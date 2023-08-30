@@ -24,7 +24,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthor }) {
+export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher }) {
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
 	let date = new Date(props.postData.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
@@ -37,8 +37,8 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	}
 
 	return (
-		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 md:py-5 md:px-8 py-3 px-5 lg:px-7 xl:px-10 lg:py-5 xl:py-8 flex gap-y-4 md:gap-y-6 lg:gap-y-10 rounded-2xl">
-			<div className="flex xl:max-w-2xl 2xl:max-w-3xl grow 3xl:max-w-4xl 4xl:max-w-screen-lg flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5">
+		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 md:py-5 md:px-8 py-3 px-5 lg:px-7 xl:px-10 lg:py-5 xl:py-8 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-7 rounded-2xl">
+			<div className="flex xl:max-w-2xl w-full 2xl:max-w-3xl 3xl:max-w-4xl 4xl:max-w-screen-lg flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5">
 				<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>
 					<span className="me-5">{props.postData.title}</span>
 					<span
@@ -57,7 +57,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 				</p>
 			</div>
 
-			<div className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly grow gap-y-2 ${plusJakartaSansFont500.className}`}>
+			<div className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 flex-wrap ${plusJakartaSansFont500.className}`}>
 				<div className="dashboardPostTileDataRow md:hidden ">
 					<p className="h-fit">Publiczny: </p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
@@ -74,6 +74,11 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Wyświetlenia: </p>
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{returnViews()}</div>
+				</div>
+
+				<div className={`dashboardPostTileDataRow ${props.postData.publishedBy.name && props.postData.published ? "" : "!hidden"}`}>
+					<p className="h-fit">Opublikowany przez: </p>
+					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.publishedBy.name}</div>
 				</div>
 			</div>
 
