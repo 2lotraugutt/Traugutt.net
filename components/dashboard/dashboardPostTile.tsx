@@ -37,8 +37,8 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	}
 
 	return (
-		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 md:py-5 md:px-8 py-3 px-5 lg:px-7 xl:px-10 lg:py-5 xl:py-8 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-7 rounded-2xl">
-			<div className="flex xl:max-w-2xl w-full 2xl:max-w-3xl 3xl:max-w-4xl 4xl:max-w-screen-lg flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5">
+		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
+			<div className="flex xl:max-w-[36rem] 2xl:max-w-[47rem] 3xl:max-w-4xl 4xl:max-w-[72rem] flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
 				<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>
 					<span className="me-5">{props.postData.title}</span>
 					<span
@@ -57,7 +57,11 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 				</p>
 			</div>
 
-			<div className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 flex-wrap ${plusJakartaSansFont500.className}`}>
+			<div
+				className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 ${
+					props.postData.publishedBy.name && props.postData.published ? "flex-wrap" : ""
+				} ${plusJakartaSansFont500.className}`}
+			>
 				<div className="dashboardPostTileDataRow md:hidden ">
 					<p className="h-fit">Publiczny: </p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>

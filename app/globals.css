@@ -31,21 +31,23 @@
 }
 
 .dashboardPostTileDataRow {
-  @apply flex justify-between xl:flex-col xl:h-full xl:justify-start md:gap-x-2 items-center text-2xs xs:text-xs md:text-sm 2xl:text-base border-t-2 md:border-0 md:p-0 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0 text-MainDarkGray/60
+  @apply flex justify-between whitespace-nowrap xl:flex-col xl:h-full xl:justify-start md:gap-x-2 items-center text-2xs xs:text-xs md:text-sm 2xl:text-base border-t-2 md:border-0 md:p-0 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0 text-MainDarkGray/60
 }
 
 .admistPostTile .dashboardPostTileDataRow {
-  @apply border-t-2 md:pt-2 xl:border-0 pt-0
+  @apply md:border-b-2 md:pb-2 lg:pb-5 xl:border-0 xl:pb-0
 }
-.admistPostTile .dashboardPostTileDataRow:nth-of-type(3) .dashboardPostTileDataRow:nth-of-type(2) {
-  @apply md:border-t-0 md:pt-0
+.admistPostTile .dashboardPostTileDataRow:nth-of-type(4),
+.admistPostTile .dashboardPostTileDataRow:nth-of-type(5)  {
+  @apply md:border-b-0 md:pb-0 
 }
+
 .dashboardPostTileData {
-  @apply text-MainDarkGray whitespace-nowrap text-2xs 2xs:text-xs 2xl:text-xl 4xl:text-2xl xs:text-sm rounded-lg md:text-base lg:text-lg p-0
+  @apply text-MainDarkGray text-2xs 2xs:text-xs 2xl:text-xl 4xl:text-2xl xs:text-sm rounded-lg md:text-base lg:text-lg p-0
 }
 
 .dashboard-post-tile{
-  @apply xl:px-12 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 grow
+  @apply xl:w-48 2xl:w-56 3xl:w-60 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 grow
 }
 .dashboard-post-tile-icon{
   @apply flex aspect-square items-center justify-center w-6 h-6 xs:w-7 xs:h-7 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray
