@@ -85,37 +85,24 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
 				<Link
 					href={"/post/" + props.postData.id}
-					className={`${
-						props.postData.published ? "" : "hidden"
-					} group/button transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${
-						plusJakartaSansFont700.className
-					}`}
+					className={`${props.postData.published ? "" : "hidden"} group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}
 				>
 					Zobacz post
-					<FontAwesomeIcon
-						icon={faArrowRight}
-						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
-					/>
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faArrowRight} />
+					</div>
 				</Link>
-				<Link
-					href={"/dashboard/post/" + props.postData.id}
-					className={`group/button transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${plusJakartaSansFont700.className}`}
-				>
+				<Link href={"/dashboard/post/" + props.postData.id} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					Edytuj post
-					<FontAwesomeIcon
-						icon={faPen}
-						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
-					/>
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faPen} />
+					</div>
 				</Link>
-				<button
-					onClick={() => {}}
-					className={`group/button xl:w-fit xl:px-12 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 w-full ${plusJakartaSansFont700.className}`}
-				>
+				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					Usuń post
-					<FontAwesomeIcon
-						icon={faTrash}
-						className="h-2 xs:h-3 w-2 xs:w-3 xs:p-1.5 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray"
-					/>
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faTrash} />
+					</div>
 				</button>
 			</div>
 		</div>
