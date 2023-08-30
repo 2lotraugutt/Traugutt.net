@@ -21,6 +21,8 @@ export default function removeMarkdown(markdownText: string): string {
 	// Remove strikethrough
 	markdownText = markdownText.replace(/~~(.*?)~~/g, "$1");
 
+	markdownText = markdownText.replace(/\t|\n/g, " ");
+
 	// Remove extra newlines at the beginning and end
 	markdownText = markdownText.trim();
 
