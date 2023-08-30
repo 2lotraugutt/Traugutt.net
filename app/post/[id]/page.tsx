@@ -27,7 +27,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 		fetchTopPosts();
 		async function fetchTopPosts() {
-			const posts = await (await fetch("/api/topPosts/?count=3")).json();
+			const posts = await (await fetch("/api/posts/topPosts/?count=3")).json();
 
 			setTopPost(posts);
 		}
@@ -35,11 +35,11 @@ export default function Page({ params }: { params: { id: string } }) {
 		async function fetchPosts() {
 			const hasViewed = localStorage.getItem(`viewed_${params.id}`);
 
-			const post = await(await fetch(`/api/post/${params.id}`)).json();
+			const post = await (await fetch(`/api/posts/post/${params.id}`)).json();
 
 			setPost(post);
 			if (!hasViewed) {
-				fetch(`/api/views/${params.id}`);
+				fetch(`/api/posts/post/views/${params.id}`);
 
 				localStorage.setItem(`viewed_${params.id}`, "true");
 			}

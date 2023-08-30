@@ -27,7 +27,7 @@ export default function TopOnePost() {
 	useEffect(() => {
 		fetchPost();
 		async function fetchPost() {
-			const post = await(await fetch("api/topPosts")).json();
+			const post = await(await fetch("api/posts/topPosts")).json();
 
 			setTopOnePost(post[0]);
 		}
