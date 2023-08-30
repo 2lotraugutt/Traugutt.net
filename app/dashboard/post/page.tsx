@@ -36,7 +36,7 @@ export default function Page() {
 				data.append("gallery[]", file.image as any, file.image.name);
 			}
 
-			const res = await fetch("/api/dashboard/post", {
+			const res = await fetch("/api/dashboard/posts/post", {
 				method: "PUT",
 				body: data,
 			});

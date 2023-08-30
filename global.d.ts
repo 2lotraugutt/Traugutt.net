@@ -29,6 +29,21 @@ declare global {
 		publishedById: string;
 	};
 
+	type PostDataTypeWithAuthorAndPublisher = {
+		id: string;
+		title: string;
+		content: string | null;
+		titleImage: string;
+		gallery: string[];
+		createdAt: Date;
+		views: number;
+		authorId: string;
+		author: UserDataType;
+		published: boolean;
+		publishedById: string;
+		publishedBy: UserDataType;
+	};
+
 	type UserDataType = {
 		id: string;
 		emailVerified: Date | null;

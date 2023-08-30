@@ -69,7 +69,7 @@ export default function Page({ params }: { params: { id: string } }) {
 				data.append("galleryNames[]", file.name as string);
 			}
 
-			const res = await fetch("/api/dashboard/post", {
+			const res = await fetch("/api/dashboard/posts/post", {
 				method: "POST",
 				body: data,
 			});

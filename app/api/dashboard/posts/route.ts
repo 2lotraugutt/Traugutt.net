@@ -5,12 +5,12 @@ import { getServerSession } from "next-auth";
 
 export async function GET(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
-	const user = request.nextUrl.searchParams.get("user");
+	const author = request.nextUrl.searchParams.get("author");
 
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
-		if (user != undefined || session.user.role.managePosts) {
+		if (author != undefined || session.user.role.managePosts) {
 			const posts = await prisma.post.findMany({
 				take: count != 0 ? count : undefined,
 				orderBy: [
@@ -19,9 +19,9 @@ export async function GET(request: NextRequest) {
 					},
 				],
 				where: {
-					authorId: user ?? undefined,
+					authorId: author ?? undefined,
 				},
-				include: { author: true },
+				include: { author: true, publishedBy: true },
 			});
 
 			return NextResponse.json(posts);

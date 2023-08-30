@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export async function GET(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
-	const user = request.nextUrl.searchParams.get("user");
+	const author = request.nextUrl.searchParams.get("author");
 
 	const posts = await prisma.post.findMany({
 		take: count != 0 ? count : undefined,
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 		],
 		where: {
 			published: true,
-			authorId: user ?? undefined,
+			authorId: author ?? undefined,
 		},
 	});
 

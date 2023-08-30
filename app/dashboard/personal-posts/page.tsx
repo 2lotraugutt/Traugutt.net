@@ -15,7 +15,7 @@ const poppingsFont700 = Poppins({
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
-	const [posts, setPosts] = useState<PostDataTypeWithAuthor[]>();
+	const [posts, setPosts] = useState<PostDataTypeWithAuthorAndPublisher[]>();
 	const [postsCount, setPostsCount] = useState<number>(1);
 	const router = useRouter();
 
@@ -35,7 +35,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchPosts(session: SessionDataType) {
-		const returnedPosts = await(await fetch(`/api/dashboard/posts?user=${session.user.id}&count=${postsCount * 30}`)).json();
+		const returnedPosts = await (await fetch(`/api/dashboard/posts?author=${session.user.id}&count=${postsCount * 30}`)).json();
 		setPosts(returnedPosts);
 
 		setPostsCount((oldCount) => oldCount + 1);
@@ -48,7 +48,7 @@ export default function Page() {
 
 				{posts.length != 0 ? (
 					<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-						{posts.map((postData: PostDataTypeWithAuthor) => (
+						{posts.map((postData: PostDataTypeWithAuthorAndPublisher) => (
 							<DashboardPostTile postData={postData} key={postData.id} />
 						))}
 						<button
