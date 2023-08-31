@@ -59,7 +59,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 
 			<div
 				className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 ${
-					props.postData.publishedBy.name && props.postData.published ? "flex-wrap" : ""
+					props.postData.publishedBy && props.postData.published ? "flex-wrap" : ""
 				} ${plusJakartaSansFont500.className}`}
 			>
 				<div className="dashboardPostTileDataRow md:hidden ">
@@ -80,9 +80,9 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{returnViews()}</div>
 				</div>
 
-				<div className={`dashboardPostTileDataRow ${props.postData.publishedBy.name && props.postData.published ? "" : "!hidden"}`}>
+				<div className={`dashboardPostTileDataRow ${props.postData.publishedBy && props.postData.published ? "" : "!hidden"}`}>
 					<p className="h-fit">Opublikowany przez: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.publishedBy.name}</div>
+					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.publishedBy!.name}</div>
 				</div>
 			</div>
 
