@@ -1,7 +1,8 @@
 import path from "path";
 import fs from "fs";
 import cron from "node-cron";
-import { endOfToday, format, getDate, nextDay, startOfDay, startOfToday, startOfTomorrow } from "date-fns";
+import { format, getDate, getMonth, getYear, nextDay, startOfToday } from "date-fns";
+import prisma from "@/lib/prisma";
 
 type RangeType = 1 | 2 | 3 | 4 | 5;
 
@@ -16,21 +17,32 @@ try {
 	console.error("Error reading data file:", error);
 }
 
-function GenerateNumbers() {
-	let generatedNumbers: { number: Number; date: string }[] = [];
-
+async function GenerateNumbers() {
 	for (let i = 0; i < 5; i++) {
 		const dayNumber = (i + 1) as RangeType;
 
 		const randomNumber = Math.floor(Math.random() * leftNumbers.length);
-		generatedNumbers.push({ number: leftNumbers.splice(randomNumber, 1)[0], date: format(nextDay(startOfToday(), dayNumber), "dd-MM-yyyy") });
+		const generatedNumber = leftNumbers.splice(randomNumber, 1)[0];
+
+		const dayDate = nextDay(startOfToday(), dayNumber);
+		const formattedDate = format(dayDate, "dd-MM-yyyy");
+
+		await prisma.day.upsert({
+			where: { date: formattedDate },
+			update: { number: generatedNumber },
+			create: {
+				date: formattedDate,
+				number: generatedNumber,
+				day: getDate(dayDate),
+				month: getMonth(dayDate),
+				year: getYear(dayDate),
+			},
+		});
 	}
 	if (leftNumbers.length == 0) leftNumbers = Array.from({ length: 35 }, (v, k) => k + 1);
 	fs.writeFileSync(dataFilePath, JSON.stringify(leftNumbers), "utf8");
-
-	return generatedNumbers;
 }
 
 cron.schedule("0 0 * * 5", () => {
-	console.log(GenerateNumbers());
+	GenerateNumbers();
 });
