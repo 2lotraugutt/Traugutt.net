@@ -45,6 +45,6 @@ async function GenerateNumbers() {
 	fs.writeFileSync(dataFilePath, JSON.stringify(leftNumbers), "utf8");
 }
 
-cron.schedule("0 0 * * 5", () => {
+cron.schedule("0 0 * * 6", () => {
 	GenerateNumbers();
 });

@@ -12,6 +12,7 @@ const config: Config = {
 				MainPurple: "#6835F1",
 				MainDarkGray: "#222222",
 				MainRed: "#f13535",
+				MediumGray: "#D9D9D9",
 				LightGreen: "#E2FFEC",
 				LightPurple: "#E8E1FD",
 				LightGray: "#D9D9D9",
