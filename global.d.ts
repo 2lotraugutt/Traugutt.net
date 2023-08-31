@@ -1,3 +1,4 @@
+import { getYear } from "date-fns";
 import { Role } from "./node_modules/.prisma/client/index.d";
 export {};
 
@@ -84,5 +85,36 @@ declare global {
 		manageUserRoles: Boolean;
 		manageEvents: Boolean;
 		manageRoles: Boolean;
+	};
+
+	type DayDataTypeWithEvents = {
+		date: string;
+		number: number?;
+		freeDay: boolean;
+		day: number;
+		month: number;
+		year: number;
+		timeStamp: Date;
+		events: EventDataType[];
+	};
+
+	type EventDataType = {
+		id: String;
+		createdAt: Date;
+		name: String;
+		description: String?;
+		date: Date;
+		freeDay: boolean;
+		tagId: string;
+		tag: EventTagType[];
+		authorId: string;
+	};
+
+	type EventTagDataType = {
+		id: String;
+		createdAt: Date;
+		name: String;
+		color: String;
+		authorId: string;
 	};
 }
