@@ -3,6 +3,7 @@ import fs from "fs";
 import cron from "node-cron";
 import { format, getDate, getMonth, getYear, nextDay, startOfToday } from "date-fns";
 import prisma from "@/lib/prisma";
+import { zonedTimeToUtc } from "date-fns-tz";
 
 type RangeType = 1 | 2 | 3 | 4 | 5;
 
@@ -24,13 +25,14 @@ async function GenerateNumbers() {
 		const randomNumber = Math.floor(Math.random() * leftNumbers.length);
 		const generatedNumber = leftNumbers.splice(randomNumber, 1)[0];
 
-		const dayDate = nextDay(startOfToday(), dayNumber);
+		const dayDate = zonedTimeToUtc(nextDay(startOfToday(), dayNumber), "UTC");
 		const formattedDate = format(dayDate, "dd-MM-yyyy");
 
 		await prisma.day.upsert({
 			where: { date: formattedDate },
 			update: { number: generatedNumber },
 			create: {
+				timeStamp: dayDate,
 				date: formattedDate,
 				number: generatedNumber,
 				day: getDate(dayDate),

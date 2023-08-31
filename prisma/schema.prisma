@@ -27,26 +27,21 @@ model User {
   sessions        Session[]
   tags            EventTag[]
   event           Event[]
-  published       Post[]    @relation("Published") 
+  publishedPosts  Post[]    @relation("Published") 
 }
 
 model Role {
-  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  tag             String    @unique
+  tag             String    @id @unique
   name            String    
+  users           User[]    @relation("Role") 
 
   createPosts     Boolean   @default(false)
   publishPosts    Boolean   @default(false)
   managePosts     Boolean   @default(false)
-
   manageUsers     Boolean   @default(false)
   manageUserRoles Boolean   @default(false)
-
   manageEvents    Boolean   @default(false)
-
   manageRoles     Boolean   @default(false)
-
-  users           User[]    @relation("Role") 
 }
 
 model Post {
@@ -108,7 +103,7 @@ model Day {
   day              Int
   month            Int
   year             Int
-
+  timeStamp        DateTime 
 
   events           Event[]
 }

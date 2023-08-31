@@ -74,7 +74,6 @@ declare global {
 	};
 
 	type RoleDataType = {
-		id: String;
 		tag: String;
 		name: String;
 
