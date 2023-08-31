@@ -1,6 +1,9 @@
 import path from "path";
 import fs from "fs";
 import cron from "node-cron";
+import { endOfToday, format, getDate, nextDay, startOfDay, startOfToday, startOfTomorrow } from "date-fns";
+
+type RangeType = 1 | 2 | 3 | 4 | 5;
 
 const dataFilePath = path.join(process.cwd(), "data.json");
 
@@ -14,21 +17,20 @@ try {
 }
 
 function GenerateNumbers() {
-	let generatedNumbers: number[] = [];
+	let generatedNumbers: { number: Number; date: string }[] = [];
 
 	for (let i = 0; i < 5; i++) {
+		const dayNumber = (i + 1) as RangeType;
+
 		const randomNumber = Math.floor(Math.random() * leftNumbers.length);
-		generatedNumbers.push(leftNumbers.splice(randomNumber, 1)[0]);
+		generatedNumbers.push({ number: leftNumbers.splice(randomNumber, 1)[0], date: format(nextDay(startOfToday(), dayNumber), "dd-MM-yyyy") });
 	}
 	if (leftNumbers.length == 0) leftNumbers = Array.from({ length: 35 }, (v, k) => k + 1);
 	fs.writeFileSync(dataFilePath, JSON.stringify(leftNumbers), "utf8");
 
-	return { generatedNumbers, leftNumbers };
+	return generatedNumbers;
 }
 
-// // Schedule to check every minute
-// setInterval(GenerateNumbers, 1000);
 cron.schedule("0 0 * * 5", () => {
 	console.log(GenerateNumbers());
-	// Place your desired logic here
 });
