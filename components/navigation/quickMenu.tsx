@@ -10,7 +10,7 @@ export default function QuickMenu() {
 
 			<NewsTile />
 
-			<LuckyNumbersTile numbers={[5, 17, 24, 30, 6, 11, 28, 22]} />
+			<LuckyNumbersTile />
 
 			<CalendarTile />
 		</div>
