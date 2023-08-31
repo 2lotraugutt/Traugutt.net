@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { zonedTimeToUtc } from "date-fns-tz";
-import { endOfWeek, startOfToday, startOfWeek } from "date-fns";
 
 export async function GET(request: NextRequest) {
-	const beginning = zonedTimeToUtc(startOfWeek(startOfToday()), "UTC");
-	const ending = zonedTimeToUtc(endOfWeek(startOfToday()), "UTC");
-
-	const posts = await prisma.day.findMany({
+	const numbers = await prisma.day.findMany({
 		orderBy: [
 			{
 				timeStamp: "asc",
@@ -20,5 +15,5 @@ export async function GET(request: NextRequest) {
 		where: { number: { not: undefined } },
 	});
 
-	return NextResponse.json(posts);
+	return NextResponse.json(numbers);
 }
