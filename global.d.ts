@@ -40,8 +40,8 @@ declare global {
 		authorId: string;
 		author: UserDataType;
 		published: boolean;
-		publishedById: string;
-		publishedBy: UserDataType;
+		publishedById: string?;
+		publishedBy: UserDataType?;
 	};
 
 	type UserDataType = {

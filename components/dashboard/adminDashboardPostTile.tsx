@@ -99,9 +99,9 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{returnViews()}</div>
 				</div>
 
-				<div className={`dashboardPostTileDataRow ${props.postData.publishedBy.name ? "" : "!hidden"}`}>
+				<div className={`dashboardPostTileDataRow`}>
 					<p className="h-fit">{status ? "Opublikowany przez: " : "Ukryty przez: "}</p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{edited ? user.name : props.postData.publishedBy.name}</div>
+					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{edited ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
 				</div>
 			</div>
 
