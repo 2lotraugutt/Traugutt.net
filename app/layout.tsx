@@ -2,6 +2,7 @@ import Navbar from "@/components/navigation/navbar";
 import Footer from "@/components/navigation/footer";
 import "./globals.css";
 import AuthProvider from "@/lib/authProvider";
+import "@/lib/generateNumbers";
 
 export const metadata = {
 	title: "Traugutt",
