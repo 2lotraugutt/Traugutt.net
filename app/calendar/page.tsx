@@ -1,8 +1,7 @@
 "use client";
 
 import DatabaseTile from "@/components/calendar/databaseTile";
-import DifferentMonthTile from "@/components/calendar/differentMonthTile";
-import NormalTile from "@/components/calendar/normalTile";
+import DayTile from "@/components/calendar/dayTile";
 import { endOfMonth, getDate, getDaysInMonth, getISODay, getMonth, getYear, startOfMonth, startOfToday } from "date-fns";
 import { useEffect, useState } from "react";
 
@@ -45,7 +44,9 @@ export default function Page() {
 				<div className="grid grid-cols-7 gap-6">
 					{[...Array(firstDayOfMonth)].map((e, i) => {
 						const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
-						return <DifferentMonthTile dayNumber={dayNumber} />;
+						const date = new Date(year, month - 1, dayNumber);
+
+						return <DayTile differentMonth={true} date={date} />;
 					})}
 
 					{[...Array(monthLenght)].map((e, i) => {
@@ -56,13 +57,15 @@ export default function Page() {
 						if (day) return <DatabaseTile day={day} />;
 						else {
 							const date = new Date(year, month, dayNumber);
-							return <NormalTile date={date} />;
+							return <DayTile differentMonth={false} date={date} />;
 						}
 					})}
 
 					{[...Array(nextMonthDaysCount)].map((e, i) => {
 						const dayNumber = i + 1;
-						return <DifferentMonthTile dayNumber={dayNumber} />;
+						const date = new Date(year, month + 1, dayNumber);
+
+						return <DayTile differentMonth={true} date={date} />;
 					})}
 				</div>
 			</div>
