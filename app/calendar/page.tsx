@@ -1,6 +1,9 @@
 "use client";
 
-import { differenceInDays, endOfMonth, endOfWeek, getDate, getDay, getDaysInMonth, getISODay, getMonth, getYear, startOfMonth, startOfToday } from "date-fns";
+import DatabaseTile from "@/components/calendar/databaseTile";
+import DifferentMonthTile from "@/components/calendar/differentMonthTile";
+import NormalTile from "@/components/calendar/normalTile";
+import { endOfMonth, getDate, getDaysInMonth, getISODay, getMonth, getYear, startOfMonth, startOfToday } from "date-fns";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -17,6 +20,7 @@ export default function Page() {
 
 	const monthLenght = getDaysInMonth(today);
 	const prevMonthLastDay = getDate(endOfMonth(new Date(year, month - 1, 1)));
+	const nextMonthDaysCount = 7 - getISODay(monthEnding);
 
 	useEffect(() => {
 		fetchPost();
@@ -41,19 +45,24 @@ export default function Page() {
 				<div className="grid grid-cols-7 gap-6">
 					{[...Array(firstDayOfMonth)].map((e, i) => {
 						const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
-						return <div className="aspect-[14/15] border-[1.5px] rounded-3xl border-dashed border-MainDarkGray bg-MainDarkGray/20">{dayNumber}</div>;
+						return <DifferentMonthTile dayNumber={dayNumber} />;
 					})}
+
 					{[...Array(monthLenght)].map((e, i) => {
 						const dayNumber = i + 1;
 						const filteredDays = days.filter((day) => day.day == dayNumber);
 						const day = filteredDays.length == 0 ? undefined : filteredDays[0];
 
-						return <div className="bg-white aspect-[14/15] border-[1.5px] rounded-3xl border-dashed border-MainPurple">{day?.number}</div>;
+						if (day) return <DatabaseTile day={day} />;
+						else {
+							const date = new Date(year, month, dayNumber);
+							return <NormalTile date={date} />;
+						}
 					})}
-					{[...Array(7 - ((monthLenght + firstDayOfMonth) % 7))].map((e, i) => {
-						const dayNumber = i + 1;
 
-						return <div className="aspect-[14/15] border-[1.5px] rounded-3xl border-dashed border-MainDarkGray bg-MainDarkGray/20">{dayNumber}</div>;
+					{[...Array(nextMonthDaysCount)].map((e, i) => {
+						const dayNumber = i + 1;
+						return <DifferentMonthTile dayNumber={dayNumber} />;
 					})}
 				</div>
 			</div>
