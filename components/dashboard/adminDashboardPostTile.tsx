@@ -34,7 +34,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	async function togglePost() {
 		setPublishButtonText("Ładowanie...");
 
-		const newStatus = await (await fetch(`/api/dashboard/publishPost/${props.postData.id}?toggle=${!status}`)).json();
+		const newStatus = await(await fetch(`/api/dashboard/posts/post/publishPost/${props.postData.id}?toggle=${!status}`)).json();
 
 		setStatus(newStatus);
 		setPublishButtonText(newStatus ? "Ukryj post" : "Opublikuj post");
