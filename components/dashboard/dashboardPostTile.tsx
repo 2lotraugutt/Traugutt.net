@@ -3,6 +3,7 @@ import { faArrowRight, faPen, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
+import { useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
@@ -24,10 +25,8 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher }) {
-	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
-	let date = new Date(props.postData.createdAt);
-	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher; refetchPosts: Function }) {
+	const [deleteButtonText, setDeleteButtonText] = useState("Usuń post");
 
 	function returnViews() {
 		const views = props.postData.views;
@@ -35,6 +34,18 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 		else if (views < 5) return views + " wyświetlenia";
 		else return views + " wyświetleń";
 	}
+
+	async function deletePost() {
+		setDeleteButtonText("Usuwanie...");
+
+		const post = await (await fetch(`/api/dashboard/posts/post/deletePost/${props.postData.id}`)).json();
+
+		props.refetchPosts();
+	}
+
+	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+	let date = new Date(props.postData.createdAt);
+	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 
 	return (
 		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
@@ -82,7 +93,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 
 				<div className={`dashboardPostTileDataRow ${props.postData.publishedBy && props.postData.published ? "" : "!hidden"}`}>
 					<p className="h-fit">Opublikowany przez: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.publishedBy!.name}</div>
+					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.publishedBy?.name}</div>
 				</div>
 			</div>
 
@@ -102,8 +113,8 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</Link>
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					Usuń post
+				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
 					</div>

@@ -26,19 +26,28 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher }) {
+export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher; refetchPosts: Function }) {
 	const [publishButtonText, setPublishButtonText] = useState(props.postData.published ? "Ukryj post" : "Opublikuj post");
+	const [deleteButtonText, setDeleteButtonText] = useState("Usuń post");
 	const [status, setStatus] = useState(props.postData.published);
 	const [edited, setEdited] = useState(false);
 
 	async function togglePost() {
 		setPublishButtonText("Ładowanie...");
 
-		const newStatus = await(await fetch(`/api/dashboard/posts/post/publishPost/${props.postData.id}?toggle=${!status}`)).json();
+		const newStatus = await (await fetch(`/api/dashboard/posts/post/publishPost/${props.postData.id}?toggle=${!status}`)).json();
 
 		setStatus(newStatus);
 		setPublishButtonText(newStatus ? "Ukryj post" : "Opublikuj post");
 		setEdited(true);
+	}
+
+	async function deletePost() {
+		setDeleteButtonText("Usuwanie...");
+
+		const post = await (await fetch(`/api/dashboard/posts/post/deletePost/${props.postData.id}`)).json();
+
+		props.refetchPosts();
 	}
 
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
@@ -124,8 +133,8 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</Link>
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					Usuń post
+				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
 					</div>

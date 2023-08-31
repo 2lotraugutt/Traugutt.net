@@ -39,6 +39,11 @@ export default function Page() {
 		setPostsCount((oldCount) => oldCount + 1);
 	}
 
+	async function refetchPosts() {
+		const returnedPosts = await (await fetch(`/api/dashboard/posts?count=${postsCount * 30}`)).json();
+		setPosts(returnedPosts);
+	}
+
 	if (posts && userSession)
 		return (
 			<div className="dashboard-page">
@@ -46,7 +51,7 @@ export default function Page() {
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{posts.map((postData: PostDataTypeWithAuthorAndPublisher) => (
-						<AdminDashboardPostTile postData={postData} key={postData.id} />
+						<AdminDashboardPostTile postData={postData} key={postData.id} refetchPosts={refetchPosts} />
 					))}
 					<button
 						onClick={() => fetchPosts()}
