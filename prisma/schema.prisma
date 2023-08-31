@@ -25,6 +25,8 @@ model User {
   posts           Post[]    @relation("Author") 
   accounts        Account[]
   sessions        Session[]
+  tags            EventTag[]
+  event           Event[]
   published       Post[]    @relation("Published") 
 }
 
@@ -98,3 +100,43 @@ model Account {
 
   @@unique([provider, providerAccountId])
 }
+
+model Day {
+  date             String        @id @unique
+  number           Int?
+  freeDay          Boolean       @default(false)
+  day              Int
+  month            Int
+  year             Int
+
+
+  events           Event[]
+}
+
+model Event {
+  id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt        DateTime      @default(now())
+  name             String
+  description      String?
+  date             String
+  freeDay          Boolean       @default(false)
+
+  day              Day           @relation(fields: [date], references: [date])
+
+  tagId            String?       @db.Uuid
+  tag              EventTag?     @relation(fields: [tagId], references: [id])
+
+  authorId         String        @db.Uuid
+  author           User          @relation(fields: [authorId], references: [id])
+}
+
+model EventTag {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt   DateTime  @default(now())
+  name        String
+  color       String
+
+  events      Event[]
+  authorId    String    @db.Uuid
+  author      User      @relation(fields: [authorId], references: [id])
+  }
