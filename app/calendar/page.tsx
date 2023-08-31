@@ -46,7 +46,7 @@ export default function Page() {
 						const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
 						const date = new Date(year, month - 1, dayNumber);
 
-						return <DayTile differentMonth={true} date={date} />;
+						return <DayTile differentMonth={true} date={date} key={date.toString()} />;
 					})}
 
 					{[...Array(monthLenght)].map((e, i) => {
@@ -54,10 +54,10 @@ export default function Page() {
 						const filteredDays = days.filter((day) => day.day == dayNumber);
 						const day = filteredDays.length == 0 ? undefined : filteredDays[0];
 
-						if (day) return <DatabaseTile day={day} />;
+						if (day) return <DatabaseTile day={day} key={day.date} />;
 						else {
 							const date = new Date(year, month, dayNumber);
-							return <DayTile differentMonth={false} date={date} />;
+							return <DayTile differentMonth={false} date={date} key={date.toString()} />;
 						}
 					})}
 
@@ -65,7 +65,7 @@ export default function Page() {
 						const dayNumber = i + 1;
 						const date = new Date(year, month + 1, dayNumber);
 
-						return <DayTile differentMonth={true} date={date} />;
+						return <DayTile differentMonth={true} date={date} key={date.toString()} />;
 					})}
 				</div>
 			</div>
