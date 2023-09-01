@@ -18,7 +18,7 @@ export default function Navbar() {
 		<>
 			<nav className="top-0 bg-white z-20 sticky grid-cols-3 w-full items-center py-3 px-2 md:px-5 lg:px-12 grid 4xl:px-0">
 				<Link href={"/"} className={`invisible md:visible justify-self-start text-xl 2xl:text-2xl tracking-widest ${poppingsFont700.className}`}>
-					II LO. TRAUGUTT
+					II LO im. Romualda Traugutta
 				</Link>
 
 				<Link href={"/"} className="w-fit h-fit justify-self-center">

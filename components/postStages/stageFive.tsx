@@ -33,7 +33,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 			<Image src="/newPost/Wave-5.svg" width="1920" height="1080" className="absolute top-0 right-0 w-full h-full object-center object-cover" alt="" />
 			<div className="flex flex-col items-center gap-y-10 absolute top-1/2 w-full -translate-y-1/2">
 				<div className="flex flex-col gap-y-3 max-w-xl">
-					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Galleria zdjęć</h1>
+					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Galeria zdjęć</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						<b className={`text-MainPurple ${poppingsFont600.className}`}>To już ostatni krok! </b>
 						Dodaj tyle zdjęć ile chcesz. Tylko nie przesadź, bo zrobi się bałagan i nikt na nie nie spojrzy. <br /> (Zalecamy dodawanie od około 4 do 9 zdjęć.)
