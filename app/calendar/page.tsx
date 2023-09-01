@@ -42,7 +42,7 @@ export default function Page() {
 
 			setDays(days);
 		}
-	}, []);
+	}, [month, year]);
 
 	const weekDays = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
 
@@ -54,7 +54,9 @@ export default function Page() {
 
 				<div className="flex gap-x-6 text-MainDarkGray/60 w-full text-lg text-right pt-2 border-b-2">
 					{weekDays.map((weekDay) => (
-						<div className={`w-full px-1 ${poppingsFont500.className}`}>{weekDay}</div>
+						<div className={`w-full px-1 ${poppingsFont500.className}`} key={weekDay}>
+							{weekDay}
+						</div>
 					))}
 				</div>
 

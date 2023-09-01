@@ -44,7 +44,7 @@ export default function Page({ params }: { params: { id: string } }) {
 				localStorage.setItem(`viewed_${params.id}`, "true");
 			}
 		}
-	}, []);
+	}, [params.id]);
 
 	return (
 		<div className="flex flex-col w-full">

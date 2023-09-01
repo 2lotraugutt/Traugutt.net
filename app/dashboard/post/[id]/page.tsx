@@ -26,7 +26,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 
 		async function fetchPosts() {
-			const post = await(await fetch(`/api/posts/post/${params.id}`)).json() as PostDataTypeWithAuthor;
+			const post = (await (await fetch(`/api/posts/post/${params.id}`)).json()) as PostDataTypeWithAuthor;
 
 			if (post) {
 				setId(post.id);
@@ -46,7 +46,7 @@ export default function Page({ params }: { params: { id: string } }) {
 				);
 			} else router.back();
 		}
-	}, []);
+	}, [params.id]);
 
 	function stageUp() {
 		setStage((oldStage) => oldStage + 1);

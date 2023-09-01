@@ -43,17 +43,17 @@ export default function NewPostStageSix(props: { down: Function; upload: Functio
 				countDown();
 			}, 1000);
 		}
+		function countDown() {
+			if (secondsCound > 1) {
+				setTimeout(() => {
+					secondsCound -= 1;
+					setSeconds((prev) => prev - 1);
+					countDown();
+				}, 1000);
+			} else router.push("/");
+		}
 	}, [props.uploaded]);
 
-	function countDown() {
-		if (secondsCound > 1) {
-			setTimeout(() => {
-				secondsCound -= 1;
-				setSeconds((prev) => prev - 1);
-				countDown();
-			}, 1000);
-		} else router.push("/");
-	}
 
 	return (
 		<div className="dashboard-post-page">
