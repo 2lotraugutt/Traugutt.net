@@ -62,9 +62,9 @@ export default function LuckyNumbersTile() {
 						plusJakartaSansFont800.className
 					}`}
 				>
-					{numbers.map((number) => (
+					{numbers.map((number, i) => (
 						<div
-							key={number.number}
+							key={i}
 							className={`w-[21px] xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:p-2 2xl:w-10 3xl:w-11 4xl:p-2 bg-LightPurple rounded-full p-0.75 ${
 								number.date == date ? "bg-MainPurple text-white" : ""
 							}`}
@@ -89,8 +89,8 @@ export default function LuckyNumbersTile() {
 				<div
 					className={`animate-pulse bg-white w-fit 2xs:flex lg:gap-x-1.5 xl:gap-x-3 3xl:gap-x-4 hidden md:hidden lg:flex gap-x-1 xs:gap-x-2 2xl:p-1.5 rounded-full p-1`}
 				>
-					{[...Array(5)].map((number) => (
-						<div key={number} className="w-[21px] aspect-square xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:w-11 3xl:w-11 bg-LightPurple rounded-full"></div>
+					{[...Array(5)].map((number, i) => (
+						<div key={i} className="w-[21px] aspect-square xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:w-11 3xl:w-11 bg-LightPurple rounded-full"></div>
 					))}
 				</div>
 			</div>

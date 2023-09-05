@@ -32,7 +32,7 @@ export default function PostContainer() {
 			<div className="grid w-full grid-cols-1 gap-y-3 md:grid-cols-2 md:gap-2 lg:gap-3 xl:gap-5 4xl:gap-6 4xl:grid-cols-3">
 				{firstLoad
 					? posts.map((postData: PostDataType) => <PostTile postData={postData} key={postData.id} />)
-					: [...Array(12)].map((n) => <PostTileSkeleton key={n} />)}
+					: [...Array(12)].map((n, i) => <PostTileSkeleton key={i} />)}
 			</div>
 
 			<button
