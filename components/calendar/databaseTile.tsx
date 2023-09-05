@@ -14,8 +14,8 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents }) {
 	else
 		return (
 			<div
-				className={`aspect-[14/15] border-[1.5px] p-3.5 justify-between flex flex-col rounded-3xl border-dashed ${
-					props.day.freeDay ? "border-MainRed" : "border-MainPurple"
+				className={`aspect-[14/15] borsder-[1.5px] p-3.5 justify-between flex flex-col rounded-3xl border-dashed ${
+					props.day.freeDay ? "border-MainRed bg-LightRed/30" : "border-MainPurple bg-LightPurple/30"
 				} `}
 			>
 				<div className="flex justify-between items-center pe-1">
