@@ -14,20 +14,20 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents }) {
 	else
 		return (
 			<div
-				className={`aspect-[14/15] borsder-[1.5px] p-3.5 justify-between flex flex-col rounded-3xl border-dashed ${
-					props.day.freeDay ? "border-MainRed bg-LightRed/30" : "border-MainPurple bg-LightPurple/30"
+				className={`aspect-[14/15] p-3.5 justify-between flex flex-col rounded-3xl ${
+					props.day.freeDay ? "border-[1px] border-DarkGreen bg-LightGreen/30" : "bg-LightPurple/20"
 				} `}
 			>
 				<div className="flex justify-between items-center pe-1">
 					<div
 						className={`p-1.5 text-center w-10 rounded-full text-xl ${plusJakartaSansFont800.className} ${
-							props.day.freeDay ? "bg-LightRed text-MainRed" : "bg-LightPurple text-MainPurple"
+							props.day.freeDay ? "bg-MainGreen/20 text-DarkGreen" : "bg-LightPurple text-MainPurple"
 						}`}
 					>
 						{props.day.day}
 					</div>
 					<div
-						className={`outline-4 outline-LightPurple outline text-center w-8 h-fit p-1 rounded-full text-md text-MainDarkGray ${
+						className={`outline-4 outline-LightPurple outline bg-LightPurple/40 text-center w-8 h-fit p-1 rounded-full text-md text-MainDarkGray ${
 							plusJakartaSansFont800.className
 						} ${props.day.freeDay ? "hidden" : ""}`}
 					>
