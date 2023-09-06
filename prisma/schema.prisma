@@ -39,7 +39,7 @@ model Role {
   publishPosts    Boolean   @default(false)
   managePosts     Boolean   @default(false)
   manageUsers     Boolean   @default(false)
-  manageUserRoles Boolean   @default(false)
+  verifyUsers     Boolean   @default(false)
   manageEvents    Boolean   @default(false)
   manageCalendar  Boolean   @default(false)
   manageRoles     Boolean   @default(false)

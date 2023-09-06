@@ -53,9 +53,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 
 				<Link
 					href={"/dashboard/users"}
-					className={`${userRole.manageUserRoles ?? userRole.manageUsers ? "" : "hidden"} dashboard-link ${
-						pathname == "/dashboard/users" ? "active-dashboard-link" : ""
-					}`}
+					className={`${userRole.manageUsers ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/users" ? "active-dashboard-link" : ""}`}
 				>
 					Użytkownicy
 				</Link>

@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 export async function GET(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
-	if (session && (session.user.role.manageUserRoles || session.user.role.manageRoles)) {
+	if (session && session.user.role.manageRoles) {
 		const roles = await prisma.role.findMany({});
 
 		return NextResponse.json(roles);

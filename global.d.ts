@@ -82,8 +82,9 @@ declare global {
 		publishPosts: Boolean;
 		managePosts: Boolean;
 		manageUsers: Boolean;
-		manageUserRoles: Boolean;
+		verifyUsers: Boolean;
 		manageEvents: Boolean;
+		manageCalendar: Boolean;
 		manageRoles: Boolean;
 	};
 
