@@ -108,3 +108,11 @@
 #top-posts-container > *:nth-child(3){
   @apply hidden 2xl:block
 }
+
+select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

@@ -15,6 +15,7 @@ const poppingsFont700 = Poppins({
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
 	const [users, setUsers] = useState<UserDataTypeWithRole[]>([]);
+	const [roles, setRoles] = useState<RoleDataType[]>([]);
 	const [usersCount, setUsersCount] = useState<number>(1);
 	const router = useRouter();
 
@@ -25,6 +26,7 @@ export default function Page() {
 			if (session) {
 				if (session.user.role.manageUsers) {
 					fetchUsers();
+					fetchRoles();
 					setSession(session);
 				} else router.push("/dashboard");
 			} else router.push("/");
@@ -39,14 +41,19 @@ export default function Page() {
 		setUsersCount((oldCount) => oldCount + 1);
 	}
 
-	if (users && userSession)
+	async function fetchRoles() {
+		const returnedRoles = await (await fetch(`/api/dashboard/roles`)).json();
+		setRoles(returnedRoles);
+	}
+
+	if (users && userSession && roles)
 		return (
 			<div className="dashboard-page">
 				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Użytkownicy</h1>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{users.map((userData: UserDataTypeWithRole) => (
-						<UserPostTile userData={userData} />
+						<UserPostTile userData={userData} roles={roles} key={userData.id} />
 					))}
 					<button
 						onClick={() => fetchUsers()}

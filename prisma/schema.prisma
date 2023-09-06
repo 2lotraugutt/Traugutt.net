@@ -41,6 +41,7 @@ model Role {
   manageUsers     Boolean   @default(false)
   manageUserRoles Boolean   @default(false)
   manageEvents    Boolean   @default(false)
+  manageCalendar  Boolean   @default(false)
   manageRoles     Boolean   @default(false)
 }
 

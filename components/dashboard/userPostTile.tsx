@@ -24,12 +24,12 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function UserPostTile(props: { userData: UserDataTypeWithRole }) {
+export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[] }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
 	const [verifyButtonText, setVerifyButtonText] = useState("Zweryfikuj");
 
 	return (
-		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
+		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center group border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
 			<div className="flex xl:max-w-[36rem] 2xl:max-w-[47rem] 3xl:max-w-4xl 4xl:max-w-[72rem] flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
 				<p className={`text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl gap-3 sm:gap-4 md:gap-5 items-center flex ${poppingsFont700.className}`}>
 					<Image
@@ -51,7 +51,20 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole }) 
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Typ użytkownika: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.userData.role.name}</div>
+					{/* <div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.userData.role.name}</div> */}
+
+					<select
+						onChange={(e) => console.log(e.target.value)}
+						className={`outline-none bg-LightGray/40 transition-all duration-300 hover:!bg-LightGray group-hover:bg-white !py-1 !px-5 !border-none dashboardPostTileData ${plusJakartaSansFont700.className}`}
+					>
+						{props.roles.map((role, index) => {
+							return (
+								<option key={index} value={role.tag as any} selected={role.tag == props.userData.roleTag}>
+									{role.name}
+								</option>
+							);
+						})}
+					</select>
 				</div>
 
 				<div className="dashboardPostTileDataRow">
