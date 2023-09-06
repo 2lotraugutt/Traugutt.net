@@ -1,4 +1,4 @@
-import { faShield, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faShield, faSignOut, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
@@ -27,15 +27,21 @@ const poppingsFont700 = Poppins({
 export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
 	const [verifyButtonText, setVerifyButtonText] = useState("Zweryfikuj");
+	const [logoutButton, setLogoutButtonText] = useState("Wyloguj");
 	const [role, setRole] = useState(props.userData.roleTag);
 
 	async function verifyUser() {
 		setVerifyButtonText("Weryfikowanie...");
 
-		const response = await(await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
+		const response = await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
 		if (response.ok) props.refetchUsers();
 	}
+	async function logoutUser() {
+		setLogoutButtonText("Wylogowywanie...");
 
+		const response = await(await fetch(`/api/dashboard/users/user/signout/${props.userData.id}`)).json();
+		if (response.ok) props.refetchUsers();
+	}
 	return (
 		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center group border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
 			<div className="flex xl:max-w-[36rem] 2xl:max-w-[47rem] 3xl:max-w-4xl 4xl:max-w-[72rem] flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
@@ -59,7 +65,6 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Typ użytkownika: </p>
-					{/* <div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.userData.role.name}</div> */}
 
 					<select
 						onChange={async (e) => {
@@ -95,6 +100,13 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 					{verifyButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faShield} />
+					</div>
+				</button>
+
+				<button onClick={() => logoutUser()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{logoutButton}
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faSignOut} />
 					</div>
 				</button>
 
