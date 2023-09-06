@@ -14,11 +14,6 @@ const plusJakartaSansFont500 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-const poppingsFont400 = Poppins({
-	weight: "400",
-	subsets: ["latin"],
-});
-
 const poppingsFont700 = Poppins({
 	weight: "600",
 	subsets: ["latin"],
@@ -28,7 +23,6 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
 	const [verifyButtonText, setVerifyButtonText] = useState("Zweryfikuj");
 	const [logoutButton, setLogoutButtonText] = useState("Wyloguj");
-	const [role, setRole] = useState(props.userData.roleTag);
 
 	async function verifyUser() {
 		setVerifyButtonText("Weryfikowanie...");
@@ -39,7 +33,13 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 	async function logoutUser() {
 		setLogoutButtonText("Wylogowywanie...");
 
-		const response = await(await fetch(`/api/dashboard/users/user/signout/${props.userData.id}`)).json();
+		const response = await (await fetch(`/api/dashboard/users/user/signout/${props.userData.id}`)).json();
+		if (response.ok) props.refetchUsers();
+	}
+	async function deleteUser() {
+		setDeleteButtonText("Usuwanie...");
+
+		const response = await (await fetch(`/api/dashboard/users/user/delete/${props.userData.id}`)).json();
 		if (response.ok) props.refetchUsers();
 	}
 	return (
@@ -67,11 +67,7 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 					<p className="h-fit">Typ użytkownika: </p>
 
 					<select
-						onChange={async (e) => {
-							const response = await (await fetch(`/api/dashboard/users/user/setRole/${props.userData.id}?role=${e.target.value}`)).json();
-
-							if (response.ok) setRole(e.target.value);
-						}}
+						onChange={async (e) => await fetch(`/api/dashboard/users/user/setRole/${props.userData.id}?role=${e.target.value}`)}
 						className={`outline-none bg-LightGray/40 transition-all duration-300 hover:!bg-LightGray group-hover:bg-white !py-1 !px-5 !border-none dashboardPostTileData ${plusJakartaSansFont700.className}`}
 					>
 						{props.roles.map((role, index) => {
@@ -110,7 +106,7 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 					</div>
 				</button>
 
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+				<button onClick={() => deleteUser()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
