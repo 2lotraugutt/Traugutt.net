@@ -35,8 +35,8 @@ export default function Page() {
 	}, []);
 
 	async function fetchUsers() {
-		const returnedPosts = await (await fetch(`/api/dashboard/users?count=${usersCount * 30}`)).json();
-		setUsers(returnedPosts);
+		const returnedUsers = await(await fetch(`/api/dashboard/users?count=${usersCount * 30}`)).json();
+		setUsers(returnedUsers);
 
 		setUsersCount((oldCount) => oldCount + 1);
 	}
@@ -46,6 +46,11 @@ export default function Page() {
 		setRoles(returnedRoles);
 	}
 
+	async function refetchUsers() {
+		const returnedUsers = await (await fetch(`/api/dashboard/users?count=${usersCount * 30}`)).json();
+		setUsers(returnedUsers);
+	}
+
 	if (users && userSession && roles)
 		return (
 			<div className="dashboard-page">
@@ -53,8 +58,9 @@ export default function Page() {
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{users.map((userData: UserDataTypeWithRole) => (
-						<UserPostTile userData={userData} roles={roles} key={userData.id} />
+						<UserPostTile userData={userData} roles={roles} key={userData.id} refetchUsers={() => refetchUsers()} />
 					))}
+
 					<button
 						onClick={() => fetchUsers()}
 						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className}`}

@@ -24,9 +24,17 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[] }) {
+export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
 	const [verifyButtonText, setVerifyButtonText] = useState("Zweryfikuj");
+
+	async function verifyUser() {
+		setVerifyButtonText("Weryfikowanie...");
+
+		const user = await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
+
+		props.refetchUsers();
+	}
 
 	return (
 		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center group border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
@@ -76,7 +84,10 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 			</div>
 
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${props.userData.verified ? "!hidden" : ""} ${plusJakartaSansFont700.className}`}>
+				<button
+					onClick={() => verifyUser()}
+					className={`group/button dashboard-post-tile ${props.userData.verified ? "!hidden" : ""} ${plusJakartaSansFont700.className}`}
+				>
 					{verifyButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faShield} />
