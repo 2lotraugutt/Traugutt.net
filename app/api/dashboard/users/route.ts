@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 		if (session.user.role.manageUsers) {
 			const users = await prisma.user.findMany({
 				take: count != 0 ? count : undefined,
-
+				orderBy: { verified: "desc" },
 				include: { role: true },
 			});
 
