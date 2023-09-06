@@ -27,13 +27,13 @@ const poppingsFont700 = Poppins({
 export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
 	const [verifyButtonText, setVerifyButtonText] = useState("Zweryfikuj");
+	const [role, setRole] = useState(props.userData.roleTag);
 
 	async function verifyUser() {
 		setVerifyButtonText("Weryfikowanie...");
 
-		const user = await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
-
-		props.refetchUsers();
+		const response = await(await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
+		if (response.ok) props.refetchUsers();
 	}
 
 	return (
@@ -62,7 +62,11 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 					{/* <div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.userData.role.name}</div> */}
 
 					<select
-						onChange={(e) => console.log(e.target.value)}
+						onChange={async (e) => {
+							const response = await (await fetch(`/api/dashboard/users/user/setRole/${props.userData.id}?role=${e.target.value}`)).json();
+
+							if (response.ok) setRole(e.target.value);
+						}}
 						className={`outline-none bg-LightGray/40 transition-all duration-300 hover:!bg-LightGray group-hover:bg-white !py-1 !px-5 !border-none dashboardPostTileData ${plusJakartaSansFont700.className}`}
 					>
 						{props.roles.map((role, index) => {
