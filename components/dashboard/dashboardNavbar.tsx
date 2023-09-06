@@ -45,10 +45,12 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 				</Link>
 
 				<Link
-					href={"/dashboard/events"}
-					className={`${userRole.manageEvents ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/events" ? "active-dashboard-link" : ""}`}
+					href={"/dashboard/calendar"}
+					className={`${userRole.manageEvents || userRole.manageCalendar ? "" : "hidden"} dashboard-link ${
+						pathname == "/dashboard/calendar" ? "active-dashboard-link" : ""
+					}`}
 				>
-					Wydarzenia
+					Kalendarz
 				</Link>
 
 				<Link

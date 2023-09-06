@@ -115,7 +115,6 @@ model Event {
   name             String
   description      String?
   date             String
-  freeDay          Boolean       @default(false)
 
   day              Day           @relation(fields: [date], references: [date])
 
