@@ -45,6 +45,13 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 				</Link>
 
 				<Link
+					href={"/dashboard/notifications"}
+					className={`${userRole.manageNotifications ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/notifications" ? "active-dashboard-link" : ""}`}
+				>
+					Wiadomości
+				</Link>
+
+				<Link
 					href={"/dashboard/calendar"}
 					className={`${userRole.manageEvents || userRole.manageCalendar ? "" : "hidden"} dashboard-link ${
 						pathname == "/dashboard/calendar" ? "active-dashboard-link" : ""

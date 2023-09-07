@@ -86,6 +86,7 @@ declare global {
 		manageEvents: Boolean;
 		manageCalendar: Boolean;
 		manageRoles: Boolean;
+		manageNotifications: Boolean;
 	};
 
 	type DayDataTypeWithEvents = {
@@ -116,6 +117,14 @@ declare global {
 		createdAt: Date;
 		name: String;
 		color: String;
+		authorId: string;
+	};
+
+	type NotificationDataType = {
+		id: String;
+		createdAt: Date;
+		title: String;
+		content: String;
 		authorId: string;
 	};
 }
