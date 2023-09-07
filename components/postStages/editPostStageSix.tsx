@@ -33,7 +33,6 @@ const poppingsFont400 = Poppins({
 
 export default function EditPostStageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
 	const [seconds, setSeconds] = useState(10);
-	let secondsCound = 10;
 
 	const router = useRouter();
 
@@ -44,9 +43,8 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 			}, 1000);
 		}
 		function countDown() {
-			if (secondsCound > 1) {
+			if (seconds > 1) {
 				setTimeout(() => {
-					secondsCound -= 1;
 					setSeconds((prev) => prev - 1);
 					countDown();
 				}, 1000);
