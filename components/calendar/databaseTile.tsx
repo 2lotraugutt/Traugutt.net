@@ -10,7 +10,7 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 });
 
 export default function DatabaseTile(props: { day: DayDataTypeWithEvents }) {
-	if (isWeekend(props.day.timeStamp)) return <WeekendTile dayNumber={props.day.day} events={props.day.events} />;
+	if (isWeekend(new Date(props.day.year, props.day.month, props.day.day))) return <WeekendTile dayNumber={props.day.day} events={props.day.events} />;
 	else
 		return (
 			<div
