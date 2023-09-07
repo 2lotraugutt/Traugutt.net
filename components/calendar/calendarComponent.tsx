@@ -59,7 +59,7 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 			<div className="grid grid-cols-7 w-full gap-6">
 				{[...Array(35)].map((e, i) => {
 					return (
-						<div className={`aspect-[14/15] p-3.5 rounded-3xl animate-pulse ${i % 7 == 6 || i % 7 == 5 ? "bg-MediumGray/70" : "bg-MediumGray/40"}`}>
+						<div key={i} className={`aspect-[14/15] p-3.5 rounded-3xl animate-pulse ${i % 7 == 6 || i % 7 == 5 ? "bg-MediumGray/70" : "bg-MediumGray/40"}`}>
 							<div className={`p-1.5 text-center w-10 h-10 rounded-full text-xl bg-LightGray`}></div>
 						</div>
 					);

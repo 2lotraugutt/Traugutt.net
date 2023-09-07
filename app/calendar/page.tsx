@@ -1,13 +1,11 @@
 "use client";
 
 import CalendarComponent from "@/components/calendar/calendarComponent";
-import DatabaseTile from "@/components/calendar/databaseTile";
-import DayTile from "@/components/calendar/dayTile";
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { endOfMonth, getDate, getDaysInMonth, getISODay, getMonth, getYear, startOfMonth, startOfToday } from "date-fns";
+import { getMonth, getYear, startOfToday } from "date-fns";
 import { Poppins } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -28,19 +26,18 @@ export default function Page() {
 	const [year, setYear] = useState<number>(getYear(startOfToday()));
 
 	function changeMonth(up: boolean) {
-		console.log(month);
 		if (up) {
 			if (month == 11) {
 				setMonth(0);
 				setYear((old) => old + 1);
 			} else setMonth((old) => old + 1);
-			setToday(startOfMonth(new Date(year, month + 1, 2)));
+			setToday(new Date(year, month + 1, 2));
 		} else {
 			if (month == 0) {
 				setMonth(11);
 				setYear((old) => old - 1);
 			} else setMonth((old) => old - 1);
-			setToday(startOfMonth(new Date(year, month - 1, 2)));
+			setToday(new Date(year, month - 1, 2));
 		}
 	}
 
