@@ -15,7 +15,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 	const userRole = props.session.user.role;
 
 	return (
-		<div className="w-screen bg-white h-fit fixed border-b-2 left-0 lg:px-12 px-2 md:px-5 4xl:px-0">
+		<div className="w-screen bg-white z-20 h-fit fixed border-b-2 left-0 lg:px-12 px-2 md:px-5 4xl:px-0">
 			<div className={`flex overflow-x-auto mx-auto w-full gap-x-1 sm:gap-x-2 flex-row max-w-screen-4xl ${poppingsFont600.className}`}>
 				<Link href={"/dashboard"} className={`dashboard-link ${pathname == "/dashboard" ? "active-dashboard-link" : ""}`}>
 					Panel sterowania

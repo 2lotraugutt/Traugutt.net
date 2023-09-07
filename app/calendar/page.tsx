@@ -56,8 +56,8 @@ export default function Page() {
 				</div>
 
 				<div className="flex gap-x-6 text-MainDarkGray/60 w-full text-lg text-right pt-2 border-b-2">
-					{weekDays.map((weekDay) => (
-						<div className={`w-full px-1 ${poppingsFont500.className}`} key={weekDay}>
+					{weekDays.map((weekDay, i) => (
+						<div className={`w-full px-1 ${poppingsFont500.className}`} key={i}>
 							{weekDay}
 						</div>
 					))}
