@@ -2,9 +2,11 @@
 
 import FreeDaysCalendar from "@/components/dashboard/freeDaysCalendar";
 // import LoadingLayout from "@/components/dashboard/loadingLayout";
+import { useRouter } from "next/navigation";
 import { getYear, startOfToday } from "date-fns";
+import { getSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -16,6 +18,18 @@ export default function Page() {
 
 	const today = startOfToday();
 	const year = getYear(today);
+	const router = useRouter();
+
+	useEffect(() => {
+		async function initFunction() {
+			const session = (await getSession()) as SessionDataType | undefined;
+
+			if (session) {
+				if (!session.user.role.manageCalendar) router.push("/dashboard");
+			} else router.push("/");
+		}
+		initFunction();
+	}, []);
 
 	return (
 		<div className="dashboard-page">
