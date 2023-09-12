@@ -1,3 +1,5 @@
+"use client";
+
 import { getSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import { useEffect } from "react";
