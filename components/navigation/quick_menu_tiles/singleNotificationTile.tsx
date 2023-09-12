@@ -13,7 +13,7 @@ const poppingsFont300 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function SingleNotificationTile() {
+export default function SingleNotificationTile(props: { notification: NotificationDataType }) {
 	const [opened, setOpened] = useState(false);
 
 	return (
@@ -28,15 +28,14 @@ export default function SingleNotificationTile() {
 					opened ? "!line-clamp-none" : ""
 				} ${poppingsFont600.className}`}
 			>
-				Lorem, ipsum sit amet dolores quods antuson.
+				{props.notification.title}
 			</h1>
 			<p
 				className={`relative after:text-white text-2xs md:text-2xs xl:text-sm sm:text-xs lg:text-xs 3xl:text-base line-clamp-3 3xl:line-clamp-4 4xl:line-clamp-5 transition-all duration-300 ${
 					opened ? "!line-clamp-none" : ""
 				} ${poppingsFont300.className}`}
 			>
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo inventore repudiandae possimus molestiae velit dolorem iste nostrum. Corporis sint ipsa rerum
-				officiis sunt perspiciatis ad placeat, exercitationem veritatis velit facilis?
+				{props.notification.content}
 			</p>
 		</div>
 	);

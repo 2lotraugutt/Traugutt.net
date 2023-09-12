@@ -23,7 +23,7 @@ async function upload() {
 	try {
 		const data = new FormData();
 		data.set("title", newTitle);
-		data.set("content", newContent.trim());
+		data.set("content", newContent);
 
 		const res = await fetch("/api/dashboard/notifications/", {
 			method: "PUT",
@@ -57,7 +57,7 @@ return (
 	<div className="dashboard-page">
 		<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Wiadomości</h1>
 
-		<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
+		<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
 			<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nową wiadomość</h1>
 			<input
 				value={newTitle}
