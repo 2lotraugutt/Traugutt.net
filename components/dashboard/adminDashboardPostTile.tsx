@@ -35,7 +35,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	async function togglePost() {
 		setPublishButtonText("Ładowanie...");
 
-		const newStatus = await (await fetch(`/api/dashboard/posts/post/publishPost/${props.postData.id}?toggle=${!status}`)).json();
+		const newStatus = await(await fetch(`/api/dashboard/posts/post/publish/${props.postData.id}?toggle=${!status}`)).json();
 
 		setStatus(newStatus);
 		setPublishButtonText(newStatus ? "Ukryj post" : "Opublikuj post");
@@ -45,7 +45,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	async function deletePost() {
 		setDeleteButtonText("Usuwanie...");
 
-		const post = await (await fetch(`/api/dashboard/posts/post/deletePost/${props.postData.id}`)).json();
+		const post = await(await fetch(`/api/dashboard/posts/post/delete/${props.postData.id}`)).json();
 
 		props.refetchPosts();
 	}

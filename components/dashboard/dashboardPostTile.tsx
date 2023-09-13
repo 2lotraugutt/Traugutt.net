@@ -38,7 +38,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	async function deletePost() {
 		setDeleteButtonText("Usuwanie...");
 
-		const post = await (await fetch(`/api/dashboard/posts/post/deletePost/${props.postData.id}`)).json();
+		const post = await(await fetch(`/api/dashboard/posts/post/delete/${props.postData.id}`)).json();
 
 		props.refetchPosts();
 	}

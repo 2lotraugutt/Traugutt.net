@@ -38,6 +38,7 @@ export default function Page() {
 			if (res.ok) {
 				setNewTitle("");
 				setNewContent("");
+				refetchNotifications();
 			}
 		} catch (e: any) {
 			// Handle errors here
