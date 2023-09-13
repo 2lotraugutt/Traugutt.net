@@ -134,6 +134,6 @@ declare global {
 		title: String;
 		content: String;
 		authorId: string;
-		autor: UserDataType;
+		author: UserDataType;
 	};
 }
