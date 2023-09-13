@@ -16,42 +16,58 @@ const plusJakartaSans800 = Plus_Jakarta_Sans({
 export default function Page() {
 	const [newTitle, setNewTitle] = useState("");
 	const [newContent, setNewContent] = useState("");
+	const [notifications, setNotifications] = useState<NotificationWithAutorDataType[]>([]);
+	const [notificationsCount, setNotificationsCount] = useState<number>(1);
 
 	const router = useRouter();
 
-async function upload() {
-	try {
-		const data = new FormData();
-		data.set("title", newTitle);
-		data.set("content", newContent);
+	async function upload() {
+		try {
+			const data = new FormData();
+			data.set("title", newTitle);
+			data.set("content", newContent);
 
-		const res = await fetch("/api/dashboard/notifications/", {
-			method: "PUT",
-			body: data,
-		});
+			const res = await fetch("/api/dashboard/notifications/", {
+				method: "PUT",
+				body: data,
+			});
 
-		if (!res.ok) throw new Error(await res.text());
+			if (!res.ok) throw new Error(await res.text());
 
-		if (res.ok) {
-			setNewTitle("");
-			setNewContent("");
+			if (res.ok) {
+				setNewTitle("");
+				setNewContent("");
+			}
+		} catch (e: any) {
+			// Handle errors here
+			console.error(e);
 		}
-	} catch (e: any) {
-		// Handle errors here
-		console.error(e);
 	}
-}
 
-useEffect(() => {
-	async function initFunction() {
-		const session = (await getSession()) as SessionDataType | undefined;
+	useEffect(() => {
+		async function initFunction() {
+			const session = (await getSession()) as SessionDataType | undefined;
 
-		if (session) {
-			if (!session.user.role.manageNotifications) router.push("/dashboard");
-		} else router.push("/");
+			if (session) {
+				if (session.user.role.manageNotifications) {
+					fetchNotifications();
+				} else router.push("/dashboard");
+			} else router.push("/");
+		}
+		initFunction();
+	}, []);
+
+	async function fetchNotifications() {
+		const returnedNotifications = await (await fetch(`/api/dashboard/notifications?count=${notificationsCount * 30}`)).json();
+		setNotifications(returnedNotifications);
+
+		setNotificationsCount((oldCount) => oldCount + 1);
 	}
-	initFunction();
-}, []);
+
+	async function refetchNotifications() {
+		const returnedNotifications = await (await fetch(`/api/dashboard/notifications?count=${notificationsCount * 30}`)).json();
+		setNotifications(returnedNotifications);
+	}
 
 return (
 	<div className="dashboard-page">

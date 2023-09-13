@@ -127,4 +127,13 @@ declare global {
 		content: String;
 		authorId: string;
 	};
+
+	type NotificationWithAutorDataType = {
+		id: String;
+		createdAt: Date;
+		title: String;
+		content: String;
+		authorId: string;
+		autor: UserDataType;
+	};
 }

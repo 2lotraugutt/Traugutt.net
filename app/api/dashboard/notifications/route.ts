@@ -25,3 +25,26 @@ export async function PUT(request: NextRequest) {
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
+
+export async function GET(request: NextRequest) {
+	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
+
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
+
+	if (session) {
+		if (session.user.role.manageNotifications) {
+			const notifications = await prisma.notification.findMany({
+				take: count != 0 ? count : undefined,
+				orderBy: [
+					{
+						createdAt: "desc",
+					},
+				],
+
+				include: { author: true },
+			});
+
+			return NextResponse.json(notifications);
+		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
+	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
+}
