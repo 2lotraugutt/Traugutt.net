@@ -1,9 +1,7 @@
-import removeMarkdown from "@/lib/removeMarkdown";
-import { faArrowRight, faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import Link from "next/link";
 import { useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
@@ -26,13 +24,21 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function NotificationTile(props: { notificationData: NotificationWithAutorDataType; refetchPosts: Function }) {
+export default function NotificationTile(props: { notificationData: NotificationWithAutorDataType; refetchNotifications: Function }) {
+	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wiadomość");
+
+	async function deleteNotification() {
+		setDeleteButtonText("Usuwanie...");
+
+		const notification = await (await fetch(`/api/dashboard/notifications/delete/${props.notificationData.id}`)).json();
+
+		await props.refetchNotifications();
+		setDeleteButtonText("Usuń wiadomość");
+	}
+
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
 	let date = new Date(props.notificationData.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
-
-	const { data: session } = useSession();
-	const user = session?.user as UserDataType;
 
 	return (
 		<div className="admistPostTile h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-14 3xl:gap-x-16 rounded-2xl">
@@ -63,12 +69,12 @@ export default function NotificationTile(props: { notificationData: Notification
 				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					Edytuj wiadomość
 					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={faPaperPlane} />
+						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</button>
 
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					Usuń wiadomość
+				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
 					</div>

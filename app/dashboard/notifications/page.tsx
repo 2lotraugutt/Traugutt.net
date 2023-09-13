@@ -104,7 +104,7 @@ export default function Page() {
 
 			<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 				{notifications.map((notificationData: NotificationWithAutorDataType, i) => (
-					<NotificationTile notificationData={notificationData} refetchPosts={refetchNotifications} key={i} />
+					<NotificationTile notificationData={notificationData} refetchNotifications={refetchNotifications} key={i} />
 				))}
 
 				<button
