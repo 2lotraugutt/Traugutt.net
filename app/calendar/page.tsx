@@ -42,6 +42,7 @@ export default function Page() {
 	}
 
 	const weekDays = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
+	const weekDaysShort = ["Pn", "Wt", "Śr", "Czw", "Pt", "Sb", "Nd"];
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 	return (
@@ -58,9 +59,18 @@ export default function Page() {
 				<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(true)} />
 			</div>
 
-			<div className="flex gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10 text-MainDarkGray/60 w-full text-lg text-right pt-2 border-b-2">
+			<div className="flex gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10 text-MainDarkGray/60 w-full pt-2 border-b-2">
 				{weekDays.map((weekDay, i) => (
-					<div className={`w-full hidden xl:block px-1 ${poppingsFont500.className}`} key={i}>
+					<div
+						className={`w-full hidden sm:block text-center lg:text-right px-1 text-xs md:text-sm xl:text-lg 2xl:text-xl 4xl:text-2xl ${poppingsFont500.className}`}
+						key={i}
+					>
+						{weekDay}
+					</div>
+				))}
+
+				{weekDaysShort.map((weekDay, i) => (
+					<div className={`w-full sm:hidden text-sm xs:text-base text-center ${poppingsFont500.className}`} key={i}>
 						{weekDay}
 					</div>
 				))}

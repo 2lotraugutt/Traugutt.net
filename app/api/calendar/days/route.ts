@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 
 export async function GET(request: NextRequest) {
-	const month = parseInt(request.nextUrl.searchParams.get("month") || "0");
+	const month = parseInt(request.nextUrl.searchParams.get("month") || "20");
 	const year = parseInt(request.nextUrl.searchParams.get("year") || "0");
 
 	const numbers = await prisma.day.findMany({
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 		include: { events: { include: { tag: true } } },
 		where: {
 			year: year != 0 ? year : undefined,
-			month: month != 0 ? month : undefined,
+			month: month != 20 ? month : undefined,
 		},
 	});
 

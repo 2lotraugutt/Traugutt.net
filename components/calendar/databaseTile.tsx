@@ -23,7 +23,7 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents }) {
 					<div
 						className={`outline-4 outline-LightPurple me-1 outline bg-LightPurple/40 text-center w-8 h-fit p-1 rounded-full text-md text-MainDarkGray ${
 							plusJakartaSansFont800.className
-						} ${props.day.freeDay ? "hidden" : "hidden sm:block"}`}
+						} ${props.day.freeDay || !props.day.number ? "hidden" : "hidden sm:block"}`}
 					>
 						{props.day.number}
 					</div>

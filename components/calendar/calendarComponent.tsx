@@ -16,10 +16,12 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 	const nextMonthDaysCount = 7 - getISODay(monthEnding);
 
 	useEffect(() => {
+		console.log(props);
 		fetchPost();
 		async function fetchPost() {
 			setFetched(false);
 			const days = await (await fetch(`api/calendar/days?month=${props.month}&year=${props.year}`)).json();
+			console.log(days);
 
 			setDays(days);
 			setFetched(true);
