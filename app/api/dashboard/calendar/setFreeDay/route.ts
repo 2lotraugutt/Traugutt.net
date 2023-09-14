@@ -5,11 +5,13 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { format, zonedTimeToUtc } from "date-fns-tz";
 
-export async function GET(request: NextRequest) {
-	const day = parseInt(request.nextUrl.searchParams.get("day") || "0");
-	const month = parseInt(request.nextUrl.searchParams.get("month") || "0");
-	const year = parseInt(request.nextUrl.searchParams.get("year") || "0");
-	const state = request.nextUrl.searchParams.get("state") == "true" ? true : false;
+export async function PUT(request: NextRequest) {
+	const data = await request.formData();
+
+	const day: number = parseInt(data.get("day") as string);
+	const month: number = parseInt(data.get("month") as string);
+	const year: number = parseInt(data.get("year") as string);
+	const state: boolean = data.get("state") == "true" ? true : false;
 
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 

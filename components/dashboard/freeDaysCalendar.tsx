@@ -20,7 +20,13 @@ export default function FreeDaysCalendar(props: { year: number }) {
 	}
 
 	async function toggleDay(year: number, day: number, month: number, state: boolean) {
-		const days = await (await fetch(`/api/dashboard/calendar/setFreeDay?year=${year}&day=${day}&month=${month}&state=${state}`)).json();
+	const data = new FormData();
+	data.set("day", day.toString());
+	data.set("month", month.toString());
+	data.set("year", year.toString());
+	data.set("state", state.toString());
+
+	const days = await(await fetch(`/api/dashboard/calendar/setFreeDay`, { method: "PUT", body: data })).json();
 
 		fetchPost();
 	}
