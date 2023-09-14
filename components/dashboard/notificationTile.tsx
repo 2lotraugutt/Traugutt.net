@@ -27,6 +27,7 @@ export default function NotificationTile(props: { notificationData: Notification
 	const [title, setTitle] = useState<string>(props.notificationData.title);
 	const [content, setContent] = useState<string>(props.notificationData.content);
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wiadomość");
+	const [editButtonText, setEditButtonText] = useState("Edytuj wiadomość");
 	const [isEditing, setIsEditing] = useState<boolean>(false);
 
 	async function deleteNotification() {
@@ -36,6 +37,31 @@ export default function NotificationTile(props: { notificationData: Notification
 
 		await props.refetchNotifications();
 		setDeleteButtonText("Usuń wiadomość");
+	}
+
+	async function update() {
+		try {
+			setEditButtonText("Edytowanie...");
+			const data = new FormData();
+			data.set("id", props.notificationData.id);
+			data.set("title", title);
+			data.set("content", content);
+
+			const res = await fetch("/api/dashboard/notifications/", {
+				method: "PUT",
+				body: data,
+			});
+
+			if (!res.ok) throw new Error(await res.text());
+
+			if (res.ok) {
+				setIsEditing(false);
+				setEditButtonText("Edytuj wiadomość");
+			}
+		} catch (e: any) {
+			// Handle errors here
+			console.error(e);
+		}
 	}
 
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
@@ -92,11 +118,15 @@ export default function NotificationTile(props: { notificationData: Notification
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
 				<button
 					onClick={() => {
-						setIsEditing((old) => !old);
+						if (isEditing) update();
+						else {
+							setIsEditing((old) => !old);
+							setEditButtonText("Potwierdź edycje");
+						}
 					}}
 					className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}
 				>
-					{isEditing ? "Potwierdź edycje" : "Edytuj wiadomość"}
+					{editButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={isEditing ? faPaperPlane : faPen} />
 					</div>

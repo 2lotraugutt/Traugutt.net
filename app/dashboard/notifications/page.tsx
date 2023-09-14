@@ -29,7 +29,7 @@ export default function Page() {
 			data.set("content", newContent);
 
 			const res = await fetch("/api/dashboard/notifications/", {
-				method: "PUT",
+				method: "POST",
 				body: data,
 			});
 
