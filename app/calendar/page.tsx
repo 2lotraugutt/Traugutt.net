@@ -45,26 +45,28 @@ export default function Page() {
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 	return (
-		<div className="flex">
-			<div className="flex w-full flex-col p-12 gap-y-3 items-center">
-				<h1 className={`w-fit text-7xl mt-9 mb-20 ${poppingsFont700.className}`}>Kalendarz</h1>
+		<div className="flex w-full flex-col lg:px-12 px-2 md:px-5 4xl:px-0 gap-y-3 sm:gap-y-5 xl:gap-y-7 3xl:gap-y-9 items-center">
+			<h1
+				className={`w-fit text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl xl:mt-9 mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-20 ${poppingsFont700.className}`}
+			>
+				Kalendarz
+			</h1>
 
-				<div className="mb-2 flex items-center w-full gap-x-4 justify-start">
-					<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(false)} />
-					<h3 className={`text-left w-fit text-5xl ${poppingsFont600.className}`}>{monthsNames[month]}</h3>
-					<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(true)} />
-				</div>
-
-				<div className="flex gap-x-6 text-MainDarkGray/60 w-full text-lg text-right pt-2 border-b-2">
-					{weekDays.map((weekDay, i) => (
-						<div className={`w-full px-1 ${poppingsFont500.className}`} key={i}>
-							{weekDay}
-						</div>
-					))}
-				</div>
-
-				<CalendarComponent today={today} month={month} year={year} />
+			<div className="mb-2 flex items-center w-full gap-x-4 justify-center lg:justify-start">
+				<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(false)} />
+				<h3 className={`text-left w-fit text-xl xs:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl ${poppingsFont600.className}`}>{monthsNames[month]}</h3>
+				<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(true)} />
 			</div>
+
+			<div className="flex gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10 text-MainDarkGray/60 w-full text-lg text-right pt-2 border-b-2">
+				{weekDays.map((weekDay, i) => (
+					<div className={`w-full hidden xl:block px-1 ${poppingsFont500.className}`} key={i}>
+						{weekDay}
+					</div>
+				))}
+			</div>
+
+			<CalendarComponent today={today} month={month} year={year} />
 		</div>
 	);
 }

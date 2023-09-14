@@ -28,7 +28,7 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 
 	if (fetched)
 		return (
-			<div className="grid grid-cols-7 w-full gap-6">
+			<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
 				{[...Array(firstDayOfMonth)].map((e, i) => {
 					const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
 					const date = new Date(props.year, props.month - 1, dayNumber);
@@ -56,11 +56,11 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 		);
 	else
 		return (
-			<div className="grid grid-cols-7 w-full gap-6">
+			<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
 				{[...Array(35)].map((e, i) => {
 					return (
-						<div key={i} className={`aspect-[14/15] p-3.5 rounded-3xl animate-pulse ${i % 7 == 6 || i % 7 == 5 ? "bg-MediumGray/70" : "bg-MediumGray/40"}`}>
-							<div className={`p-1.5 text-center w-10 h-10 rounded-full text-xl bg-LightGray`}></div>
+						<div key={i} className={`day-tile animate-pulse ${i % 7 == 6 || i % 7 == 5 ? "bg-MediumGray/70" : "bg-MediumGray/40"}`}>
+							<div className={`day-number aspect-square bg-LightGray`}></div>
 						</div>
 					);
 				})}

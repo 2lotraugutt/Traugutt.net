@@ -11,9 +11,9 @@ export default function DayTile(props: { date: Date; differentMonth: boolean }) 
 	if (isWeekend(props.date)) return <WeekendTile dayNumber={getDate(props.date)} />;
 	else
 		return (
-			<div className={`aspect-[14/15] p-3.5 rounded-3xl ${props.differentMonth ? "bg-MediumGray/10" : "bg-LightPurple/30"}`}>
+			<div className={`day-tile ${props.differentMonth ? "bg-MediumGray/10" : "bg-LightPurple/30"}`}>
 				<div
-					className={`p-1.5 text-center w-10 rounded-full text-xl ${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-LightPurple text-MainPurple"} ${
+					className={`day-number ${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-LightPurple text-MainPurple"} ${
 						plusJakartaSansFont800.className
 					}`}
 				>
