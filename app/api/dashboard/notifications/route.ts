@@ -72,3 +72,23 @@ export async function PUT(request: NextRequest) {
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
+
+export async function DELETE(request: NextRequest) {
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
+
+	const data = await request.formData();
+
+	const id: string = data.get("id") as string;
+
+	if (session) {
+		if (session.user.role.manageNotifications) {
+			const post = await prisma.notification.delete({
+				where: {
+					id: id,
+				},
+			});
+
+			return NextResponse.json(post);
+		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
+	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
+}

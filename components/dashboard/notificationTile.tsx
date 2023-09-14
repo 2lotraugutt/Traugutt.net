@@ -33,7 +33,15 @@ export default function NotificationTile(props: { notificationData: Notification
 	async function deleteNotification() {
 		setDeleteButtonText("Usuwanie...");
 
-		const notification = await (await fetch(`/api/dashboard/notifications/delete/${props.notificationData.id}`)).json();
+		const data = new FormData();
+		data.set("id", props.notificationData.id);
+
+		const notification = await(
+			await fetch(`/api/dashboard/notifications/`, {
+				body: data,
+				method: "DELETE",
+			})
+		).json();
 
 		await props.refetchNotifications();
 		setDeleteButtonText("Usuń wiadomość");
