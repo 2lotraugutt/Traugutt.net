@@ -2,7 +2,6 @@ import { isWeekend } from "date-fns";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import WeekendTile from "./weekendTile";
 import EventsContainer from "./eventsContainer";
-import { da } from "date-fns/locale";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -21,7 +20,7 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents }) {
 						{props.day.day}
 					</div>
 					<div
-						className={`outline-4 outline-LightPurple me-1 outline bg-LightPurple/40 text-center w-8 h-fit p-1 rounded-full text-md text-MainDarkGray ${
+						className={`outline-[3px] lg:outline-4 outline-LightPurple me-0.5 lg:me-1 outline bg-LightPurple/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
 							plusJakartaSansFont800.className
 						} ${props.day.freeDay || !props.day.number ? "hidden" : "hidden sm:block"}`}
 					>

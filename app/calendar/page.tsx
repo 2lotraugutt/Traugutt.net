@@ -59,7 +59,7 @@ export default function Page() {
 				<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(true)} />
 			</div>
 
-			<div className="flex gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10 text-MainDarkGray/60 w-full pt-2 border-b-2">
+			<div className="flex gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10 text-MainDarkGray/60 w-full pb-1 md:pb-1.5 xl:pb-2 3xl:pb-2.5 border-b-2 3xl:border-b-[3px]">
 				{weekDays.map((weekDay, i) => (
 					<div
 						className={`w-full hidden sm:block text-center lg:text-right px-1 text-xs md:text-sm xl:text-lg 2xl:text-xl 4xl:text-2xl ${poppingsFont500.className}`}
