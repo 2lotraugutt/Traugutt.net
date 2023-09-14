@@ -75,8 +75,8 @@ declare global {
 	};
 
 	type RoleDataType = {
-		tag: String;
-		name: String;
+		tag: string;
+		name: string;
 
 		createPosts: Boolean;
 		publishPosts: Boolean;
@@ -101,10 +101,10 @@ declare global {
 	};
 
 	type EventDataType = {
-		id: String;
+		id: string;
 		createdAt: Date;
-		name: String;
-		description: String?;
+		name: string;
+		description: string?;
 		date: Date;
 		freeDay: boolean;
 		tagId: string;
@@ -113,26 +113,26 @@ declare global {
 	};
 
 	type EventTagDataType = {
-		id: String;
+		id: string;
 		createdAt: Date;
-		name: String;
-		color: String;
+		name: string;
+		color: string;
 		authorId: string;
 	};
 
 	type NotificationDataType = {
-		id: String;
+		id: string;
 		createdAt: Date;
-		title: String;
-		content: String;
+		title: string;
+		content: string;
 		authorId: string;
 	};
 
 	type NotificationWithAutorDataType = {
-		id: String;
+		id: string;
 		createdAt: Date;
-		title: String;
-		content: String;
+		title: string;
+		content: string;
 		authorId: string;
 		author: UserDataType;
 	};

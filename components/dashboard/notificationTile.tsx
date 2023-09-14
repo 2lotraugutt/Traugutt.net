@@ -1,6 +1,5 @@
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSession } from "next-auth/react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
 
@@ -25,7 +24,10 @@ const poppingsFont700 = Poppins({
 });
 
 export default function NotificationTile(props: { notificationData: NotificationWithAutorDataType; refetchNotifications: Function }) {
+	const [title, setTitle] = useState<string>(props.notificationData.title);
+	const [content, setContent] = useState<string>(props.notificationData.content);
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wiadomość");
+	const [isEditing, setIsEditing] = useState<boolean>(false);
 
 	async function deleteNotification() {
 		setDeleteButtonText("Usuwanie...");
@@ -41,17 +43,39 @@ export default function NotificationTile(props: { notificationData: Notification
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 
 	return (
-		<div className="admistPostTile h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-14 3xl:gap-x-16 rounded-2xl">
+		<div
+			className={`admistPostTile h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-14 3xl:gap-x-16 rounded-2xl ${
+				isEditing ? "bg-LightGray/40 scale-[1.02]" : ""
+			}`}
+		>
 			<div className="flex flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
-				<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>
-					{props.notificationData.title}
-				</p>
+				{!isEditing ? (
+					<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>{title}</p>
+				) : (
+					<input
+						placeholder="Podaj tytuł"
+						className={`bg-white rounded-lg p-2 -mx-2 outline-none text-sm 2xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+					/>
+				)}
 
-				<div
-					className={`text-2xs 2xl:text-base text-MainDarkGray/50 2xs:text-xs xs:text-sm 3xl:line-clamp-[7] 4xl:line-clamp-[8] line-clamp-6 ${poppingsFont400.className}`}
-				>
-					{props.notificationData.content}
-				</div>
+				{!isEditing ? (
+					<div
+						className={`text-2xs whitespace-pre-wrap 2xl:text-base text-MainDarkGray/50 2xs:text-xs xs:text-sm 3xl:line-clamp-[7] 4xl:line-clamp-[8] line-clamp-6 ${poppingsFont400.className}`}
+					>
+						{content}
+					</div>
+				) : (
+					<textarea
+						onChange={(e) => setContent(e.target.value)}
+						value={content}
+						id="content"
+						className="h-fit rounded-lg outline-none bg-white p-2 text-2xs 2xl:text-base 2xs:text-xs xs:text-sm"
+						placeholder="Podaj treść wiadomości"
+						rows={8}
+					/>
+				)}
 			</div>
 
 			<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 ${plusJakartaSansFont500.className}`}>
@@ -66,10 +90,15 @@ export default function NotificationTile(props: { notificationData: Notification
 			</div>
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					Edytuj wiadomość
+				<button
+					onClick={() => {
+						setIsEditing((old) => !old);
+					}}
+					className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}
+				>
+					{isEditing ? "Potwierdź edycje" : "Edytuj wiadomość"}
 					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={faPen} />
+						<FontAwesomeIcon icon={isEditing ? faPaperPlane : faPen} />
 					</div>
 				</button>
 
