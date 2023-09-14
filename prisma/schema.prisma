@@ -120,8 +120,7 @@ model Event {
 
   day              Day           @relation(fields: [date], references: [date])
 
-  tagId            String?       @db.Uuid
-  tag              EventTag?     @relation(fields: [tagId], references: [id])
+  tags             EventTag[]     
 
   authorId         String        @db.Uuid
   author           User          @relation(fields: [authorId], references: [id])

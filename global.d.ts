@@ -107,8 +107,7 @@ declare global {
 		description: string?;
 		date: Date;
 		freeDay: boolean;
-		tagId: string;
-		tag: EventTagType[];
+		tags: EventTagType[];
 		authorId: string;
 	};
 
