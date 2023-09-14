@@ -33,6 +33,9 @@ export default function Page() {
 	}, []);
 
 	async function fetchPosts() {
+		console.log(posts);
+		console.log(postsCount * 30);
+
 		const returnedPosts = await (await fetch(`/api/dashboard/posts?count=${postsCount * 30}`)).json();
 		setPosts(returnedPosts);
 
@@ -55,7 +58,9 @@ export default function Page() {
 					))}
 					<button
 						onClick={() => fetchPosts()}
-						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className}`}
+						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
+							poppingsFont700.className
+						} ${(postsCount - 1) * 30 > posts.length ? "hidden" : ""}`}
 					>
 						Załaduj więcej
 					</button>

@@ -109,7 +109,9 @@ export default function Page() {
 
 				<button
 					onClick={() => fetchNotifications()}
-					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className}`}
+					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
+						poppingsFont700.className
+					} ${(notificationsCount - 1) * 30 > notifications.length ? "hidden" : ""}`}
 				>
 					Załaduj więcej
 				</button>
