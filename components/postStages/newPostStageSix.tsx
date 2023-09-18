@@ -34,25 +34,17 @@ const poppingsFont400 = Poppins({
 export default function NewPostStageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
 	const [seconds, setSeconds] = useState(10);
 
-
 	const router = useRouter();
 
 	useEffect(() => {
 		if (props.uploaded == true) {
-			setTimeout(() => {
-				countDown();
-			}, 1000);
-		}
-		function countDown() {
-			if (seconds > 1) {
+			if (seconds > 0) {
 				setTimeout(() => {
 					setSeconds((prev) => prev - 1);
-					countDown();
 				}, 1000);
 			} else router.push("/");
 		}
-	}, [props.uploaded]);
-
+	}, [seconds, props.uploaded]);
 
 	return (
 		<div className="dashboard-post-page">
@@ -77,7 +69,7 @@ export default function NewPostStageSix(props: { down: Function; upload: Functio
 				</button>
 
 				<p className={`text-center -mt-10 px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
-					Zostaniesz przekierowany za {seconds} sekund.{" "}
+					Zostaniesz przekierowany za {seconds} sekund.
 					<Link href={"/"} className={`hover:text-MainPurple ${plusJakartaSans600.className}`}>
 						Przekieruj mnie.
 					</Link>
