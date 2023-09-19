@@ -89,9 +89,8 @@ export default function Page() {
 					onChange={(e) => setNewContent(e.target.value)}
 					value={newContent}
 					id="content"
-					className="h-fit rounded-lg outline-none bg-white p-2 w-full text-2xs sm:text-xs md:text-sm"
+					className="rounded-lg outline-none bg-white p-2 w-full text-2xs sm:text-xs md:text-sm h-20 sm:h-40 md:h-52 lg:h-60"
 					placeholder="Podaj treść wiadomości"
-					rows={10}
 				/>
 
 				<button
