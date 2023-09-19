@@ -25,6 +25,8 @@ export default function Page() {
 	const [month, setMonth] = useState<number>(getMonth(startOfToday()));
 	const [year, setYear] = useState<number>(getYear(startOfToday()));
 
+	const currentYear = getYear(startOfToday());
+
 	function changeMonth(up: boolean) {
 		if (up) {
 			if (month == 11) {
@@ -54,9 +56,11 @@ export default function Page() {
 			</h1>
 
 			<div className="mb-2 flex items-center w-full gap-x-4 justify-center lg:justify-start">
-				<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(false)} />
-				<h3 className={`text-left w-fit text-xl xs:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl ${poppingsFont600.className}`}>{monthsNames[month]}</h3>
-				<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5" onClick={() => changeMonth(true)} />
+				<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 h-5 hover:text-MainGreen transition-all" onClick={() => changeMonth(false)} />
+				<h3 className={`text-left w-fit text-xl xs:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl ${poppingsFont600.className}`}>
+					{monthsNames[month]} {currentYear != year ? <span className="text-base xs:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">{year}</span> : <></>}
+				</h3>
+				<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5 hover:text-MainGreen transition-all" onClick={() => changeMonth(true)} />
 			</div>
 
 			<div className="flex gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10 text-MainDarkGray/60 w-full pb-1 md:pb-1.5 xl:pb-2 3xl:pb-2.5 border-b-2 3xl:border-b-[3px]">
