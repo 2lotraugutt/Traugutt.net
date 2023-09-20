@@ -26,7 +26,7 @@ model User {
   accounts        Account[]
   sessions        Session[]
   tags            EventTag[]
-  event           Event[]
+  event           Event[]   @relation("Event author") 
   notification    Notification[]
   publishedPosts  Post[]    @relation("Published") 
 }
@@ -108,7 +108,7 @@ model Day {
   year             Int
   timeStamp        DateTime 
 
-  events           Event[]
+  events           Event[]      @relation("Day") 
 }
 
 model Event {
@@ -118,12 +118,12 @@ model Event {
   description      String?
   date             String
 
-  day              Day           @relation(fields: [date], references: [date])
+  day              Day           @relation("Day",fields: [date], references: [date])
 
   tags             EventTag[]     
 
   authorId         String        @db.Uuid
-  author           User          @relation(fields: [authorId], references: [id])
+  author           User          @relation("Event author", fields: [authorId], references: [id])
 }
 
 model EventTag {

@@ -25,8 +25,8 @@ const plusJakartaSans800 = Plus_Jakarta_Sans({
 });
 
 export default function Page() {
-	const [newTitle, setNewTitle] = useState("");
-	const [newContent, setNewContent] = useState("");
+	const [newName, setNewName] = useState("");
+	const [newDescription, setNewDescription] = useState("");
 	const [newDate, setNewDate] = useState("");
 	const [tags, setTags] = useState<EventTagDataType[]>([]);
 	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
@@ -55,28 +55,42 @@ export default function Page() {
 	}, []);
 
 	async function upload() {
-		// try {
-		// 	const data = new FormData();
-		// 	data.set("title", newTitle);
-		// 	data.set("content", newContent);
-		// 	const res = await fetch("/api/dashboard/notifications/", {
-		// 		method: "POST",
-		// 		body: data,
-		// 	});
-		// 	if (!res.ok) throw new Error(await res.text());
-		// 	if (res.ok) {
-		// 		setNewTitle("");
-		// 		setNewContent("");
-		// 		refetchNotifications();
-		// 	}
-		// } catch (e: any) {
-		// 	// Handle errors here
-		// 	console.error(e);
-		// }
+		try {
+			const data = new FormData();
+
+			data.set("name", newName);
+			data.set("description", newDescription);
+			data.set("date", newDate.slice(8, 10) + "-" + newDate.slice(5, 7) + "-" + newDate.slice(0, 4));
+
+			let i = 0;
+			for (const bool of selectedTags) {
+				if (bool) {
+					data.append("tags[]", tags[i].id);
+				}
+				i++;
+			}
+
+			const res = await fetch("/api/dashboard/calendar/events/", {
+				method: "POST",
+				body: data,
+			});
+
+			if (!res.ok) throw new Error(await res.text());
+			if (res.ok) {
+				setSelectedTags(new Array(tags.length).fill(false));
+				setNewName("");
+				setNewDescription("");
+				setNewDate("");
+				refetchEvents();
+			}
+		} catch (e: any) {
+			// Handle errors here
+			console.error(e);
+		}
 	}
 
 	async function fetchTags() {
-		const returnedTags = await(await fetch(`/api/dashboard/calendar/tags`)).json() as EventTagDataType[];
+		const returnedTags = (await (await fetch(`/api/dashboard/calendar/tags`)).json()) as EventTagDataType[];
 		setTags(returnedTags);
 		setSelectedTags(new Array(returnedTags.length).fill(false));
 	}
@@ -100,8 +114,8 @@ export default function Page() {
 
 				<div className="flex gap-1.5 sm:gap-2 md:gap-3 w-full">
 					<input
-						value={newTitle}
-						onChange={(e) => setNewTitle(e.target.value)}
+						value={newName}
+						onChange={(e) => setNewName(e.target.value)}
 						type="text"
 						id="title"
 						placeholder="Podaj nazwe"
@@ -145,8 +159,8 @@ export default function Page() {
 				</div>
 
 				<textarea
-					onChange={(e) => setNewContent(e.target.value)}
-					value={newContent}
+					onChange={(e) => setNewDescription(e.target.value)}
+					value={newDescription}
 					id="content"
 					className="rounded-lg outline-none bg-white p-2 w-full text-2xs sm:text-xs h-20 sm:h-40 md:h-52 lg:h-60 md:text-sm"
 					placeholder="Podaj treść wiadomości"
