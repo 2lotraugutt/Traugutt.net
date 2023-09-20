@@ -7,6 +7,7 @@ import { getYear, startOfToday } from "date-fns";
 import { getSession } from "next-auth/react";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
+import EventTile from "@/components/dashboard/eventTile";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -161,7 +162,7 @@ export default function Page() {
 
 			<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 				{events.map((eventData: EventDataTypeWithAuthor, i) => (
-					<></>
+					<EventTile eventData={eventData} refetchEvents={refetchEvents} key={eventData.id} />
 				))}
 
 				<button

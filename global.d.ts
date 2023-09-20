@@ -105,7 +105,7 @@ declare global {
 		createdAt: Date;
 		name: string;
 		description: string?;
-		date: Date;
+		date: string;
 		freeDay: boolean;
 		tags: EventTagType[];
 		authorId: string;
@@ -116,7 +116,7 @@ declare global {
 		createdAt: Date;
 		name: string;
 		description: string?;
-		date: Date;
+		date: string;
 		freeDay: boolean;
 		tags: EventTagType[];
 		authorId: string;
