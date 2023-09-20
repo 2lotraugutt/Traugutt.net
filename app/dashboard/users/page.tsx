@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import UserPostTile from "@/components/dashboard/userPostTile";
+import UserPostTile from "@/components/dashboard/userTile";
 import LoadingLayout from "@/components/dashboard/loadingLayout";
 
 const poppingsFont700 = Poppins({
