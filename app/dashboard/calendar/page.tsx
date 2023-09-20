@@ -13,6 +13,11 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
+const poppingsFont500 = Poppins({
+	weight: "500",
+	subsets: ["latin"],
+});
+
 const plusJakartaSans800 = Plus_Jakarta_Sans({
 	weight: "800",
 	subsets: ["latin"],
@@ -23,6 +28,7 @@ export default function Page() {
 	const [newContent, setNewContent] = useState("");
 	const [newDate, setNewDate] = useState("");
 	const [tags, setTags] = useState<EventTagDataType[]>([]);
+	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
 
 	const [yearsCount, setYearsCount] = useState<number>(2);
 
@@ -64,9 +70,10 @@ export default function Page() {
 	}
 
 	async function fetchTags() {
-		const returnedTags = await (await fetch(`/api/dashboard/calendar/tags`)).json();
+		const returnedTags = await(await fetch(`/api/dashboard/calendar/tags`)).json() as EventTagDataType[];
 		setTags(returnedTags);
-		console.log(returnedTags);
+		setSelectedTags(new Array(returnedTags.length).fill(false));
+		console.log(selectedTags);
 	}
 
 	return (
@@ -93,11 +100,31 @@ export default function Page() {
 				</div>
 
 				<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
-					{tags.map((tag) => (
-						<div className="flex h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center bg-white">
-							<div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full`} style={{ backgroundColor: tag.color }} />
-							<p className="text-xs sm:text-sm md:text-base">{tag.name}</p>
-						</div>
+					{tags.map((tag, i) => (
+						<button
+							key={tag.id}
+							onClick={() =>
+								setSelectedTags((old) => {
+									let newList = [...old];
+									newList[i] = !old[i];
+									return newList;
+								})
+							}
+							className={`flex h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center transition-color duration-300`}
+							style={{ backgroundColor: selectedTags[i] ? tag.color : "white" }}
+						>
+							<div
+								className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-color duration-300`}
+								style={{ backgroundColor: selectedTags[i] ? "white" : tag.color }}
+							/>
+							<p
+								className={`text-xs sm:text-sm md:text-base transition-color duration-300 ${poppingsFont500.className} ${
+									selectedTags[i] ? "text-white" : "text-MainDarkGray"
+								}`}
+							>
+								{tag.name}
+							</p>
+						</button>
 					))}
 				</div>
 
