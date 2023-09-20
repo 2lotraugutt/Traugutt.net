@@ -22,8 +22,7 @@ export default function Page() {
 	const [newTitle, setNewTitle] = useState("");
 	const [newContent, setNewContent] = useState("");
 	const [newDate, setNewDate] = useState("");
-	const [notifications, setNotifications] = useState<NotificationWithAutorDataType[]>([]);
-	const [notificationsCount, setNotificationsCount] = useState<number>(1);
+	const [tags, setTags] = useState<EventTagDataType[]>([]);
 
 	const [yearsCount, setYearsCount] = useState<number>(2);
 
@@ -36,7 +35,8 @@ export default function Page() {
 			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
-				if (!session.user.role.manageCalendar) router.push("/dashboard");
+				if (session.user.role.manageCalendar) fetchTags();
+				else router.push("/dashboard");
 			} else router.push("/");
 		}
 		initFunction();
@@ -63,6 +63,12 @@ export default function Page() {
 		// }
 	}
 
+	async function fetchTags() {
+		const returnedTags = await (await fetch(`/api/dashboard/calendar/tags`)).json();
+		setTags(returnedTags);
+		console.log(returnedTags);
+	}
+
 	return (
 		<div className="dashboard-page">
 			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Wydarzenia</h1>
@@ -84,6 +90,15 @@ export default function Page() {
 						onChange={(e) => setNewDate(e.target.value)}
 						className="rounded-lg p-2 w-fit text-center text-xs sm:text-sm md:text-base"
 					/>
+				</div>
+
+				<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
+					{tags.map((tag) => (
+						<div className="flex h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center bg-white">
+							<div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full`} style={{ backgroundColor: tag.color }} />
+							<p className="text-xs sm:text-sm md:text-base">{tag.name}</p>
+						</div>
+					))}
 				</div>
 
 				<textarea
