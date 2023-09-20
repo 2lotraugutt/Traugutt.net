@@ -30,6 +30,9 @@ export default function Page() {
 	const [tags, setTags] = useState<EventTagDataType[]>([]);
 	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
 
+	const [events, setEvents] = useState<EventDataTypeWithAuthor[]>([]);
+	const [eventsCount, setEventsCount] = useState<number>(1);
+
 	const [yearsCount, setYearsCount] = useState<number>(2);
 
 	const today = startOfToday();
@@ -41,8 +44,10 @@ export default function Page() {
 			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
-				if (session.user.role.manageCalendar) fetchTags();
-				else router.push("/dashboard");
+				if (session.user.role.manageCalendar) {
+					fetchTags();
+					fetchEvents();
+				} else router.push("/dashboard");
 			} else router.push("/");
 		}
 		initFunction();
@@ -73,7 +78,17 @@ export default function Page() {
 		const returnedTags = await(await fetch(`/api/dashboard/calendar/tags`)).json() as EventTagDataType[];
 		setTags(returnedTags);
 		setSelectedTags(new Array(returnedTags.length).fill(false));
-		console.log(selectedTags);
+	}
+
+	async function fetchEvents() {
+		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 20}`)).json();
+		setEvents(returnedEvents);
+		setEventsCount((oldCount) => oldCount + 1);
+	}
+
+	async function refetchEvents() {
+		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 20}`)).json();
+		setEvents(returnedEvents);
 	}
 
 	return (
@@ -141,6 +156,21 @@ export default function Page() {
 					className={`w-fit bg-MainGreen hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 				>
 					Dodaj wiadomość
+				</button>
+			</div>
+
+			<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
+				{events.map((eventData: EventDataTypeWithAuthor, i) => (
+					<></>
+				))}
+
+				<button
+					onClick={() => refetchEvents()}
+					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
+						poppingsFont700.className
+					} ${(eventsCount - 1) * 20 > events.length ? "hidden" : ""}`}
+				>
+					Załaduj więcej
 				</button>
 			</div>
 
