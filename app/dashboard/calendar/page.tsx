@@ -70,7 +70,7 @@ export default function Page() {
 				i++;
 			}
 
-			setButtonText("Dodawanie wiadomości");
+			setButtonText("Dodawanie wydarzenia...");
 			const res = await fetch("/api/dashboard/calendar/events/", {
 				method: "POST",
 				body: data,
@@ -98,13 +98,13 @@ export default function Page() {
 	}
 
 	async function fetchEvents() {
-		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 20}`)).json();
+		const returnedEvents = await(await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
 		setEvents(returnedEvents);
 		setEventsCount((oldCount) => oldCount + 1);
 	}
 
 	async function refetchEvents() {
-		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 20}`)).json();
+		const returnedEvents = await(await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
 		setEvents(returnedEvents);
 	}
 
@@ -185,7 +185,7 @@ export default function Page() {
 					onClick={() => refetchEvents()}
 					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
 						poppingsFont700.className
-					} ${(eventsCount - 1) * 20 > events.length ? "hidden" : ""}`}
+					} ${(eventsCount - 1) * 8 > events.length ? "hidden" : ""}`}
 				>
 					Załaduj więcej
 				</button>

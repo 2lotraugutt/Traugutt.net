@@ -2,6 +2,7 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { parse } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import { useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
@@ -29,6 +30,8 @@ const poppingsFont700 = Poppins({
 });
 
 export default function EventTile(props: { eventData: EventDataTypeWithAuthor; refetchEvents: Function }) {
+	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wydarzenie");
+
 	function returnDate(date: string) {
 		const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
 
@@ -37,6 +40,29 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 		if (isNaN(newDate.getTime())) newDate = parse(date, "dd-mm-yyyy", new Date());
 
 		return newDate.getDate() + " " + months[newDate.getMonth()] + " " + newDate.getFullYear();
+	}
+
+	async function deleteEvent() {
+		try {
+			const data = new FormData();
+
+			data.set("id", props.eventData.id);
+
+			setDeleteButtonText("Usuwanie wydarzenia...");
+			const res = await fetch("/api/dashboard/calendar/events/", {
+				method: "DELETE",
+				body: data,
+			});
+
+			if (!res.ok) throw new Error(await res.text());
+			if (res.ok) {
+				setDeleteButtonText("Usuń wydarzenie");
+				props.refetchEvents();
+			}
+		} catch (e: any) {
+			// Handle errors here
+			console.error(e);
+		}
 	}
 
 	return (
@@ -86,8 +112,8 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</button>
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					Usuń wydarzenie
+				<button onClick={() => deleteEvent()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
 					</div>
