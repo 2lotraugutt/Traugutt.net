@@ -111,6 +111,18 @@ declare global {
 		authorId: string;
 	};
 
+	type EventDataTypeWithAuthor = {
+		id: string;
+		createdAt: Date;
+		name: string;
+		description: string?;
+		date: Date;
+		freeDay: boolean;
+		tags: EventTagType[];
+		authorId: string;
+		author: UserDataType;
+	};
+
 	type EventTagDataType = {
 		id: string;
 		createdAt: Date;
