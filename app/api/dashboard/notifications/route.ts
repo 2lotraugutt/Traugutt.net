@@ -82,13 +82,13 @@ export async function DELETE(request: NextRequest) {
 
 	if (session) {
 		if (session.user.role.manageNotifications) {
-			const post = await prisma.notification.delete({
+			await prisma.notification.delete({
 				where: {
 					id: id,
 				},
 			});
 
-			return NextResponse.json(post);
+			return NextResponse.json({ success: true });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }

@@ -8,11 +8,11 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
 	if (session) {
 		if (session.user.role.manageUsers) {
-			const users = await prisma.user.delete({
-				where: { id: params.id },
-			});
+			 await prisma.user.delete({
+					where: { id: params.id },
+				});
 
-			return NextResponse.json(users);
+			return NextResponse.json({ success: true });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
