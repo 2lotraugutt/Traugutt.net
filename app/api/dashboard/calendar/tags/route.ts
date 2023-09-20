@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 			const tag = await prisma.eventTag.findMany({
 				orderBy: [
 					{
-						createdAt: "desc",
+						events: { _count: "desc" },
 					},
 				],
 			});

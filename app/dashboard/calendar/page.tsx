@@ -118,7 +118,7 @@ export default function Page() {
 								style={{ backgroundColor: selectedTags[i] ? "white" : tag.color }}
 							/>
 							<p
-								className={`text-xs sm:text-sm md:text-base transition-color duration-300 ${poppingsFont500.className} ${
+								className={`text-xs whitespace-nowrap sm:text-sm md:text-base transition-color duration-300 ${poppingsFont500.className} ${
 									selectedTags[i] ? "text-white" : "text-MainDarkGray"
 								}`}
 							>
