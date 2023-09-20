@@ -51,14 +51,17 @@ export async function POST(request: NextRequest) {
 			const month = parseInt(date.slice(3, 5)) - 1;
 			const year = parseInt(date.slice(6, 10));
 
-			// console.log({
-			// 	freeDay: false,
-			// 	day: day,
-			// 	year: year,
-			// 	month: month,
-			// 	timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
-			// 	date: date,
-			// });
+			await prisma.day.upsert({
+				where: { date: date },
+				update: {},
+				create: {
+					day: day,
+					year: year,
+					month: month,
+					timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
+					date: date,
+				},
+			});
 
 			await prisma.event.create({
 				data: {
@@ -69,20 +72,9 @@ export async function POST(request: NextRequest) {
 					tags: {
 						connect: tagsToConnect,
 					},
-					// day: {
-					// 	connectOrCreate: {
-					// 		where: { date: date },
-					// 		create: {
-					// 			day: day,
-					// 			year: year,
-					// 			month: month,
-					// 			timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
-					// 			date: date,
-					// 		},
-					// 	},
-					// },
 				},
 			});
+
 
 			return NextResponse.json({ success: true });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });

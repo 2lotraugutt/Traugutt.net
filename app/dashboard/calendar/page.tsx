@@ -1,7 +1,6 @@
 "use client";
 
 import FreeDaysCalendar from "@/components/dashboard/freeDaysCalendar";
-// import LoadingLayout from "@/components/dashboard/loadingLayout";
 import { useRouter } from "next/navigation";
 import { getYear, startOfToday } from "date-fns";
 import { getSession } from "next-auth/react";
@@ -28,6 +27,7 @@ export default function Page() {
 	const [newName, setNewName] = useState("");
 	const [newDescription, setNewDescription] = useState("");
 	const [newDate, setNewDate] = useState("");
+	const [buttonText, setButtonText] = useState("Dodaj wydarzenie");
 	const [tags, setTags] = useState<EventTagDataType[]>([]);
 	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
 
@@ -70,6 +70,7 @@ export default function Page() {
 				i++;
 			}
 
+			setButtonText("Dodawanie wiadomości");
 			const res = await fetch("/api/dashboard/calendar/events/", {
 				method: "POST",
 				body: data,
@@ -81,6 +82,7 @@ export default function Page() {
 				setNewName("");
 				setNewDescription("");
 				setNewDate("");
+				setButtonText("Dodaj wydarzenia");
 				refetchEvents();
 			}
 		} catch (e: any) {
@@ -170,7 +172,7 @@ export default function Page() {
 					onClick={() => upload()}
 					className={`w-fit bg-MainGreen hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 				>
-					Dodaj wiadomość
+					{buttonText}
 				</button>
 			</div>
 
