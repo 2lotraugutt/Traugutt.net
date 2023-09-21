@@ -133,3 +133,10 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+@media screen and (max-width: 1024px) {
+.event-container:nth-child(n + 3){
+display: none !important;
+  }
+
+}
