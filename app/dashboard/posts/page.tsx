@@ -33,9 +33,6 @@ export default function Page() {
 	}, []);
 
 	async function fetchPosts() {
-		console.log(posts);
-		console.log(postsCount * 30);
-
 		const returnedPosts = await (await fetch(`/api/dashboard/posts?count=${postsCount * 30}`)).json();
 		setPosts(returnedPosts);
 
