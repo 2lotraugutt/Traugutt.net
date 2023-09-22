@@ -10,9 +10,9 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function EventComponent(props: { event: EventDataType; index: number }) {
+export default function EventComponent(props: { event: EventDataType }) {
 	return (
-		<div className={`flex rounded-3xl items-center border-[1px] border-MainPurple border-dotted p-7 gap-x-5 ${props.index == 0 ? "lg:ms-12 ms-2 md:ms-5 4xl:ms-0" : ""}`}>
+		<div className={`flex rounded-3xl items-center border-[1px] border-MainPurple border-dotted p-7 gap-x-5`}>
 			<p className={`text-2xl text-MainPurple bg-LightPurple rounded-full p-3.5 w-[60px] text-center ${poppingsFont700.className}`}>{props.event.date.slice(0, 2)}</p>
 			<div className="flex flex-col gap-y-1.5">
 				<p className={`whitespace-nowrap text-lg ${poppingsFont700.className}`}>{props.event.name}</p>
