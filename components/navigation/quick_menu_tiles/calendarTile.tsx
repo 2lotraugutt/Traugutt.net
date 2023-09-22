@@ -1,7 +1,11 @@
+"use client";
+
 import { faBell, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { differenceInCalendarDays, getDate, getMonth, getYear, startOfToday, parse } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
@@ -14,6 +18,30 @@ const poppingsFont800 = Poppins({
 });
 
 export default function CalendarTile() {
+	const [event, setEvent] = useState<EventDataType>();
+
+	const day = getDate(startOfToday());
+	const month = getMonth(startOfToday());
+	const year = getYear(startOfToday());
+
+	useEffect(() => {
+		fetchPost();
+		async function fetchPost() {
+			const data = new FormData();
+			data.set("day", day.toString());
+			data.set("year", year.toString());
+			data.set("month", month.toString());
+			const event = await (
+				await fetch(`/api/calendar/events/?count=1`, {
+					method: "POST",
+					body: data,
+				})
+			).json();
+
+			setEvent(event[0]);
+		}
+	}, []);
+
 	return (
 		<Link
 			href={"/calendar"}
@@ -32,16 +60,24 @@ export default function CalendarTile() {
 					wydarzeń
 				</p>
 			</div>
-			<div className={`w-full xl:flex hidden gap-x-3 2xl:gap-x-5 flex-row items-center ${plusJakartaSansFont700.className}`}>
-				<FontAwesomeIcon
-					icon={faBell}
-					className="text-MainDarkGray aspect-square bg-white h-5 w-5 2xl:w-7 2xl:h-7 3xl:w-9 2xl:p-2 4xl:p-3 3xl:h-9 4xl:w-10 4xl:h-10 p-1.5 rounded-full"
-				/>
-				<p className="flex flex-col text-white text-xs 2xl:text-sm w-full 3xl:text-base truncate 4xl:text-lg">
-					Za 3 dni imieniny obchodzi
-					<span className="text-sm 2xl:text-base 4xl:text-xl 3xl:text-lg text-MainGreen truncate">Jarosław Skrzypczyk</span>
-				</p>
-			</div>
+
+			{event ? (
+				<div className={`w-full xl:flex hidden gap-x-3 2xl:gap-x-5 flex-row items-center ${plusJakartaSansFont700.className}`}>
+					<FontAwesomeIcon
+						icon={faBell}
+						className="text-MainDarkGray aspect-square bg-white h-5 w-5 2xl:w-7 2xl:h-7 3xl:w-9 2xl:p-2 4xl:p-3 3xl:h-9 4xl:w-10 4xl:h-10 p-1.5 rounded-full"
+					/>
+
+					<p className="flex flex-col text-white text-xs 2xl:text-sm w-full 3xl:text-base truncate 4xl:text-lg">
+						{differenceInCalendarDays(parse(event.date, "dd-MM-yyyy", new Date()), startOfToday()) == 0
+							? "Dzisiaj odbędzie się"
+							: "Za " + differenceInCalendarDays(parse(event.date, "dd-MM-yyyy", new Date()), startOfToday()) + " dni odbędzię się"}
+						<span className="text-sm 2xl:text-base 4xl:text-xl 3xl:text-lg text-MainGreen truncate">{event.name}</span>
+					</p>
+				</div>
+			) : (
+				<></>
+			)}
 		</Link>
 	);
 }

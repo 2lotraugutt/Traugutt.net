@@ -37,7 +37,7 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 
 		let newDate = new Date(date);
 
-		if (isNaN(newDate.getTime())) newDate = parse(date, "dd-mm-yyyy", new Date());
+		if (isNaN(newDate.getTime())) newDate = parse(date, "dd-MM-yyyy", new Date());
 
 		return newDate.getDate() + " " + months[newDate.getMonth()] + " " + newDate.getFullYear();
 	}
