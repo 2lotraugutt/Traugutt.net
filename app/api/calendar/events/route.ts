@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { zonedTimeToUtc } from "date-fns-tz";
+import { getTime } from "date-fns";
 
-export async function GET(request: NextRequest) {
-	const month = parseInt(request.nextUrl.searchParams.get("month") || "20");
-	const year = parseInt(request.nextUrl.searchParams.get("year") || "0");
+export async function POST(request: NextRequest) {
+	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
+
+	const data = await request.formData();
+
+	const day: string = data.get("day") as string;
+	const month: string = data.get("month") as string;
+	const year: string = data.get("year") as string;
+
+	const date = zonedTimeToUtc(new Date(parseInt(year), parseInt(month), parseInt(day)), "UTC");
 
 	const numbers = await prisma.event.findMany({
 		orderBy: [
@@ -11,11 +20,11 @@ export async function GET(request: NextRequest) {
 				day: { timeStamp: "asc" },
 			},
 		],
-
+		take: count != 0 ? count : undefined,
+		include: { tags: true },
 		where: {
 			day: {
-				year: year != 0 ? year : undefined,
-				month: month != 20 ? month : undefined,
+				timeStamp: { gte: date },
 			},
 		},
 	});
