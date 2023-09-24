@@ -47,7 +47,7 @@ export default function EventsSlider() {
 			}
 
 			setDates(Array.from(new Set(dates)));
-
+			console.log(Array.from(new Set(dates)));
 			setEvents(events);
 		}
 	}, []);
@@ -55,15 +55,15 @@ export default function EventsSlider() {
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 	return (
-		<div className="w-screen 4xl:w-full flex gap-x-7 hide-scrollbar overflow-x-auto lg:-mx-12 -mx-2 md:-mx-5 4xl:mx-0 lg:p-12 p-2 md:p-5 4xl:p-0">
+		<div className="w-screen 4xl:w-full flex gap-x-7 overflow-x-auto lg:-mx-12 -mx-2 md:-mx-5 4xl:mx-0 lg:p-12 p-2 md:p-5 4xl:p-0">
 			{dates.map((date) => (
-				<div className="flex flex-col w-fit gap-y-3">
+				<div className="flex flex-col w-fit gap-y-3" key={date}>
 					<p className={`sticky left-0 w-fit text-xl ${poppingsFont700.className}`}>
 						{monthsNames[parseInt(date.slice(0, 2)) - 1]} {date.slice(3, 8)}
 					</p>
 					<div className="flex gap-x-[15px]">
 						{events
-							.filter((event) => event.date.includes)
+							.filter((event) => event.date.includes(date))
 							.map((event) => (
 								<EventComponent event={event} key={event.id} />
 							))}
