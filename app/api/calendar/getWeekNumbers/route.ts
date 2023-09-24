@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { zonedTimeToUtc } from "date-fns-tz";
-import { endOfWeek, isSaturday, isSunday, nextFriday, nextMonday, nextSaturday, nextSunday, startOfToday, startOfWeek } from "date-fns";
+import { endOfWeek, startOfToday, startOfWeek } from "date-fns";
 
 export async function GET(request: NextRequest) {
 	const today = startOfToday();
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 			number: true,
 			date: true,
 		},
-		where: { timeStamp: { gt: beginning, lt: ending } },
+		where: { timeStamp: { gt: beginning, lt: ending }, number: { not: null } },
 	});
 
 	return NextResponse.json(numbers);
