@@ -12,10 +12,15 @@ const poppingsFont700 = Poppins({
 
 export default function EventComponent(props: { event: EventDataType }) {
 	return (
-		<div className={`flex rounded-3xl items-center border-[1px] border-MainPurple border-dotted p-7 gap-x-5`}>
-			<p className={`text-2xl text-MainPurple bg-LightPurple rounded-full p-3.5 w-[60px] text-center ${poppingsFont700.className}`}>{props.event.date.slice(0, 2)}</p>
+		<div className={`flex rounded-3xl items-center border-[1px] border-MainPurple border-dotted p-3.5 lg:p-7 gap-x-3 sm:gap-x-4 lg:gap-x-5`}>
+			<p
+				className={`w-[48px] sm:w-[52px] text-lg sm:text-xl lg:text-2xl text-MainPurple bg-LightPurple rounded-full p-2.5 sm:p-3 lg:p-3.5 lg:w-[60px] text-center ${poppingsFont700.className}`}
+			>
+				{props.event.date.slice(0, 2)}
+			</p>
+
 			<div className="flex flex-col gap-y-1.5">
-				<p className={`whitespace-nowrap text-lg ${poppingsFont700.className}`}>{props.event.name}</p>
+				<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg ${poppingsFont700.className}`}>{props.event.name}</p>
 
 				<div className="flex gap-x-2">
 					{props.event.tags.map((tag, i) => (

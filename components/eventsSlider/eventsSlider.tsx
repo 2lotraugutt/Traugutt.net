@@ -58,9 +58,10 @@ export default function EventsSlider() {
 		<div className="w-screen 4xl:w-full flex gap-x-7 overflow-x-auto lg:-mx-12 -mx-2 md:-mx-5 4xl:mx-0 lg:p-12 p-2 md:p-5 4xl:p-0">
 			{dates.map((date) => (
 				<div className="flex flex-col w-fit gap-y-3" key={date}>
-					<p className={`sticky left-0 w-fit text-xl ${poppingsFont700.className}`}>
+					<p className={`sticky left-0 w-fit text-base xs:text-lg lg:text-xl ${poppingsFont700.className}`}>
 						{monthsNames[parseInt(date.slice(0, 2)) - 1]} {date.slice(3, 8)}
 					</p>
+
 					<div className="flex gap-x-[15px]">
 						{events
 							.filter((event) => event.date.includes(date))
