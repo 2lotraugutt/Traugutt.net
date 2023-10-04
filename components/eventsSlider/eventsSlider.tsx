@@ -43,7 +43,6 @@ export default function EventsSlider() {
 			}
 
 			setDates(Array.from(new Set(dates)));
-			console.log(Array.from(new Set(dates)));
 			setEvents(events);
 		}
 	}, []);
