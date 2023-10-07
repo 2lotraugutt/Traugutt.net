@@ -20,6 +20,8 @@ try {
 
 async function GenerateNumbers() {
 	for (let i = 0; i < 5; i++) {
+		if (leftNumbers.length == 0) leftNumbers = Array.from({ length: 35 }, (v, k) => k + 1);
+
 		const dayNumber = (i + 1) as RangeType;
 
 		const randomNumber = Math.floor(Math.random() * leftNumbers.length);
@@ -41,8 +43,8 @@ async function GenerateNumbers() {
 			},
 		});
 	}
-	if (leftNumbers.length == 0) leftNumbers = Array.from({ length: 35 }, (v, k) => k + 1);
 	fs.writeFileSync(dataFilePath, JSON.stringify(leftNumbers), "utf8");
+	console.log("Generated numbers!");
 }
 
 cron.schedule("0 0 * * 6", () => {
