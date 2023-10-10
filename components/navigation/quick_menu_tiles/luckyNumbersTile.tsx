@@ -30,6 +30,7 @@ export default function LuckyNumbersTile() {
 	const today = startOfToday();
 	const date = format(new Date(), "dd-MM-yyyy");
 
+
 	if (numbers.length != 0)
 		return (
 			<Link href={"/calendar"} className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainGreen py-2 xs:py-2 px-3 flex flex-col items-center">
@@ -44,8 +45,9 @@ export default function LuckyNumbersTile() {
 						<p
 							className={`text-MainDarkGray rounded-full 3xl:text-6xl 4xl:p-5 3xl:w-[100px] 4xl:w-[100px] xs:text-3xl 2xl:p-4 lg:p-2.5 3xl:p-5 lg:w-[60px] lg:text-4xl sm:text-4xl md:p-1 sm:p-3.5 xs:p-2.5 md:text-2xl text-lg 2xl:text-5xl 2xl:w-[80px] bg-white xs:w-14 sm:w-[68px] text-center md:w-10 w-[36px] p-1 ${plusJakartaSansFont800.className}`}
 						>
-							{numbers.filter((number) => number.date == date)[0].number}
+							{numbers.filter((number) => number.date == date)[0]?.number ?? "-"}
 						</p>
+
 						<p
 							className={`text-white text-xs 2xs:text-sm xl:text-xl 2xs:text-left md:text-lg lg:text-left text-center md:text-center xs:text-left sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
 						>
