@@ -35,14 +35,14 @@ export default function NewPostStageZero(props: { up: Function }) {
 				<p className={`text-center px-5 text-xs xs:text-sm lg:text-base xl:text-xl 2xl:text-2xl ${poppingsFont400.className}`}>
 					Tutaj zaczyna się przygoda twojego nowego postu! <br />
 					Od tego momenu jego wygląd zależy tylko od ciebie. Mam nadzieję, że stowrzysz dzieło, które już niedługo pojawi się na stronie szkolnej!
-					<b className={`text-MainPurple ${poppingsFont600.className}`}> Gotowy?</b>
+					<b className={`text-SecondColor ${poppingsFont600.className}`}> Gotowy?</b>
 				</p>
 
 				<div className="flex justify-between flex-col xs:flex-row gap-y-3 items-center mx-10">
 					<button onClick={() => router.back()} className={`bg-MainDarkGray w-fit px-8 py-3 text-sm text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Nie,&nbsp; zabierz mnie stąd
 					</button>
-					<button onClick={() => props.up()} className={`bg-MainGreen w-fit px-8 py-3 text-sm text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => props.up()} className={`bg-MainColor w-fit px-8 py-3 text-sm text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Tak,&nbsp; jestem gotowy!
 					</button>
 				</div>

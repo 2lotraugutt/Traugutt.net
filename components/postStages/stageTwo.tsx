@@ -63,7 +63,7 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 								}
 							}}
 						/>
-						<div className="w-full aspect-[25/16] rounded border-MainGreen flex items-center justify-center border-2 border-dashed cursor-pointer">
+						<div className="w-full aspect-[25/16] rounded border-MainColor flex items-center justify-center border-2 border-dashed cursor-pointer">
 							{imageName ? (
 								<img src={imageName} className="object-cover max-h-[40rem]" alt="" />
 							) : (
@@ -77,7 +77,7 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>
-					<button onClick={() => nextStage()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => nextStage()} className={`bg-MainColor px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Kontynuuj
 					</button>
 				</div>

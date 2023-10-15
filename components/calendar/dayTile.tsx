@@ -12,12 +12,12 @@ export default function DayTile(props: { date: Date; differentMonth: boolean }) 
 	else
 		return (
 			<div
-				className={`day-tile ${props.differentMonth ? "bg-MediumGray/10" : "bg-LightPurple/30"} ${
-					isToday(props.date) ? "border-[1.5px] md:border-2 scale-105 md:scale-110 border-MainPurple/50" : ""
+				className={`day-tile ${props.differentMonth ? "bg-MediumGray/10" : "bg-LightColor/30"} ${
+					isToday(props.date) ? "border-[1.5px] md:border-2 scale-105 md:scale-110 border-SecondColor/50" : ""
 				}`}
 			>
 				<div
-					className={`day-number ${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-LightPurple text-MainPurple"} ${
+					className={`day-number ${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-LightColor text-SecondColor"} ${
 						plusJakartaSansFont800.className
 					}`}
 				>

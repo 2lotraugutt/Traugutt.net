@@ -72,7 +72,7 @@ export default function CalendarTile() {
 						{differenceInCalendarDays(parse(event.date, "dd-MM-yyyy", new Date()), startOfToday()) == 0
 							? "Dzisiaj odbędzie się"
 							: "Za " + differenceInCalendarDays(parse(event.date, "dd-MM-yyyy", new Date()), startOfToday()) + " dni odbędzię się"}
-						<span className="text-sm 2xl:text-base 4xl:text-xl 3xl:text-lg text-MainGreen truncate">{event.name}</span>
+						<span className="text-sm 2xl:text-base 4xl:text-xl 3xl:text-lg text-MainColor truncate">{event.name}</span>
 					</p>
 				</div>
 			)}

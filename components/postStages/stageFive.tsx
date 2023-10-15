@@ -35,12 +35,12 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 				<div className="flex flex-col gap-y-3 max-w-xl">
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Galeria zdjęć</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
-						<b className={`text-MainPurple ${poppingsFont600.className}`}>To już ostatni krok! </b>
+						<b className={`text-SecondColor ${poppingsFont600.className}`}>To już ostatni krok! </b>
 						Dodaj tyle zdjęć ile chcesz. Tylko nie przesadź, bo zrobi się bałagan i nikt na nie nie spojrzy. <br /> (Zalecamy dodawanie od około 4 do 9 zdjęć.)
 					</p>
 				</div>
 
-				<div className="w-1/2 aspect-[3/2] overflow-y-auto p-3 border-2 border-dotted border-MainGreen rounded-lg">
+				<div className="w-1/2 aspect-[3/2] overflow-y-auto p-3 border-2 border-dotted border-MainColor rounded-lg">
 					<div className="grid grid-cols-3 gap-5 h-fit">
 						<label>
 							<input
@@ -59,7 +59,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 								}}
 							/>
 							<div
-								className={`w-full aspect-[25/16] rounded border-MainPurple flex items-center justify-center border-2 border-dashed cursor-pointer ${poppingsFont600.className}`}
+								className={`w-full aspect-[25/16] rounded border-SecondColor flex items-center justify-center border-2 border-dashed cursor-pointer ${poppingsFont600.className}`}
 							>
 								Dodaj zdjęcie
 							</div>
@@ -92,7 +92,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>
-					<button onClick={() => props.up()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => props.up()} className={`bg-MainColor px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Kontynuuj
 					</button>
 				</div>

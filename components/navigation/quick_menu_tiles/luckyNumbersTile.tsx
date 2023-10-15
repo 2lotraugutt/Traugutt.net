@@ -33,7 +33,7 @@ export default function LuckyNumbersTile() {
 
 	if (numbers.length != 0)
 		return (
-			<Link href={"/calendar"} className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainGreen py-2 xs:py-2 px-3 flex flex-col items-center">
+			<Link href={"/calendar"} className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainColor py-2 xs:py-2 px-3 flex flex-col items-center">
 				{isSaturday(today) || isSunday(today) ? (
 					<p
 						className={`text-white text-xs 2xs:text-sm xl:text-xl md:text-lg lg:text-left text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl md:leading-7 ${poppingsFont800.className}`}
@@ -67,8 +67,8 @@ export default function LuckyNumbersTile() {
 					{numbers.map((number, i) => (
 						<div
 							key={i}
-							className={`w-[21px] xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:p-2 2xl:w-10 3xl:w-11 4xl:p-2 bg-LightPurple rounded-full p-0.75 ${
-								number.date == date ? "bg-MainPurple text-white" : ""
+							className={`w-[21px] xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:p-2 2xl:w-10 3xl:w-11 4xl:p-2 bg-LightColor rounded-full p-0.75 ${
+								number.date == date ? "bg-SecondColor text-white" : ""
 							}`}
 						>
 							{number.number}
@@ -79,7 +79,7 @@ export default function LuckyNumbersTile() {
 		);
 	else
 		return (
-			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainGreen py-2 xs:py-2 px-3 flex flex-col items-center">
+			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainColor py-2 xs:py-2 px-3 flex flex-col items-center">
 				<div className="animate-pulse flex gap-1 flex-col sm:gap-4 2xl:gap-7 2xs:flex-row lg:gap-4 2xs:gap-x-2 items-center md:gap-2 justify-between">
 					<div className={`rounded-full 3xl:w-[100px] 4xl:w-[100px] aspect-square lg:w-[60px] 2xl:w-[80px] bg-white xs:w-14 sm:w-[68px] md:w-10 w-[36px]`}></div>
 					<div className="flex flex-col gap-y-1 items-center lg:items-start md:items-center 2xs:items-start md:gap-y-2">
@@ -92,7 +92,7 @@ export default function LuckyNumbersTile() {
 					className={`animate-pulse bg-white w-fit 2xs:flex lg:gap-x-1.5 xl:gap-x-3 3xl:gap-x-4 hidden md:hidden lg:flex gap-x-1 xs:gap-x-2 2xl:p-1.5 rounded-full p-1`}
 				>
 					{[...Array(5)].map((number, i) => (
-						<div key={i} className="w-[21px] aspect-square xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:w-11 3xl:w-11 bg-LightPurple rounded-full"></div>
+						<div key={i} className="w-[21px] aspect-square xs:w-[30px] lg:w-7 xl:w-9 sm:w-10 sm:p-1.5 2xl:w-11 3xl:w-11 bg-LightColor rounded-full"></div>
 					))}
 				</div>
 			</div>

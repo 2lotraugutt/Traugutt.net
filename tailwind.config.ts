@@ -8,16 +8,16 @@ const config: Config = {
 				PurplePattern: "url('/PurplePattern.svg')",
 			},
 			colors: {
-				MainGreen: "#44D375",
-				MainPurple: "#6835F1",
+				MainColor: "#6F9CEB",
+				SecondColor: "#306BAC",
+				LightColor: "#e0ecff",
+				DarkColor: "#141B41",
+
 				MainDarkGray: "#222222",
 				MainRed: "#f13535",
 				MediumGray: "#D9D9D9",
-				LightGreen: "#E2FFEC",
-				LightPurple: "#E8E1FD",
 				LightGray: "#D9D9D9",
 				LightRed: "#ffe2e2",
-				DarkGreen: "#1fd15e",
 			},
 			padding: {
 				"50px": "50px",

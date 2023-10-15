@@ -39,7 +39,7 @@ export default function EditPostStageZero(props: { up: Function }) {
 					<button onClick={() => router.back()} className={`bg-MainDarkGray w-fit px-8 py-3 text-sm text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Anuluj
 					</button>
-					<button onClick={() => props.up()} className={`bg-MainGreen w-fit px-8 py-3 text-sm text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => props.up()} className={`bg-MainColor w-fit px-8 py-3 text-sm text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Do roboty!
 					</button>
 				</div>

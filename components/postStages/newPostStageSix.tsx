@@ -55,7 +55,7 @@ export default function NewPostStageSix(props: { down: Function; upload: Functio
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						Nareszcie nastał ten wyczekiwany moment.
 						<br />
-						<b className={`text-MainPurple ${poppingsFont600.className}`}>Możesz opublikować swój post!</b> To najwaniejszy element jego podrózy. Ten, na którego
+						<b className={`text-SecondColor ${poppingsFont600.className}`}>Możesz opublikować swój post!</b> To najwaniejszy element jego podrózy. Ten, na którego
 						czekaliśmy tak bardzo!
 					</p>
 				</div>
@@ -63,14 +63,14 @@ export default function NewPostStageSix(props: { down: Function; upload: Functio
 				<button
 					disabled={props.uploaded}
 					onClick={() => props.upload()}
-					className={`bg-MainGreen text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					className={`bg-MainColor text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 				>
 					{props.uploaded ? "Opublikowano!" : "Opublikuj!"}
 				</button>
 
 				<p className={`text-center -mt-10 px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
 					Zostaniesz przekierowany za {seconds} sekund.
-					<Link href={"/"} className={`hover:text-MainPurple ${plusJakartaSans600.className}`}>
+					<Link href={"/"} className={`hover:text-SecondColor ${plusJakartaSans600.className}`}>
 						Przekieruj mnie.
 					</Link>
 				</p>

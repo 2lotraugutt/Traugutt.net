@@ -62,7 +62,7 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						Nareszcie nastał ten wyczekiwany moment.
 						<br />
-						<b className={`text-MainPurple ${poppingsFont600.className}`}>Możesz opublikować wszystkie zmiany w twoim poście.</b> Cieszymy się, że dopracowałeś
+						<b className={`text-SecondColor ${poppingsFont600.className}`}>Możesz opublikować wszystkie zmiany w twoim poście.</b> Cieszymy się, że dopracowałeś
 						swoje dzieło!
 					</p>
 				</div>
@@ -70,14 +70,14 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 				<button
 					disabled={props.uploaded}
 					onClick={() => props.upload()}
-					className={`bg-MainGreen text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					className={`bg-MainColor text-2xl px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 				>
 					{props.uploaded ? "Opublikowano!" : "Opublikuj!"}
 				</button>
 
 				<p className={`text-center -mt-10 px-5 text-sm ${props.uploaded ? "" : "hidden"} ${poppingsFont400.className}`}>
 					Zostaniesz przekierowany za {seconds} sekund.{" "}
-					<Link href={"/"} className={`hover:text-MainPurple ${plusJakartaSans600.className}`}>
+					<Link href={"/"} className={`hover:text-SecondColor ${plusJakartaSans600.className}`}>
 						Przekieruj mnie.
 					</Link>
 				</p>

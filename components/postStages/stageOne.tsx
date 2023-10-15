@@ -54,7 +54,7 @@ export default function StageOne(props: { down: Function; up: Function; setTitle
 						type="text"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
-						className={`border-2 border-MainGreen w-full px-7 text-xl py-3.5 outline-none rounded-4xl ${poppingsFont600.className}`}
+						className={`border-2 border-MainColor w-full px-7 text-xl py-3.5 outline-none rounded-4xl ${poppingsFont600.className}`}
 					/>
 					<p className={`text-MainRed text-center h-4 mt-1 ${poppingsFont600.className}`}>{empty ? "Uzupełnij tytuj!" : ""} </p>
 				</div>
@@ -63,7 +63,7 @@ export default function StageOne(props: { down: Function; up: Function; setTitle
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>
-					<button onClick={() => nextStage()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => nextStage()} className={`bg-MainColor px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Kontynuuj
 					</button>
 				</div>

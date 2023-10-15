@@ -38,7 +38,7 @@ export default function Page() {
 
 					<button
 						onClick={() => signOut({ callbackUrl: "/" })}
-						className={`flex items-center sm:text-xl text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainGreen px-10 py-2.5 ${poppingsFont700.className}`}
+						className={`flex items-center sm:text-xl text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainColor px-10 py-2.5 ${poppingsFont700.className}`}
 					>
 						Wyloguj się
 					</button>

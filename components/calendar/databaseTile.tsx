@@ -14,18 +14,18 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents }) {
 	else
 		return (
 			<div
-				className={`day-tile md:!justify-between ${props.day.freeDay ? "md:border-[1px] !border-DarkGreen bg-LightGreen/60" : "bg-LightPurple/20"} ${
-					isToday(date) ? "!border-[1.5px] md:!border-2 scale-105 md:scale-110 border-MainPurple/50" : ""
+				className={`day-tile md:!justify-between ${props.day.freeDay ? "md:border-[1px] !border-[#1fd15d] bg-[#E2FFEC]/60" : "bg-LightColor/20"} ${
+					isToday(date) ? "!border-[1.5px] md:!border-2 scale-105 md:scale-110 border-SecondColor/50" : ""
 				}`}
 			>
 				<div className="flex justify-center sm:justify-between items-center w-full">
 					<div
-						className={`day-number ${plusJakartaSansFont800.className} ${props.day.freeDay ? "bg-MainGreen/20 text-DarkGreen" : "bg-LightPurple text-MainPurple"}`}
+						className={`day-number ${plusJakartaSansFont800.className} ${props.day.freeDay ? "bg-[#44D375]/20 text-[#1fd15e]" : "bg-LightColor text-SecondColor"}`}
 					>
 						{props.day.day}
 					</div>
 					<div
-						className={`outline-[3px] lg:outline-4 outline-LightPurple me-0.5 lg:me-1 outline bg-LightPurple/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
+						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
 							plusJakartaSansFont800.className
 						} ${props.day.freeDay || !props.day.number ? "hidden" : "hidden sm:block"}`}
 					>

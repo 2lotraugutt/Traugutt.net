@@ -57,7 +57,7 @@ export default function FreeDaysCalendar(props: { year: number }) {
 										<button
 											onClick={() => toggleDay(props.year, d + 1, m, filteredDay ? !filteredDay.freeDay : true)}
 											key={firstDayOfMonth + d}
-											className={`w-7 h-7 rounded-lg ${filteredDay?.freeDay ? "bg-MainGreen/70" : "bg-LightGray/60"} ${
+											className={`w-7 h-7 rounded-lg ${filteredDay?.freeDay ? "bg-MainColor/70" : "bg-LightGray/60"} ${
 												day == 6 || day == 7 ? "bg-MainDarkGray/30" : ""
 											}`}
 										>

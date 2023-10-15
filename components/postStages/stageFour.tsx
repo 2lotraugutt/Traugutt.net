@@ -33,13 +33,13 @@ export default function StageFour(props: { down: Function; up: Function; content
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Sprawdź treść</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						Teraz się skup! Sprawdź czy wszystko się zgadza. Przeczytaj wszystko jeszcze raz i zobacz czy ładnie wygląda. Został nam już tylko
-						<b className={`text-MainPurple ${poppingsFont600.className}`}> jeden krok</b> i wszystko będzie gotowe.
+						<b className={`text-SecondColor ${poppingsFont600.className}`}> jeden krok</b> i wszystko będzie gotowe.
 					</p>
 				</div>
 
 				<div
 					id="markdown-container"
-					className={`border-2 border-MainGreen text-sm w-1/2 overflow-y-auto aspect-[3/2] p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
+					className={`border-2 border-MainColor text-sm w-1/2 overflow-y-auto aspect-[3/2] p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
 				>
 					{markdownToHTML(props.content)}
 				</div>
@@ -48,7 +48,7 @@ export default function StageFour(props: { down: Function; up: Function; content
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>
-					<button onClick={() => props.up()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => props.up()} className={`bg-MainColor px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Kontynuuj
 					</button>
 				</div>

@@ -25,11 +25,11 @@ export default function Footer() {
 			>
 				<p>tel. 34-361-25-68</p>
 				<div>
-					<Link href={"mailto:lo2@edukacja.czestochowa.pl"} className="hover:text-MainGreen transition">
+					<Link href={"mailto:lo2@edukacja.czestochowa.pl"} className="hover:text-MainColor transition">
 						lo2@edukacja.czestochowa.pl
 					</Link>
 					<br />
-					<Link href={"mailto:dyrektor-2lo@wp.pl"} className="hover:text-MainGreen transition">
+					<Link href={"mailto:dyrektor-2lo@wp.pl"} className="hover:text-MainColor transition">
 						dyrektor-2lo@wp.pl
 					</Link>
 				</div>
@@ -39,19 +39,19 @@ export default function Footer() {
 				<Link href={"https://www.facebook.com/trauguttnet"}>
 					<FontAwesomeIcon
 						icon={faFacebook}
-						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
+						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainColor"
 					/>
 				</Link>
 				<Link href={"https://www.instagram.com/2lotraugutt/"}>
 					<FontAwesomeIcon
 						icon={faInstagram}
-						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
+						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainColor"
 					/>
 				</Link>
 				<Link href={"https://www.tiktok.com/@traugutt_czestochowa"}>
 					<FontAwesomeIcon
 						icon={faTiktok}
-						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainGreen"
+						className="h-5 lg:w-7 w-5 lg:h-7 p-2.5 lg:p-3 2xl:p-3.5 2xl:w-10 2xl:h-10 border-2 rounded-full hover:border-4 transition-all duration-300 hover:border-MainColor"
 					/>
 				</Link>
 			</div>

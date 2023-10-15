@@ -79,7 +79,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 					<span className="me-5">{props.postData.title}</span>
 					<span
 						className={`px-5 hidden md:inline-block rounded-3xl text-sm lg:py-1 lg:px-7 flex-none text-center h-fit py-0.5 text-white ${
-							status ? "bg-MainGreen" : "bg-MainPurple"
+							status ? "bg-MainColor" : "bg-SecondColor"
 						} ${plusJakartaSansFont700.className}`}
 					>
 						{status ? "Publiczy" : "Nie publiczny"}
@@ -99,7 +99,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Publiczny: </p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${status ? "bg-MainGreen" : "bg-MainPurple"}`} /> {status ? "Opublikowany" : "Nie opublikowany"}
+						<div className={`w-2 h-2 rounded-full ${status ? "bg-MainColor" : "bg-SecondColor"}`} /> {status ? "Opublikowany" : "Nie opublikowany"}
 					</div>
 				</div>
 

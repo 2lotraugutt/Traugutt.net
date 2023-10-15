@@ -36,7 +36,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 	return (
 		<div className={`fixed z-40 top-0 h-screen w-full 2xs:w-96 duration-500 ease-out transition-all right-0 p-2 ${props.visible ? "translate-x-0" : "translate-x-full"}`}>
-			<div className="w-full gap-y-5 h-full flex sm:ps-7 sm:pe-8 sm:py-6 ps-6 pe-7 py-5 flex-col bg-MainPurple overflow-y-auto rounded-l-2xl rounded-r-4xl">
+			<div className="w-full gap-y-5 h-full flex sm:ps-7 sm:pe-8 sm:py-6 ps-6 pe-7 py-5 flex-col bg-SecondColor overflow-y-auto rounded-l-2xl rounded-r-4xl">
 				{userSession ? (
 					<>
 						<div className="flex items-center gap-x-2.5 justify-center sm:gap-x-4 relative">
@@ -62,7 +62,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 							</div>
 
 							<div
-								className={`flex flex-col absolute w-full border-2 border-MainDarkGray transition-all duration-1000 border-dotted gap-y-1 bg-MainPurple rounded-2xl p-3 top-full left-0 shadow-xl mt-3 ${
+								className={`flex flex-col absolute w-full border-2 border-MainDarkGray transition-all duration-1000 border-dotted gap-y-1 bg-SecondColor rounded-2xl p-3 top-full left-0 shadow-xl mt-3 ${
 									accountSettings ? "" : "hidden"
 								}`}
 							>
@@ -91,7 +91,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 								</Link>
 							</div>
 
-							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-3 h-3 sm:w-5 sm:h-5 text-MainPurple cursor-pointer bg-white rounded-full p-1 sm:p-2" />
+							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-3 h-3 sm:w-5 sm:h-5 text-SecondColor cursor-pointer bg-white rounded-full p-1 sm:p-2" />
 						</div>
 
 						<div className="flex flex-col gap-y-1">
@@ -123,10 +123,10 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 					<>
 						<div className="flex items-center gap-x-4">
 							<button onClick={() => signIn()} className="flex grow text-left items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-2xl -ms-3 py-2 px-3">
-								<FontAwesomeIcon icon={faUser} className="border-2 bg-white text-MainGreen p-3 aspect-square border-white/30 rounded-xl w-5 h-5" />
+								<FontAwesomeIcon icon={faUser} className="border-2 bg-white text-MainColor p-3 aspect-square border-white/30 rounded-xl w-5 h-5" />
 								<div className={`text-white grow xs:text-lg leading-5 ${poppingsFont700.className}`}>Zaloguj się</div>
 							</button>
-							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-5 h-5 text-MainPurple cursor-pointer bg-white rounded-full p-2" />
+							<FontAwesomeIcon icon={faMagnifyingGlass} className="w-5 h-5 text-SecondColor cursor-pointer bg-white rounded-full p-2" />
 						</div>
 
 						<div className="flex flex-col gap-y-1 sm:hidden">
@@ -138,7 +138,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 					</>
 				)}
 
-				<div className="h-1 bg-[#9471F3]"></div>
+				<div className="h-1 bg-DarkColor/40"></div>
 			</div>
 		</div>
 	);

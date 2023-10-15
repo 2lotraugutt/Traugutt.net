@@ -40,13 +40,13 @@ export default function StageThree(props: { down: Function; up: Function; setCon
 					<h1 className={`text-6xl text-center ${poppingsFont700.className}`}>Napisz posta</h1>
 					<p className={`text-center px-5 text-lg ${poppingsFont400.className}`}>
 						Przyszedł czas na najważniejsze! To ten moment, na który czekaliśmy! Czas się rozpisać, napisać treść twojego postu.
-						<b className={`text-MainPurple ${poppingsFont600.className}`}> Do roboty!</b>
+						<b className={`text-SecondColor ${poppingsFont600.className}`}> Do roboty!</b>
 					</p>
 				</div>
 
 				<textarea
 					value={content}
-					className={`border-2 border-MainGreen text-sm w-1/2 aspect-[3/2] p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
+					className={`border-2 border-MainColor text-sm w-1/2 aspect-[3/2] p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
 					onChange={(e) => setContent(e.target.value)}
 				/>
 
@@ -54,7 +54,7 @@ export default function StageThree(props: { down: Function; up: Function; setCon
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Powrót
 					</button>
-					<button onClick={() => nextStage()} className={`bg-MainGreen px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
+					<button onClick={() => nextStage()} className={`bg-MainColor px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>
 						Kontynuuj
 					</button>
 				</div>
