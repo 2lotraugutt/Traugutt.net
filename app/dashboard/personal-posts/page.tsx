@@ -50,7 +50,7 @@ export default function Page() {
 			<div className="dashboard-page">
 				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Twoje posty</h1>
 
-				{posts.length != 0 ? (
+				{posts.length != 0 && (
 					<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 						{posts.map((postData: PostDataTypeWithAuthorAndPublisher) => (
 							<DashboardPostTile postData={postData} key={postData.id} refetchPosts={refetchPosts} />
@@ -64,8 +64,6 @@ export default function Page() {
 							Załaduj więcej
 						</button>
 					</div>
-				) : (
-					<></>
 				)}
 			</div>
 		);

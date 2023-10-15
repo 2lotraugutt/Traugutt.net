@@ -61,9 +61,7 @@ export default function Page({ params }: { params: { id: string } }) {
 					<PostGallery post={post} />
 				</>
 			) : (
-				<>
-					<PostSkeleton />
-				</>
+				<PostSkeleton />
 			)}
 
 			<div className="lg:mx-12 mx-3 xs:mx-7 2xs:mx-5 sm:mx-10 md:mx-5 4xl:mx-0">
