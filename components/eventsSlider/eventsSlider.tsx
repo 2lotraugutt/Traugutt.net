@@ -75,13 +75,15 @@ export default function EventsSlider() {
 										onClick={() => setCount((old) => old + 1)}
 										className={`${
 											events.length < count * 10 ? "hidden" : ""
-										} flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-7 gap-x-5`}
+										} flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-3.5 lg:p-7 gap-x-5`}
 									>
-										<p className={`text-2xl text-SecondColor bg-LightColor rounded-full p-3.5 w-[60px] text-center ${poppingsFont700.className}`}>
+										<p
+											className={`w-[48px] sm:w-[52px] text-lg sm:text-xl lg:text-2xl text-SecondColor bg-LightColor rounded-full p-2.5 sm:p-3 lg:p-3.5 lg:w-[60px] text-center ${poppingsFont700.className}`}
+										>
 											<FontAwesomeIcon icon={faEllipsis} />
 										</p>
 
-										<p className={`whitespace-nowrap text-lg ${poppingsFont700.className}`}>Zobacz więcej</p>
+										<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg ${poppingsFont700.className}`}>Zobacz więcej</p>
 									</button>
 								)}
 							</div>
