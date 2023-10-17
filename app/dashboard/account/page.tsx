@@ -68,23 +68,27 @@ export default function Page() {
 			<div className="dashboard-page  max-w-3xl lg:max-w-5xl mx-auto">
 				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Konto</h1>
 
-				<div className="flex items-center gap-x-7">
+				<div className="flex flex-col lg:flex-row gap-y-5 items-center gap-x-7">
 					<Image src={accountData.image} className="h-20 w-20 rounded-full" height={96} width={96} alt="Account image" />
 
-					<input
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						className={`border-2 rounded-lg px-5 py-1.5 bg-LightGray/20 outline-none text-lg sm:text-xl xl:text-2xl ${poppingsFont700.className}`}
-					/>
+					<div className="flex gap-x-5 items-center">
+						<input
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							className={`border-2 rounded-lg px-5 py-1.5 bg-LightGray/20 outline-none text-sm xs:text-lg sm:text-xl xl:text-2xl ${poppingsFont700.className}`}
+						/>
 
-					<FontAwesomeIcon
-						icon={faCheck}
-						className={`text-MainDarkGray/80 h-7 duration-200 opacity-100 hover:text-MainColor transition-all ${name == accountData.name && "!opacity-0"}`}
-						onClick={() => editAcountData()}
-					/>
+						<FontAwesomeIcon
+							icon={faCheck}
+							className={`text-MainDarkGray/80 h-5 lg:h-7 duration-200 opacity-100 hover:text-MainColor transition-all ${
+								name == accountData.name && "!opacity-0"
+							}`}
+							onClick={() => editAcountData()}
+						/>
+					</div>
 				</div>
 
-				<div className="flex flex-col gap-y-10">
+				<div className="flex flex-col gap-y-6 sm:gap-y-8 lg:gap-y-10">
 					<div className="flex flex-col">
 						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Zweryfikowany:</p>
 						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.verified ? "Tak" : "Nie"}</p>
