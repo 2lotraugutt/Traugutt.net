@@ -41,6 +41,28 @@ export default function Page() {
 		setAccountData(returnedData);
 	}
 
+	async function editAcountData() {
+		try {
+			const data = new FormData();
+
+			data.set("name", name);
+
+			setAccountData(undefined);
+
+			await (
+				await fetch(`/api/dashboard/account`, {
+					body: data,
+					method: "POST",
+				})
+			).json();
+
+			fetchAcountData();
+		} catch (e: any) {
+			// Handle errors here
+			console.error(e);
+		}
+	}
+
 	if (accountData)
 		return (
 			<div className="dashboard-page  max-w-3xl lg:max-w-5xl mx-auto">
@@ -58,7 +80,7 @@ export default function Page() {
 					<FontAwesomeIcon
 						icon={faCheck}
 						className={`text-MainDarkGray/80 h-7 duration-200 opacity-100 hover:text-MainColor transition-all ${name == accountData.name && "!opacity-0"}`}
-						onClick={() => {}}
+						onClick={() => editAcountData()}
 					/>
 				</div>
 
