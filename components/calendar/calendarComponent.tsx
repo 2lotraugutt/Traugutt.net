@@ -2,10 +2,13 @@ import { endOfMonth, getDate, getDaysInMonth, getISODay, startOfMonth } from "da
 import DayTile from "./dayTile";
 import DatabaseTile from "./databaseTile";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function CalendarComponent(props: { today: Date; month: number; year: number }) {
 	const [days, setDays] = useState<DayDataTypeWithEvents[]>([]);
 	const [fetched, setFetched] = useState<boolean>(false);
+
+	const [expandedDay, setExpandedDay] = useState<string>();
 
 	const monthBegining = startOfMonth(props.today);
 	const monthEnding = endOfMonth(props.today);
@@ -26,33 +29,56 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 		}
 	}, [props.month, props.year]);
 
+	function setExpDay(day: string) {
+		setExpandedDay(undefined);
+		// setExpandedDay(day);
+	}
+
 	if (fetched)
 		return (
-			<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
-				{[...Array(firstDayOfMonth)].map((e, i) => {
-					const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
-					const date = new Date(props.year, props.month - 1, dayNumber);
+			<>
+				<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
+					{[...Array(firstDayOfMonth)].map((e, i) => {
+						const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
+						const date = new Date(props.year, props.month - 1, dayNumber);
 
-					return <DayTile differentMonth={true} date={date} key={date.toString()} />;
-				})}
-				{[...Array(monthLenght)].map((e, i) => {
-					const dayNumber = i + 1;
-					const filteredDays = days.filter((day) => day.day == dayNumber);
-					const day = filteredDays.length == 0 ? undefined : filteredDays[0];
+						return <DayTile differentMonth={true} date={date} key={date.toString()} setExpDay={setExpDay} />;
+					})}
+					{[...Array(monthLenght)].map((e, i) => {
+						const dayNumber = i + 1;
+						const filteredDays = days.filter((day) => day.day == dayNumber);
+						const day = filteredDays.length == 0 ? undefined : filteredDays[0];
 
-					if (day) return <DatabaseTile day={day} key={day.date} />;
-					else {
-						const date = new Date(props.year, props.month, dayNumber);
-						return <DayTile differentMonth={false} date={date} key={date.toString()} />;
-					}
-				})}
-				{[...Array(nextMonthDaysCount)].map((e, i) => {
-					const dayNumber = i + 1;
-					const date = new Date(props.year, props.month + 1, dayNumber);
+						if (day) return <DatabaseTile day={day} key={day.date} setExpDay={setExpDay} />;
+						else {
+							const date = new Date(props.year, props.month, dayNumber);
+							return <DayTile setExpDay={setExpDay} differentMonth={false} date={date} key={date.toString()} />;
+						}
+					})}
+					{[...Array(nextMonthDaysCount)].map((e, i) => {
+						const dayNumber = i + 1;
+						const date = new Date(props.year, props.month + 1, dayNumber);
 
-					return <DayTile differentMonth={true} date={date} key={date.toString()} />;
-				})}
-			</div>
+						return <DayTile differentMonth={true} date={date} key={date.toString()} setExpDay={setExpDay} />;
+					})}
+				</div>
+
+				<AnimatePresence>
+					{expandedDay && (
+						<motion.div className="flex items-center justify-center w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-20">
+							<motion.div
+								layoutId={expandedDay}
+								className={`flex flex-col gap-y-2 xs:gap-y-3 md:gap-y-5 h-20 w-20 lg:gap-y-7 max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-lg items-start fixed bg-white rounded-3xl z-30 p-3 xs:p-5 sm:p-6 xs:gap-5 md:p-10`}
+								key={parseInt(expandedDay)}
+							>
+								fdss
+							</motion.div>
+
+							<div className="w-screen h-screen fixed top-0 left-0 z-20 bg-Gray/30" onClick={() => setExpandedDay(undefined)}></div>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</>
 		);
 	else
 		return (
