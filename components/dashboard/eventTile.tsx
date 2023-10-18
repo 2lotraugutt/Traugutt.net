@@ -43,25 +43,20 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 	}
 
 	async function deleteEvent() {
-		try {
-			const data = new FormData();
+		const data = new FormData();
 
-			data.set("id", props.eventData.id);
+		data.set("id", props.eventData.id);
 
-			setDeleteButtonText("Usuwanie wydarzenia...");
-			const res = await fetch("/api/dashboard/calendar/events/", {
-				method: "DELETE",
-				body: data,
-			});
+		setDeleteButtonText("Usuwanie wydarzenia...");
+		const res = await fetch("/api/dashboard/calendar/events/", {
+			method: "DELETE",
+			body: data,
+		});
 
-			if (!res.ok) throw new Error(await res.text());
-			if (res.ok) {
-				setDeleteButtonText("Usuń wydarzenie");
-				props.refetchEvents();
-			}
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
+		if (!res.ok) throw new Error(await res.text());
+		if (res.ok) {
+			setDeleteButtonText("Usuń wydarzenie");
+			props.refetchEvents();
 		}
 	}
 

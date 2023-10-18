@@ -27,27 +27,22 @@ export default function Page() {
 		else setStage((oldStage) => oldStage - 1);
 	}
 	async function upload() {
-		try {
-			const data = new FormData();
-			data.set("title", title);
-			data.set("image", image);
-			data.set("content", content);
-			for (const file of gallery) {
-				data.append("gallery[]", file.image as any, file.image.name);
-			}
-
-			const res = await fetch("/api/dashboard/posts/post", {
-				method: "PUT",
-				body: data,
-			});
-			// handle the error
-			if (!res.ok) throw new Error(await res.text());
-
-			if (res.ok) setUploaded(true);
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
+		const data = new FormData();
+		data.set("title", title);
+		data.set("image", image);
+		data.set("content", content);
+		for (const file of gallery) {
+			data.append("gallery[]", file.image as any, file.image.name);
 		}
+
+		const res = await fetch("/api/dashboard/posts/post", {
+			method: "PUT",
+			body: data,
+		});
+		// handle the error
+		if (!res.ok) throw new Error(await res.text());
+
+		if (res.ok) setUploaded(true);
 	}
 
 	if (stage == 0) return <NewPostStageZero up={stageUp} />;

@@ -23,26 +23,21 @@ export default function Page() {
 	const router = useRouter();
 
 	async function upload() {
-		try {
-			const data = new FormData();
-			data.set("title", newTitle);
-			data.set("content", newContent);
+		const data = new FormData();
+		data.set("title", newTitle);
+		data.set("content", newContent);
 
-			const res = await fetch("/api/dashboard/notifications/", {
-				method: "POST",
-				body: data,
-			});
+		const res = await fetch("/api/dashboard/notifications/", {
+			method: "POST",
+			body: data,
+		});
 
-			if (!res.ok) throw new Error(await res.text());
+		if (!res.ok) throw new Error(await res.text());
 
-			if (res.ok) {
-				setNewTitle("");
-				setNewContent("");
-				refetchNotifications();
-			}
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
+		if (res.ok) {
+			setNewTitle("");
+			setNewContent("");
+			refetchNotifications();
 		}
 	}
 

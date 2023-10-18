@@ -42,25 +42,20 @@ export default function Page() {
 	}
 
 	async function editAcountData() {
-		try {
-			const data = new FormData();
+		const data = new FormData();
 
-			data.set("name", name);
+		data.set("name", name);
 
-			setAccountData(undefined);
+		setAccountData(undefined);
 
-			await (
-				await fetch(`/api/dashboard/account`, {
-					body: data,
-					method: "POST",
-				})
-			).json();
+		await(
+			await fetch(`/api/dashboard/account`, {
+				body: data,
+				method: "POST",
+			})
+		).json();
 
-			fetchAcountData();
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
-		}
+		fetchAcountData();
 	}
 
 	if (accountData)

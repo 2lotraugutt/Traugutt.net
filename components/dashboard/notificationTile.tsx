@@ -48,27 +48,22 @@ export default function NotificationTile(props: { notificationData: Notification
 	}
 
 	async function update() {
-		try {
-			setEditButtonText("Edytowanie...");
-			const data = new FormData();
-			data.set("id", props.notificationData.id);
-			data.set("title", title);
-			data.set("content", content);
+		setEditButtonText("Edytowanie...");
+		const data = new FormData();
+		data.set("id", props.notificationData.id);
+		data.set("title", title);
+		data.set("content", content);
 
-			const res = await fetch("/api/dashboard/notifications/", {
-				method: "PUT",
-				body: data,
-			});
+		const res = await fetch("/api/dashboard/notifications/", {
+			method: "PUT",
+			body: data,
+		});
 
-			if (!res.ok) throw new Error(await res.text());
+		if (!res.ok) throw new Error(await res.text());
 
-			if (res.ok) {
-				setIsEditing(false);
-				setEditButtonText("Edytuj wiadomość");
-			}
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
+		if (res.ok) {
+			setIsEditing(false);
+			setEditButtonText("Edytuj wiadomość");
 		}
 	}
 

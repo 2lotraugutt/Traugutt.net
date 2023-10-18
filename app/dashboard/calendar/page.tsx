@@ -55,39 +55,34 @@ export default function Page() {
 	}, []);
 
 	async function upload() {
-		try {
-			const data = new FormData();
+		const data = new FormData();
 
-			data.set("name", newName);
-			data.set("description", newDescription);
-			data.set("date", newDate.slice(8, 10) + "-" + newDate.slice(5, 7) + "-" + newDate.slice(0, 4));
+		data.set("name", newName);
+		data.set("description", newDescription);
+		data.set("date", newDate.slice(8, 10) + "-" + newDate.slice(5, 7) + "-" + newDate.slice(0, 4));
 
-			let i = 0;
-			for (const bool of selectedTags) {
-				if (bool) {
-					data.append("tags[]", tags[i].id);
-				}
-				i++;
+		let i = 0;
+		for (const bool of selectedTags) {
+			if (bool) {
+				data.append("tags[]", tags[i].id);
 			}
+			i++;
+		}
 
-			setButtonText("Dodawanie wydarzenia...");
-			const res = await fetch("/api/dashboard/calendar/events/", {
-				method: "POST",
-				body: data,
-			});
+		setButtonText("Dodawanie wydarzenia...");
+		const res = await fetch("/api/dashboard/calendar/events/", {
+			method: "POST",
+			body: data,
+		});
 
-			if (!res.ok) throw new Error(await res.text());
-			if (res.ok) {
-				setSelectedTags(new Array(tags.length).fill(false));
-				setNewName("");
-				setNewDescription("");
-				setNewDate("");
-				setButtonText("Dodaj wydarzenia");
-				refetchEvents();
-			}
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
+		if (!res.ok) throw new Error(await res.text());
+		if (res.ok) {
+			setSelectedTags(new Array(tags.length).fill(false));
+			setNewName("");
+			setNewDescription("");
+			setNewDate("");
+			setButtonText("Dodaj wydarzenia");
+			refetchEvents();
 		}
 	}
 

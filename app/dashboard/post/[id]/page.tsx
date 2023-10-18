@@ -56,31 +56,26 @@ export default function Page({ params }: { params: { id: string } }) {
 		else setStage((oldStage) => oldStage - 1);
 	}
 	async function upload() {
-		try {
-			const data = new FormData();
-			data.set("id", id);
+		const data = new FormData();
+		data.set("id", id);
 
-			data.set("title", title);
-			data.set("image", image ?? "");
-			data.set("imageName", imageName);
-			data.set("content", content);
-			for (const file of gallery) {
-				data.append("gallery[]", file.image ?? "");
-				data.append("galleryNames[]", file.name as string);
-			}
-
-			const res = await fetch("/api/dashboard/posts/post", {
-				method: "POST",
-				body: data,
-			});
-			// handle the error
-			if (!res.ok) throw new Error(await res.text());
-
-			if (res.ok) setUploaded(true);
-		} catch (e: any) {
-			// Handle errors here
-			console.error(e);
+		data.set("title", title);
+		data.set("image", image ?? "");
+		data.set("imageName", imageName);
+		data.set("content", content);
+		for (const file of gallery) {
+			data.append("gallery[]", file.image ?? "");
+			data.append("galleryNames[]", file.name as string);
 		}
+
+		const res = await fetch("/api/dashboard/posts/post", {
+			method: "POST",
+			body: data,
+		});
+		// handle the error
+		if (!res.ok) throw new Error(await res.text());
+
+		if (res.ok) setUploaded(true);
 	}
 
 	if (stage == 0) return <EditPostStageZero up={stageUp} />;
