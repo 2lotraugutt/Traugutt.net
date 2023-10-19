@@ -17,9 +17,9 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents; setExp
 			<motion.div
 				onClick={() => props.setExpDay(props.day.date)}
 				layoutId={props.day.date}
-				className={`cursor-pointer day-tile md:!justify-between ${props.day.freeDay ? "md:border-[1px] !border-[#1fd15d] bg-[#E2FFEC]/60" : "bg-LightColor/20"} ${
-					isToday(date) ? "!border-[1.5px] md:!border-2 scale-105 md:scale-110 border-SecondColor/50" : ""
-				}`}
+				className={`cursor-pointer relative day-tile md:!justify-between ${
+					props.day.freeDay ? "md:border-[1px] !border-[#1fd15d] bg-[#E2FFEC]/60" : "bg-LightColor/20"
+				} ${isToday(date) ? "!border-[1.5px] md:!border-2 scale-105 md:scale-110 border-SecondColor/50" : ""}`}
 			>
 				<motion.div className="flex justify-center sm:justify-between items-center w-full">
 					<motion.div
@@ -37,6 +37,13 @@ export default function DatabaseTile(props: { day: DayDataTypeWithEvents; setExp
 				</motion.div>
 
 				<EventsContainer events={props.day.events} />
+
+				{props.day.events.length != 0 && (
+					<div className="flex absolute left-1/2 -translate-x-1/2 2xs:bottom-1 md:hidden xs:bottom-2 -bottom-1.5 items-center gap-x-1">
+						<motion.div className="h-1 w-1 xs:w-1.5 xs:h-1.5 sm:h-2 sm:w-2 rounded-full bg-MainColor"></motion.div>
+						<p className={`hidden sm:block text-xs ${plusJakartaSansFont800.className}`}>{props.day.events.length}</p>
+					</div>
+				)}
 			</motion.div>
 		);
 }
