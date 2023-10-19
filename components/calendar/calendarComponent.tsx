@@ -4,6 +4,8 @@ import DatabaseTile from "./databaseTile";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { zonedTimeToUtc } from "date-fns-tz";
+import ExpandingDay from "./expandingDay";
+
 
 export default function CalendarComponent(props: { today: Date; month: number; year: number }) {
 	const [days, setDays] = useState<DayDataTypeWithEvents[]>([]);
@@ -87,14 +89,7 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 				<AnimatePresence>
 					{expandedDay && expandedDayData && (
 						<motion.div className="flex items-center justify-center w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-20">
-							<motion.div
-								layoutId={expandedDay}
-								className={`flex flex-col gap-y-2 xs:gap-y-3 md:gap-y-5 h-20 w-20 lg:gap-y-7 max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-lg items-start fixed bg-white rounded-3xl z-30 p-3 xs:p-5 sm:p-6 xs:gap-5 md:p-10`}
-								key={parseInt(expandedDay)}
-							>
-								{expandedDayData.date}
-							</motion.div>
-
+							<ExpandingDay expandedDay={expandedDay} expandedDayData={expandedDayData} />
 							<div className="w-screen h-screen fixed top-0 left-0 z-20 bg-Gray/30" onClick={() => setExpandedDay(undefined)}></div>
 						</motion.div>
 					)}
