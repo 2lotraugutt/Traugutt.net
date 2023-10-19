@@ -19,5 +19,22 @@ export async function GET(request: NextRequest) {
 		},
 	});
 
+	if (topPosts.length != count) {
+		const post = await prisma.post.findMany({
+			take: count - topPosts.length,
+			orderBy: [
+				{
+					createdAt: "desc",
+				},
+			],
+			where: {
+				id: { notIn: topPosts.map((post) => post.id) },
+				published: true,
+			},
+		});
+
+		topPosts = [...topPosts, ...post];
+	}
+
 	return NextResponse.json(topPosts);
 }
