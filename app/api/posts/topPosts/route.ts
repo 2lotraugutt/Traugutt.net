@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 		},
 	});
 
-	if (topPosts.length != count) {
+	if (topPosts.length < count) {
 		const post = await prisma.post.findMany({
 			take: count - topPosts.length,
 			orderBy: [
