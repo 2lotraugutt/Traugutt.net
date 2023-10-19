@@ -40,7 +40,7 @@ export default function CalendarTile() {
 
 			setEvent(event[0]);
 		}
-	}, []);
+	}, [day, year, month]);
 
 	return (
 		<Link

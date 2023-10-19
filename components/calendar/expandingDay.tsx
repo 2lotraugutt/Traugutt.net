@@ -53,6 +53,7 @@ export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEv
 					<motion.div className="grid gap-2 grid-cols-1 2xl:grid-cols-2 w-full">
 						{props.expandedDayData.events.map((event) => (
 							<motion.div
+								key={event.id}
 								className={`w-full flex flex-col gap-y-1 md:gap-y-1.5 lg:gap-y-2 event-container transition-all duration-300 bg-LightColor py-2 px-3 md:px-4 md:py-3 xl:px-6 xl:py-2.5 text-white rounded-xl 2xl:rounded-2xl`}
 							>
 								<div className={`text-sm lg:text-base xl:text-lg 3xl:text-xl text-MainDarkGray ${poppingsFont500.className}`}>{event.name}</div>

@@ -45,7 +45,7 @@ export default function EventsSlider() {
 			setDates(Array.from(new Set(dates)));
 			setEvents(events);
 		}
-	}, [count]);
+	}, [count, day, month, year]);
 
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
