@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Poppins } from "next/font/google";
-import Sidebar from "./sidebar";
 import { useState } from "react";
+import Sidebar from "./sidebar";
 
 const poppingsFont700 = Poppins({
 	weight: "700",

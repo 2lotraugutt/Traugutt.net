@@ -1,19 +1,23 @@
 "use client";
 
-import { getSession } from "next-auth/react";
-import { Poppins } from "next/font/google";
+import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingLayout from "@/components/dashboard/loadingLayout";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+
+const plusJakartaSansFont700 = Plus_Jakarta_Sans({
+	weight: "700",
+	subsets: ["latin"],
+});
 
 const poppingsFont700 = Poppins({
 	weight: "700",
 	subsets: ["latin"],
 });
-
 const poppingsFont500 = Poppins({
 	weight: "500",
 	subsets: ["latin"],
@@ -48,7 +52,7 @@ export default function Page() {
 
 		setAccountData(undefined);
 
-		await(
+		await (
 			await fetch(`/api/dashboard/account`, {
 				body: data,
 				method: "POST",
@@ -97,6 +101,12 @@ export default function Page() {
 						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.role.name}</p>
 					</div>
 				</div>
+				<button onClick={() => signOut({ callbackUrl: "/" })} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					Wyloguj się
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faSignOut} />
+					</div>
+				</button>
 			</div>
 		);
 	else return <LoadingLayout />;

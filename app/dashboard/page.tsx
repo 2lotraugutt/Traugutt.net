@@ -30,7 +30,6 @@ export default async function Page() {
 	];
 
 	function returnVisibility(perms: string[]) {
-		console.log(perms);
 		for (let perm of perms) {
 			if (perm == "") {
 				return true;
