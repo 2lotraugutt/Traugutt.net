@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAddressBook, faAngleRight, faCalendar, faGears, faList, faNewspaper, faPeopleGroup, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faAddressBook, faAngleRight, faCalendar, faGears, faGift, faList, faNewspaper, faPeopleGroup, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 const poppingsFont700 = Poppins({
@@ -25,6 +25,7 @@ export default async function Page() {
 		{ name: "Posty", link: "/dashboard/posts", icon: faList, perm: ["managePosts", "publishPosts"] },
 		{ name: "Wiadomości", link: "/dashboard/notifications", icon: faNewspaper, perm: ["manageNotifications"] },
 		{ name: "Kalendarz", link: "/dashboard/calendar", icon: faCalendar, perm: ["manageCalendar", "manageEvents"] },
+		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar"] },
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
 	];
