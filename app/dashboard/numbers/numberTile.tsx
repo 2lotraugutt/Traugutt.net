@@ -1,19 +1,35 @@
 "use client";
 
-import { isWeekend } from "date-fns";
+import { getDate, getMonth, getYear, isWeekend } from "date-fns";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import DayTile from "./dayTile";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { AnimatePresence, motion } from "framer-motion";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
 	subsets: ["latin"],
 });
 
-export default function NumberTile(props: { day: number; number?: number; date: Date }) {
+export default function NumberTile(props: { day: number; number?: number; date: Date; reFetch: Function }) {
 	const [number, setNumber] = useState<number | string>("");
+
+	async function changeNumber() {
+		const data = new FormData();
+		data.set("day", getDate(props.date).toString());
+		data.set("year", getYear(props.date).toString());
+		data.set("month", getMonth(props.date).toString());
+		data.set("number", number.toString());
+
+		const res = await fetch("/api/dashboard/calendar/setNumber/", {
+			method: "PUT",
+			body: data,
+		});
+		props.reFetch();
+		setNumber("");
+	}
 
 	if (isWeekend(props.date)) {
 		return <DayTile day={props.day} isWeekend={true} />;
@@ -45,9 +61,21 @@ export default function NumberTile(props: { day: number; number?: number; date: 
 							else setNumber((old) => old);
 						}}
 					/>
-					<div className="flex cursor-pointer aspect-square items-center justify-center h-4 w-4 sm:w-5 sm:h-5 xs:w-6 xs:h-6 bg-DarkColor text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2.5 rounded-full hover:bg-LightColor hover:text-MainDarkGray">
-						<FontAwesomeIcon icon={faCheck} />
-					</div>
+					<AnimatePresence>
+						{number != "" && (
+							<motion.div
+								initial={{ scale: 0 }}
+								animate={{ scale: 1 }}
+								exit={{ scale: 0 }}
+								transition={{ duration: 0.15, type: "tween" }}
+								className={`flex aspect-square items-center justify-center h-4 w-4 sm:w-5 sm:h-5 xs:w-6 xs:h-6 bg-DarkColor text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2.5 rounded-full 
+							hover:bg-LightColor hover:text-MainDarkGray cursor-pointer
+						`}
+							>
+								<FontAwesomeIcon icon={faCheck} onClick={() => changeNumber()} />
+							</motion.div>
+						)}
+					</AnimatePresence>
 				</div>
 			</div>
 		);

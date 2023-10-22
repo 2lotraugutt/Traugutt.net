@@ -29,39 +29,45 @@ export default function NumbersCalendar(props: { today: Date; month: number; yea
 		}
 	}, [props.month, props.year]);
 
-	if (fetched)
-		return (
-			<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
-				{[...Array(firstDayOfMonth)].map((e, i) => {
-					const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
+async function reFetch() {
+	const numbers = await (await fetch(`/api/calendar/getNumbers?month=${props.month}&year=${props.year}`)).json();
 
-					return <DayTile isWeekend={false} day={dayNumber} key={dayNumber} />;
-				})}
-				{[...Array(monthLenght)].map((e, i) => {
-					const dayNumber = i + 1;
-					const filteredDays = days.filter((day) => parseInt(day.date.slice(0, 2)) == dayNumber);
-					const day = filteredDays.length == 0 ? undefined : filteredDays[0];
-					const date = new Date(props.year, props.month, dayNumber);
+	setNumbers(numbers);
+}
 
-					return <NumberTile day={dayNumber} key={i} number={day?.number} date={date} />;
-				})}
-				{[...Array(nextMonthDaysCount)].map((e, i) => {
-					const dayNumber = i + 1;
+if (fetched)
+	return (
+		<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
+			{[...Array(firstDayOfMonth)].map((e, i) => {
+				const dayNumber = prevMonthLastDay + (i - firstDayOfMonth + 1);
 
-					return <DayTile isWeekend={false} day={dayNumber} key={dayNumber} />;
-				})}
-			</div>
-		);
-	else
-		return (
-			<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
-				{[...Array(35)].map((e, i) => {
-					return (
-						<div key={i} className={`day-tile animate-pulse ${i % 7 == 6 || i % 7 == 5 ? "bg-MediumGray/70" : "bg-MediumGray/40"}`}>
-							<div className={`day-number aspect-square bg-LightGray`}></div>
-						</div>
-					);
-				})}
-			</div>
-		);
+				return <DayTile isWeekend={false} day={dayNumber} key={dayNumber} />;
+			})}
+			{[...Array(monthLenght)].map((e, i) => {
+				const dayNumber = i + 1;
+				const filteredDays = days.filter((day) => parseInt(day.date.slice(0, 2)) == dayNumber);
+				const day = filteredDays.length == 0 ? undefined : filteredDays[0];
+				const date = new Date(props.year, props.month, dayNumber);
+
+				return <NumberTile day={dayNumber} key={i} number={day?.number} date={date} reFetch={reFetch} />;
+			})}
+			{[...Array(nextMonthDaysCount)].map((e, i) => {
+				const dayNumber = i + 1;
+
+				return <DayTile isWeekend={false} day={dayNumber} key={dayNumber} />;
+			})}
+		</div>
+	);
+else
+	return (
+		<div className="grid grid-cols-7 w-full gap-2 sm:gap-3.5 xl:gap-6 3xl:gap-10">
+			{[...Array(35)].map((e, i) => {
+				return (
+					<div key={i} className={`day-tile animate-pulse ${i % 7 == 6 || i % 7 == 5 ? "bg-MediumGray/70" : "bg-MediumGray/40"}`}>
+						<div className={`day-number aspect-square bg-LightGray`}></div>
+					</div>
+				);
+			})}
+		</div>
+	);
 }
