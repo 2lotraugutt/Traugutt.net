@@ -3,7 +3,7 @@
 import { getSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import LoadingLayout from "@/components/dashboard/loadingLayout";
+import LoadingLayout from "@/app/dashboard/loadingLayout";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faSignOut } from "@fortawesome/free-solid-svg-icons";

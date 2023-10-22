@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import NotificationTile from "@/components/dashboard/notificationTile";
+import NotificationTile from "@/app/dashboard/notifications/notificationTile";
 
 const poppingsFont700 = Poppins({
 	weight: "700",

@@ -1,8 +1,8 @@
 "use client";
 
-import PostGallery from "@/components/postPage/postGallery";
-import PostHeading from "@/components/postPage/postHeading";
-import PostSkeleton from "@/components/postPage/postSkeleton";
+import PostGallery from "@/app/post/postGallery";
+import PostHeading from "@/app/post/postHeading";
+import PostSkeleton from "@/app/post/postSkeleton";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
 import TopPostTile from "@/components/posts/topPostTile";
 import markdownToHTML from "@/lib/markdownToHTML";

@@ -1,12 +1,12 @@
 "use client";
 
-import FreeDaysCalendar from "@/components/dashboard/freeDaysCalendar";
+import FreeDaysCalendar from "@/app/dashboard/calendar/freeDaysCalendar";
 import { useRouter } from "next/navigation";
 import { getYear, startOfToday } from "date-fns";
 import { getSession } from "next-auth/react";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
-import EventTile from "@/components/dashboard/eventTile";
+import EventTile from "@/app/dashboard/calendar/eventTile";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -93,13 +93,13 @@ export default function Page() {
 	}
 
 	async function fetchEvents() {
-		const returnedEvents = await(await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
+		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
 		setEvents(returnedEvents);
 		setEventsCount((oldCount) => oldCount + 1);
 	}
 
 	async function refetchEvents() {
-		const returnedEvents = await(await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
+		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
 		setEvents(returnedEvents);
 	}
 
@@ -199,5 +199,4 @@ export default function Page() {
 			</button>
 		</div>
 	);
-	// else return <LoadingLayout />;
 }
