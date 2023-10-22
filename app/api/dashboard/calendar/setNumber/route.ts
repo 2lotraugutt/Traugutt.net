@@ -10,28 +10,28 @@ export async function PUT(request: NextRequest) {
 	const day: number = parseInt(data.get("day") as string);
 	const month: number = parseInt(data.get("month") as string);
 	const year: number = parseInt(data.get("year") as string);
-	const state: boolean = data.get("state") == "true" ? true : false;
+	const number: number = parseInt(data.get("number") as string);
 
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
 		if (session.user.role.manageCalendar) {
-			const posts = await prisma.day.upsert({
+			const dateDate = new Date(year, month, day);
+
+			await prisma.day.upsert({
+				where: { date: format(dateDate, "dd-MM-yyyy") },
+				update: { number: number },
 				create: {
-					date: format(new Date(year, month, day), "dd-MM-yyyy"),
-					day: day,
-					month: month,
-					year: year,
-					freeDay: state,
-					timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
-				},
-				update: { freeDay: state },
-				where: {
-					date: format(new Date(year, month, day), "dd-MM-yyyy"),
+					timeStamp: zonedTimeToUtc(dateDate, "UTC"),
+					date: format(dateDate, "dd-MM-yyyy"),
+					number: number,
+					day,
+					month,
+					year,
 				},
 			});
 
-			return NextResponse.json(posts);
+			return NextResponse.json({ success: true });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
