@@ -7,6 +7,7 @@ import { getSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import NumbersCalendar from "./numbersCalendar";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -89,6 +90,7 @@ export default function Page() {
 					</div>
 				))}
 			</div>
+			<NumbersCalendar month={month} year={year} today={today} />
 		</div>
 	);
 }
