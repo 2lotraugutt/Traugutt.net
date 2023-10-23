@@ -8,6 +8,11 @@ export async function GET(request: Request) {
 
 	const post = await prisma.post.findFirst({
 		include: { author: true },
+		orderBy: [
+			{
+				createdAt: "desc",
+			},
+		],
 	});
 
 	if (post) {
