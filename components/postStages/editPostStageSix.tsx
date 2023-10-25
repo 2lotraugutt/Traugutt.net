@@ -35,7 +35,6 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 	const [seconds, setSeconds] = useState(10);
 
 	const router = useRouter();
-
 	useEffect(() => {
 		if (props.uploaded == true) {
 			setTimeout(() => {
@@ -50,8 +49,7 @@ export default function EditPostStageSix(props: { down: Function; upload: Functi
 				}, 1000);
 			} else router.push("/");
 		}
-	}, [props.uploaded]);
-
+	}, [props.uploaded, router, seconds]);
 
 	return (
 		<div className="dashboard-post-page">

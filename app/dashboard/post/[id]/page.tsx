@@ -20,8 +20,8 @@ export default function Page({ params }: { params: { id: string } }) {
 	const [gallery, setGallery] = useState<{ name: string; image: File | undefined }[]>([]);
 
 	const [uploaded, setUploaded] = useState(false);
-	const router = useRouter();
 
+	const router = useRouter();
 	useEffect(() => {
 		fetchPosts();
 
@@ -46,7 +46,7 @@ export default function Page({ params }: { params: { id: string } }) {
 				);
 			} else router.back();
 		}
-	}, [params.id]);
+	}, [params.id, router]);
 
 	function stageUp() {
 		setStage((oldStage) => oldStage + 1);

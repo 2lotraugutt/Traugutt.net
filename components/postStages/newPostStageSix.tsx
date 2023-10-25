@@ -35,7 +35,7 @@ export default function NewPostStageSix(props: { down: Function; upload: Functio
 	const [seconds, setSeconds] = useState(10);
 
 	const router = useRouter();
-
+	
 	useEffect(() => {
 		if (props.uploaded == true) {
 			if (seconds > 0) {
@@ -44,7 +44,7 @@ export default function NewPostStageSix(props: { down: Function; upload: Functio
 				}, 1000);
 			} else router.push("/");
 		}
-	}, [seconds, props.uploaded]);
+	}, [seconds, props.uploaded, router]);
 
 	return (
 		<div className="dashboard-post-page">

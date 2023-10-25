@@ -16,7 +16,7 @@ export async function PUT(request: NextRequest) {
 
 	if (session) {
 		if (session.user.role.manageCalendar) {
-			const posts = await prisma.day.upsert({
+			const days = await prisma.day.upsert({
 				create: {
 					date: format(new Date(year, month, day), "dd-MM-yyyy"),
 					day: day,
@@ -31,7 +31,7 @@ export async function PUT(request: NextRequest) {
 				},
 			});
 
-			return NextResponse.json(posts);
+			return NextResponse.json(days);
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }

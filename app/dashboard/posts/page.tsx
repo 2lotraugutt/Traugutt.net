@@ -16,8 +16,8 @@ export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
 	const [posts, setPosts] = useState<PostDataTypeWithAuthorAndPublisher[]>();
 	const [postsCount, setPostsCount] = useState<number>(1);
-	const router = useRouter();
 
+	const router = useRouter();
 	useEffect(() => {
 		async function initFunction() {
 			const session = (await getSession()) as SessionDataType | undefined;
@@ -30,7 +30,7 @@ export default function Page() {
 			} else router.push("/");
 		}
 		initFunction();
-	}, []);
+	}, [router]);
 
 	async function fetchPosts() {
 		const returnedPosts = await (await fetch(`/api/dashboard/posts?count=${postsCount * 30}`)).json();

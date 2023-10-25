@@ -65,7 +65,7 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 						/>
 						<div className="w-full aspect-[25/16] rounded border-MainColor flex items-center justify-center border-2 border-dashed cursor-pointer">
 							{imageName ? (
-								<img src={imageName} className="object-cover max-h-[40rem]" alt="" />
+								<Image src={imageName} className="object-cover max-h-[40rem]" alt="" />
 							) : (
 								<span className={`${poppingsFont600.className}`}>Wybierz zdjęcie</span>
 							)}

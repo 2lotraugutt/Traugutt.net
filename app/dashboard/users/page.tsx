@@ -17,8 +17,8 @@ export default function Page() {
 	const [users, setUsers] = useState<UserDataTypeWithRole[]>([]);
 	const [roles, setRoles] = useState<RoleDataType[]>([]);
 	const [usersCount, setUsersCount] = useState<number>(1);
-	const router = useRouter();
 
+	const router = useRouter();
 	useEffect(() => {
 		async function initFunction() {
 			const session = (await getSession()) as SessionDataType | undefined;
@@ -32,10 +32,10 @@ export default function Page() {
 			} else router.push("/");
 		}
 		initFunction();
-	}, []);
+	}, [router]);
 
 	async function fetchUsers() {
-		const returnedUsers = await(await fetch(`/api/dashboard/users?count=${usersCount * 30}`)).json();
+		const returnedUsers = await (await fetch(`/api/dashboard/users?count=${usersCount * 30}`)).json();
 		setUsers(returnedUsers);
 
 		setUsersCount((oldCount) => oldCount + 1);

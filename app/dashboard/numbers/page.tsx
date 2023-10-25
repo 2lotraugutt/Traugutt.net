@@ -28,7 +28,6 @@ export default function Page() {
 	const [year, setYear] = useState<number>(getYear(startOfToday()));
 
 	const currentYear = getYear(startOfToday());
-	const router = useRouter();
 
 	function changeMonth(up: boolean) {
 		if (up) {
@@ -50,6 +49,7 @@ export default function Page() {
 	const weekDaysShort = ["Pn", "Wt", "Śr", "Czw", "Pt", "Sb", "Nd"];
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
+	const router = useRouter();
 	useEffect(() => {
 		async function initFunction() {
 			const session = (await getSession()) as SessionDataType | undefined;
@@ -60,7 +60,7 @@ export default function Page() {
 			} else router.push("/");
 		}
 		initFunction();
-	}, []);
+	}, [router]);
 
 	return (
 		<div className="dashboard-page">

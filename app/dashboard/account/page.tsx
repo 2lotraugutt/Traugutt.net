@@ -28,7 +28,6 @@ export default function Page() {
 	const [name, setName] = useState<string>("");
 
 	const router = useRouter();
-
 	useEffect(() => {
 		async function initFunction() {
 			const session = (await getSession()) as SessionDataType | undefined;
@@ -37,7 +36,7 @@ export default function Page() {
 			else router.push("/");
 		}
 		initFunction();
-	}, []);
+	}, [router]);
 
 	async function fetchAcountData() {
 		const returnedData = (await (await fetch(`/api/dashboard/account`)).json()) as UserDataTypeWithRole;

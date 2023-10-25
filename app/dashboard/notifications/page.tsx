@@ -20,7 +20,6 @@ export default function Page() {
 	const [notifications, setNotifications] = useState<NotificationWithAutorDataType[]>([]);
 	const [notificationsCount, setNotificationsCount] = useState<number>(1);
 
-	const router = useRouter();
 
 	async function upload() {
 		const data = new FormData();
@@ -41,6 +40,7 @@ export default function Page() {
 		}
 	}
 
+	const router = useRouter();
 	useEffect(() => {
 		async function initFunction() {
 			const session = (await getSession()) as SessionDataType | undefined;
@@ -52,7 +52,7 @@ export default function Page() {
 			} else router.push("/");
 		}
 		initFunction();
-	}, []);
+	}, [router]);
 
 	async function fetchNotifications() {
 		const returnedNotifications = await (await fetch(`/api/dashboard/notifications?count=${notificationsCount * 30}`)).json();

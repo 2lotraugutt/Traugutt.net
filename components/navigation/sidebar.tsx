@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
 import { faChartLine, faClose, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, motion } from "framer-motion";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
