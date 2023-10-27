@@ -21,7 +21,7 @@ export async function PUT(request: NextRequest) {
 			const bytes = await image.arrayBuffer();
 			const buffer = Buffer.from(bytes);
 			const name = uuid_v4() + "." + image.name.split(".").pop();
-			const path = `public/postImages/${name}`;
+			const path = `./postImages/${name}`;
 			const imgPath = `/postImages/${name}`;
 			await writeFile(path, buffer);
 
@@ -29,7 +29,7 @@ export async function PUT(request: NextRequest) {
 				const name = uuid_v4() + "." + image.name.split(".").pop();
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
-				const path = `public/postImages/${name}`;
+				const path = `./postImages/${name}`;
 				imgPaths.push(`/postImages/${name}`);
 				await writeFile(path, buffer);
 			}
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
 				const name = uuid_v4() + "." + image.name.split(".").pop();
-				const path = `public/postImages/${name}`;
+				const path = `./postImages/${name}`;
 				imgPath = `/postImages/${name}`;
 				await writeFile(path, buffer);
 			}
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
 					const name = uuid_v4() + "." + image.name.split(".").pop();
 					const bytes = await image.arrayBuffer();
 					const buffer = Buffer.from(bytes);
-					const path = `public/postImages/${name}`;
+					const path = `./postImages/${name}`;
 					imgPaths.push(`/postImages/${name}`);
 					await writeFile(path, buffer);
 				}
