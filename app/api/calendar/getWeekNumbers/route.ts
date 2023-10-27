@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
 			date: true,
 		},
 		where: {
-			// timeStamp: { gt: beginning, lt: ending },
+			timeStamp: { equals: today },
 			number: { not: null },
 		},
 	});
