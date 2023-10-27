@@ -22,7 +22,5 @@ export async function GET(request: NextRequest) {
 		where: { timeStamp: { gt: beginning, lt: ending }, number: { not: null } },
 	});
 
-	// return NextResponse.json(numbers);
-
-	return { today, beginning, ending };
+	return NextResponse.json({ today, beginning, ending });
 }
