@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 	const month: string = data.get("month") as string;
 	const year: string = data.get("year") as string;
 
-	const date = zonedTimeToUtc(new Date(parseInt(year), parseInt(month), parseInt(day)), "CEST");
+	const date = zonedTimeToUtc(new Date(parseInt(year), parseInt(month), parseInt(day)), "UTC");
 
 	const numbers = await prisma.event.findMany({
 		orderBy: [

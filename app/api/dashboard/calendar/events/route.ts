@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
 					day: day,
 					year: year,
 					month: month,
-					timeStamp: zonedTimeToUtc(new Date(year, month, day), "CEST"),
+					timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
 					date: date,
 				},
 			});

@@ -6,8 +6,8 @@ import { endOfWeek, startOfToday, startOfWeek } from "date-fns";
 export async function GET(request: NextRequest) {
 	const today = startOfToday();
 
-	let beginning = zonedTimeToUtc(startOfWeek(today), "CEST");
-	let ending = zonedTimeToUtc(endOfWeek(today), "CEST");
+	let beginning = zonedTimeToUtc(startOfWeek(today), "UTC");
+	let ending = zonedTimeToUtc(endOfWeek(today), "UTC");
 
 	const numbers = await prisma.day.findMany({
 		orderBy: [
@@ -22,5 +22,7 @@ export async function GET(request: NextRequest) {
 		where: { timeStamp: { gt: beginning, lt: ending }, number: { not: null } },
 	});
 
-	return NextResponse.json(numbers);
+	// return NextResponse.json(numbers);
+
+	return { today, beginning, ending };
 }

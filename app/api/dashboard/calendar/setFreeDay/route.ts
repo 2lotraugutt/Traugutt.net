@@ -23,7 +23,7 @@ export async function PUT(request: NextRequest) {
 					month: month,
 					year: year,
 					freeDay: state,
-					timeStamp: zonedTimeToUtc(new Date(year, month, day), "CEST"),
+					timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
 				},
 				update: { freeDay: state },
 				where: {

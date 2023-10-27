@@ -22,7 +22,7 @@ export async function PUT(request: NextRequest) {
 				where: { date: format(dateDate, "dd-MM-yyyy") },
 				update: { number: number },
 				create: {
-					timeStamp: zonedTimeToUtc(dateDate, "CEST"),
+					timeStamp: zonedTimeToUtc(dateDate, "UTC"),
 					date: format(dateDate, "dd-MM-yyyy"),
 					number: number,
 					day,
