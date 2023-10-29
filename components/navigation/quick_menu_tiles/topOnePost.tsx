@@ -51,8 +51,6 @@ export default function TopOnePost() {
 					alt="Top 1 image"
 					height={1080}
 					width={1920}
-					blurDataURL="./Loading.png"
-					placeholder="blur"
 				/>
 
 				<div className="w-full rounded-3xl xs:rounded-4xl aspect-[25/16] bg-MainDarkGray "></div>
