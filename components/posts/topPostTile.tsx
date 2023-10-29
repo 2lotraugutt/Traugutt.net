@@ -27,7 +27,7 @@ export default function TopPostTile(props: { postData: PostDataType; index: numb
 				TOP #{props.index}
 			</div>
 
-			<Image className="w-full h-full object-cover absolute" src={props.postData.titleImage} alt="Top 1 image" height={1080} width={1920} />
+			<img className="w-full h-full object-cover absolute" src={props.postData.titleImage} alt="Top 1 image" height={1080} width={1920} />
 
 			<div className="w-full rounded-3xl xs:rounded-4xl aspect-[25/16] bg-MainDarkGray "></div>
 

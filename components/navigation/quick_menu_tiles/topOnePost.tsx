@@ -45,7 +45,7 @@ export default function TopOnePost() {
 					TOP #1
 				</div>
 
-				<Image
+				<img
 					className="w-full h-full object-cover absolute"
 					src={topOnePost.titleImage}
 					alt="Top 1 image"
