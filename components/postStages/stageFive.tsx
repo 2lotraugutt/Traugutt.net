@@ -81,7 +81,7 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 									}}
 								/>
 								<div className={`w-full rounded flex items-center justify-center cursor-pointer ${poppingsFont600.className}`}>
-									<Image key={imageKey} width={1920} height={1080} src={image.name} className="object-cover aspect-[25/16]" alt="" />
+									<img key={imageKey} src={image.name} className="object-cover aspect-[25/16]" alt="" />
 								</div>
 							</label>
 						))}
