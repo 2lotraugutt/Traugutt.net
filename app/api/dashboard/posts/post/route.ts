@@ -80,23 +80,15 @@ export async function POST(request: NextRequest) {
 			}
 
 			let i = 0;
-			console.log(gallery);
-			console.log(galleryNames);
-			console.log(gallery.length);
-			console.log(galleryNames.length);
 			for (const image of gallery) {
-				console.log(image);
 				if (image == "") {
 					imgPaths.push(galleryNames[i]);
-					console.log(galleryNames[i]);
 				} else {
 					const name = uuid_v4() + "." + image.name.split(".").pop();
 					const bytes = await image.arrayBuffer();
 					const buffer = Buffer.from(bytes);
 					const path = `./postImages/${name}`;
 					imgPaths.push(`/postImages/${name}`);
-					console.log(`/postImages/${name}`);
-
 					await writeFile(path, buffer);
 				}
 				i++;
