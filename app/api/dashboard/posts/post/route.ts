@@ -5,16 +5,16 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { v4 as uuid_v4 } from "uuid";
 
-export async function PUT(request: NextRequest) {
+export async function POST(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
 		if (session.user.role.createPosts) {
 			const data = await request.formData();
-			const image: File = data.get("image") as unknown as File;
+			const image: File = data.get("image") as File;
 			const title: string = data.get("title") as string;
 			const content: string = data.get("content") as string;
-			const gallery = data.getAll("gallery[]") as unknown as File[];
+			const gallery = data.getAll("gallery[]") as File[];
 
 			let imgPaths = [];
 
@@ -51,7 +51,7 @@ export async function PUT(request: NextRequest) {
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
 
-export async function POST(request: NextRequest) {
+export async function PUT(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
