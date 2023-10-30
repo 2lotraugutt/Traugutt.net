@@ -22,7 +22,7 @@ export async function PUT(request: NextRequest) {
 			const buffer = Buffer.from(bytes);
 			const name = uuid_v4() + "." + image.name.split(".").pop();
 			const path = `./postImages/${name}`;
-			const imgPath = `/postImages/${name}`;
+			const imgPath = `./postImages/${name}`;
 			await writeFile(path, buffer);
 
 			for (const image of gallery) {
@@ -30,7 +30,7 @@ export async function PUT(request: NextRequest) {
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
 				const path = `./postImages/${name}`;
-				imgPaths.push(`/postImages/${name}`);
+				imgPaths.push(`./postImages/${name}`);
 				await writeFile(path, buffer);
 			}
 
