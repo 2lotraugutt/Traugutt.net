@@ -85,3 +85,4 @@ export default function StageTwo(props: { down: Function; up: Function; setImage
 		</div>
 	);
 }
+

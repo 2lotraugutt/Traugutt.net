@@ -79,8 +79,9 @@ export async function POST(request: NextRequest) {
 				await writeFile(path, buffer);
 			}
 
+			let i = 0;
 			for (const image of gallery) {
-				if (image == "") imgPaths.push(galleryNames[gallery.indexOf(image)]);
+				if (image == "") imgPaths.push(galleryNames[i]);
 				else {
 					const name = uuid_v4() + "." + image.name.split(".").pop();
 					const bytes = await image.arrayBuffer();
@@ -89,6 +90,7 @@ export async function POST(request: NextRequest) {
 					imgPaths.push(`/postImages/${name}`);
 					await writeFile(path, buffer);
 				}
+				i++;
 			}
 
 			const post = await prisma.post.update({
