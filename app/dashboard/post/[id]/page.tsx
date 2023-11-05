@@ -96,10 +96,11 @@ export default function Page({ params }: { params: { id: string } }) {
 		if (content != "") return <StageFour down={stageDown} up={stageUp} content={content} />;
 		else {
 			setStage(5);
+
 			return <></>;
 		}
 	}
-	if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
-	if (stage == 6) return <EditPostStageSix down={stageDown} upload={upload} uploaded={uploaded} />;
+	// if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
+	if (stage == 5) return <EditPostStageSix down={stageDown} upload={upload} uploaded={uploaded} />;
 	else setStage(0);
 }

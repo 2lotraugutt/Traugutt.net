@@ -67,7 +67,7 @@ export async function PUT(request: NextRequest) {
 			const galleryNames = data.getAll("galleryNames[]") as string[];
 
 			let imgPath;
-			let imgPaths = [];
+			// let imgPaths = [];
 
 			if (image == "") imgPath = imageName;
 			else {
@@ -79,20 +79,20 @@ export async function PUT(request: NextRequest) {
 				await writeFile(path, buffer);
 			}
 
-			let i = 0;
-			for (const image of gallery) {
-				if (image == "") {
-					imgPaths.push(galleryNames[i]);
-				} else {
-					const name = uuid_v4() + "." + image.name.split(".").pop();
-					const bytes = await image.arrayBuffer();
-					const buffer = Buffer.from(bytes);
-					const path = `./postImages/${name}`;
-					imgPaths.push(`/postImages/${name}`);
-					await writeFile(path, buffer);
-				}
-				i++;
-			}
+			// let i = 0;
+			// for (const image of gallery) {
+			// 	if (image == "") {
+			// 		imgPaths.push(galleryNames[i]);
+			// 	} else {
+			// 		const name = uuid_v4() + "." + image.name.split(".").pop();
+			// 		const bytes = await image.arrayBuffer();
+			// 		const buffer = Buffer.from(bytes);
+			// 		const path = `./postImages/${name}`;
+			// 		imgPaths.push(`/postImages/${name}`);
+			// 		await writeFile(path, buffer);
+			// 	}
+			// 	i++;
+			// }
 
 			const post = await prisma.post.update({
 				where: {
@@ -104,7 +104,7 @@ export async function PUT(request: NextRequest) {
 					content: content,
 					authorId: session.user.id,
 					titleImage: imgPath,
-					gallery: imgPaths,
+					// gallery: imgPaths,
 					published: session.user.role.managePosts ? true : false,
 					publishedById: session.user.role.managePosts ? session.userId : null,
 				},
