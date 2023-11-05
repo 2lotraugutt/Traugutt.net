@@ -62,7 +62,9 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 
 				<Link
 					href={"/dashboard/numbers"}
-					className={`${userRole.manageCalendar ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/numbers" ? "active-dashboard-link" : ""}`}
+					className={`${userRole.manageCalendar || userRole.manageNumbers ? "" : "hidden"} dashboard-link ${
+						pathname == "/dashboard/numbers" ? "active-dashboard-link" : ""
+					}`}
 				>
 					Szczęśliwe numerki
 				</Link>

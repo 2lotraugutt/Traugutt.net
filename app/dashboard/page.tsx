@@ -25,7 +25,7 @@ export default async function Page() {
 		{ name: "Posty", link: "/dashboard/posts", icon: faList, perm: ["managePosts", "publishPosts"] },
 		{ name: "Wiadomości", link: "/dashboard/notifications", icon: faNewspaper, perm: ["manageNotifications"] },
 		{ name: "Kalendarz", link: "/dashboard/calendar", icon: faCalendar, perm: ["manageCalendar", "manageEvents"] },
-		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar"] },
+		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar", "manageNumbers"] },
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
 	];

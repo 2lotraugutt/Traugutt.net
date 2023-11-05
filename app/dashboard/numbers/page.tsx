@@ -55,7 +55,7 @@ export default function Page() {
 			const session = (await getSession()) as SessionDataType | undefined;
 
 			if (session) {
-				if (session.user.role.manageNotifications) {
+				if (session.user.role.manageNotifications || session.user.role.manageNumbers) {
 				} else router.push("/dashboard");
 			} else router.push("/");
 		}

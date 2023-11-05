@@ -44,6 +44,7 @@ model Role {
   verifyUsers     Boolean   @default(false)
   manageEvents    Boolean   @default(false)
   manageCalendar  Boolean   @default(false)
+  manageNumbers   Boolean   @default(false)
   manageRoles     Boolean   @default(false)
   manageNotifications     Boolean   @default(false)
 }

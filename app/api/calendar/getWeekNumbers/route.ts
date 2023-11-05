@@ -6,8 +6,6 @@ import { endOfWeek, startOfToday, startOfWeek } from "date-fns";
 export async function GET(request: NextRequest) {
 	const today = startOfToday();
 
-	// let beginning = zonedTimeToUtc(startOfWeek(today), "UTC");
-	// let ending = zonedTimeToUtc(endOfWeek(today), "UTC");
 	let beginning = startOfWeek(today);
 	let ending = endOfWeek(today);
 

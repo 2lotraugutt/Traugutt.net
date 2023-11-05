@@ -85,6 +85,7 @@ declare global {
 		verifyUsers: Boolean;
 		manageEvents: Boolean;
 		manageCalendar: Boolean;
+		manageNumbers: Boolean;
 		manageRoles: Boolean;
 		manageNotifications: Boolean;
 	};
