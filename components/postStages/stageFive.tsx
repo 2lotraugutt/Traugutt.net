@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCross, faRemove } from "@fortawesome/free-solid-svg-icons";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
 	weight: "600",
@@ -80,8 +82,21 @@ export default function StageFive(props: { down: Function; up: Function; setGall
 										}
 									}}
 								/>
-								<div className={`w-full rounded flex items-center justify-center cursor-pointer ${poppingsFont600.className}`}>
+								<div className={`relative w-full rounded flex items-center justify-center cursor-pointer ${poppingsFont600.className}`}>
 									<img key={imageKey} src={image.name} className="object-cover aspect-[25/16]" alt="" />
+									<button
+										onClick={() => {
+											setGallery((oldGallery) => {
+												let newGallery = oldGallery;
+												newGallery.splice(index, 1);
+												return newGallery;
+											});
+											setImageKey((prev) => prev + 1);
+										}}
+										className="rounded-full flex items-center justify-center group bg-MediumGray hover:bg-MainColor transition-all h-5 w-5 absolute -top-2 -right-2 z-10"
+									>
+										<FontAwesomeIcon icon={faRemove} className="transition-all text-black group-hover:text-white" />
+									</button>
 								</div>
 							</label>
 						))}
