@@ -66,10 +66,8 @@ export default function Page() {
 					<EventTile eventData={eventData} refetchEvents={refetchEvents} key={eventData.id} tags={tags} />
 				))}
 				<button
-					onClick={() => refetchEvents()}
-					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
-						poppingsFont700.className
-					} ${(eventsCount - 1) * 8 < events.length ? "hidden" : ""}`}
+					onClick={() => fetchEvents()}
+					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className} `}
 				>
 					Załaduj więcej
 				</button>

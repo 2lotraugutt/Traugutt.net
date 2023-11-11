@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const plusJakartaSans800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -16,15 +17,53 @@ const poppingsFont500 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function EditingForm(props: { initialData: EventDataTypeWithAuthor; closeEdit: Function; tags: EventTagDataType[] }) {
+export default function EditingForm(props: { initialData: EventDataTypeWithAuthor; closeEdit: Function; tags: EventTagDataType[]; refetchEvents: Function }) {
 	const [newName, setNewName] = useState(props.initialData.name);
 	const [newDescription, setNewDescription] = useState(props.initialData.description ?? "");
 	const [newDate, setNewDate] = useState(reverseDate(props.initialData.date));
-	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
+	const [selectedTags, setSelectedTags] = useState<boolean[]>(generateSelectedTags());
+	const [buttonText, setButtonText] = useState("Zapisz zmiany");
+
+	function generateSelectedTags() {
+		const tags = props.tags;
+		const initialTags = props.initialData.tags;
+
+		return tags.map((tag) => (initialTags.filter((initialTag) => initialTag.id == tag.id)[0] ? true : false));
+	}
 
 	function reverseDate(date: string) {
 		return date.slice(6, 10) + "-" + date.slice(3, 5) + "-" + date.slice(0, 2);
 	}
+
+	async function edit() {
+		const data = new FormData();
+
+		data.set("id", props.initialData.id);
+		data.set("name", newName);
+		data.set("description", newDescription);
+		data.set("date", newDate.slice(8, 10) + "-" + newDate.slice(5, 7) + "-" + newDate.slice(0, 4));
+
+		let i = 0;
+		for (const bool of selectedTags) {
+			if (bool) {
+				data.append("tags[]", props.tags[i].id);
+			}
+			i++;
+		}
+
+		setButtonText("Edytowanie wydarzenia...");
+		const res = await fetch("/api/dashboard/calendar/events/", {
+			method: "PUT",
+			body: data,
+		});
+
+		if (!res.ok) throw new Error(await res.text());
+		if (res.ok) {
+			props.closeEdit();
+			props.refetchEvents();
+		}
+	}
+
 	return (
 		<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 flex flex-col items-center h-fit  text-left border-2 hover:bg-LightGray bg-LightGray transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
 			<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nowe wydarzenie</h1>
@@ -38,12 +77,7 @@ export default function EditingForm(props: { initialData: EventDataTypeWithAutho
 					placeholder="Podaj nazwe"
 					className="bg-white rounded-lg p-2 outline-none grow text-xs sm:text-sm md:text-base"
 				/>
-				<input
-					type="date"
-					value={newDate}
-					onChange={(e) => console.log(e.target.value)}
-					className="rounded-lg p-2 w-fit text-center text-xs sm:text-sm md:text-base"
-				/>
+				<input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} className="rounded-lg p-2 w-fit text-center text-xs sm:text-sm md:text-base" />
 			</div>
 
 			<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
@@ -84,10 +118,10 @@ export default function EditingForm(props: { initialData: EventDataTypeWithAutho
 			/>
 			<div className="flex flex-col md:flex-row gap-x-10 gap-y-2 py-2 items-center">
 				<button
-					onClick={() => {}}
+					onClick={() => edit()}
 					className={`w-fit whitespace-nowrap bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 				>
-					Zapisz zmiany
+					{buttonText}
 				</button>
 				<button
 					onClick={() => props.closeEdit()}

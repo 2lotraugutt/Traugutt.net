@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-import { parse } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
 
 export async function GET(request: NextRequest) {
@@ -75,7 +74,6 @@ export async function POST(request: NextRequest) {
 				},
 			});
 
-
 			return NextResponse.json({ success: true });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
@@ -93,6 +91,44 @@ export async function DELETE(request: NextRequest) {
 			const post = await prisma.event.delete({
 				where: {
 					id: id,
+				},
+			});
+
+			return NextResponse.json({ success: true });
+		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
+	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
+}
+
+export async function PUT(request: NextRequest) {
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
+
+	if (session) {
+		if (session.user.role.manageCalendar) {
+			const data = await request.formData();
+			const id: string = data.get("id") as string;
+			const name: string = data.get("name") as string;
+			const description: string = data.get("description") as string;
+			const date: string = data.get("date") as string;
+			const tags = data.getAll("tags[]") as string[];
+
+			const tagsToConnect: { id: string }[] = tags.map((tag) => ({
+				id: tag,
+			}));
+
+			const day = parseInt(date.slice(0, 2));
+			const month = parseInt(date.slice(3, 5)) - 1;
+			const year = parseInt(date.slice(6, 10));
+
+			await prisma.event.update({
+				where: { id },
+				data: {
+					name: name,
+					description: description,
+					date: date,
+					authorId: session.user.id,
+					tags: {
+						connect: tagsToConnect,
+					},
 				},
 			});
 

@@ -117,7 +117,7 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 				</button>
 			</div>
 
-			{isEditing && <EditingForm initialData={props.eventData} closeEdit={() => setIsEditing(false)} tags={props.tags} />}
+			{isEditing && <EditingForm refetchEvents={props.refetchEvents} initialData={props.eventData} closeEdit={() => setIsEditing(false)} tags={props.tags} />}
 		</div>
 	);
 }
