@@ -1,8 +1,9 @@
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faL, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { parse } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
+import EditingForm from "./editingForm";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
@@ -25,12 +26,13 @@ const poppingsFont500 = Poppins({
 });
 
 const poppingsFont700 = Poppins({
-	weight: "600",
+	weight: "700",
 	subsets: ["latin"],
 });
 
-export default function EventTile(props: { eventData: EventDataTypeWithAuthor; refetchEvents: Function }) {
+export default function EventTile(props: { eventData: EventDataTypeWithAuthor; refetchEvents: Function; tags: EventTagDataType[] }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wydarzenie");
+	const [isEditing, setIsEditing] = useState(false);
 
 	function returnDate(date: string) {
 		const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
@@ -101,7 +103,7 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 			</div>
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+				<button onClick={() => setIsEditing(true)} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					Edytuj wydarzenie
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPen} />
@@ -114,6 +116,8 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 					</div>
 				</button>
 			</div>
+
+			{isEditing && <EditingForm initialData={props.eventData} closeEdit={() => setIsEditing(false)} tags={props.tags} />}
 		</div>
 	);
 }

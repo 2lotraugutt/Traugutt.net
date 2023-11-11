@@ -17,6 +17,7 @@ const poppingsFont700 = Poppins({
 export default function Page() {
 	const [events, setEvents] = useState<EventDataTypeWithAuthor[]>([]);
 	const [eventsCount, setEventsCount] = useState<number>(1);
+	const [tags, setTags] = useState<EventTagDataType[]>([]);
 
 	const [yearsCount, setYearsCount] = useState<number>(2);
 
@@ -31,11 +32,17 @@ export default function Page() {
 			if (session) {
 				if (session.user.role.manageCalendar) {
 					fetchEvents();
+					fetchTags();
 				} else router.push("/dashboard");
 			} else router.push("/");
 		}
 		initFunction();
 	}, []);
+
+	async function fetchTags() {
+		const returnedTags = await (await fetch(`/api/dashboard/calendar/tags`)).json();
+		setTags(returnedTags);
+	}
 
 	async function fetchEvents() {
 		const returnedEvents = await (await fetch(`/api/dashboard/calendar/events?count=${eventsCount * 8}`)).json();
@@ -52,17 +59,17 @@ export default function Page() {
 		<div className="dashboard-page">
 			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Wydarzenia</h1>
 
-			<CreateEventForm refetchEvents={() => refetchEvents()} />
+			<CreateEventForm tags={tags} refetchEvents={() => refetchEvents()} />
 
 			<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 				{events.map((eventData: EventDataTypeWithAuthor, i) => (
-					<EventTile eventData={eventData} refetchEvents={refetchEvents} key={eventData.id} />
+					<EventTile eventData={eventData} refetchEvents={refetchEvents} key={eventData.id} tags={tags} />
 				))}
 				<button
 					onClick={() => refetchEvents()}
 					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
 						poppingsFont700.className
-					} ${(eventsCount - 1) * 8 > events.length ? "hidden" : ""}`}
+					} ${(eventsCount - 1) * 8 < events.length ? "hidden" : ""}`}
 				>
 					Załaduj więcej
 				</button>

@@ -1,7 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 
 const poppingsFont700 = Poppins({
@@ -19,21 +17,12 @@ const plusJakartaSans800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-export default function CreateEventForm(props: { refetchEvents: Function }) {
+export default function CreateEventForm(props: { refetchEvents: Function; tags: EventTagDataType[] }) {
 	const [newName, setNewName] = useState("");
 	const [newDescription, setNewDescription] = useState("");
 	const [newDate, setNewDate] = useState("");
-	const [tags, setTags] = useState<EventTagDataType[]>([]);
 	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
 	const [buttonText, setButtonText] = useState("Dodaj wydarzenie");
-
-	const router = useRouter();
-
-	async function fetchTags() {
-		const returnedTags = (await (await fetch(`/api/dashboard/calendar/tags`)).json()) as EventTagDataType[];
-		setTags(returnedTags);
-		setSelectedTags(new Array(returnedTags.length).fill(false));
-	}
 
 	async function upload() {
 		const data = new FormData();
@@ -45,7 +34,7 @@ export default function CreateEventForm(props: { refetchEvents: Function }) {
 		let i = 0;
 		for (const bool of selectedTags) {
 			if (bool) {
-				data.append("tags[]", tags[i].id);
+				data.append("tags[]", props.tags[i].id);
 			}
 			i++;
 		}
@@ -58,7 +47,7 @@ export default function CreateEventForm(props: { refetchEvents: Function }) {
 
 		if (!res.ok) throw new Error(await res.text());
 		if (res.ok) {
-			setSelectedTags(new Array(tags.length).fill(false));
+			setSelectedTags(new Array(props.tags.length).fill(false));
 			setNewName("");
 			setNewDescription("");
 			setNewDate("");
@@ -66,19 +55,6 @@ export default function CreateEventForm(props: { refetchEvents: Function }) {
 			props.refetchEvents();
 		}
 	}
-
-	useEffect(() => {
-		async function initFunction() {
-			const session = (await getSession()) as SessionDataType | undefined;
-
-			if (session) {
-				if (session.user.role.manageCalendar) {
-					fetchTags();
-				} else router.push("/dashboard");
-			} else router.push("/");
-		}
-		initFunction();
-	}, []);
 
 	return (
 		<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
@@ -97,7 +73,7 @@ export default function CreateEventForm(props: { refetchEvents: Function }) {
 			</div>
 
 			<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
-				{tags.map((tag, i) => (
+				{props.tags.map((tag, i) => (
 					<button
 						key={tag.id}
 						onClick={() =>
@@ -135,7 +111,7 @@ export default function CreateEventForm(props: { refetchEvents: Function }) {
 
 			<button
 				onClick={() => upload()}
-				className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+				className={`w-fit whitespace-nowrap bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 			>
 				{buttonText}
 			</button>
