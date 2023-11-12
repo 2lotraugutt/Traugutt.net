@@ -1,6 +1,7 @@
 "use client";
 
 import CalendarComponent from "@/components/calendar/calendarComponent";
+import EventsList from "@/components/calendar/eventsList";
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";
@@ -37,13 +38,25 @@ export default function Page() {
 	const refEvents = useRef<HTMLInputElement>(null);
 	const [calendarHeight, setCalendarHeight] = useState<number | undefined>();
 	const [eventsHeight, setEventsHeight] = useState<number | undefined>();
-	const [width, setWidth] = useState<number | undefined>();
 
 	useEffect(() => {
-		setEventsHeight(refEvents.current?.clientHeight);
-		setCalendarHeight(refCalendar.current?.clientHeight);
-		setWidth(refCalendar.current?.clientWidth);
-	}, [refCalendar.current?.clientHeight, refEvents.current?.clientHeight]);
+		if (!refEvents.current) return;
+		if (!refCalendar.current) return;
+
+		const resizeObserver1 = new ResizeObserver(() => {
+			setEventsHeight(refEvents.current?.clientHeight);
+		});
+		const resizeObserver2 = new ResizeObserver(() => {
+			setCalendarHeight(refCalendar.current?.clientHeight);
+		});
+		resizeObserver1.observe(refEvents.current);
+		resizeObserver2.observe(refCalendar.current);
+
+		return () => {
+			resizeObserver1.disconnect();
+			resizeObserver2.disconnect();
+		};
+	}, []);
 
 	function changeMonth(up: boolean) {
 		if (up) {
@@ -102,8 +115,8 @@ export default function Page() {
 			>
 				<motion.div
 					ref={refCalendar}
-					initial={{ x: eventList ? -width! : 0 }}
-					animate={{ x: eventList ? -width! : 0 }}
+					initial={{ x: eventList ? -window.innerWidth! : 0 }}
+					animate={{ x: eventList ? -window.innerWidth! : 0 }}
 					transition={{ duration: 0.4, type: "spring" }}
 					className="absolute top-0 flex w-full flex-col 4xl:px-0 gap-y-3 sm:gap-y-5 xl:gap-y-7 3xl:gap-y-9 items-center"
 				>
@@ -129,11 +142,13 @@ export default function Page() {
 
 				<motion.div
 					ref={refEvents}
-					initial={{ x: eventList ? 0 : width }}
-					animate={{ x: eventList ? 0 : width }}
+					initial={{ x: eventList ? 0 : window.innerWidth }}
+					animate={{ x: eventList ? 0 : window.innerWidth }}
 					transition={{ duration: 0.4, type: "spring" }}
-					className="w-full h-80 bg-MainColor absolute top-0"
-				></motion.div>
+					className="w-full"
+				>
+					<EventsList />
+				</motion.div>
 			</motion.div>
 		</div>
 	);
