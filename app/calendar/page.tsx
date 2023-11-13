@@ -25,12 +25,12 @@ const poppingsFont500 = Poppins({
 
 export default function Page() {
 	const searchParams = useSearchParams();
-	const searchTag = searchParams.get("tag");
+	const searchTagId = searchParams.get("tag");
 
 	const [today, setToday] = useState<Date>(startOfToday());
 	const [month, setMonth] = useState<number>(getMonth(startOfToday()));
 	const [year, setYear] = useState<number>(getYear(startOfToday()));
-	const [eventList, setEventList] = useState<boolean>(searchTag ? true : false);
+	const [eventList, setEventList] = useState<boolean>(searchTagId ? true : false);
 
 	const currentYear = getYear(startOfToday());
 
@@ -147,7 +147,7 @@ export default function Page() {
 					transition={{ duration: 0.4, type: "spring" }}
 					className="w-full"
 				>
-					<EventsList />
+					<EventsList searchTagId={searchTagId} />
 				</motion.div>
 			</motion.div>
 		</div>

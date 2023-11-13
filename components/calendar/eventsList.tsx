@@ -1,4 +1,4 @@
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDate, getMonth, startOfToday } from "date-fns";
 import { getYear } from "date-fns/fp";
@@ -11,14 +11,23 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function EventsList() {
+const poppingsFont500 = Poppins({
+	weight: "500",
+	subsets: ["latin"],
+});
+
+export default function EventsList(props: { searchTagId: string | null }) {
 	const [events, setEvents] = useState<EventDataType[]>([]);
 	const [eventsCount, setEventsCount] = useState<number>(1);
 	const [fetched, setFetched] = useState<boolean>(false);
 	const [dates, setDates] = useState<string[]>([]);
 
+	const [tags, setTags] = useState<EventTagDataType[]>([]);
+	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
+
 	useEffect(() => {
 		fetchEvents();
+		fetchTags();
 	}, []);
 
 	const day = getDate(startOfToday());
@@ -49,11 +58,62 @@ export default function EventsList() {
 		setFetched(true);
 	}
 
+	async function fetchTags() {
+		const returnedTags: EventTagDataType[] = await (await fetch(`/api/dashboard/calendar/tags`)).json();
+		setTags(returnedTags);
+
+		let tag;
+		if (returnedTags) tag = returnedTags.find((tag) => tag.id == props.searchTagId);
+		if (tag) {
+			const index = returnedTags.indexOf(tag);
+			selectedTags[index] = true;
+		}
+	}
+
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 	if (fetched) {
 		return (
 			<div className="flex flex-col w-3/5 mx-auto gap-y-12">
+				<div className="flex flex-col gap-y-3 -mx-20">
+					<div className="flex items-center gap-3 border-2 hover:bg-LightGray/20 bg-LightGray/5 transition-all duration-300 py-1 md:py-2 md:px-3 px-2 lg:py-3 lg:px-4 3xl:px-6 xl:py-4 sm:gap-2 md:gap-3 rounded-2xl">
+						<FontAwesomeIcon icon={faSearch} className={`h-5 lg:h-7`} />
+						<input
+							type="text"
+							className={`outline-none w-full bg-transparent text-sm xs:text-base md:text-lg xl:text-xl 2xl:text-2xl ${poppingsFont500.className}`}
+						/>
+					</div>
+
+					<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
+						{tags.map((tag, i) => (
+							<button
+								key={tag.id}
+								onClick={() =>
+									setSelectedTags((old) => {
+										let newList = [...old];
+										newList[i] = !old[i];
+										return newList;
+									})
+								}
+								className={`flex h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center transition-color duration-300`}
+								style={{ backgroundColor: selectedTags[i] ? tag.color : "#efefef" }}
+							>
+								<div
+									className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-color duration-300`}
+									style={{ backgroundColor: selectedTags[i] ? "white" : tag.color }}
+								/>
+								<p
+									className={`text-xs whitespace-nowrap sm:text-sm md:text-base transition-color duration-300 ${poppingsFont500.className} ${
+										selectedTags[i] ? "text-white" : "text-MainDarkGray"
+									}`}
+								>
+									{tag.name}
+								</p>
+							</button>
+						))}
+					</div>
+				</div>
+
 				{dates.map((date, i) => (
 					<div className="flex flex-col gap-y-3 w-full" key={date}>
 						<p className={`text-base xs:text-lg lg:text-xl ${poppingsFont700.className}`}>
