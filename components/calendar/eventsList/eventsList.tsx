@@ -4,7 +4,7 @@ import { getDate, getMonth, startOfToday } from "date-fns";
 import { getYear } from "date-fns/fp";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
-import EventComponent from "../eventsSlider/eventComponent";
+import EventComponent from "../../eventsSlider/eventComponent";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -109,14 +109,15 @@ export default function EventsList(props: { searchTagId: string | null }) {
 
 	if (fetched) {
 		return (
-			<div className="flex flex-col w-3/5 mx-auto gap-y-12">
-				<div className="flex flex-col gap-y-3 -mx-20">
+			<div className="flex flex-col w-full md:w-4/5 lg:w-3/5 mx-auto gap-y-12">
+				<div className="flex flex-col gap-y-3 md:-mx-8 lg:-mx-20">
 					<div className="flex items-center gap-3 border-2 hover:bg-LightGray/20 bg-LightGray/5 transition-all duration-300 py-1 md:py-2 md:px-3 px-2 lg:py-3 lg:px-4 3xl:px-6 xl:py-4 sm:gap-2 md:gap-3 rounded-2xl">
 						<FontAwesomeIcon onClick={() => searchEvents()} icon={faSearch} className={`h-5 lg:h-7 cursor-pointer`} />
 						<input
 							type="text"
 							onBlur={() => searchEvents()}
 							value={search}
+							placeholder="Wyszukaj wydarzeń..."
 							onChange={(e) => setSearch(e.target.value)}
 							className={`outline-none w-full bg-transparent text-sm xs:text-base md:text-lg xl:text-xl 2xl:text-2xl ${poppingsFont500.className}`}
 						/>
@@ -187,7 +188,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		);
 	} else {
 		return (
-			<div className="flex flex-col w-3/5 mx-auto gap-y-3">
+			<div className="flex flex-col w-full md:w-4/5 lg:w-3/5 mx-auto gap-y-3">
 				{[...Array(10)].map((n, i: number) => (
 					<div key={i} className={`flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-3.5 lg:p-7 gap-x-3 sm:gap-x-4 lg:gap-x-5`}>
 						<div className={`w-[48px] animate-pulse sm:w-[52px] text-SecondColor bg-LightColor rounded-full lg:w-[60px] aspect-square`}></div>
