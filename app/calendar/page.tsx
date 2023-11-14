@@ -25,12 +25,13 @@ const poppingsFont500 = Poppins({
 
 export default function Page() {
 	const searchParams = useSearchParams();
-	const searchTagId = searchParams.get("tag");
 
 	const [today, setToday] = useState<Date>(startOfToday());
 	const [month, setMonth] = useState<number>(getMonth(startOfToday()));
 	const [year, setYear] = useState<number>(getYear(startOfToday()));
-	const [eventList, setEventList] = useState<boolean>(searchTagId ? true : false);
+	const [eventList, setEventList] = useState<boolean>(searchParams.get("tag") ? true : false);
+
+	const [searchTagId, setSearchTagId] = useState<string | null>(null);
 
 	const currentYear = getYear(startOfToday());
 
@@ -40,6 +41,8 @@ export default function Page() {
 	const [eventsHeight, setEventsHeight] = useState<number | undefined>();
 
 	useEffect(() => {
+		setSearchTagId(searchParams.get("tag"));
+
 		if (!refEvents.current) return;
 		if (!refCalendar.current) return;
 
@@ -137,7 +140,15 @@ export default function Page() {
 						))}
 					</div>
 
-					<CalendarComponent today={today} month={month} year={year} />
+					<CalendarComponent
+						today={today}
+						month={month}
+						year={year}
+						setTag={(e: string | null) => {
+							setSearchTagId(e);
+							setEventList(true);
+						}}
+					/>
 				</motion.div>
 
 				<motion.div

@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const poppingsFont500 = Poppins({
 	weight: "500",
@@ -11,6 +12,8 @@ const poppingsFont700 = Poppins({
 });
 
 export default function EventComponent(props: { event: EventDataType }) {
+	const router = useRouter();
+
 	return (
 		<div className={`flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-3.5 lg:p-7 gap-x-3 sm:gap-x-4 lg:gap-x-5`}>
 			<p
@@ -24,7 +27,11 @@ export default function EventComponent(props: { event: EventDataType }) {
 
 				<div className="flex gap-x-2">
 					{props.event.tags.map((tag, i) => (
-						<div key={tag.id} className={`flex h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 bg-LightGray/30 items-center transition-color duration-300`}>
+						<div
+							onClick={() => router.replace("/calendar?tag=" + tag.id)}
+							key={tag.id}
+							className={`flex cursor-pointer h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 bg-LightGray/30 items-center transition-color duration-300`}
+						>
 							<div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-color duration-300`} style={{ backgroundColor: tag.color }} />
 
 							<p className={`text-2xs whitespace-nowrap text-MainDarkGray sm:text-xs md:text-sm transition-color duration-300 ${poppingsFont500.className}`}>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Poppins } from "next/font/google";
 
+
 const poppingsFont500 = Poppins({
 	weight: "500",
 	subsets: ["latin"],
@@ -16,7 +17,7 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEvents; expandedDay: string }) {
+export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEvents; expandedDay: string; hideExpanded: Function; setTag: Function }) {
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 	return (
@@ -60,7 +61,14 @@ export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEv
 
 								<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
 									{event.tags.map((tag) => (
-										<div key={tag.id} className={`flex h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center transition-color duration-300 bg-white`}>
+										<div
+											onClick={() => {
+												props.setTag(tag.id);
+												props.hideExpanded();
+											}}
+											key={tag.id}
+											className={`flex cursor-pointer h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center transition-color duration-300 bg-white`}
+										>
 											<div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-color duration-300`} style={{ backgroundColor: tag.color }} />
 											<p
 												className={`text-2xs whitespace-nowrap md:text-xs 2xl:text-sm transition-color duration-300 text-MainDarkGray ${poppingsFont500.className}`}

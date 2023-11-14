@@ -7,7 +7,7 @@ import { zonedTimeToUtc } from "date-fns-tz";
 import ExpandingDay from "./expandingDay";
 
 
-export default function CalendarComponent(props: { today: Date; month: number; year: number }) {
+export default function CalendarComponent(props: { today: Date; month: number; year: number; setTag: Function }) {
 	const [days, setDays] = useState<DayDataTypeWithEvents[]>([]);
 	const [fetched, setFetched] = useState<boolean>(false);
 
@@ -89,7 +89,7 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 				<AnimatePresence>
 					{expandedDay && expandedDayData && (
 						<motion.div className="flex items-center justify-center w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-20">
-							<ExpandingDay expandedDay={expandedDay} expandedDayData={expandedDayData} />
+							<ExpandingDay expandedDay={expandedDay} expandedDayData={expandedDayData} hideExpanded={() => setExpandedDay(undefined)} setTag={props.setTag} />
 							<div className="w-screen h-screen fixed top-0 left-0 z-20 bg-Gray/30" onClick={() => setExpandedDay(undefined)}></div>
 						</motion.div>
 					)}

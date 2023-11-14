@@ -29,6 +29,19 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		fetchEvents();
 		fetchTags();
 	}, []);
+	useEffect(() => {
+		fetchEvents();
+	}, [eventsCount]);
+
+	useEffect(() => {
+		let tag = tags.find((tag) => tag.id == props.searchTagId);
+		if (tag) {
+			const index = tags.indexOf(tag);
+			let tempSelection: boolean[] = [];
+			tempSelection[index] = true;
+			setSelectedTags(tempSelection);
+		}
+	}, [props.searchTagId, tags]);
 
 	const day = getDate(startOfToday());
 	const month = getMonth(startOfToday());
@@ -39,8 +52,8 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		data.set("day", day.toString());
 		data.set("year", year.toString());
 		data.set("month", month.toString());
-		const returnedEvents: EventDataType[] = await (
-			await fetch(`/api/calendar/events/?count=${eventsCount * 50}`, {
+		const returnedEvents: EventDataType[] = await(
+			await fetch(`/api/calendar/events/?count=${eventsCount * 30}`, {
 				method: "POST",
 				body: data,
 			})
@@ -53,7 +66,6 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		}
 
 		setEvents(returnedEvents);
-		setEventsCount((oldCount) => oldCount + 1);
 		setDates(Array.from(new Set(dates)));
 		setFetched(true);
 	}
@@ -61,13 +73,6 @@ export default function EventsList(props: { searchTagId: string | null }) {
 	async function fetchTags() {
 		const returnedTags: EventTagDataType[] = await (await fetch(`/api/dashboard/calendar/tags`)).json();
 		setTags(returnedTags);
-
-		let tag;
-		if (returnedTags) tag = returnedTags.find((tag) => tag.id == props.searchTagId);
-		if (tag) {
-			const index = returnedTags.indexOf(tag);
-			selectedTags[index] = true;
-		}
 	}
 
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
@@ -128,10 +133,10 @@ export default function EventsList(props: { searchTagId: string | null }) {
 								))}
 							{dates.length - 1 == i && (
 								<button
-									onClick={() => setEventsCount((old) => old + 1)}
-									className={`${
-										events.length < eventsCount * 10 ? "hidden" : ""
-									} flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-3.5 lg:p-7 gap-x-5`}
+									onClick={() => setEventsCount((oldCount) => oldCount + 1)}
+									className={`
+									${events.length < eventsCount * 30 ? "hidden" : ""}
+									 flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-3.5 lg:p-7 gap-x-5`}
 								>
 									<p
 										className={`w-[48px] sm:w-[52px] text-lg sm:text-xl lg:text-2xl text-SecondColor bg-LightColor rounded-full p-2.5 sm:p-3 lg:p-3.5 lg:w-[60px] text-center ${poppingsFont700.className}`}
