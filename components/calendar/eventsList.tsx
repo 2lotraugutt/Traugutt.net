@@ -24,14 +24,18 @@ export default function EventsList(props: { searchTagId: string | null }) {
 
 	const [tags, setTags] = useState<EventTagDataType[]>([]);
 	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
+	const [search, setSearch] = useState<string>("");
 
 	useEffect(() => {
-		fetchEvents();
 		fetchTags();
+		fetchEvents();
 	}, []);
 	useEffect(() => {
 		fetchEvents();
 	}, [eventsCount]);
+	useEffect(() => {
+		searchEvents();
+	}, [selectedTags]);
 
 	useEffect(() => {
 		let tag = tags.find((tag) => tag.id == props.searchTagId);
@@ -52,12 +56,38 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		data.set("day", day.toString());
 		data.set("year", year.toString());
 		data.set("month", month.toString());
-		const returnedEvents: EventDataType[] = await(
+		const returnedEvents: EventDataType[] = await (
 			await fetch(`/api/calendar/events/?count=${eventsCount * 30}`, {
 				method: "POST",
 				body: data,
 			})
 		).json();
+
+		let dates = [];
+
+		for (const eventData of returnedEvents) {
+			dates.push(eventData.date.slice(3, 10));
+		}
+
+		setEvents(returnedEvents);
+		setDates(Array.from(new Set(dates)));
+		setFetched(true);
+	}
+
+	async function searchEvents() {
+		let request = "";
+
+		if (search != "") request += "&search=" + search;
+
+		let i = 0;
+		for (const bool of selectedTags) {
+			if (bool) {
+				request += "&tag=" + tags[i].id;
+			}
+			i++;
+		}
+
+		const returnedEvents: EventDataType[] = await (await fetch(`/api/calendar/events/search/?count=${eventsCount * 30}${request}`)).json();
 
 		let dates = [];
 
@@ -82,9 +112,12 @@ export default function EventsList(props: { searchTagId: string | null }) {
 			<div className="flex flex-col w-3/5 mx-auto gap-y-12">
 				<div className="flex flex-col gap-y-3 -mx-20">
 					<div className="flex items-center gap-3 border-2 hover:bg-LightGray/20 bg-LightGray/5 transition-all duration-300 py-1 md:py-2 md:px-3 px-2 lg:py-3 lg:px-4 3xl:px-6 xl:py-4 sm:gap-2 md:gap-3 rounded-2xl">
-						<FontAwesomeIcon icon={faSearch} className={`h-5 lg:h-7`} />
+						<FontAwesomeIcon onClick={() => searchEvents()} icon={faSearch} className={`h-5 lg:h-7 cursor-pointer`} />
 						<input
 							type="text"
+							onBlur={() => searchEvents()}
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
 							className={`outline-none w-full bg-transparent text-sm xs:text-base md:text-lg xl:text-xl 2xl:text-2xl ${poppingsFont500.className}`}
 						/>
 					</div>
