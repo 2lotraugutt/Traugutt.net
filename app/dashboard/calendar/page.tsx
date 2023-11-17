@@ -40,7 +40,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchTags() {
-		const returnedTags = await (await fetch(`/api/dashboard/calendar/tags`)).json();
+		const returnedTags = await(await fetch(`/api/calendar/tags`)).json();
 		setTags(returnedTags);
 	}
 

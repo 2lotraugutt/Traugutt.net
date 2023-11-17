@@ -101,7 +101,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 	}
 
 	async function fetchTags() {
-		const returnedTags: EventTagDataType[] = await (await fetch(`/api/dashboard/calendar/tags`)).json();
+		const returnedTags: EventTagDataType[] = await(await fetch(`/api/calendar/tags`)).json();
 		setTags(returnedTags);
 	}
 
