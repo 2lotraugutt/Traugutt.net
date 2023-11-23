@@ -1,11 +1,11 @@
-// import { faBell, faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
 import { faChartLine, faClose, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
+import SidebarNavigation from "./sidebarNavigation";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -35,7 +35,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 	return (
 		<div className={`fixed z-40 top-0 h-screen w-full 2xs:w-96 duration-500 ease-out transition-all right-0 p-2 ${props.visible ? "translate-x-0" : "translate-x-full"}`}>
-			<div className="w-full gap-y-5 h-full flex sm:ps-7 sm:pe-8 sm:py-6 ps-6 pe-7 py-5 flex-col bg-SecondColor overflow-y-auto rounded-l-2xl rounded-r-4xl">
+			<div className="w-full gap-y-4 h-full flex sm:ps-7 sm:pe-8 sm:py-6 ps-6 pe-7 py-5 flex-col bg-SecondColor overflow-y-auto rounded-l-2xl rounded-r-4xl">
 				{userSession ? (
 					<>
 						<div className="flex items-center gap-x-2.5 justify-center sm:gap-x-4 relative">
@@ -73,7 +73,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 											setAccountSettings(false);
 										}}
 									>
-										<FontAwesomeIcon icon={faUser} className="w-6 h-6 text-white py-3 px-[17px]" />
+										<FontAwesomeIcon icon={faUser} className="w-6 h-6 text-white py-3 px-4" />
 										<div className={`${poppingsFont600.className}`}>ustawienia konta</div>
 									</Link>
 
@@ -85,7 +85,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 											setAccountSettings(false);
 										}}
 									>
-										<FontAwesomeIcon icon={faSignOut} className="w-6 h-6 text-white py-3 px-[17px]" />
+										<FontAwesomeIcon icon={faSignOut} className="w-6 h-6 text-white py-3 px-4" />
 										<div className={`${poppingsFont600.className}`}>wyloguj się</div>
 									</Link>
 								</div>
@@ -96,25 +96,16 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 						<div className="flex flex-col gap-y-1">
 							<Link className={`sidebar-button ${userSession.user.role.createPosts ? "" : "!hidden"} `} href={"/dashboard/post"} onClick={() => props.toggle()}>
-								<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-[17px]" />
+								<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
 								<div className={`${poppingsFont600.className}`}>dodaj post</div>
 							</Link>
-							{/* <Link className="sidebar-button" href={""} onClick={() => props.toggle()}>
-								<FontAwesomeIcon icon={faCommentDots} className="w-6 h-6 text-white py-3 px-[17px]" />
-								<div className={`${poppingsFont600.className}`}>wiadomości</div>
-							</Link>
-							<Link className="sidebar-button" href={""} onClick={() => props.toggle()}>
-								<FontAwesomeIcon icon={faBell} className="w-6 h-6 text-white py-3 px-[17px]" />
-								<div className={`${poppingsFont600.className}`}>powiadomienia</div>
-							</Link> */}
-
 							<Link className="sidebar-button" href={"/dashboard"} onClick={() => props.toggle()}>
-								<FontAwesomeIcon icon={faChartLine} className="w-6 h-6 text-white py-3 px-[17px]" />
+								<FontAwesomeIcon icon={faChartLine} className="w-6 h-6 text-white py-3 px-4" />
 								<div className={`${poppingsFont600.className}`}>panel sterowania</div>
 							</Link>
 
 							<button className="sidebar-button sm:hidden" onClick={() => props.toggle()}>
-								<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-[17px]" />
+								<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-4" />
 								<div className={`${poppingsFont600.className}`}>Zamknij menu</div>
 							</button>
 						</div>
@@ -131,14 +122,14 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 						<div className="flex flex-col gap-y-1 sm:hidden">
 							<button className="sidebar-button" onClick={() => props.toggle()}>
-								<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-[17px]" />
+								<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-4" />
 								<div className={`${poppingsFont600.className}`}>Zamknij menu</div>
 							</button>
 						</div>
 					</>
 				)}
 
-				<div className="h-1 bg-DarkColor/40"></div>
+				<SidebarNavigation />
 			</div>
 		</div>
 	);

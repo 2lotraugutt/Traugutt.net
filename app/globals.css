@@ -46,7 +46,7 @@ input::-webkit-inner-spin-button {
 }
 
 .sidebar-button{
-  @apply flex items-center gap-x-4 hover:bg-MainDarkGray/30 rounded-xl text-white grow text-sm md:text-lg sm:text-base leading-5 
+  @apply flex transition-all duration-300 items-center whitespace-nowrap gap-x-4 hover:bg-MainDarkGray/30 rounded-xl text-white grow text-sm 2xl:text-lg sm:text-base leading-5 
 }
 
 .dashboard-post-page{
