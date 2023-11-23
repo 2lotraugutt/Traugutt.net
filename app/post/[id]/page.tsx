@@ -5,9 +5,10 @@ import PostHeading from "@/app/post/postHeading";
 import PostSkeleton from "@/app/post/postSkeleton";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
 import TopPostTile from "@/components/posts/topPostTile";
-import markdownToHTML from "@/lib/markdownToHTML";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
+import { MdPreview } from "md-editor-rt";
+import "md-editor-rt/lib/preview.css";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -55,7 +56,7 @@ export default function Page({ params }: { params: { id: string } }) {
 						id="markdown-container"
 						className={`px-3 xs:px-7 flex-col flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80 py-4 xl:py-20 md:py-12 lg:py-14 sm:py-9 xs:py-6 ${poppingsFont400.className}`}
 					>
-						{markdownToHTML(post.content ?? "# Brak opisu...")}
+						<MdPreview editorId={"preview-only"} modelValue={post.content ?? "# Brak opisu..."} />
 					</div>
 
 					<PostGallery post={post} />

@@ -1,5 +1,6 @@
 "use client";
-
+import { MdEditor } from "md-editor-rt";
+import "md-editor-rt/lib/style.css";
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
@@ -44,11 +45,7 @@ export default function StageThree(props: { down: Function; up: Function; setCon
 					</p>
 				</div>
 
-				<textarea
-					value={content}
-					className={`border-2 border-MainColor text-sm w-1/2 aspect-[3/2] p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
-					onChange={(e) => setContent(e.target.value)}
-				/>
+				<MdEditor modelValue={content} onChange={setContent} language="en-US" noUploadImg className="!w-3/4" />
 
 				<div className="flex justify-between w-full max-w-xl">
 					<button onClick={() => props.down()} className={`bg-MainDarkGray px-8 py-3 text-white rounded-3xl ${plusJakartaSans.className}`}>

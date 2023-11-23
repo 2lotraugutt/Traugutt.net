@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import markdownToHTML from "@/lib/markdownToHTML";
+import { MdPreview } from "md-editor-rt";
+import "md-editor-rt/lib/preview.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
 	weight: "600",
@@ -39,9 +40,9 @@ export default function StageFour(props: { down: Function; up: Function; content
 
 				<div
 					id="markdown-container"
-					className={`border-2 border-MainColor text-sm w-1/2 overflow-y-auto aspect-[3/2] p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
+					className={`border-2 border-MainColor max-h-96 overflow-y-auto text-sm w-2/3 p-3 rounded-2xl resize-none flex-col outline-none flex gap-y-1 md:gap-y-2 xl:gap-y-3 3xl:gap-y-5 ${poppingsFont400.className}`}
 				>
-					{markdownToHTML(props.content)}
+					<MdPreview editorId={"preview-only"} modelValue={props.content} />
 				</div>
 
 				<div className="flex justify-between w-full max-w-xl">
