@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 			const buffer = Buffer.from(bytes);
 			const name = uuid_v4() + "." + image.name.split(".").pop();
 			const path = `./postImages/${name}`;
-			const imgPath = `./postImages/${name}`;
+			const imgPath = `https://traugutt.eu/postImages/${name}`;
 			await writeFile(path, buffer);
 
 			for (const image of gallery) {
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
 				const path = `./postImages/${name}`;
-				imgPaths.push(`./postImages/${name}`);
+				imgPaths.push(`https://traugutt.eu/postImages/${name}`);
 				await writeFile(path, buffer);
 			}
 
@@ -63,8 +63,8 @@ export async function PUT(request: NextRequest) {
 			const content = data.get("content") as string;
 			const image = data.get("image") as File | "";
 			const imageName = data.get("imageName") as string;
-			const gallery = data.getAll("gallery[]") as (File | "")[];
-			const galleryNames = data.getAll("galleryNames[]") as string[];
+			// const gallery = data.getAll("gallery[]") as (File | "")[];
+			// const galleryNames = data.getAll("galleryNames[]") as string[];
 
 			let imgPath;
 			// let imgPaths = [];
@@ -75,10 +75,11 @@ export async function PUT(request: NextRequest) {
 				const buffer = Buffer.from(bytes);
 				const name = uuid_v4() + "." + image.name.split(".").pop();
 				const path = `./postImages/${name}`;
-				imgPath = `/postImages/${name}`;
+				imgPath = `https://traugutt.eu/postImages/${name}`;
 				await writeFile(path, buffer);
 			}
 
+			// Editing photos is #TODO
 			// let i = 0;
 			// for (const image of gallery) {
 			// 	if (image == "") {

@@ -45,13 +45,7 @@ export default function TopOnePost() {
 					TOP #1
 				</div>
 
-				<img
-					className="w-full h-full object-cover absolute"
-					src={topOnePost.titleImage}
-					alt="Top 1 image"
-					height={1080}
-					width={1920}
-				/>
+				<Image className="w-full h-full object-cover absolute" src={topOnePost.titleImage} alt="Top 1 image" height={1080} width={1920} />
 
 				<div className="w-full rounded-3xl xs:rounded-4xl aspect-[25/16] bg-MainDarkGray "></div>
 
