@@ -33,7 +33,7 @@ export default function PostHeading(props: { post: PostDataTypeWithAuthor }) {
 
 	return (
 		<div className="relative">
-			<Image
+			<img
 				alt="Title image"
 				src={props.post.titleImage}
 				width={1920}
