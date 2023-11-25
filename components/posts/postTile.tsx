@@ -32,7 +32,7 @@ export default function PostTile(props: { postData: PostDataType }) {
 				{dateToDisplay}
 			</div>
 
-			<Image className="w-full h-full object-cover absolute" src={props.postData.titleImage} alt="Top 1 image" height={1080} width={1920} />
+			<Image className="w-full h-full object-cover absolute" src={`${props.postData.titleImage.toString()}`} alt="Top 1 image" height={1080} width={1920} />
 
 			<div className="w-full rounded-3xl xs:rounded-4xl aspect-[25/16] bg-MainDarkGray "></div>
 
