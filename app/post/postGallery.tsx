@@ -18,7 +18,7 @@ export default function PostGallery(props: { post: PostDataTypeWithAuthor }) {
 
 				<div className="flex flex-wrap justify-center px-3 xs:px-7 gap-3 lg:px-24 xl:px-28 md:px-16 2xs:px-5 sm:px-10 2xl:px-48 3xl:px-64 4xl:px-80">
 					{props.post.gallery.map((photo, index) => (
-						<img src={photo} width={300} height={100} alt="Gallery image" className="max-w-lg aspect-[3/2] object-cover grow rounded-3xl" key={index} />
+						<Image src={photo} width={300} height={100} alt="Gallery image" className="max-w-lg aspect-[3/2] object-cover grow rounded-3xl" key={index} />
 					))}
 				</div>
 			</>

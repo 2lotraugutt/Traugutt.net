@@ -42,7 +42,7 @@ export default function SidebarNavigation() {
 
 			<div className="flex flex-col gap-y-1">
 				{mainNavs.map((nav, i) => (
-					<button className={`sidebar-button ${openedList[i] && "bg-MainDarkGray/20"}`} onClick={() => changeState(i)}>
+					<button key={i} className={`sidebar-button ${openedList[i] && "bg-MainDarkGray/20"}`} onClick={() => changeState(i)}>
 						<FontAwesomeIcon icon={nav.icon} className="w-6 h-6 text-white py-3 px-4" />
 						<div className={`${poppingsFont600.className}`}>{nav.name}</div>
 
