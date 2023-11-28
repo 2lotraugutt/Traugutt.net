@@ -6,7 +6,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function PostGallery(props: { post: PostDataTypeWithAuthor }) {
+export default function PostGallery(props: { post: PostDataTypeWithAuthorAndEvent }) {
 	if (props.post.gallery.length != 0)
 		return (
 			<>
