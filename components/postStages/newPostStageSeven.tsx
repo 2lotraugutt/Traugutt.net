@@ -31,11 +31,11 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function NewPostStageSix(props: { down: Function; upload: Function; uploaded: boolean }) {
+export default function NewPostStageSeven(props: { down: Function; upload: Function; uploaded: boolean }) {
 	const [seconds, setSeconds] = useState(10);
 
 	const router = useRouter();
-	
+
 	useEffect(() => {
 		if (props.uploaded == true) {
 			if (seconds > 0) {

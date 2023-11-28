@@ -1,10 +1,11 @@
 "use client";
 
-import NewPostStageSix from "@/components/postStages/newPostStageSix";
+import NewPostStageSeven from "@/components/postStages/newPostStageSeven";
 import NewPostStageZero from "@/components/postStages/newPostStageZero";
 import StageFive from "@/components/postStages/stageFive";
 import StageFour from "@/components/postStages/stageFour";
 import StageOne from "@/components/postStages/stageOne";
+import StageSix from "@/components/postStages/stageSix";
 import StageThree from "@/components/postStages/stageThree";
 import StageTwo from "@/components/postStages/stageTwo";
 import { useState } from "react";
@@ -16,6 +17,7 @@ export default function Page() {
 	const [imageName, setImageName] = useState("");
 	const [content, setContent] = useState("");
 	const [gallery, setGallery] = useState<{ name: string; image: File }[]>([]);
+	const [eventId, setEventId] = useState<string | null>("");
 
 	const [uploaded, setUploaded] = useState(false);
 
@@ -31,6 +33,8 @@ export default function Page() {
 		data.set("title", title);
 		data.set("image", image);
 		data.set("content", content);
+		if (eventId) data.set("eventId", eventId);
+
 		for (const file of gallery) {
 			data.append("gallery[]", file.image as any, file.image.name);
 		}
@@ -67,6 +71,7 @@ export default function Page() {
 		}
 	}
 	if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
-	if (stage == 6) return <NewPostStageSix down={stageDown} upload={upload} uploaded={uploaded} />;
+	if (stage == 6) return <StageSix down={stageDown} up={stageUp} setEvent={(eventId: string | null) => setEventId(eventId)} initEventId={eventId} />;
+	if (stage == 7) return <NewPostStageSeven down={stageDown} upload={upload} uploaded={uploaded} />;
 	else setStage(0);
 }

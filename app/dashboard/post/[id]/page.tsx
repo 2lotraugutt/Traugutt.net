@@ -8,7 +8,8 @@ import StageTwo from "@/components/postStages/stageTwo";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import EditPostStageZero from "@/components/postStages/editPostStageZero";
-import EditPostStageSix from "@/components/postStages/editPostStageSix";
+import EditPostStageSeven from "@/components/postStages/editPostStageSeven";
+import StageSix from "@/components/postStages/stageSix";
 
 export default function Page({ params }: { params: { id: string } }) {
 	const [stage, setStage] = useState(0);
@@ -17,6 +18,7 @@ export default function Page({ params }: { params: { id: string } }) {
 	const [image, setImage] = useState<File | any>();
 	const [imageName, setImageName] = useState("");
 	const [content, setContent] = useState("");
+	const [eventId, setEventId] = useState<string | null>("");
 	const [gallery, setGallery] = useState<{ name: string; image: File | undefined }[]>([]);
 
 	const [uploaded, setUploaded] = useState(false);
@@ -26,7 +28,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 
 		async function fetchPosts() {
-			const post = (await (await fetch(`/api/posts/post/${params.id}`)).json()) as PostDataTypeWithAuthor;
+			const post = await(await fetch(`/api/posts/post/${params.id}`)).json() as PostDataTypeWithAuthorAndEvent;
 
 			if (post) {
 				setId(post.id);
@@ -35,6 +37,7 @@ export default function Page({ params }: { params: { id: string } }) {
 				setTitle(post.title);
 				setImageName(post.titleImage);
 				setContent(post.content ?? "");
+				setEventId(post.eventId);
 				setGallery(
 					post.gallery.map((image) => {
 						const data = {
@@ -63,6 +66,9 @@ export default function Page({ params }: { params: { id: string } }) {
 		data.set("image", image ?? "");
 		data.set("imageName", imageName);
 		data.set("content", content);
+
+		if (eventId) data.set("eventId", eventId);
+
 		for (const file of gallery) {
 			data.append("gallery[]", file.image ?? "");
 			data.append("galleryNames[]", file.name as string);
@@ -101,6 +107,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		}
 	}
 	// if (stage == 5) return <StageFive down={stageDown} up={stageUp} setGallery={(gallery: { name: string; image: File }[]) => setGallery(gallery)} initGallery={gallery} />;
-	if (stage == 5) return <EditPostStageSix down={stageDown} upload={upload} uploaded={uploaded} />;
+	if (stage == 5) return <StageSix down={stageDown} up={stageUp} setEvent={(eventId: string | null) => setEventId(eventId)} initEventId={eventId} />;
+	if (stage == 6) return <EditPostStageSeven down={stageDown} upload={upload} uploaded={uploaded} />;
 	else setStage(0);
 }
