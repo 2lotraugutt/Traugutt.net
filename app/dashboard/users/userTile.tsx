@@ -1,4 +1,4 @@
-import { faShield, faSignOut, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faRemove, faShield, faSignOut, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
@@ -21,25 +21,32 @@ const poppingsFont700 = Poppins({
 
 export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
-	const [verifyButtonText, setVerifyButtonText] = useState("Zweryfikuj");
+	const [verifyButtonText, setVerifyButtonText] = useState("Ustaw jako uczeń");
+	const [unverifyButtonText, setUnverifyButtonText] = useState("Usuń rolę ucznia");
 	const [logoutButton, setLogoutButtonText] = useState("Wyloguj");
 
 	async function verifyUser() {
 		setVerifyButtonText("Weryfikowanie...");
 
-		const response = await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
+		await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
+		props.refetchUsers();
+	}
+	async function unverifyUser() {
+		setUnverifyButtonText("Usuwanie roli...");
+
+		await (await fetch(`/api/dashboard/users/user/unverify/${props.userData.id}`)).json();
 		props.refetchUsers();
 	}
 	async function logoutUser() {
 		setLogoutButtonText("Wylogowywanie...");
 
-		const response = await (await fetch(`/api/dashboard/users/user/signout/${props.userData.id}`)).json();
+		await (await fetch(`/api/dashboard/users/user/signout/${props.userData.id}`)).json();
 		props.refetchUsers();
 	}
 	async function deleteUser() {
 		setDeleteButtonText("Usuwanie...");
 
-		const response = await (await fetch(`/api/dashboard/users/user/delete/${props.userData.id}`)).json();
+		await (await fetch(`/api/dashboard/users/user/delete/${props.userData.id}`)).json();
 		props.refetchUsers();
 	}
 	return (
@@ -81,9 +88,10 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 				</div>
 
 				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Zweryfikowany: </p>
+					<p className="h-fit">Jest uczniem: </p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${props.userData.verified ? "bg-MainColor" : "bg-SecondColor"}`} /> {props.userData.verified ? "Tak" : "Nie"}
+						<div className={`w-2 h-2 rounded-full ${props.userData.verified == null && "hidden"} ${props.userData.verified ? "bg-MainColor" : "bg-MainRed"}`} />
+						{props.userData.verified == null ? "---" : props.userData.verified ? "Tak" : "Nie"}
 					</div>
 				</div>
 			</div>
@@ -91,11 +99,20 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
 				<button
 					onClick={() => verifyUser()}
-					className={`group/button dashboard-post-tile ${props.userData.verified ? "!hidden" : ""} ${plusJakartaSansFont700.className}`}
+					className={`group/button dashboard-post-tile ${props.userData.verified && "!hidden"} ${plusJakartaSansFont700.className}`}
 				>
 					{verifyButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faShield} />
+					</div>
+				</button>
+				<button
+					onClick={() => unverifyUser()}
+					className={`group/button dashboard-post-tile ${props.userData.verified || "!hidden"} ${plusJakartaSansFont700.className}`}
+				>
+					{unverifyButtonText}
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faRemove} />
 					</div>
 				</button>
 
