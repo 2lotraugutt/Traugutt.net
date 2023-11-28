@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
 			const image: File = data.get("image") as File;
 			const title: string = data.get("title") as string;
 			const content: string = data.get("content") as string;
+			const eventId: string = data.get("eventId") as string;
 			const gallery = data.getAll("gallery[]") as File[];
 
 			let imgPaths = [];
@@ -41,6 +42,7 @@ export async function POST(request: NextRequest) {
 					authorId: session.user.id,
 					titleImage: imgPath,
 					gallery: imgPaths,
+					eventId: eventId,
 					published: false,
 					publishedById: session.user.role.managePosts ? session.userId : null,
 				},
@@ -63,6 +65,8 @@ export async function PUT(request: NextRequest) {
 			const content = data.get("content") as string;
 			const image = data.get("image") as File | "";
 			const imageName = data.get("imageName") as string;
+			const eventId: string = data.get("eventId") as string;
+
 			// const gallery = data.getAll("gallery[]") as (File | "")[];
 			// const galleryNames = data.getAll("galleryNames[]") as string[];
 
@@ -105,6 +109,7 @@ export async function PUT(request: NextRequest) {
 					content: content,
 					authorId: session.user.id,
 					titleImage: imgPath,
+					eventId: eventId,
 					// gallery: imgPaths,
 					published: false,
 					publishedById: session.user.role.managePosts ? session.userId : null,
