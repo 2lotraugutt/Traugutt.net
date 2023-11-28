@@ -1,4 +1,6 @@
 import removeMarkdown from "@/lib/removeMarkdown";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,6 +33,14 @@ export default function PostTile(props: { postData: PostDataType }) {
 			>
 				{dateToDisplay}
 			</div>
+
+			{props.postData.eventId && (
+				<div
+					className={`flex items-center bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 right-4 xs:right-8 w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-6 rounded-2xl sm:py-1.5 lg:py-2 py-1 px-1.5 sm:px-3 ${plusJakartaSansFont800.className}`}
+				>
+					<FontAwesomeIcon icon={faLink} />
+				</div>
+			)}
 
 			<img className="w-full h-full object-cover absolute" src={props.postData.titleImage} alt="Top 1 image" height={1080} width={1920} />
 
