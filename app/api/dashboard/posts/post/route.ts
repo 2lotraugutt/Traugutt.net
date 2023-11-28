@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 					authorId: session.user.id,
 					titleImage: imgPath,
 					gallery: imgPaths,
-					published: session.user.role.managePosts ? true : false,
+					published: false,
 					publishedById: session.user.role.managePosts ? session.userId : null,
 				},
 			});
@@ -106,7 +106,7 @@ export async function PUT(request: NextRequest) {
 					authorId: session.user.id,
 					titleImage: imgPath,
 					// gallery: imgPaths,
-					published: session.user.role.managePosts ? true : false,
+					published: false,
 					publishedById: session.user.role.managePosts ? session.userId : null,
 				},
 			});

@@ -88,7 +88,7 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 				</div>
 
 				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Jest uczniem: </p>
+					<p className="h-fit">Zweryfikowany:</p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
 						<div className={`w-2 h-2 rounded-full ${props.userData.verified == null && "hidden"} ${props.userData.verified ? "bg-MainColor" : "bg-MainRed"}`} />
 						{props.userData.verified == null ? "---" : props.userData.verified ? "Tak" : "Nie"}
