@@ -1,3 +1,5 @@
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +13,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function EventComponent(props: { event: EventDataType }) {
+export default function EventComponent(props: { event: EventDataTypeWithPost }) {
 	const router = useRouter();
 
 	return (
@@ -23,12 +25,22 @@ export default function EventComponent(props: { event: EventDataType }) {
 			</p>
 
 			<div className="flex flex-col gap-y-1.5">
-				<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg ${poppingsFont700.className}`}>{props.event.name}</p>
+				<div className="flex items-center justify-between">
+					<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg ${poppingsFont700.className}`}>{props.event.name}</p>
+
+					{props.event.post && (
+						<FontAwesomeIcon
+							icon={faLink}
+							onClick={() => router.push("/post/" + props.event.post?.id)}
+							className="bg-LightColor text-MainDarkGray cursor-pointer hover:bg-MainColor transition-all rounded-full aspect-square p-1 ms-7"
+						/>
+					)}
+				</div>
 
 				<div className="flex gap-x-2">
 					{props.event.tags.map((tag, i) => (
 						<div
-							onClick={() => router.replace("/calendar?tag=" + tag.id)}
+							onClick={() => router.push("/calendar?tag=" + tag.id)}
 							key={tag.id}
 							className={`flex cursor-pointer h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 bg-LightGray/30 items-center transition-color duration-300`}
 						>
