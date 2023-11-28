@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 				timeStamp: "asc",
 			},
 		],
-		include: { events: { include: { tags: true } } },
+		include: { events: { include: { tags: true, post: true } } },
 		where: {
 			year: year != 0 ? year : undefined,
 			month: month != 20 ? month : undefined,

@@ -24,15 +24,15 @@ export default function EventComponent(props: { event: EventDataTypeWithPost }) 
 				{props.event.date.slice(0, 2)}
 			</p>
 
-			<div className="flex flex-col gap-y-1.5">
-				<div className="flex items-center justify-between">
+			<div className="flex flex-col gap-y-1.5 w-full">
+				<div className="flex items-center justify-between grow">
 					<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg ${poppingsFont700.className}`}>{props.event.name}</p>
 
 					{props.event.post && (
 						<FontAwesomeIcon
 							icon={faLink}
 							onClick={() => router.push("/post/" + props.event.post?.id)}
-							className="bg-LightColor text-MainDarkGray cursor-pointer hover:bg-MainColor transition-all rounded-full aspect-square p-1 ms-7"
+							className="bg-LightColor text-MainDarkGray cursor-pointer hover:bg-MainColor transition-all rounded-full aspect-square p-1.5 ms-7"
 						/>
 					)}
 				</div>

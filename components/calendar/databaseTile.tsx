@@ -9,7 +9,7 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-export default function DatabaseTile(props: { day: DayDataTypeWithEvents; setExpDay: Function }) {
+export default function DatabaseTile(props: { day: DayDataTypeWithEventsAndPost; setExpDay: Function }) {
 	const date = new Date(props.day.year, props.day.month, props.day.day);
 	if (isWeekend(date)) return <WeekendTile date={date} events={props.day.events} setExpDay={props.setExpDay} differentMonth={false} />;
 	else

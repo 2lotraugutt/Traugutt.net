@@ -14,7 +14,7 @@ export default function DayTile(props: { date: Date; differentMonth: boolean; se
 		return (
 			<motion.div
 				layoutId={format(props.date, "dd-MM-yyyy")}
-				onClick={() => props.setExpDay!(format(props.date, "dd-MM-yyyy"))}
+				onClick={() => props.setExpDay(format(props.date, "dd-MM-yyyy"))}
 				className={`day-tile ${props.differentMonth ? "bg-MediumGray/10" : "bg-LightColor/30"} ${
 					isToday(props.date) ? "border-[1.5px] md:border-2 scale-105 md:scale-110 border-SecondColor/50" : ""
 				} ${props.setExpDay && "cursor-pointer"}`}

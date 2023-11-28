@@ -94,7 +94,7 @@ declare global {
 		manageNotifications: Boolean;
 	};
 
-	type DayDataTypeWithEvents = {
+	type DayDataTypeWithEventsAndPost = {
 		date: string;
 		number: number?;
 		freeDay: boolean;
@@ -102,7 +102,7 @@ declare global {
 		month: number;
 		year: number;
 		timeStamp: Date;
-		events: EventDataType[];
+		events: EventDataTypeWithPost[];
 	};
 
 	type EventDataType = {

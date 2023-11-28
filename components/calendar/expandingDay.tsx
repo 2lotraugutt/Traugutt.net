@@ -1,7 +1,9 @@
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Poppins } from "next/font/google";
-
+import { useRouter } from "next/navigation";
 
 const poppingsFont500 = Poppins({
 	weight: "500",
@@ -17,19 +19,21 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEvents; expandedDay: string; hideExpanded: Function; setTag: Function }) {
+export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEventsAndPost; expandedDay: string; hideExpanded: Function; setTag: Function }) {
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+	const router = useRouter();
 
 	return (
 		<motion.div
 			layoutId={props.expandedDay}
-			className={`flex flex-col gap-y-4 xs:gap-y-5 md:gap-y-6 w-full lg:gap-y-8 max-w-xs md:max-w-md lg:max-w-2xl items-start fixed bg-white rounded-3xl z-30 p-3 xs:p-5 sm:p-6 xs:gap-5 md:p-10`}
+			className={`flex flex-col gap-y-4 xs:gap-y-5 md:gap-y-6 w-full lg:gap-y-8 max-w-xs md:max-w-md lg:max-w-2xl 3xl:max-w-5xl 4xl:max-w-6xl items-start fixed bg-white rounded-3xl z-30 p-3 xs:p-5 sm:p-6 xs:gap-5 md:p-10`}
 			key={parseInt(props.expandedDay)}
 		>
 			<motion.div className="flex justify-between items-center w-full">
 				<motion.div
-					className={`xl:px-3 xl:py-1.5 py-1 3xl:p-4 p-2 text-center rounded-full text-xs sm:text-sm lg:text-base xl:text-lg 3xl:text-xl
- ${plusJakartaSansFont800.className} ${props.expandedDayData.freeDay ? "bg-[#44D375]/20 text-[#1fd15e]" : "bg-LightColor text-SecondColor"}`}
+					className={`xl:px-3 xl:py-1.5 py-1 3xl:p-4 p-2 text-center rounded-full text-xs sm:text-sm lg:text-base xl:text-lg 3xl:text-xl ${
+						plusJakartaSansFont800.className
+					} ${props.expandedDayData.freeDay ? "bg-[#44D375]/20 text-[#1fd15e]" : "bg-LightColor text-SecondColor"}`}
 				>
 					{props.expandedDayData.day} {monthsNames[props.expandedDayData.month]} {props.expandedDayData.year}
 				</motion.div>
@@ -51,14 +55,23 @@ export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEv
 					>
 						Wydarzenia:
 					</motion.p>
-					<motion.div className="grid gap-2 grid-cols-1 2xl:grid-cols-2 w-full">
+					<motion.div className="grid gap-2 grid-cols-1 3xl:grid-cols-2 w-full">
 						{props.expandedDayData.events.map((event) => (
 							<motion.div
 								key={event.id}
 								className={`w-full flex flex-col gap-y-1 md:gap-y-1.5 lg:gap-y-2 event-container transition-all duration-300 bg-LightColor py-2 px-3 md:px-4 md:py-3 xl:px-6 xl:py-2.5 text-white rounded-xl 2xl:rounded-2xl`}
 							>
-								<div className={`text-sm lg:text-base xl:text-lg 3xl:text-xl text-MainDarkGray ${poppingsFont500.className}`}>{event.name}</div>
+								<div className="flex items-center justify-between grow">
+									<div className={`text-sm lg:text-base xl:text-lg 3xl:text-xl text-MainDarkGray ${poppingsFont500.className}`}>{event.name}</div>
 
+									{event.post && (
+										<FontAwesomeIcon
+											icon={faLink}
+											onClick={() => router.push("/post/" + event.post?.id)}
+											className="bg-MainColor cursor-pointer hover:bg-SecondColor transition-all text-white rounded-full aspect-square p-1.5 ms-7"
+										/>
+									)}
+								</div>
 								<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
 									{event.tags.map((tag) => (
 										<div

@@ -14,7 +14,10 @@ export async function GET(request: NextRequest) {
 			},
 		],
 		take: count != 0 ? count : undefined,
-		include: { tags: true },
+		include: {
+			tags: true,
+			post: true,
+		},
 		where: {
 			day: {
 				timeStamp: { gte: zonedTimeToUtc(new Date(), "UTC") },
