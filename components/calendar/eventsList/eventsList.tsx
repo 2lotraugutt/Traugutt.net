@@ -17,7 +17,7 @@ const poppingsFont500 = Poppins({
 });
 
 export default function EventsList(props: { searchTagId: string | null }) {
-	const [events, setEvents] = useState<EventDataType[]>([]);
+	const [events, setEvents] = useState<EventDataTypeWithPost[]>([]);
 	const [eventsCount, setEventsCount] = useState<number>(1);
 	const [fetched, setFetched] = useState<boolean>(false);
 	const [dates, setDates] = useState<string[]>([]);
@@ -56,7 +56,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		data.set("day", day.toString());
 		data.set("year", year.toString());
 		data.set("month", month.toString());
-		const returnedEvents: EventDataType[] = await (
+		const returnedEvents: EventDataTypeWithPost[] = await(
 			await fetch(`/api/calendar/events/?count=${eventsCount * 30}`, {
 				method: "POST",
 				body: data,
@@ -87,7 +87,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 			i++;
 		}
 
-		const returnedEvents: EventDataType[] = await (await fetch(`/api/calendar/events/search/?count=${eventsCount * 30}${request}`)).json();
+		const returnedEvents: EventDataTypeWithPost[] = await(await fetch(`/api/calendar/events/search/?count=${eventsCount * 30}${request}`)).json();
 
 		let dates = [];
 

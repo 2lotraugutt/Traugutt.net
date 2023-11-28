@@ -64,6 +64,9 @@ model Post {
 
   publishedById String? @db.Uuid
   publishedBy User?     @relation("Published", fields: [publishedById], references: [id])
+
+  eventId     String?   @db.Uuid @unique
+  event       Event?   @relation("Event", fields: [eventId], references: [id])
 }
 
 model Session {
@@ -126,6 +129,8 @@ model Event {
 
   authorId         String        @db.Uuid
   author           User          @relation("Event author", fields: [authorId], references: [id])
+
+  post             Post?        @relation("Event") 
 }
 
 model EventTag {

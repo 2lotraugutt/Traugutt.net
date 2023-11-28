@@ -14,9 +14,10 @@ declare global {
 		authorId: string;
 		published: boolean;
 		publishedById: string;
+		eventId: string?;
 	};
 
-	type PostDataTypeWithAuthor = {
+	type PostDataTypeWithAuthorAndEvent = {
 		id: string;
 		title: string;
 		content: string | null;
@@ -28,6 +29,8 @@ declare global {
 		author: UserDataType;
 		published: boolean;
 		publishedById: string;
+		eventId: string?;
+		event: EventDataType;
 	};
 
 	type PostDataTypeWithAuthorAndPublisher = {
@@ -43,6 +46,7 @@ declare global {
 		published: boolean;
 		publishedById: string?;
 		publishedBy: UserDataType?;
+		eventId: string?;
 	};
 
 	type UserDataType = {
@@ -107,7 +111,6 @@ declare global {
 		name: string;
 		description: string?;
 		date: string;
-		freeDay: boolean;
 		tags: EventTagDataType[];
 		authorId: string;
 	};
@@ -118,10 +121,20 @@ declare global {
 		name: string;
 		description: string?;
 		date: string;
-		freeDay: boolean;
 		tags: EventTagDataType[];
 		authorId: string;
 		author: UserDataType;
+	};
+
+	type EventDataTypeWithPost = {
+		id: string;
+		createdAt: Date;
+		name: string;
+		description: string?;
+		date: string;
+		tags: EventTagDataType[];
+		authorId: string;
+		post: PostDataType?;
 	};
 
 	type EventTagDataType = {

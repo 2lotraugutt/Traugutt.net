@@ -18,7 +18,7 @@ const poppingsFont800 = Poppins({
 });
 
 export default function CalendarTile() {
-	const [event, setEvent] = useState<EventDataType>();
+	const [event, setEvent] = useState<EventDataTypeWithPost>();
 
 	const day = getDate(startOfToday());
 	const month = getMonth(startOfToday());

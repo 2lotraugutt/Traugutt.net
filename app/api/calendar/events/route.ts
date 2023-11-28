@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { zonedTimeToUtc } from "date-fns-tz";
-import { getTime } from "date-fns";
 
 export async function POST(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
@@ -21,7 +20,10 @@ export async function POST(request: NextRequest) {
 			},
 		],
 		take: count != 0 ? count : undefined,
-		include: { tags: true },
+		include: {
+			tags: true,
+			post: true,
+		},
 		where: {
 			day: {
 				timeStamp: { gte: date },

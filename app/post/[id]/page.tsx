@@ -21,7 +21,7 @@ const poppingsFont400 = Poppins({
 });
 
 export default function Page({ params }: { params: { id: string } }) {
-	const [post, setPost] = useState<PostDataTypeWithAuthor | undefined>();
+	const [post, setPost] = useState<PostDataTypeWithAuthorAndEvent | undefined>();
 	const [topPosts, setTopPost] = useState<PostDataType[] | undefined>();
 
 	useEffect(() => {

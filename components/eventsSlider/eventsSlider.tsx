@@ -14,7 +14,7 @@ const poppingsFont700 = Poppins({
 });
 
 export default function EventsSlider() {
-	const [events, setEvents] = useState<EventDataType[]>([]);
+	const [events, setEvents] = useState<EventDataTypeWithPost[]>([]);
 	const [dates, setDates] = useState<string[]>([]);
 	const [count, setCount] = useState<number>(1);
 
@@ -29,7 +29,7 @@ export default function EventsSlider() {
 			data.set("day", day.toString());
 			data.set("year", year.toString());
 			data.set("month", month.toString());
-			const events: EventDataType[] = await (
+			const events: EventDataTypeWithPost[] = await (
 				await fetch(`/api/calendar/events/?count=${count * 10}`, {
 					method: "POST",
 					body: data,
