@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { id: string } }) {
 	const [image, setImage] = useState<File | any>();
 	const [imageName, setImageName] = useState("");
 	const [content, setContent] = useState("");
-	const [eventId, setEventId] = useState<string | null>("");
+	const [eventId, setEventId] = useState<string | null>(null);
 	const [gallery, setGallery] = useState<{ name: string; image: File | undefined }[]>([]);
 
 	const [uploaded, setUploaded] = useState(false);

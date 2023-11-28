@@ -17,7 +17,7 @@ export default function Page() {
 	const [imageName, setImageName] = useState("");
 	const [content, setContent] = useState("");
 	const [gallery, setGallery] = useState<{ name: string; image: File }[]>([]);
-	const [eventId, setEventId] = useState<string | null>("");
+	const [eventId, setEventId] = useState<string | null>(null);
 
 	const [uploaded, setUploaded] = useState(false);
 
