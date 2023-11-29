@@ -19,6 +19,7 @@ model User {
   image           String    @map("profilePicture")
   
   verified        Boolean?
+  changeName      Boolean   @default(false)
 
   roleTag         String    @default("USER")
   role            Role      @relation("Role", fields: [roleTag], references: [tag])     

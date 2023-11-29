@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
 				id: session.user.id,
 			},
 			data: {
+				changeName: false,
 				name,
 			},
 		});

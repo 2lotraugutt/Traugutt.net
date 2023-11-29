@@ -1,6 +1,5 @@
 import { getYear } from "date-fns";
 import { Role } from "./node_modules/.prisma/client/index.d";
-export {};
 
 declare global {
 	type PostDataType = {
@@ -57,6 +56,7 @@ declare global {
 		image: string;
 		verified: Boolean | null;
 		roleTag: string;
+		changeName: Boolean;
 	};
 
 	type UserDataTypeWithRole = {
@@ -68,6 +68,7 @@ declare global {
 		verified: Boolean | null;
 		role: RoleDataType;
 		roleTag: string;
+		changeName: Boolean;
 	};
 
 	type SessionDataType = {
