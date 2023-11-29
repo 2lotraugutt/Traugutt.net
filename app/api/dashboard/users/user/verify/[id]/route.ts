@@ -5,12 +5,13 @@ import { getServerSession } from "next-auth";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
+	const status = request.nextUrl.searchParams.get("toggle") == "true" ? true : false;
 
 	if (session) {
 		if (session.user.role.manageUsers || session.user.role.verifyUsers) {
 			const users = await prisma.user.update({
 				where: { id: params.id },
-				data: { verified: true, roleTag: "STUDENT" },
+				data: { verified: status, roleTag: "STUDENT" },
 			});
 
 			return NextResponse.json(users);

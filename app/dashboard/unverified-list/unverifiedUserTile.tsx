@@ -24,27 +24,18 @@ export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWi
 	const [unverifyButtonText, setUnverifyButtonText] = useState("Użytkownik spoza szkoły");
 	const [changeNameButtonText, setChangeNameButtonText] = useState("Poproś o zmiane nazwy");
 
-	async function verifyUser() {
-		setVerifyButtonText("Weryfikowanie...");
+	async function verifyUser(state: boolean) {
+		if (true) setVerifyButtonText("Weryfikowanie...");
+		if (true) setUnverifyButtonText("Usuwanie...");
 
-		await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}`)).json();
-		props.refetchUsers();
-	}
-	async function unverifyUser() {
-		setUnverifyButtonText("Usuwanie...");
-
-		await (await fetch(`/api/dashboard/users/user/unverify/${props.userData.id}`)).json();
+		await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}?toggle=${state}`)).json();
 		props.refetchUsers();
 	}
 	async function changeName() {
-		setChangeNameButtonText("Wysyłanie prośby...");
+		if (props.userData.changeName) setChangeNameButtonText("Anulowanie prośby...");
+		else setChangeNameButtonText("Wysyłanie prośby...");
 
-		await (await fetch(`/api/dashboard/users/user/changeName/${props.userData.id}`)).json();
-		props.refetchUsers();
-		setChangeNameButtonText("Poproś o zmiane nazwy");
-	}
-	async function unChangeName() {
-		await (await fetch(`/api/dashboard/users/user/unChangeName/${props.userData.id}`)).json();
+		await(await fetch(`/api/dashboard/users/user/changeName/${props.userData.id}?toggle=${!props.userData.changeName}`)).json();
 		props.refetchUsers();
 		setChangeNameButtonText("Poproś o zmiane nazwy");
 	}
@@ -52,7 +43,7 @@ export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWi
 	return (
 		<div className="relative w-full flex-row items-stretch justify-between border-2 flex gap-x-4 xl:gap-x-8 rounded-2xl">
 			<div
-				onClick={() => unverifyUser()}
+				onClick={() => verifyUser(false)}
 				className="aspect-[3/2] gap-y-3 flex flex-col items-center justify-center w-1/4 rounded-l-2xl bg-LightRed hover:bg-MainRed/90 transition-all duration-300 cursor-pointer"
 			>
 				<FontAwesomeIcon icon={faRemove} className={`h-7 lg:h-10`} />
@@ -64,7 +55,7 @@ export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWi
 					<div className="absolute top-4 left-0 flex gap-x-2 items-center group">
 						<FontAwesomeIcon icon={faBell} className={`h-3 group-hover:hidden text-white lg:h-4 bg-MainColor aspect-square rounded-full p-1`} />
 						<FontAwesomeIcon
-							onClick={() => unChangeName()}
+							onClick={() => changeName()}
 							icon={faCancel}
 							className={`h-3 hidden group-hover:block cursor-pointer text-white lg:h-4 bg-MainColor aspect-square rounded-full p-1`}
 						/>
@@ -98,7 +89,7 @@ export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWi
 			</div>
 
 			<div
-				onClick={() => verifyUser()}
+				onClick={() => verifyUser(true)}
 				className="aspect-[3/2] gap-y-3 flex flex-col items-center justify-center w-1/4 rounded-r-2xl bg-LightColor hover:bg-MainColor/90 transition-all duration-300 cursor-pointer"
 			>
 				<FontAwesomeIcon icon={faShield} className={`h-7 lg:h-10`} />
