@@ -1,4 +1,4 @@
-import { faRemove, faShield } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faCancel, faQuestion, faRemove, faShield } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
@@ -22,6 +22,7 @@ const poppingsFont700 = Poppins({
 export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWithRole; refetchUsers: Function }) {
 	const [verifyButtonText, setVerifyButtonText] = useState("Użytkownik ze szkoły");
 	const [unverifyButtonText, setUnverifyButtonText] = useState("Użytkownik spoza szkoły");
+	const [changeNameButtonText, setChangeNameButtonText] = useState("Poproś o zmiane nazwy");
 
 	async function verifyUser() {
 		setVerifyButtonText("Weryfikowanie...");
@@ -35,6 +36,18 @@ export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWi
 		await (await fetch(`/api/dashboard/users/user/unverify/${props.userData.id}`)).json();
 		props.refetchUsers();
 	}
+	async function changeName() {
+		setChangeNameButtonText("Wysyłanie prośby...");
+
+		await (await fetch(`/api/dashboard/users/user/changeName/${props.userData.id}`)).json();
+		props.refetchUsers();
+		setChangeNameButtonText("Poproś o zmiane nazwy");
+	}
+	async function unChangeName() {
+		await (await fetch(`/api/dashboard/users/user/unChangeName/${props.userData.id}`)).json();
+		props.refetchUsers();
+		setChangeNameButtonText("Poproś o zmiane nazwy");
+	}
 
 	return (
 		<div className="relative w-full flex-row items-stretch justify-between border-2 flex gap-x-4 xl:gap-x-8 rounded-2xl">
@@ -46,7 +59,24 @@ export default function UnverifiedUserPostTile(props: { userData: UserDataTypeWi
 				<p className={`text-xs xs:text-sm sm:text-base xl:text-xl 4xl:text-2xl ${poppingsFont700.className}`}>{unverifyButtonText}</p>
 			</div>
 
-			<div className={`flex justify-center flex-col xl:gap-3 3xl:gap-4 gap-y-2 py-5 md:py-6 lg:py-8 xl:py-9 ${plusJakartaSansFont500.className}`}>
+			<div className={`flex relative justify-center grow flex-col xl:gap-3 3xl:gap-4 gap-y-2 py-5 md:py-6 lg:py-8 xl:py-9 ${plusJakartaSansFont500.className}`}>
+				{props.userData.changeName ? (
+					<div className="absolute top-4 left-0 flex gap-x-2 items-center group">
+						<FontAwesomeIcon icon={faBell} className={`h-3 group-hover:hidden text-white lg:h-4 bg-MainColor aspect-square rounded-full p-1`} />
+						<FontAwesomeIcon
+							onClick={() => unChangeName()}
+							icon={faCancel}
+							className={`h-3 hidden group-hover:block cursor-pointer text-white lg:h-4 bg-MainColor aspect-square rounded-full p-1`}
+						/>
+						<p className="text-2xs lg:text-xs 4xl:text-sm scale-x-0 group-hover:scale-x-100 transition-all origin-left">Wysłano prośbe o zmiane nazwy</p>
+					</div>
+				) : (
+					<div onClick={() => changeName()} className="absolute top-4 left-0 cursor-pointer flex gap-x-2 items-center group">
+						<FontAwesomeIcon icon={faQuestion} className={`h-3 text-white lg:h-4 bg-MainColor aspect-square rounded-full p-1`} />
+						<p className="text-2xs lg:text-xs 4xl:text-sm scale-x-0 group-hover:scale-x-100 transition-all origin-left">{changeNameButtonText}</p>
+					</div>
+				)}
+
 				<div
 					className={`text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl gap-3 sm:gap-4 md:gap-5 items-center flex-col flex ${poppingsFont700.className}`}
 				>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressBook, faAngleRight, faCalendar, faGears, faGift, faList, faListCheck, faNewspaper, faPeopleGroup, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import UnverifiedList from "./unverifiedList/unverifiedList";
+import UnverifiedList from "./unverified-list/unverifiedList";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
