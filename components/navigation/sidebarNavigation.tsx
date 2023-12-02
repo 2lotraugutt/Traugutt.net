@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faAngleRight, faClipboardList, faFileWord, faGraduationCap, faHouseUser, faPersonChalkboard, faPhone, faSchool, faShop } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faClipboardList, faFileWord, faGraduationCap, faHouseUser, faPhone, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
 import { Poppins } from "next/font/google";
@@ -35,7 +35,17 @@ export default function SidebarNavigation() {
 				{ link: "/page/dostepnosc", name: "Dostępność" },
 			],
 		},
-		{ name: "Dla ucznia", icon: faGraduationCap, pages: [] },
+		{
+			name: "Dla ucznia",
+			icon: faGraduationCap,
+			pages: [
+				{ link: "/page/regulamin-su", name: "Regulamin SU" },
+				{ link: "https://www.wybierzstudia.nauka.gov.pl/", name: "Wybierz studia" },
+				{ link: "https://www.opinieouczelniach.pl/", name: "Kierunki studiów" },
+				{ link: "/page/test-zawodowych", name: "Test pref. zawodowych" },
+				{ link: "/page/poradnik-lidera", name: "Poradnik lidera" },
+			],
+		},
 		{
 			name: "Dla rodziców",
 			icon: faHouseUser,
