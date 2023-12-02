@@ -1,3 +1,5 @@
+const withMDX = require("@next/mdx")();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
@@ -6,4 +8,4 @@ const nextConfig = {
 	swcMinify: false, // it should be false by default
 };
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig);
