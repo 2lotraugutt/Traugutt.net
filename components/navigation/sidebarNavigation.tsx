@@ -32,21 +32,28 @@ export default function SidebarNavigation() {
 			icon: faHouseUser,
 			pages: [
 				{ link: "/page/wywiadowki", name: "Wywiadówki" },
-				{ link: "/uonetplus_Pierwsze-logowanie.pdf", name: "Dziennik elektroniczny" },
+				{ link: "/docs/uonetplus_Pierwsze-logowanie.pdf", name: "Dziennik elektroniczny" },
 				{ link: "https://www.kbpn.gov.pl/portal", name: "KBDSPN" },
 				{ link: "/page/konsultacje", name: "Harmonogram konsultacji" },
 			],
 		},
-		{ name: "Rekrutacja", icon: faClipboardList, pages: [] },
+		{
+			name: "Rekrutacja",
+			icon: faClipboardList,
+			pages: [
+				{ link: "/page/pytania-i-odpowiedzi", name: "Pytania i odpowiedzi" },
+				{ link: "/page/statystyki", name: "Statystyki" },
+				{ link: "/page/rankingi", name: "Rankingi liceów" },
+				{ link: "/page/informacje", name: "Informacje" },
+			],
+		},
 		{
 			name: "Matura",
 			icon: faFileWord,
 			pages: [
 				{ link: "/page/wyniki-matur", name: "Wyniki matur" },
 				{ link: "/page/matura-miedzynarodowa", name: "Matura międzynarodowa" },
-				{ link: "https://cke.gov.pl/images/_KOMUNIKATY/20200820%20E8%20EM%20Komunikat%20o%20harmonogramie.pdf", name: "Harmonogram matury 2021" },
 				{ link: "https://cke.gov.pl/egzamin-maturalny/egzamin-w-nowej-formule/arkusze/", name: "Arkusze maturalne" },
-				{ link: "https://cke.gov.pl/images/_KOMUNIKATY/20200820%20EM%20Komunikat%20o%20dostosowaniach.pdf", name: "Dostosowania 2021" },
 				{ link: "/page/bibliografia", name: "Bibliografia" },
 				{ link: "https://cke.gov.pl/egzamin-maturalny/egzamin-w-nowej-formule/informatory/", name: "Informatory" },
 				{ link: "/page/autoprezentacja", name: "Autoprezentacja" },
