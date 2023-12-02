@@ -25,7 +25,16 @@ export default function SidebarNavigation() {
 	}
 
 	const mainNavs: { name: string; icon: IconDefinition; pages: { link: string; name: string }[] }[] = [
-		{ name: "Szkoła", icon: faSchool, pages: [] },
+		{
+			name: "Szkoła",
+			icon: faSchool,
+			pages: [
+				{ link: "/page/kadra", name: "Kadra" },
+				{ link: "/page/statut", name: "Statut" },
+				{ link: "/page/plywalnia", name: "Pływalnia" },
+				{ link: "/page/dostepnosc", name: "Dostępność" },
+			],
+		},
 		{ name: "Dla ucznia", icon: faGraduationCap, pages: [] },
 		{
 			name: "Dla rodziców",
