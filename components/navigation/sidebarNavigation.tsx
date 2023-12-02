@@ -27,7 +27,16 @@ export default function SidebarNavigation() {
 	const mainNavs: { name: string; icon: IconDefinition; pages: { link: string; name: string }[] }[] = [
 		{ name: "Szkoła", icon: faSchool, pages: [] },
 		{ name: "Dla ucznia", icon: faGraduationCap, pages: [] },
-		{ name: "Dla rodziców", icon: faHouseUser, pages: [] },
+		{
+			name: "Dla rodziców",
+			icon: faHouseUser,
+			pages: [
+				{ link: "/page/wywiadowki", name: "Wywiadówki" },
+				{ link: "/uonetplus_Pierwsze-logowanie.pdf", name: "Dziennik elektroniczny" },
+				{ link: "https://www.kbpn.gov.pl/portal", name: "KBDSPN" },
+				{ link: "/page/konsultacje", name: "Harmonogram konsultacji" },
+			],
+		},
 		{ name: "Rekrutacja", icon: faClipboardList, pages: [] },
 		{
 			name: "Matura",
@@ -74,7 +83,12 @@ export default function SidebarNavigation() {
 
 						<AnimatePresence>
 							{nav.pages.length != 0 && openedList[i] && (
-								<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex mt-1">
+								<motion.div
+									initial={{ opacity: 0, height: 0 }}
+									animate={{ opacity: 1, height: "auto" }}
+									exit={{ opacity: 0, height: 0 }}
+									className="flex mt-1"
+								>
 									<div className="w-1 bg-MainColor mx-3 my-1 rounded-full"></div>
 									<div className="flex flex-col gap-y-1 grow">
 										{nav.pages.map((page, j) => (
