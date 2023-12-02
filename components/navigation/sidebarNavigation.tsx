@@ -74,14 +74,14 @@ export default function SidebarNavigation() {
 		<>
 			<div className="h-1 bg-DarkColor/30 rounded-lg"></div>
 
-			<div className="flex flex-col gap-y-1">
+			{/* <div className="flex flex-col gap-y-1">
 				<Link href={""} className="sidebar-button">
 					<FontAwesomeIcon icon={faShop} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Sklep z odzieżą</div>
 				</Link>
 			</div>
 
-			<div className="h-1 bg-DarkColor/30 rounded-lg"></div>
+			<div className="h-1 bg-DarkColor/30 rounded-lg"></div> */}
 
 			<motion.div className="flex flex-col gap-y-1">
 				{mainNavs.map((nav, i) => (
@@ -103,12 +103,16 @@ export default function SidebarNavigation() {
 									initial={{ opacity: 0, height: 0 }}
 									animate={{ opacity: 1, height: "auto" }}
 									exit={{ opacity: 0, height: 0 }}
-									className="flex mt-1"
+									className="flex mt-1 overflow-hidden"
 								>
-									<div className="w-1 bg-MainColor mx-3 my-1 rounded-full"></div>
+									<div className="w-1 bg-MainColor mx-4 my-2.5 py-0.5 rounded-full flex flex-col items-center justify-between">
+										{[...Array(nav.pages.length)].map((i) => (
+											<div className={`w-3.5 h-3.5 rounded-full bg-MainColor`}></div>
+										))}
+									</div>
 									<div className="flex flex-col gap-y-1 grow">
 										{nav.pages.map((page, j) => (
-											<Link key={j} className={`sidebar-button px-3 py-1.5 w-full ${poppingsFont500.className}`} href={page.link}>
+											<Link key={j} className={`sidebar-button  px-3 py-1.5 w-full ${poppingsFont500.className}`} href={page.link}>
 												{page.name}
 											</Link>
 										))}
