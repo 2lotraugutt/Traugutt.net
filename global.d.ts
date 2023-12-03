@@ -93,6 +93,7 @@ declare global {
 		manageNumbers: Boolean;
 		manageRoles: Boolean;
 		manageNotifications: Boolean;
+		managePages: Boolean;
 	};
 
 	type DayDataTypeWithEventsAndPost = {
