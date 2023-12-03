@@ -1,18 +1,11 @@
 import removeMarkdown from "@/lib/removeMarkdown";
-import { faArrowRight, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MdPreview } from "md-editor-rt";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import Link from "next/link";
 import { useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
-	subsets: ["latin"],
-});
-
-const plusJakartaSansFont500 = Plus_Jakarta_Sans({
-	weight: "500",
 	subsets: ["latin"],
 });
 
