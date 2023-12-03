@@ -14,7 +14,7 @@ const poppingsFont500 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function SidebarNavigation() {
+export default function SidebarNavigation(props: { toggle: Function }) {
 	const [openedList, setOpened] = useState<boolean[]>([]);
 
 	function changeState(i: number) {
@@ -117,12 +117,17 @@ export default function SidebarNavigation() {
 								>
 									<div className="w-1 bg-MainColor mx-4 my-2.5 py-0.5 rounded-full flex flex-col items-center justify-between">
 										{[...Array(nav.pages.length)].map((i) => (
-											<div className={`w-3.5 h-3.5 rounded-full bg-MainColor`}></div>
+											<div key={i} className={`w-3.5 h-3.5 rounded-full bg-MainColor`}></div>
 										))}
 									</div>
 									<div className="flex flex-col gap-y-1 grow">
 										{nav.pages.map((page, j) => (
-											<Link key={j} className={`sidebar-button  px-3 py-1.5 w-full ${poppingsFont500.className}`} href={page.link}>
+											<Link
+												key={j}
+												onClick={() => props.toggle()}
+												className={`sidebar-button  px-3 py-1.5 w-full ${poppingsFont500.className}`}
+												href={page.link}
+											>
 												{page.name}
 											</Link>
 										))}
@@ -133,7 +138,7 @@ export default function SidebarNavigation() {
 					</>
 				))}
 
-				<Link href={""} className="sidebar-button">
+				<Link href={""} className="sidebar-button" onClick={() => props.toggle()}>
 					<FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Kontakt</div>
 				</Link>

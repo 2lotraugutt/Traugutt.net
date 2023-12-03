@@ -129,7 +129,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 					</>
 				)}
 
-				<SidebarNavigation />
+				<SidebarNavigation toggle={props.toggle} />
 			</div>
 		</div>
 	);
