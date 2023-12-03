@@ -92,6 +92,10 @@ export default function Page() {
 						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.verified ? "Tak" : "Nie"}</p>
 					</div>
 					<div className="flex flex-col">
+						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Prośba o zmiane nazwy:</p>
+						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.changeName ? "Tak" : "Nie"}</p>
+					</div>
+					<div className="flex flex-col">
 						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Email:</p>
 						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.email}</p>
 					</div>
