@@ -73,7 +73,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 					href={"/dashboard/pages"}
 					className={`${userRole.managePages ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/pages" ? "active-dashboard-link" : ""}`}
 				>
-					Strony
+					Podstrony
 				</Link>
 
 				<Link

@@ -42,7 +42,7 @@ export default async function Page() {
 		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar", "manageNumbers"] },
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
 		{ name: "Weryfikacja użytkowników", link: "/dashboard#weryfikuj", icon: faListCheck, perm: ["manageUsers", "verifyUsers"] },
-		{ name: "Strony", link: "/dashboard/pages", icon: faPager, perm: ["managePages"] },
+		{ name: "Podstrony", link: "/dashboard/pages", icon: faPager, perm: ["managePages"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
 	];
 

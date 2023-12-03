@@ -26,7 +26,22 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function PageTile(props: { pageData: { file: string; content: string } }) {
+export default function PageTile(props: { pageData: { file: string; content: string }; refetchPages: Function }) {
+	const [deleteButtonText, setDeleteButtonText] = useState("Usuń podstronę");
+
+	async function deletePost() {
+		setDeleteButtonText("Usuwanie...");
+
+		await (
+			await fetch(`/api/dashboard/pages/${props.pageData.file}`, {
+				method: "DELETE",
+			})
+		).json();
+
+		setDeleteButtonText("Usuń podstronę");
+		props.refetchPages();
+	}
+
 	return (
 		<div className="h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
 			<div className="flex flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
@@ -40,14 +55,14 @@ export default function PageTile(props: { pageData: { file: string; content: str
 				</p>
 			</div>
 
-			{/* <div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => {}} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					deleteButtonText
+			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
+				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
 					</div>
 				</button>
-			</div> */}
+			</div>
 		</div>
 	);
 }
