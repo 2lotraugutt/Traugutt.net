@@ -1,6 +1,6 @@
 import "md-editor-rt/lib/preview.css";
 import { promises as fs } from "fs";
-import MarkdownDisplay from "@/components/markdownDisplay";
+import MarkdownDisplay from "@/lib/markdownDisplay";
 
 export default async function Page({ params: { title } }: { params: { title: string } }) {
 	const text = await fs.readFile(process.cwd() + `/content/${title}.mdx`, "utf8");

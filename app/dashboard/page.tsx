@@ -3,7 +3,20 @@ import { Poppins } from "next/font/google";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAddressBook, faAngleRight, faCalendar, faGears, faGift, faList, faListCheck, faNewspaper, faPeopleGroup, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+	faAddressBook,
+	faAngleRight,
+	faCalendar,
+	faGears,
+	faGift,
+	faList,
+	faListCheck,
+	faNewspaper,
+	faPager,
+	faPeopleGroup,
+	faPlus,
+	faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import UnverifiedList from "./unverified-list/unverifiedList";
 
@@ -29,6 +42,7 @@ export default async function Page() {
 		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar", "manageNumbers"] },
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
 		{ name: "Weryfikacja użytkowników", link: "/dashboard#weryfikuj", icon: faListCheck, perm: ["manageUsers", "verifyUsers"] },
+		{ name: "Strony", link: "/dashboard/pages", icon: faPager, perm: ["managePages"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
 	];
 

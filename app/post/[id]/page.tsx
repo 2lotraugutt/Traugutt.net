@@ -9,7 +9,7 @@ import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import { MdPreview } from "md-editor-rt";
 import "md-editor-rt/lib/preview.css";
-import MarkdownDisplay from "@/components/markdownDisplay";
+import MarkdownDisplay from "@/lib/markdownDisplay";
 
 const poppingsFont700 = Poppins({
 	weight: "700",

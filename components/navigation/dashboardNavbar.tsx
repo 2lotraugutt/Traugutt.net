@@ -70,6 +70,13 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 				</Link>
 
 				<Link
+					href={"/dashboard/pages"}
+					className={`${userRole.managePages ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/pages" ? "active-dashboard-link" : ""}`}
+				>
+					Strony
+				</Link>
+
+				<Link
 					href={"/dashboard/users"}
 					className={`${userRole.manageUsers ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/users" ? "active-dashboard-link" : ""}`}
 				>
