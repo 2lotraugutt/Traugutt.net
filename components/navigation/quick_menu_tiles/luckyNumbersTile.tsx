@@ -1,6 +1,6 @@
 "use client";
 
-import { format, isSaturday, isSunday, startOfToday } from "date-fns";
+import { endOfWeek, format, isSaturday, isSunday, startOfToday, startOfWeek } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -21,7 +21,10 @@ export default function LuckyNumbersTile() {
 	useEffect(() => {
 		fetchPost();
 		async function fetchPost() {
-			const numbers = await (await fetch("api/calendar/getWeekNumbers")).json();
+			let after = startOfWeek(today);
+			let before = endOfWeek(today);
+
+			const numbers = await (await fetch(`api/calendar/getWeekNumbers?after=${format(after, "dd-MM-yyyy")}&before=${format(before, "dd-MM-yyyy")}`)).json();
 
 			setNumbers(numbers);
 		}
@@ -29,7 +32,6 @@ export default function LuckyNumbersTile() {
 
 	const today = startOfToday();
 	const date = format(new Date(), "dd-MM-yyyy");
-
 
 	if (numbers.length != 0)
 		return (

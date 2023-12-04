@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { zonedTimeToUtc } from "date-fns-tz";
-import { endOfWeek, startOfToday, startOfWeek } from "date-fns";
+import { parse } from "date-fns";
 
 export async function GET(request: NextRequest) {
-	const today = startOfToday();
+	const after = request.nextUrl.searchParams.get("after");
+	const before = request.nextUrl.searchParams.get("before");
 
-	let beginning = startOfWeek(today);
-	let ending = endOfWeek(today);
+	var dateAfter: undefined | Date = undefined;
+	if (after) dateAfter = parse(after, "dd-MM-yyyy", new Date());
+	var dateBefore: undefined | Date = undefined;
+	if (before) dateBefore = parse(before, "dd-MM-yyyy", new Date());
 
 	const numbers = await prisma.day.findMany({
 		orderBy: [
@@ -20,7 +22,7 @@ export async function GET(request: NextRequest) {
 			date: true,
 		},
 		where: {
-			timeStamp: { gte: beginning, lte: ending },
+			timeStamp: { gte: dateAfter, lte: dateBefore },
 			number: { not: null },
 		},
 	});

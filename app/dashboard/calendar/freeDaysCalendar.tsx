@@ -1,4 +1,4 @@
-import { getDaysInMonth, getISODay, getYear, startOfMonth, startOfToday } from "date-fns";
+import { getDaysInMonth, getISODay, startOfMonth } from "date-fns";
 import { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
 
@@ -8,7 +8,7 @@ const poppingsFont500 = Poppins({
 });
 
 export default function FreeDaysCalendar(props: { year: number }) {
-	const [days, setDays] = useState<DayDataTypeWithEvents[]>([]);
+	const [days, setDays] = useState<DayDataTypeWithEventsAndPost[]>([]);
 
 	useEffect(() => {
 		fetchPost();
