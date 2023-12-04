@@ -9,12 +9,15 @@ import {
 	faCalendar,
 	faGears,
 	faGift,
+	faLink,
 	faList,
 	faListCheck,
 	faNewspaper,
 	faPager,
 	faPeopleGroup,
 	faPlus,
+	faRouble,
+	faRoute,
 	faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
@@ -43,6 +46,7 @@ export default async function Page() {
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
 		{ name: "Weryfikacja użytkowników", link: "/dashboard#weryfikuj", icon: faListCheck, perm: ["manageUsers", "verifyUsers"] },
 		{ name: "Podstrony", link: "/dashboard/pages", icon: faPager, perm: ["managePages"] },
+		{ name: "Linki", link: "/dashboard/routes", icon: faLink, perm: ["managePages"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
 	];
 

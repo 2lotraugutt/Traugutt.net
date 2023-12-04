@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 
 export async function GET(request: NextRequest) {
-	const returnedData = fs.readFileSync("./pages.json", "utf-8");
+	const returnedData = fs.readFileSync("./routes.json", "utf-8");
 	const routes: {
 		school: { link: string; name: string }[];
 		student: { link: string; name: string }[];

@@ -1,17 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faFacebook, faInstagram, faTiktok, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import {
-	faAngleRight,
-	faBoxArchive,
-	faClipboardList,
-	faFile,
-	faFileWord,
-	faFileZipper,
-	faGraduationCap,
-	faHouseUser,
-	faPhone,
-	faSchool,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faClipboardList, faFile, faFileWord, faFileZipper, faGraduationCap, faHouseUser, faPhone, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
 import { Poppins } from "next/font/google";
@@ -27,17 +16,17 @@ const poppingsFont500 = Poppins({
 });
 
 type SubpagesList = { link: string; name: string }[];
-
+type RoutesType = {
+	school: SubpagesList;
+	student: SubpagesList;
+	parents: SubpagesList;
+	recruitation: SubpagesList;
+	exam: SubpagesList;
+	docs: SubpagesList;
+};
 export default function SidebarNavigation(props: { toggle: Function }) {
 	const [openedList, setOpened] = useState<boolean[]>([]);
-	const [routes, setRoutes] = useState<{
-		school: SubpagesList;
-		student: SubpagesList;
-		parents: SubpagesList;
-		recruitation: SubpagesList;
-		exam: SubpagesList;
-		docs: SubpagesList;
-	}>({
+	const [routes, setRoutes] = useState<RoutesType>({
 		school: [],
 		student: [],
 		parents: [],
@@ -54,9 +43,9 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 	}
 
 	useEffect(() => {
-		fetchPages();
-		async function fetchPages() {
-			const fetchedRoutes = await (await fetch("/api/pages")).json();
+		fetchRoutes();
+		async function fetchRoutes() {
+			const fetchedRoutes = await (await fetch("/api/routes")).json();
 			setRoutes(fetchedRoutes);
 		}
 	}, []);
