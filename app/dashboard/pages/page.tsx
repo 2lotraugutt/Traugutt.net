@@ -96,8 +96,8 @@ export default function Page() {
 				</div>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-					{pages.map((pageData) => (
-						<PageTile pageData={pageData} refetchPages={() => fetchPages()} />
+					{pages.map((pageData, i) => (
+						<PageTile pageData={pageData} key={i} refetchPages={() => fetchPages()} />
 					))}
 				</div>
 			</div>

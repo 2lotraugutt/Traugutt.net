@@ -85,8 +85,9 @@ export default function StageSix(props: { down: Function; up: Function; setEvent
 					<div className="overflow-y-auto flex flex-col gap-y-1">
 						{events
 							.filter((event) => event.name.toLowerCase().includes(search.toLowerCase()))
-							.map((event) => (
+							.map((event, i) => (
 								<div
+									key={i}
 									onClick={() => setEventId(event.id)}
 									className={`bg-white cursor-pointer border-dashed hover:bg-LightGray justify-between border-2 hover:bg-LightGray/40 transition-all duration-300 py-1 md:py-2 xl:py-3 lg:py-1.5 px-1 md:px-3 lg:px-4 3xl:px-5 flex rounded-xl`}
 								>
