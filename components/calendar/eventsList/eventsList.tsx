@@ -129,7 +129,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 							onClick={() => setPast((old) => !old)}
 							className={`flex text-2xs lg:text-xs items-center justify-center cursor-pointer transition-all p-2.5 -m-1 rounded-full ${
 								past ? "bg-MainColor/60 hover:bg-MainColor/90 text-white" : "bg-LightGray hover:bg-MainDarkGray/60 hover:text-white"
-							} ${poppingsFont700.className}`}
+							} ${poppingsFont500.className}`}
 						>
 							<FontAwesomeIcon icon={past ? faClockFull : faClock} className={`h-6 whitespace-nowrap lg:h-8`} />
 							<motion.p
