@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
 	const search = request.nextUrl.searchParams.get("search") ?? "";
 	const tags = [...request.nextUrl.searchParams.getAll("tag")];
+	const past = request.nextUrl.searchParams.get("past") == "true" ? true : false;
 
 	const events = await prisma.event.findMany({
 		orderBy: [
@@ -20,7 +21,7 @@ export async function GET(request: NextRequest) {
 		},
 		where: {
 			day: {
-				timeStamp: { gte: zonedTimeToUtc(new Date(), "UTC") },
+				timeStamp: { gte: past ? undefined : zonedTimeToUtc(new Date(), "UTC") },
 			},
 			OR: [
 				{

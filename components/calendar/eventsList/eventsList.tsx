@@ -1,10 +1,12 @@
-import { faEllipsis, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faClock as faClockFull, faEllipsis, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDate, getMonth, startOfToday } from "date-fns";
 import { getYear } from "date-fns/fp";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import EventComponent from "../../eventsSlider/eventComponent";
+import { motion } from "framer-motion";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -25,6 +27,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 	const [tags, setTags] = useState<EventTagDataType[]>([]);
 	const [selectedTags, setSelectedTags] = useState<boolean[]>([]);
 	const [search, setSearch] = useState<string>("");
+	const [past, setPast] = useState<boolean>(false);
 
 	useEffect(() => {
 		fetchTags();
@@ -35,7 +38,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 	}, [eventsCount]);
 	useEffect(() => {
 		searchEvents();
-	}, [selectedTags]);
+	}, [selectedTags, past]);
 
 	useEffect(() => {
 		let tag = tags.find((tag) => tag.id == props.searchTagId);
@@ -56,7 +59,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 		data.set("day", day.toString());
 		data.set("year", year.toString());
 		data.set("month", month.toString());
-		const returnedEvents: EventDataTypeWithPost[] = await(
+		const returnedEvents: EventDataTypeWithPost[] = await (
 			await fetch(`/api/calendar/events/?count=${eventsCount * 30}`, {
 				method: "POST",
 				body: data,
@@ -77,6 +80,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 	async function searchEvents() {
 		let request = "";
 
+		request += "&past=" + past;
 		if (search != "") request += "&search=" + search;
 
 		let i = 0;
@@ -87,7 +91,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 			i++;
 		}
 
-		const returnedEvents: EventDataTypeWithPost[] = await(await fetch(`/api/calendar/events/search/?count=${eventsCount * 30}${request}`)).json();
+		const returnedEvents: EventDataTypeWithPost[] = await (await fetch(`/api/calendar/events/search/?count=${eventsCount * 30}${request}`)).json();
 
 		let dates = [];
 
@@ -101,7 +105,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 	}
 
 	async function fetchTags() {
-		const returnedTags: EventTagDataType[] = await(await fetch(`/api/calendar/tags`)).json();
+		const returnedTags: EventTagDataType[] = await (await fetch(`/api/calendar/tags`)).json();
 		setTags(returnedTags);
 	}
 
@@ -121,6 +125,29 @@ export default function EventsList(props: { searchTagId: string | null }) {
 							onChange={(e) => setSearch(e.target.value)}
 							className={`outline-none w-full bg-transparent text-sm xs:text-base md:text-lg xl:text-xl 2xl:text-2xl ${poppingsFont500.className}`}
 						/>
+						<motion.div
+							onClick={() => setPast((old) => !old)}
+							className={`flex text-2xs lg:text-xs items-center justify-center cursor-pointer transition-all p-2.5 -m-1 rounded-full ${
+								past ? "bg-MainColor/60 hover:bg-MainColor/90 text-white" : "bg-LightGray hover:bg-MainDarkGray/60 hover:text-white"
+							} ${poppingsFont700.className}`}
+						>
+							<FontAwesomeIcon icon={past ? faClockFull : faClock} className={`h-6 whitespace-nowrap lg:h-8`} />
+							<motion.p
+								className=""
+								transition={{
+									type: "spring",
+									stiffness: 260,
+									damping: 20,
+								}}
+								animate={{
+									width: past ? "auto" : 0,
+									opacity: past ? 1 : 0,
+									marginLeft: past ? "0.5rem" : 0,
+								}}
+							>
+								Przeszłe
+							</motion.p>
+						</motion.div>
 					</div>
 
 					<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
