@@ -98,7 +98,7 @@ export default function Page() {
 				>
 					<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 h-5 hover:text-MainColor transition-all" onClick={() => changeMonth(false)} />
 					<h3 className={`text-left w-fit text-xl xs:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl ${poppingsFont600.className}`}>
-						{monthsNames[month]}{" "}
+						{monthsNames[month]}
 						{currentYear != year ? <span className="text-base xs:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl">{year}</span> : <></>}
 					</h3>
 					<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 h-5 hover:text-MainColor transition-all" onClick={() => changeMonth(true)} />
