@@ -1,4 +1,3 @@
-import getRoutes from "@/lib/getRoutes";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faAngleRight, faClipboardList, faFile, faFileWord, faGraduationCap, faHouseUser, faPhone, faSchool } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,9 +42,9 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 	}
 
 	useEffect(() => {
-		fetch();
-		async function fetch() {
-			const fetchedRoutes = await getRoutes();
+		fetchPages();
+		async function fetchPages() {
+			const fetchedRoutes = await (await fetch("/api/pages")).json();
 			setRoutes(fetchedRoutes);
 		}
 	}, []);
@@ -107,7 +106,12 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 							<FontAwesomeIcon icon={nav.icon} className="w-6 h-6 text-white py-3 px-4" />
 							<div>{nav.name}</div>
 
-							<FontAwesomeIcon icon={faAngleRight} className={`w-5 h-5 transition-all duration-300 ms-auto text-white px-4 ${openedList[i] && "rotate-90"}`} />
+							{routes && (
+								<FontAwesomeIcon
+									icon={faAngleRight}
+									className={`w-5 h-5 transition-all duration-300 ms-auto text-white px-4 ${openedList[i] && "rotate-90"}`}
+								/>
+							)}
 						</motion.button>
 
 						<AnimatePresence>

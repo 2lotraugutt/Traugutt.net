@@ -1,8 +1,7 @@
-"use server";
-
+import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 
-export default async function getRoutes() {
+export async function GET(request: NextRequest) {
 	const returnedData = fs.readFileSync("./pages.json", "utf-8");
 	const routes: {
 		school: { link: string; name: string }[];
@@ -13,5 +12,5 @@ export default async function getRoutes() {
 		docs: { link: string; name: string }[];
 	} = JSON.parse(returnedData);
 
-	return routes;
+	return NextResponse.json(routes);
 }
