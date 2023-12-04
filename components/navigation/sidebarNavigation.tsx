@@ -1,6 +1,17 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faFacebook, faInstagram, faTiktok, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faAngleRight, faBoxArchive, faClipboardList, faFile, faFileWord, faGraduationCap, faHouseUser, faPhone, faSchool } from "@fortawesome/free-solid-svg-icons";
+import {
+	faAngleRight,
+	faBoxArchive,
+	faClipboardList,
+	faFile,
+	faFileWord,
+	faFileZipper,
+	faGraduationCap,
+	faHouseUser,
+	faPhone,
+	faSchool,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
 import { Poppins } from "next/font/google";
@@ -85,51 +96,52 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 
 	return (
 		<>
-			<div className="h-1 bg-DarkColor/30 rounded-lg"></div>
+			<div className="h-1 bg-DarkColor/40 rounded-lg"></div>
 
 			<div className="flex flex-col gap-y-1">
 				{/* <Link href={""} className="sidebar-button">
 					<FontAwesomeIcon icon={faShop} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Sklep z odzieżą</div>
 				</Link> */}
+
 				<Link href={"http://2lo.traugutt.net"} target="blank" className="sidebar-button">
-					<FontAwesomeIcon icon={faBoxArchive} className="w-6 h-6 text-white py-3 px-4" />
+					<FontAwesomeIcon icon={faFileZipper} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Archiwalna strona</div>
 				</Link>
 
-				<div className="flex gap-x-1 justify-between px-1">
+				<div className="flex gap-x-1 justify-between px-1.5 mt-2">
 					<Link
 						href={"https://www.instagram.com/2lotraugutt/"}
 						target="blank"
-						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white"
+						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
 					>
-						<FontAwesomeIcon icon={faInstagram} className="w-7 h-7 lg:w-9 lg:h-9 text-white p-1.5" />
+						<FontAwesomeIcon icon={faInstagram} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 					<Link
 						href={"https://www.facebook.com/trauguttnet"}
 						target="blank"
-						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white"
+						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
 					>
-						<FontAwesomeIcon icon={faFacebook} className="w-7 h-7 lg:w-9 lg:h-9 text-white p-1.5" />
+						<FontAwesomeIcon icon={faFacebook} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 					<Link
 						href={"https://www.tiktok.com/@traugutt_czestochowa"}
 						target="blank"
-						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white"
+						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
 					>
-						<FontAwesomeIcon icon={faTiktok} className="w-7 h-7 lg:w-9 lg:h-9 text-white p-1.5" />
+						<FontAwesomeIcon icon={faTiktok} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 					<Link
 						href={"https://www.youtube.com/@IILOTraugutt"}
 						target="blank"
-						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white"
+						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
 					>
-						<FontAwesomeIcon icon={faYoutube} className="w-7 h-7 lg:w-9 lg:h-9 text-white p-1.5" />
+						<FontAwesomeIcon icon={faYoutube} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 				</div>
 			</div>
 
-			<div className="h-1 bg-DarkColor/30 rounded-lg"></div>
+			<div className="h-1 bg-DarkColor/40 rounded-lg"></div>
 
 			<motion.div className="flex flex-col gap-y-1">
 				{mainNavs.map((nav, i) => (
