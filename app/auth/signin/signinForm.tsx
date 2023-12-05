@@ -38,10 +38,10 @@ export default function SigninForm(props: { redirect: string }) {
 							<FontAwesomeIcon icon={faGoogle} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
 							Zaloguj się z Google
 						</button>
-						<button onClick={() => signIn("facebook", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
+						{/* <button onClick={() => signIn("facebook", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faFacebook} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
 							Zaloguj się z Facebook
-						</button>
+						</button> */}
 						<button onClick={() => signIn("discord", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
 							<FontAwesomeIcon icon={faDiscord} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
 							Zaloguj się z Discord
