@@ -26,32 +26,17 @@ const plusJakartaSans800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-type SubpagesList = { link: string; name: string }[];
-type RoutesType = {
-	school: SubpagesList;
-	student: SubpagesList;
-	parents: SubpagesList;
-	recruitation: SubpagesList;
-	exam: SubpagesList;
-	docs: SubpagesList;
-};
+
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
-	const [routes, setRoutes] = useState<RoutesType>({
-		school: [],
-		student: [],
-		parents: [],
-		recruitation: [],
-		exam: [],
-		docs: [],
-	});
+	const [routes, setRoutes] = useState<RouteDataType[]>([]);
 
 	const [newName, setNewName] = useState("");
 	const [newLink, setNewLink] = useState("");
 	const [category, setCategory] = useState("");
 
-	const routesCategories: { name: string; route: "school" | "student" | "parents" | "recruitation" | "exam" | "docs" }[] = [
+	const routesCategories: { name: string; route: RouteCategoryDataType }[] = [
 		{ name: "Szkoła", route: "school" },
 		{ name: "Dla ucznia", route: "student" },
 		{ name: "Dla rodziców", route: "parents" },
@@ -77,52 +62,39 @@ export default function Page() {
 	}, [router]);
 
 	async function fetchRoutes() {
-		const returnedRoutes = await(
-			await fetch(`/api/routes`, {
-				cache: "no-store",
-			})
-		).json();
+		const returnedRoutes = await (await fetch(`/api/routes`)).json();
 		setRoutes(returnedRoutes);
 	}
 
 	async function addRoutes() {
-		const newRoute = { link: newLink, name: newName };
-		var newRoutes: RoutesType = { ...routes };
-
-		newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].push(newRoute);
-
-		const data = new FormData();
-		data.set("content", JSON.stringify(newRoutes));
-
-		await fetch(`/api/dashboard/routes`, {
-			body: data,
-			method: "POST",
-		});
-
-		fetchRoutes();
-		setCategory("");
-		setNewLink("");
-		setNewName("");
+		// 	const newRoute = { link: newLink, name: newName };
+		// 	var newRoutes: RoutesType = { ...routes };
+		// 	newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].push(newRoute);
+		// 	const data = new FormData();
+		// 	data.set("content", JSON.stringify(newRoutes));
+		// 	await fetch(`/api/dashboard/routes`, {
+		// 		body: data,
+		// 		method: "POST",
+		// 	});
+		// 	fetchRoutes();
+		// 	setCategory("");
+		// 	setNewLink("");
+		// 	setNewName("");
 	}
 
-	async function deleteRoutes(route: { link: string; name: string }, category: string) {
-		var newRoutes = routes;
-
-		const index = newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].findIndex(
-			(searchRoute) => searchRoute.link == route.link && searchRoute.name == route.name
-		);
-
-		newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].splice(index, 1);
-
-		const data = new FormData();
-		data.set("content", JSON.stringify(newRoutes));
-
-		await fetch(`/api/dashboard/routes`, {
-			body: data,
-			method: "POST",
-		});
-
-		fetchRoutes();
+	async function deleteRoutes(id: string) {
+		// 	var newRoutes = routes;
+		// 	const index = newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].findIndex(
+		// 		(searchRoute) => searchRoute.link == route.link && searchRoute.name == route.name
+		// 	);
+		// 	newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].splice(index, 1);
+		// 	const data = new FormData();
+		// 	data.set("content", JSON.stringify(newRoutes));
+		// 	await fetch(`/api/dashboard/routes`, {
+		// 		body: data,
+		// 		method: "POST",
+		// 	});
+		// 	fetchRoutes();
 	}
 
 	if (routes && userSession)
@@ -168,34 +140,37 @@ export default function Page() {
 				</div>
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 w-full gap-3 md:gap-2 lg:gap-3 xl:gap-4">
-					{routesCategories.map((routeCategory, i) => (
-						<div
-							key={i}
-							className="border-2 flex flex-col hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-2.5 px-3.5 lg:p-5 2xl:p-6 3xl:p-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl"
-						>
-							<h1 className={`w-full md:text-xl lg:text-2xl xl:text-3xl ${poppingsFont600.className}`}>{routeCategory.name}</h1>
+					{routesCategories.map((routeCategory, i) => {
+						const routesForNav = routes?.filter((route) => route.category == routeCategory.route) ?? [];
+						return (
+							<div
+								key={i}
+								className="border-2 flex flex-col hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-2.5 px-3.5 lg:p-5 2xl:p-6 3xl:p-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl"
+							>
+								<h1 className={`w-full md:text-xl lg:text-2xl xl:text-3xl ${poppingsFont600.className}`}>{routeCategory.name}</h1>
 
-							{routes[routeCategory.route].map((route, j) => (
-								<div key={j} className="flex flex-col">
-									<div className="flex justify-between">
-										<p className={`text-sm sm:text-base md:text-lg lg:text-xl ${poppingsFont500.className}`}>{route.name}</p>
-										<FontAwesomeIcon
-											onClick={() => deleteRoutes(route, routeCategory.route)}
-											icon={faTrash}
-											className="h-4 w-4 cursor-pointer text-MainDarkGray hover:text-MainRed transition-all"
-										/>
+								{routesForNav.map((route, j) => (
+									<div key={j} className="flex flex-col">
+										<div className="flex justify-between">
+											<p className={`text-sm sm:text-base md:text-lg lg:text-xl ${poppingsFont500.className}`}>{route.name}</p>
+											<FontAwesomeIcon
+												onClick={() => deleteRoutes(route.id)}
+												icon={faTrash}
+												className="h-4 w-4 cursor-pointer text-MainDarkGray hover:text-MainRed transition-all"
+											/>
+										</div>
+										<Link
+											target="blank"
+											href={route.link[0] == "/" ? "https://traugutt.eu" + route.link : route.link}
+											className="text-xs sm:text-sm md:text-base lg:text-lg hover:text-MainColor transition-all"
+										>
+											{route.link}
+										</Link>
 									</div>
-									<Link
-										target="blank"
-										href={route.link[0] == "/" ? "https://traugutt.eu" + route.link : route.link}
-										className="text-xs sm:text-sm md:text-base lg:text-lg hover:text-MainColor transition-all"
-									>
-										{route.link}
-									</Link>
-								</div>
-							))}
-						</div>
-					))}
+								))}
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		);
