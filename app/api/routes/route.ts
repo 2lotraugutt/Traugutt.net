@@ -3,7 +3,7 @@ import fs from "fs/promises";
 
 export async function GET(request: NextRequest) {
 	try {
-		const filePath = "@/routes.json";
+		const filePath = "./routes.json";
 		const fileContent = await fs.readFile(filePath, "utf-8");
 		const routes = JSON.parse(fileContent);
 
