@@ -78,7 +78,7 @@ export default function Page() {
 		});
 
 		fetchRoutes();
-		setCategory("");
+
 		setNewLink("");
 		setNewName("");
 	}

@@ -9,6 +9,8 @@ export async function GET(request: NextRequest) {
 
 	if (session) {
 		if (session.user.role.managePages) {
+		const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
+
 			var files: { file: string; content: string }[] = [];
 
 			const routes: string[] = fs.readdirSync("./content");
@@ -16,6 +18,10 @@ export async function GET(request: NextRequest) {
 			for (var route in routes) {
 				const parsedFile = await fsp.readFile("./content/" + routes[route], "utf-8");
 				files.push({ file: routes[route], content: parsedFile });
+			}
+
+			if (count != 0) {
+				files = files.slice(0, count);
 			}
 
 			return NextResponse.json(files);
