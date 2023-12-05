@@ -36,7 +36,6 @@ export default async function Page() {
 		icon: IconDefinition;
 		perm: string[];
 	}[] = [
-		{ name: "Panel sterowania", link: "/dashboard", icon: faGears, perm: [""] },
 		{ name: "Dodaj nowy post", link: "/dashboard/post", icon: faPlus, perm: ["createPosts"] },
 		{ name: "Twoje posty", link: "/dashboard/personal-posts", icon: faAddressBook, perm: ["createPosts"] },
 		{ name: "Posty", link: "/dashboard/posts", icon: faList, perm: ["managePosts", "publishPosts"] },

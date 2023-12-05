@@ -28,7 +28,7 @@ export default function SigninForm(props: { redirect: string }) {
 
 			<div className="right-0 h-full absolute w-full xl:w-fit 3xl:w-2/5 flex items-center justify-center xl:px-12 2xl:px-20">
 				<div className="p-4 md:p-20 text-center items-center flex flex-col gap-6 pb-12 md:pb-40 xl:gap-y-8 lg:pb-32">
-					<Image src="/Glasses.svg" width="250" height="100" alt="Glasses icon" />
+					<Image src="/logo.png" width="250" height="100" alt="Logo icon" />
 
 					<h1 className={`text-3xl sm:text-5xl xl:text-6xl ${poppingsFont700.className}`}>Zaloguj się</h1>
 					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>Miło nam widzieć cię ponownie!</h2>
