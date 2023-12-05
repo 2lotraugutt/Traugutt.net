@@ -77,7 +77,11 @@ export default function Page() {
 	}, [router]);
 
 	async function fetchRoutes() {
-		const returnedRoutes = await (await fetch(`/api/routes`)).json();
+		const returnedRoutes = await(
+			await fetch(`/api/routes`, {
+				cache: "no-store",
+			})
+		).json();
 		setRoutes(returnedRoutes);
 	}
 

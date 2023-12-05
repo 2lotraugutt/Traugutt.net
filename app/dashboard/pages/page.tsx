@@ -39,7 +39,11 @@ export default function Page() {
 	}, [router]);
 
 	async function fetchPages() {
-		const returnedPages = await (await fetch(`/api/dashboard/pages`)).json();
+		const returnedPages = await(
+			await fetch(`/api/dashboard/pages`, {
+				cache: "no-store",
+			})
+		).json();
 		setPages(returnedPages);
 	}
 

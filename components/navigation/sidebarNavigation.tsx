@@ -45,7 +45,11 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 	useEffect(() => {
 		fetchRoutes();
 		async function fetchRoutes() {
-			const fetchedRoutes = await (await fetch("/api/routes")).json();
+			const fetchedRoutes = await(
+				await fetch("/api/routes", {
+					cache: "no-store",
+				})
+			).json();
 			setRoutes(fetchedRoutes);
 		}
 	}, []);
