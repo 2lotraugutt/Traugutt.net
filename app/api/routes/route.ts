@@ -1,16 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import fs from "fs/promises";
 
 export async function GET(request: NextRequest) {
-	var returnedData = await import("@/routes.json");
+	try {
+		const filePath = "@/routes.json";
+		const fileContent = await fs.readFile(filePath, "utf-8");
+		const routes = JSON.parse(fileContent);
 
-	const routes = {
-		school: returnedData.school,
-		student: returnedData.student,
-		parents: returnedData.parents,
-		recruitation: returnedData.recruitation,
-		exam: returnedData.exam,
-		docs: returnedData.docs,
-	};
-
-	return NextResponse.json(routes);
+		return NextResponse.json(routes);
+	} catch (error) {
+		return NextResponse.error();
+	}
 }
