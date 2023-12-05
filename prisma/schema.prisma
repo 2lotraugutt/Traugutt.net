@@ -152,3 +152,20 @@ model Notification {
   authorId String @db.Uuid
   author   User   @relation(fields: [authorId], references: [id])
 }
+
+model Route {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  name     String
+  link     String
+  category RouteCategory @default(docs)
+}
+
+enum RouteCategory {
+  school
+  student
+  parents
+  recruitation
+  exam
+  docs
+}

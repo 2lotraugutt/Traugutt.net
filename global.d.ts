@@ -163,4 +163,13 @@ declare global {
 		authorId: string;
 		author: UserDataType;
 	};
+
+	type RouteDataType = {
+		id: string;
+		name: string;
+		link: string;
+		category: RouteCategoryDataType;
+	};
+
+	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "docs"; 
 }
