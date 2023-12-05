@@ -84,18 +84,10 @@ export default function Page() {
 	}
 
 	async function deleteRoutes(id: string) {
-		// 	var newRoutes = routes;
-		// 	const index = newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].findIndex(
-		// 		(searchRoute) => searchRoute.link == route.link && searchRoute.name == route.name
-		// 	);
-		// 	newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].splice(index, 1);
-		// 	const data = new FormData();
-		// 	data.set("content", JSON.stringify(newRoutes));
-		// 	await fetch(`/api/dashboard/routes`, {
-		// 		body: data,
-		// 		method: "POST",
-		// 	});
-		// 	fetchRoutes();
+		await fetch(`/api/dashboard/routes/${id}`, {
+			method: "DELETE",
+		});
+		fetchRoutes();
 	}
 
 	if (routes && userSession)
