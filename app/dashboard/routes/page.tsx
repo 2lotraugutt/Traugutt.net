@@ -34,7 +34,7 @@ export default function Page() {
 
 	const [newName, setNewName] = useState("");
 	const [newLink, setNewLink] = useState("");
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState("school");
 
 	const routesCategories: { name: string; route: RouteCategoryDataType }[] = [
 		{ name: "Szkoła", route: "school" },
@@ -67,19 +67,20 @@ export default function Page() {
 	}
 
 	async function addRoutes() {
-		// 	const newRoute = { link: newLink, name: newName };
-		// 	var newRoutes: RoutesType = { ...routes };
-		// 	newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].push(newRoute);
-		// 	const data = new FormData();
-		// 	data.set("content", JSON.stringify(newRoutes));
-		// 	await fetch(`/api/dashboard/routes`, {
-		// 		body: data,
-		// 		method: "POST",
-		// 	});
-		// 	fetchRoutes();
-		// 	setCategory("");
-		// 	setNewLink("");
-		// 	setNewName("");
+		const data = new FormData();
+		data.set("name", newName);
+		data.set("link", newLink);
+		data.set("category", category);
+
+		await fetch(`/api/dashboard/routes`, {
+			body: data,
+			method: "POST",
+		});
+
+		fetchRoutes();
+		setCategory("");
+		setNewLink("");
+		setNewName("");
 	}
 
 	async function deleteRoutes(id: string) {
