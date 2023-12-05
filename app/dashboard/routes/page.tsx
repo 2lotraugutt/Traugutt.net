@@ -87,7 +87,7 @@ export default function Page() {
 
 	async function addRoutes() {
 		const newRoute = { link: newLink, name: newName };
-		var newRoutes = routes;
+		var newRoutes: RoutesType = { ...routes };
 
 		newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].push(newRoute);
 

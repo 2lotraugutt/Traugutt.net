@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-	const returnedData = await import("@/routes.json");
+	var returnedData = await import("@/routes.json");
 
-	const routes: {
-		school: { link: string; name: string }[];
-		student: { link: string; name: string }[];
-		parents: { link: string; name: string }[];
-		recruitation: { link: string; name: string }[];
-		exam: { link: string; name: string }[];
-		docs: { link: string; name: string }[];
-	} = returnedData;
+	const routes = {
+		school: returnedData.school,
+		student: returnedData.student,
+		parents: returnedData.parents,
+		recruitation: returnedData.recruitation,
+		exam: returnedData.exam,
+		docs: returnedData.docs,
+	};
 
 	return NextResponse.json(routes);
 }
