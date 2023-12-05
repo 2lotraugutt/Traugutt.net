@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import fs from "fs";
+import { promises as fsp } from "fs";
 
 export async function GET(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
@@ -13,7 +14,7 @@ export async function GET(request: NextRequest) {
 			const routes: string[] = fs.readdirSync("./content");
 
 			for (var route in routes) {
-				const parsedFile = await import("@/content/" + routes[route]);
+				const parsedFile = await fsp.readFile("./content/" + routes[route], "utf-8");
 				files.push({ file: routes[route], content: parsedFile });
 			}
 
