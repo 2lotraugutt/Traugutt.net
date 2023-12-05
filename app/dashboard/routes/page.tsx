@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LoadingLayout from "../loadingLayout";
 import Link from "next/link";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const poppingsFont600 = Poppins({
 	weight: "600",
@@ -99,6 +101,26 @@ export default function Page() {
 		setNewName("");
 	}
 
+	async function deleteRoutes(route: { link: string; name: string }, category: string) {
+		var newRoutes = routes;
+
+		const index = newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].findIndex(
+			(searchRoute) => searchRoute.link == route.link && searchRoute.name == route.name
+		);
+
+		newRoutes[category as "school" | "student" | "parents" | "recruitation" | "exam" | "docs"].splice(index, 1);
+
+		const data = new FormData();
+		data.set("content", JSON.stringify(newRoutes));
+
+		await fetch(`/api/dashboard/routes`, {
+			body: data,
+			method: "POST",
+		});
+
+		fetchRoutes();
+	}
+
 	if (routes && userSession)
 		return (
 			<div className="dashboard-page">
@@ -151,7 +173,14 @@ export default function Page() {
 
 							{routes[routeCategory.route].map((route, j) => (
 								<div key={j} className="flex flex-col">
-									<p className={`text-sm sm:text-base md:text-lg lg:text-xl ${poppingsFont500.className}`}>{route.name}</p>
+									<div className="flex justify-between">
+										<p className={`text-sm sm:text-base md:text-lg lg:text-xl ${poppingsFont500.className}`}>{route.name}</p>
+										<FontAwesomeIcon
+											onClick={() => deleteRoutes(route, routeCategory.route)}
+											icon={faTrash}
+											className="h-4 w-4 cursor-pointer text-MainDarkGray hover:text-MainRed transition-all"
+										/>
+									</div>
 									<Link
 										target="blank"
 										href={route.link[0] == "/" ? "https://traugutt.eu" + route.link : route.link}
