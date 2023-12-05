@@ -14,7 +14,7 @@ export async function POST(request: Request, { params }: { params: { name: strin
 
 			fs.writeFile("./content/" + params.name, content, "utf-8");
 
-			return NextResponse.json({ success: params.name }, { status: 200 });
+			return NextResponse.json({ success: true }, { status: 200 });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
@@ -26,7 +26,7 @@ export async function DELETE(request: Request, { params }: { params: { name: str
 		if (session.user.role.managePages) {
 			fs.rm("./content/" + params.name);
 
-			return NextResponse.json({ success: params.name }, { status: 200 });
+			return NextResponse.json({ success: true }, { status: 200 });
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }

@@ -40,3 +40,5 @@ next-env.d.ts
 .env
 /prisma/migrations/
 certificates
+routes.json
+data.json
