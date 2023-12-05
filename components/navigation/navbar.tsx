@@ -22,7 +22,7 @@ export default function Navbar() {
 				</Link>
 
 				<Link href={"/"} className="w-fit h-fit justify-self-center">
-					<Image src={"/Glasses.svg"} alt="Glasses icon" className="3xl:w-52" width={150} height={1000} />
+					<Image src={"/logo.png"} alt="Logo icon" className="3xl:w-32 -my-4" width={100} height={100} />
 				</Link>
 
 				<button onClick={() => setSidebarVisible((old) => !old)} className="w-fit h-fit justify-self-end">

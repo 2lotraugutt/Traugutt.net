@@ -16,7 +16,7 @@ export default function Footer() {
 	return (
 		<footer className="bg-MainDarkGray text-white rounded-3xl flex gap-y-10 flex-col md:flex-row px-6 md:px-8 lg:px-10 lg:mx-12 mx-2 md:mx-5 4xl:mx-0 mb-2 md:mb-3 2xl:mb-4 4xl:mb-5 py-12 mt-10 sm:mt-12 3xl:mt-24 lg:mt-16 2xl:mt-20 md:mt-14">
 			<div className="w-full flex flex-col items-center justify-center md:gap-y-1 xl:gap-y-2 3xl:gap-y-3">
-				<Image src="/GlassesWhite.svg" width="200" className="!text-white scale-75 sm:scale-90 xl:scale-100 md:scale-95" height="100" alt="Glasses icon" />
+				<Image src="/logo.png" width="125" className="!text-white scale-75 sm:scale-90 xl:scale-100 md:scale-95" height="125" alt="Logo icon" />
 				<p className={`text-lg xl:text-xl 3xl:text-2xl ${poppingsFont700.className}`}>II LO. TRAUGUTT</p>
 			</div>
 
