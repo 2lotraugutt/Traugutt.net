@@ -11,7 +11,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 		if (session.user.role.manageUsers || session.user.role.verifyUsers) {
 			const users = await prisma.user.update({
 				where: { id: params.id },
-				data: { verified: status, roleTag: "STUDENT" },
+				data: { verified: status, roleTag: status ? "STUDENT" : "USER" },
 			});
 
 			return NextResponse.json(users);

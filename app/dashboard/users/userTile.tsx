@@ -21,7 +21,7 @@ const poppingsFont700 = Poppins({
 
 export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
-	const [verifyButtonText, setVerifyButtonText] = useState(props.userData.verified ? "Usuń rolę ucznia" : "Ustaw jako uczeń");
+	const [verifyButtonText, setVerifyButtonText] = useState(props.userData.verified ? "Uczeń spoza szkoły" : "Uczeń ze szkoły");
 	const [changeNameButtonText, setChangeNameButtonText] = useState(props.userData.changeName ? "Anuluj prośbe" : "Poproś o zmiane nazwy");
 	const [logoutButton, setLogoutButtonText] = useState("Wyloguj");
 
@@ -32,8 +32,8 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 		await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}?toggle=${state}`)).json();
 		props.refetchUsers();
 
-		if (state) setVerifyButtonText("Usuń rolę ucznia");
-		else setVerifyButtonText("Ustaw jako uczeń");
+		if (state) setVerifyButtonText("Uczeń spoza szkoły");
+		else setVerifyButtonText("Uczeń ze szkoły");
 	}
 
 	async function changeName(state: boolean) {
@@ -99,7 +99,7 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 				</div>
 
 				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Zweryfikowany:</p>
+					<p className="h-fit">Ze szkoły:</p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
 						<div className={`w-2 h-2 rounded-full ${props.userData.verified == null && "hidden"} ${props.userData.verified ? "bg-MainColor" : "bg-MainRed"}`} />
 						{props.userData.verified == null ? "---" : props.userData.verified ? "Tak" : "Nie"}
