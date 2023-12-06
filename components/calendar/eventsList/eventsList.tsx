@@ -116,7 +116,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 			<div className="flex flex-col w-full md:w-4/5 lg:w-3/5 mx-auto gap-y-12">
 				<div className="flex flex-col gap-y-3 md:-mx-8 lg:-mx-20">
 					<div className="flex items-center gap-3 border-2 hover:bg-LightGray/20 bg-LightGray/5 transition-all duration-300 py-1 md:py-2 md:px-3 px-2 lg:py-3 lg:px-4 3xl:px-6 xl:py-4 sm:gap-2 md:gap-3 rounded-2xl">
-						<FontAwesomeIcon onClick={() => searchEvents()} icon={faSearch} className={`h-5 lg:h-7 cursor-pointer`} />
+						<FontAwesomeIcon onClick={() => searchEvents()} icon={faSearch} className={`h-5 lg:h-6 3xl:h-7 cursor-pointer`} />
 						<input
 							type="text"
 							onBlur={() => searchEvents()}
@@ -131,7 +131,7 @@ export default function EventsList(props: { searchTagId: string | null }) {
 								past ? "bg-MainColor/60 hover:bg-MainColor/90 text-white" : "bg-LightGray hover:bg-MainDarkGray/60 hover:text-white"
 							} ${poppingsFont500.className}`}
 						>
-							<FontAwesomeIcon icon={past ? faClockFull : faClock} className={`h-6 whitespace-nowrap lg:h-8`} />
+							<FontAwesomeIcon icon={past ? faClockFull : faClock} className={`h-4 2xl:h-6 whitespace-nowrap`} />
 							<motion.p
 								className=""
 								transition={{

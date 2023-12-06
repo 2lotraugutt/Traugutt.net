@@ -21,8 +21,8 @@ const poppingsFont700 = Poppins({
 
 export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
-	const [verifyButtonText, setVerifyButtonText] = useState("Ustaw jako uczeń");
-	const [changeNameButtonText, setChangeNameButtonText] = useState("Poproś o zmiane nazwy");
+	const [verifyButtonText, setVerifyButtonText] = useState(props.userData.verified ? "Usuń rolę ucznia" : "Ustaw jako uczeń");
+	const [changeNameButtonText, setChangeNameButtonText] = useState(props.userData.changeName ? "Anuluj prośbe" : "Poproś o zmiane nazwy");
 	const [logoutButton, setLogoutButtonText] = useState("Wyloguj");
 
 	async function verifyUser(state: boolean) {
