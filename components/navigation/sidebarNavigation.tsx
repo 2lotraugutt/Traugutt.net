@@ -41,7 +41,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 		fetchRoutes();
 		async function fetchRoutes() {
 			const fetchedRoutes = await(await fetch("/api/routes")).json();
-			console.log(fetchedRoutes);
+
 			setRoutes(fetchedRoutes);
 		}
 	}, []);
