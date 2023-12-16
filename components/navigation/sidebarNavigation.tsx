@@ -1,6 +1,17 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faFacebook, faInstagram, faTiktok, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faAngleRight, faClipboardList, faFile, faFileWord, faFileZipper, faGraduationCap, faHouseUser, faPhone, faSchool } from "@fortawesome/free-solid-svg-icons";
+import {
+	faAngleRight,
+	faClipboardList,
+	faFile,
+	faFileWord,
+	faGraduationCap,
+	faHouseUser,
+	faPhone,
+	faSchool,
+	faTableList,
+	faUserGraduate,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
 import { Poppins } from "next/font/google";
@@ -14,7 +25,6 @@ const poppingsFont500 = Poppins({
 	weight: "500",
 	subsets: ["latin"],
 });
-
 
 export default function SidebarNavigation(props: { toggle: Function }) {
 	const [openedList, setOpened] = useState<boolean[]>([]);
@@ -79,9 +89,13 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 					<div className={`${poppingsFont600.className}`}>Sklep z odzieżą</div>
 				</Link> */}
 
-				<Link href={"http://2lo.traugutt.net"} target="blank" className="sidebar-button">
-					<FontAwesomeIcon icon={faFileZipper} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Archiwalna strona</div>
+				<Link href={"https://uonetplus.vulcan.net.pl/czestochowa"} target="blank" className="sidebar-button">
+					<FontAwesomeIcon icon={faTableList} className="w-6 h-6 text-white py-3 px-4" />
+					<div className={`${poppingsFont600.className}`}>Dziennik elektroniczny</div>
+				</Link>
+				<Link href={"http://absolwent.traugutt.net"} target="blank" className="sidebar-button">
+					<FontAwesomeIcon icon={faUserGraduate} className="w-6 h-6 text-white py-3 px-4" />
+					<div className={`${poppingsFont600.className}`}>Portal absolwentów</div>
 				</Link>
 
 				<div className="flex gap-x-1 justify-between px-1.5 mt-2">
