@@ -25,23 +25,26 @@ async function GenerateNumbers() {
 		const dayNumber = (i + 1) as RangeType;
 
 		const randomNumber = Math.floor(Math.random() * leftNumbers.length);
-		const generatedNumber = leftNumbers.splice(randomNumber, 1)[0];
+		const generatedNumber = leftNumbers.slice(randomNumber, randomNumber + 1)[0];
 
 		const dayDate = zonedTimeToUtc(nextDay(startOfToday(), dayNumber), "UTC");
 		const formattedDate = format(dayDate, "dd-MM-yyyy");
 
-		await prisma.day.upsert({
-			where: { date: formattedDate },
-			update: { number: generatedNumber },
-			create: {
-				timeStamp: dayDate,
-				date: formattedDate,
-				number: generatedNumber,
-				day: getDate(dayDate),
-				month: getMonth(dayDate),
-				year: getYear(dayDate),
-			},
-		});
+		try {
+			await prisma.day.upsert({
+				where: { date: formattedDate, freeDay: false },
+				update: { number: generatedNumber },
+				create: {
+					timeStamp: dayDate,
+					date: formattedDate,
+					number: generatedNumber,
+					day: getDate(dayDate),
+					month: getMonth(dayDate),
+					year: getYear(dayDate),
+				},
+			});
+			leftNumbers.splice(randomNumber, 1);
+		} catch {}
 	}
 	fs.writeFileSync(dataFilePath, JSON.stringify(leftNumbers), "utf8");
 	console.log("Generated numbers!");
