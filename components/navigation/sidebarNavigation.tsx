@@ -6,6 +6,7 @@ import {
 	faFile,
 	faFileWord,
 	faGraduationCap,
+	faHome,
 	faHouseUser,
 	faPhone,
 	faSchool,
@@ -35,6 +36,11 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 
 		newOpened[i] = !openedList[i];
 		setOpened(newOpened);
+	}
+
+	function closeNavbar() {
+		props.toggle();
+		setOpened([]);
 	}
 
 	useEffect(() => {
@@ -133,6 +139,11 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 			<div className="h-1 bg-DarkColor/40 rounded-lg"></div>
 
 			<motion.div className="flex flex-col gap-y-1">
+				<Link href={"/"} onClick={() => closeNavbar()} className="sidebar-button">
+					<FontAwesomeIcon icon={faHome} className="w-6 h-6 text-white py-3 px-4" />
+					<div className={`${poppingsFont600.className}`}>Strona główna</div>
+				</Link>
+
 				{mainNavs.map((nav, i) => {
 					const routesForNav = routes?.filter((route) => route.category == nav.routes) ?? [];
 					return (
@@ -170,7 +181,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 											{routesForNav.map((route, j) => (
 												<Link
 													key={j}
-													onClick={() => props.toggle()}
+													onClick={() => closeNavbar()}
 													className={`sidebar-button px-3 py-1.5 w-full ${poppingsFont500.className}`}
 													href={route.link}
 												>
@@ -185,7 +196,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 					);
 				})}
 
-				<Link href={"/kontakt"} className="sidebar-button" onClick={() => props.toggle()}>
+				<Link href={"/kontakt"} className="sidebar-button" onClick={() => closeNavbar()}>
 					<FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Kontakt</div>
 				</Link>
