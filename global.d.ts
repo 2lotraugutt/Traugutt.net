@@ -94,6 +94,18 @@ declare global {
 		manageRoles: Boolean;
 		manageNotifications: Boolean;
 		managePages: Boolean;
+		manageAnnouncements: Boolean;
+		manageRoles: Boolean;
+	};
+
+	type DayDataType = {
+		date: string;
+		number: number?;
+		freeDay: boolean;
+		day: number;
+		month: number;
+		year: number;
+		timeStamp: Date;
 	};
 
 	type DayDataTypeWithEventsAndPost = {
@@ -171,5 +183,15 @@ declare global {
 		category: RouteCategoryDataType;
 	};
 
-	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "docs"; 
+	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "docs";
+
+	type AnnouncementWithAutorDataType = {
+		id: string;
+		createdAt: Date;
+		content: string;
+		days: DayDataType[];
+		authorId: string;
+		author: UserDataType;
+	};
+
 }

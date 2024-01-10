@@ -24,6 +24,7 @@ model User {
   posts          Post[]         @relation("Author")
   accounts       Account[]
   sessions       Session[]
+  announcements  Announcement[]
   tags           EventTag[]
   event          Event[]        @relation("Event author")
   notification   Notification[]
@@ -112,7 +113,8 @@ model Day {
   year      Int
   timeStamp DateTime
 
-  events Event[] @relation("Day")
+  announcements Announcement[]
+  events        Event[]        @relation("Day")
 }
 
 model Event {
@@ -148,6 +150,7 @@ model Notification {
   createdAt DateTime @default(now())
   title     String
   content   String
+  pinned    Boolean  @default(false)
 
   authorId String @db.Uuid
   author   User   @relation(fields: [authorId], references: [id])
@@ -168,4 +171,14 @@ enum RouteCategory {
   recruitation
   exam
   docs
+}
+
+model Announcement {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime @default(now())
+  content   String
+  days      Day[]
+
+  authorId String @db.Uuid
+  author   User   @relation(fields: [authorId], references: [id])
 }
