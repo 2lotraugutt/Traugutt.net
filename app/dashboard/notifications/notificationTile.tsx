@@ -35,10 +35,16 @@ export default function NotificationTile(props: { notificationData: Notification
 	async function togglePin() {
 		if (pinned) setPinButtonText("Odpinanie...");
 		else setPinButtonText("Przypinanie...");
+
 		const data = new FormData();
 		data.set("id", props.notificationData.id);
 
-		await (await fetch(`/api/dashboard/notifications/pinNotification?toggle=${!pinned}`)).json();
+		await(
+			await fetch(`/api/dashboard/notifications/pinNotification?toggle=${!pinned}`, {
+				body: data,
+				method: "POST",
+			})
+		).json();
 
 		if (pinned) setPinButtonText("Przypnij");
 		else setPinButtonText("Odepnij");
