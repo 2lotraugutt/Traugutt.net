@@ -13,7 +13,12 @@ export async function GET(request: NextRequest, { params }: { params: { date: st
 				createdAt: "desc",
 			},
 		],
-		include: { author: true },
+		include: {
+			author: true,
+			days: {
+				orderBy: { timeStamp: "asc" },
+			},
+		},
 		where: { days: { every: { date: date } } },
 	});
 

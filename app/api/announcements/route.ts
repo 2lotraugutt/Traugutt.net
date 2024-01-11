@@ -11,7 +11,12 @@ export async function GET(request: NextRequest) {
 				createdAt: "desc",
 			},
 		],
-		include: { author: true },
+		include: {
+			author: true,
+			days: {
+				orderBy: { timeStamp: "asc" },
+			},
+		},
 	});
 
 	return NextResponse.json(announcements);
