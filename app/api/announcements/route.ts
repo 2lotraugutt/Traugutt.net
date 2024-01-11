@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
 				createdAt: "desc",
 			},
 		],
+		include: { author: true },
 	});
 
 	return NextResponse.json(announcements);

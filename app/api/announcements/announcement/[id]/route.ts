@@ -6,6 +6,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
 	const announcement = await prisma.announcement.findFirst({
 		where: { id: id },
+		include: { author: true },
 	});
 
 	return NextResponse.json(announcement);
