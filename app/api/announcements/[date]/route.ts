@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, { params }: { params: { date: st
 				orderBy: { timeStamp: "asc" },
 			},
 		},
-		where: { days: { every: { date: date } } },
+		where: { days: { some: { date: date } } },
 	});
 
 	return NextResponse.json(announcements);
