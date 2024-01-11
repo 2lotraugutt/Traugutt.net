@@ -3,8 +3,8 @@
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import { compareAsc, parse } from "date-fns";
-import AnnouncementTile from "./announcementTile";
-import AnnouncementsSkeleton from "./announcementsSkeleton";
+import AnnouncementTile from "@/app/radio/announcementTile";
+import AnnouncementsSkeleton from "@/app/radio/announcementsSkeleton";
 
 type FormattedAnnouncements = { date: string; announcements: AnnouncementWithAutorDataType[] }[];
 
