@@ -2,8 +2,11 @@
 
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
-import DashboardPostTile from "@/app/dashboard/post/postTile";
 import LoadingLayout from "@/app/dashboard/loadingLayout";
+import AnnouncementTile from "./AnnouncementTile";
+import { compareAsc, parse } from "date-fns";
+
+type FormattedAnnouncements = { date: string; announcements: AnnouncementWithAutorDataType[] }[];
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -11,7 +14,7 @@ const poppingsFont700 = Poppins({
 });
 
 export default function Page() {
-	const [announcements, setAnnouncements] = useState<AnnouncementWithAutorDataType[]>();
+	const [announcements, setAnnouncements] = useState<FormattedAnnouncements>([]);
 	const [announcementsCount, setAnnouncementsCount] = useState<number>(1);
 
 	useEffect(() => {
@@ -19,10 +22,40 @@ export default function Page() {
 	}, []);
 
 	async function fetchAnnouncements() {
-		const returnedAnnouncements = await (await fetch(`/api/announcements?count=${announcementsCount * 10}`)).json();
-		setAnnouncements(returnedAnnouncements);
+		const returnedAnnouncements: AnnouncementWithAutorDataType[] = await (await fetch(`/api/announcements?count=${announcementsCount * 10}`)).json();
+
+		const formattedAnnouncements = formatAnnouncements(returnedAnnouncements);
+		setAnnouncements(formattedAnnouncements);
 
 		setAnnouncementsCount((oldCount) => oldCount + 1);
+	}
+
+	function formatAnnouncements(announcementsToFormat: AnnouncementWithAutorDataType[]): FormattedAnnouncements {
+		var newAnnouncements: { [date: string]: AnnouncementWithAutorDataType[] } = {};
+		const timeStampNow = new Date();
+
+		for (var announcement of announcementsToFormat) {
+			announcement.days.forEach((day) => {
+				if (new Date(day.timeStamp) > timeStampNow) {
+					const dateKey = day.date;
+
+					if (!newAnnouncements[dateKey]) {
+						newAnnouncements[dateKey] = [];
+					}
+
+					newAnnouncements[dateKey].push(announcement);
+				}
+			});
+		}
+
+		var toReturn = Object.entries(newAnnouncements).map(([date, announcements]) => ({
+			date,
+			announcements,
+		}));
+
+		toReturn = toReturn.sort((a, b) => compareAsc(parse(a.date, "dd-MM-yyyy", new Date()), parse(b.date, "dd-MM-yyyy", new Date())));
+
+		return toReturn;
 	}
 
 	if (announcements)
@@ -35,9 +68,20 @@ export default function Page() {
 				</h1>
 
 				{announcements.length != 0 && (
-					<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-						{announcements.map((announcementData: AnnouncementWithAutorDataType) => (
-							<div>{announcementData.content}</div>
+					<div className="flex w-full flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">
+						{announcements.map((date, i) => (
+							<div key={date.date}>
+								<h2
+									className={`w-fit text-md md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl xl:mb-3 mb-2 sm:mt-3 md:mt-4 lg:mt-5 xl:mt-6 ${poppingsFont700.className}`}
+								>
+									{date.date}
+								</h2>
+								<div className="flex flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">
+									{date.announcements.map((announcementData, j) => (
+										<AnnouncementTile announcementData={announcementData} key={date.date + j} />
+									))}
+								</div>
+							</div>
 						))}
 
 						<button
