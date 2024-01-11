@@ -6,6 +6,7 @@ import LoadingLayout from "@/app/dashboard/loadingLayout";
 import { format, isMatch } from "date-fns";
 import AnnouncementTile from "../AnnouncementTile";
 import AnnouncementsSkeleton from "../announcementsSkeleton";
+import Link from "next/link";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -48,11 +49,16 @@ export default function Page({ params }: { params: { date: string } }) {
 	if (announcements)
 		return (
 			<div className="flex w-full flex-col overflow-hidden lg:px-12 px-2 md:px-5 4xl:px-0 gap-y-3 sm:gap-y-5 xl:gap-y-7 3xl:gap-y-9 items-center">
-				<h1
-					className={`w-fit text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl xl:mt-9 mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-20 ${poppingsFont700.className}`}
-				>
-					{params.date == "today" ? "Dzisiejsze ogłoszenia" : formatDate(params.date)}
-				</h1>
+				<div className="w-full">
+					<h1
+						className={`w-fit mx-auto text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl xl:mt-9 mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-20 ${poppingsFont700.className}`}
+					>
+						{params.date == "today" ? "Dzisiejsze komunikaty" : formatDate(params.date)}
+					</h1>
+					<Link href="/radio" className={`hover:text-MainColor w-fit text-xl xs:text-sm lg:text-lg xl:text-xl 2xl:text-2xl ${poppingsFont700.className}`}>
+						Zobacz wszystkie komunikaty
+					</Link>
+				</div>
 
 				{announcements.length != 0 && (
 					<div className="flex w-full flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">

@@ -65,7 +65,7 @@ export default function Page() {
 				<h1
 					className={`w-fit text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl xl:mt-9 mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-20 ${poppingsFont700.className}`}
 				>
-					Wszystkie ogłoszenia
+					Wszystkie komunikaty
 				</h1>
 
 				{announcements.length != 0 && (
