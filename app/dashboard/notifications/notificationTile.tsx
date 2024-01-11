@@ -1,4 +1,4 @@
-import { faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
@@ -28,7 +28,22 @@ export default function NotificationTile(props: { notificationData: Notification
 	const [content, setContent] = useState<string>(props.notificationData.content);
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wiadomość");
 	const [editButtonText, setEditButtonText] = useState("Edytuj wiadomość");
+	const [pinButtonText, setPinButtonText] = useState(props.notificationData.pinned ? "Odepnij wiadomość" : "Przypnij wiadomość");
 	const [isEditing, setIsEditing] = useState<boolean>(false);
+	const [pinned, setPinned] = useState(props.notificationData.pinned);
+
+	async function togglePin() {
+		if (pinned) setPinButtonText("Odpinanie...");
+		else setPinButtonText("Przypinanie...");
+		const data = new FormData();
+		data.set("id", props.notificationData.id);
+
+		await (await fetch(`/api/dashboard/notifications/pinNotification?toggle=${!pinned}`)).json();
+
+		if (pinned) setPinButtonText("Przypnij");
+		else setPinButtonText("Odepnij");
+		setPinned((old) => !old);
+	}
 
 	async function deleteNotification() {
 		setDeleteButtonText("Usuwanie...");
@@ -36,7 +51,7 @@ export default function NotificationTile(props: { notificationData: Notification
 		const data = new FormData();
 		data.set("id", props.notificationData.id);
 
-		const notification = await(
+		const notification = await (
 			await fetch(`/api/dashboard/notifications/`, {
 				body: data,
 				method: "DELETE",
@@ -79,7 +94,9 @@ export default function NotificationTile(props: { notificationData: Notification
 		>
 			<div className="flex flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
 				{!isEditing ? (
-					<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>{title}</p>
+					<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>
+						{pinned && <FontAwesomeIcon icon={faThumbTack} />} {title}
+					</p>
 				) : (
 					<input
 						placeholder="Podaj tytuł"
@@ -139,6 +156,13 @@ export default function NotificationTile(props: { notificationData: Notification
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />
+					</div>
+				</button>
+
+				<button onClick={() => togglePin()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{pinButtonText}
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faThumbTack} />
 					</div>
 				</button>
 			</div>
