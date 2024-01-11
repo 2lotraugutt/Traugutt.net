@@ -57,11 +57,11 @@ input::-webkit-inner-spin-button {
   @apply flex justify-between whitespace-nowrap xl:flex-col xl:h-full xl:justify-start md:gap-x-2 items-center text-2xs xs:text-xs md:text-sm 2xl:text-base border-t-2 md:border-0 md:p-0 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0 text-MainDarkGray/60
 }
 
-.admistPostTile .dashboardPostTileDataRow {
+.adminPostTile .dashboardPostTileDataRow {
   @apply md:border-b-2 md:pb-2 lg:pb-5 xl:border-0 xl:pb-0
 }
-.admistPostTile .dashboardPostTileDataRow:nth-of-type(4),
-.admistPostTile .dashboardPostTileDataRow:nth-of-type(5)  {
+.adminPostTile .dashboardPostTileDataRow:nth-of-type(4),
+.adminPostTile .dashboardPostTileDataRow:nth-of-type(5)  {
   @apply md:border-b-0 md:pb-0 
 }
 
