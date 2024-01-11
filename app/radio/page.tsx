@@ -3,8 +3,9 @@
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import LoadingLayout from "@/app/dashboard/loadingLayout";
-import AnnouncementTile from "./AnnouncementTile";
 import { compareAsc, parse } from "date-fns";
+import AnnouncementTile from "./AnnouncementTile";
+import AnnouncementsSkeleton from "./announcementsSkeleton";
 
 type FormattedAnnouncements = { date: string; announcements: AnnouncementWithAutorDataType[] }[];
 
@@ -14,7 +15,7 @@ const poppingsFont700 = Poppins({
 });
 
 export default function Page() {
-	const [announcements, setAnnouncements] = useState<FormattedAnnouncements>([]);
+	const [announcements, setAnnouncements] = useState<FormattedAnnouncements>();
 	const [announcementsCount, setAnnouncementsCount] = useState<number>(1);
 
 	useEffect(() => {
@@ -96,5 +97,5 @@ export default function Page() {
 				)}
 			</div>
 		);
-	else return <LoadingLayout />;
+	else return <AnnouncementsSkeleton />;
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import LoadingLayout from "@/app/dashboard/loadingLayout";
 import { format, isMatch } from "date-fns";
 import AnnouncementTile from "../AnnouncementTile";
+import AnnouncementsSkeleton from "../announcementsSkeleton";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -12,7 +13,7 @@ const poppingsFont700 = Poppins({
 });
 
 export default function Page({ params }: { params: { date: string } }) {
-	const [announcements, setAnnouncements] = useState<AnnouncementWithAutorDataType[]>([]);
+	const [announcements, setAnnouncements] = useState<AnnouncementWithAutorDataType[]>();
 	const [announcementsCount, setAnnouncementsCount] = useState<number>(1);
 
 	useEffect(() => {
@@ -73,5 +74,5 @@ export default function Page({ params }: { params: { date: string } }) {
 				)}
 			</div>
 		);
-	else return <LoadingLayout />;
+	else return <AnnouncementsSkeleton />;
 }
