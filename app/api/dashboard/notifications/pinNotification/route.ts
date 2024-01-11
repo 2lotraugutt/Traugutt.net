@@ -8,14 +8,14 @@ export async function POST(request: NextRequest) {
 
 	if (session) {
 		if (session.user.role.manageNotifications) {
-			const status = request.nextUrl.searchParams.get("toggle") == "true" ? true : false;
+			const toggle = request.nextUrl.searchParams.get("toggle") == "true" ? true : false;
 			const data = await request.formData();
 
 			const id: string = data.get("id") as string;
 
 			await prisma.notification.update({
 				where: { id: id },
-				data: { pinned: status },
+				data: { pinned: toggle },
 			});
 
 			return NextResponse.json({ success: true });

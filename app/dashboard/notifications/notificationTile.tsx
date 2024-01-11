@@ -152,17 +152,17 @@ export default function NotificationTile(props: { notificationData: Notification
 					</div>
 				</button>
 
-				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					{deleteButtonText}
-					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={faTrash} />
-					</div>
-				</button>
-
 				<button onClick={() => togglePin()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					{pinButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faThumbTack} />
+					</div>
+				</button>
+
+				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{deleteButtonText}
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faTrash} />
 					</div>
 				</button>
 			</div>
