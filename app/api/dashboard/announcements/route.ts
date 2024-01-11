@@ -35,3 +35,41 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ success: true });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }
+
+export async function DELETE(request: NextRequest) {
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
+
+	if (session) {
+		if (session.user.role.manageAnnouncements) {
+			const data = await request.formData();
+
+			const id: string = data.get("id") as string;
+
+			await prisma.announcement.delete({
+				where: { id },
+			});
+
+			return NextResponse.json({ success: true });
+		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
+	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
+}
+
+export async function PUT(request: NextRequest) {
+	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
+
+	if (session) {
+		if (session.user.role.manageAnnouncements) {
+			const data = await request.formData();
+
+			const id: string = data.get("id") as string;
+			const content: string = data.get("content") as string;
+
+			await prisma.announcement.update({
+				where: { id },
+				data: { content },
+			});
+
+			return NextResponse.json({ success: true });
+		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
+	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
+}
