@@ -1,5 +1,7 @@
 "use client";
 
+import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Poppins } from "next/font/google";
 import { useState } from "react";
 
@@ -28,7 +30,7 @@ export default function SingleNotificationTile(props: { notification: Notificati
 					opened ? "!line-clamp-none" : ""
 				} ${poppingsFont600.className}`}
 			>
-				{props.notification.title}
+				{props.notification.pinned && <FontAwesomeIcon icon={faThumbTack} className="h-3 md:h-3.5 xl:h-4" />} {props.notification.title}
 			</h1>
 			<p
 				className={`relative after:text-white text-2xs md:text-2xs xl:text-sm sm:text-xs lg:text-xs 3xl:text-base line-clamp-3 3xl:line-clamp-4 4xl:line-clamp-5 transition-all duration-300 ${

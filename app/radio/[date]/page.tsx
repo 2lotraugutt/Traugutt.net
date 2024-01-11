@@ -2,9 +2,8 @@
 
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
-import LoadingLayout from "@/app/dashboard/loadingLayout";
 import { format, isMatch } from "date-fns";
-import AnnouncementTile from "../AnnouncementTile";
+import AnnouncementTile from "../announcementTile";
 import AnnouncementsSkeleton from "../announcementsSkeleton";
 import Link from "next/link";
 

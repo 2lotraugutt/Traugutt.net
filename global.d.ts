@@ -165,6 +165,7 @@ declare global {
 		title: string;
 		content: string;
 		authorId: string;
+		pinned: boolean;
 	};
 
 	type NotificationWithAutorDataType = {
@@ -174,6 +175,7 @@ declare global {
 		content: string;
 		authorId: string;
 		author: UserDataType;
+		pinned: boolean;
 	};
 
 	type RouteDataType = {

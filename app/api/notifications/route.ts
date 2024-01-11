@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
 
 	const notifications = await prisma.notification.findMany({
 		orderBy: [
+			{ pinned: "desc" },
 			{
 				createdAt: "desc",
 			},
