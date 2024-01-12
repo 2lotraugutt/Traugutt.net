@@ -19,7 +19,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 	const [newContent, setNewContent] = useState("");
 	const [selectedDays, setSelectedDays] = useState<string[]>([]);
 	const today = new Date();
-	const d = today.getDay();
+	const d = today.getDate();
 	const m = today.getMonth();
 	const y = today.getFullYear();
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];

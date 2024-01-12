@@ -18,7 +18,6 @@ export default function Page({ params }: { params: { date: string } }) {
 
 	useEffect(() => {
 		fetchAnnouncements();
-		console.log(params.date);
 	}, []);
 
 	async function fetchAnnouncements() {
@@ -59,24 +58,22 @@ export default function Page({ params }: { params: { date: string } }) {
 					</Link>
 				</div>
 
-				{announcements.length != 0 && (
-					<div className="flex w-full flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">
-						<div className="flex flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">
-							{announcements.map((announcementData, j) => (
-								<AnnouncementTile announcementData={announcementData} key={j} />
-							))}
-						</div>
-
-						<button
-							onClick={() => fetchAnnouncements()}
-							className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
-								poppingsFont700.className
-							} ${(announcementsCount - 1) * 10 > announcements.length ? "hidden" : ""}`}
-						>
-							Załaduj więcej
-						</button>
+				<div className="flex w-full flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">
+					<div className="flex flex-col gap-y-4 md:gap-2 lg:gap-4 xl:gap-5 4xl:gap-7">
+						{announcements.map((announcementData, j) => (
+							<AnnouncementTile announcementData={announcementData} key={j} />
+						))}
 					</div>
-				)}
+
+					<button
+						onClick={() => fetchAnnouncements()}
+						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
+							poppingsFont700.className
+						} ${(announcementsCount - 1) * 10 > announcements.length ? "hidden" : ""}`}
+					>
+						Załaduj więcej
+					</button>
+				</div>
 			</div>
 		);
 	else return <AnnouncementsSkeleton />;

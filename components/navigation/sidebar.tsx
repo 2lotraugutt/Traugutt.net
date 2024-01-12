@@ -147,7 +147,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 					<SidebarNavigation toggle={props.toggle} />
 				</div>
 			</div>
-			{announcementForm && <NewAnnouncementForm toggle={() => toggleForm()} />}
+			{announcementForm || (true && <NewAnnouncementForm toggle={() => toggleForm()} />)}
 		</>
 	);
 }
