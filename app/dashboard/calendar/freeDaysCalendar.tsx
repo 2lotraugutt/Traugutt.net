@@ -8,7 +8,7 @@ const poppingsFont500 = Poppins({
 });
 
 export default function FreeDaysCalendar(props: { year: number }) {
-	const [days, setDays] = useState<DayDataTypeWithEventsAndPost[]>([]);
+	const [days, setDays] = useState<DayDataType[]>([]);
 
 	useEffect(() => {
 		fetchPost();
@@ -50,7 +50,7 @@ export default function FreeDaysCalendar(props: { year: number }) {
 									return <div className={`w-7 h-7`} key={d}></div>;
 								})}
 								{[...Array(monthLen)].map((n, d) => {
-									const filteredDay: DayDataTypeWithEventsAndPost = days.filter((day) => day.day == d + 1 && day.month == m && day.year == props.year)[0];
+									const filteredDay: DayDataType = days.filter((day) => day.day == d + 1 && day.month == m && day.year == props.year)[0];
 									const day = getISODay(new Date(props.year, m, d + 1));
 
 									return (

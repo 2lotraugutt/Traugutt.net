@@ -15,7 +15,7 @@ const poppingsFont300 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function SingleNotificationTile(props: { notification: NotificationDataType }) {
+export default function SingleNotificationTile(props: { notification: JustNotificationDataType }) {
 	const [opened, setOpened] = useState(false);
 
 	return (

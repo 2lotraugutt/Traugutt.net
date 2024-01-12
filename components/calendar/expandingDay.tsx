@@ -20,7 +20,7 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-export default function ExpandingDay(props: { expandedDayData: DayDataTypeWithEventsPostAnnouncements; expandedDay: string; hideExpanded: Function; setTag: Function }) {
+export default function ExpandingDay(props: { expandedDayData: DayDataType; expandedDay: string; hideExpanded: Function; setTag: Function }) {
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 	const router = useRouter();
 

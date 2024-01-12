@@ -13,7 +13,7 @@ const poppingsFont700 = Poppins({
 });
 
 export default function Page({ params }: { params: { date: string } }) {
-	const [announcements, setAnnouncements] = useState<AnnouncementWithAutorDataType[]>();
+	const [announcements, setAnnouncements] = useState<AnnouncementDataType[]>();
 	const [announcementsCount, setAnnouncementsCount] = useState<number>(1);
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ export default function Page({ params }: { params: { date: string } }) {
 	async function fetchAnnouncements() {
 		const dateToFetch = params.date == "today" ? format(new Date(), "dd-MM-yyyy") : params.date;
 
-		const returnedAnnouncements: AnnouncementWithAutorDataType[] = await (await fetch(`/api/announcements/${dateToFetch}/?count=${announcementsCount * 10}`)).json();
+		const returnedAnnouncements: AnnouncementDataType[] = await(await fetch(`/api/announcements/${dateToFetch}/?count=${announcementsCount * 10}`)).json();
 
 		setAnnouncements(returnedAnnouncements);
 

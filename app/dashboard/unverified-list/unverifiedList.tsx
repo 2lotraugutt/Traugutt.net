@@ -13,7 +13,7 @@ const poppingsFont700 = Poppins({
 
 export default function UnverifiedList() {
 	const [userSession, setSession] = useState<SessionDataType>();
-	const [users, setUsers] = useState<UserDataTypeWithRole[]>([]);
+	const [users, setUsers] = useState<UserDataType[]>([]);
 	const [usersCount, setUsersCount] = useState<number>(1);
 
 	const router = useRouter();
@@ -51,7 +51,7 @@ export default function UnverifiedList() {
 				</h1>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-					{users.map((userData: UserDataTypeWithRole) => (
+					{users.map((userData: UserDataType) => (
 						<UnverifiedUserPostTile userData={userData} key={userData.id} refetchUsers={() => refetchUsers()} />
 					))}
 

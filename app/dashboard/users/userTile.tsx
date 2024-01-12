@@ -19,7 +19,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function UserPostTile(props: { userData: UserDataTypeWithRole; roles: RoleDataType[]; refetchUsers: Function }) {
+export default function UserPostTile(props: { userData: UserDataType; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
 	const [verifyButtonText, setVerifyButtonText] = useState(props.userData.verified ? "Uczeń spoza szkoły" : "Uczeń ze szkoły");
 	const [changeNameButtonText, setChangeNameButtonText] = useState(props.userData.changeName ? "Anuluj prośbe" : "Poproś o zmiane nazwy");
@@ -40,7 +40,7 @@ export default function UserPostTile(props: { userData: UserDataTypeWithRole; ro
 		if (state) setChangeNameButtonText("Wysyłanie prośby...");
 		else setChangeNameButtonText("Anulowanie prośby...");
 
-		await(await fetch(`/api/dashboard/users/user/changeName/${props.userData.id}?toggle=${state}`)).json();
+		await (await fetch(`/api/dashboard/users/user/changeName/${props.userData.id}?toggle=${state}`)).json();
 		props.refetchUsers();
 
 		if (state) setChangeNameButtonText("Anuluj prośbe");

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { getSession } from "next-auth/react";
 
 export default function NotificationssTile() {
-	const [notifications, setNotifications] = useState<NotificationDataType[]>([]);
+	const [notifications, setNotifications] = useState<JustNotificationDataType[]>([]);
 	const [session, setSession] = useState<SessionDataType>();
 
 	useEffect(() => {

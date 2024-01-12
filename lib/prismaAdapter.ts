@@ -6,7 +6,7 @@ export function MyAdapter(prisma: PrismaClient): Adapter {
 	return {
 		...PrismaAdapter(prisma),
 		async createUser(user: any) {
-			const fetchedUser: UserDataType = await prisma.user.create({
+			const fetchedUser: JustUserDataType = await prisma.user.create({
 				data: {
 					name: user.name,
 					email: user.email,

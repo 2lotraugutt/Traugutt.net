@@ -24,7 +24,7 @@ const poppingsFont500 = Poppins({
 });
 
 export default function Page() {
-	const [accountData, setAccountData] = useState<UserDataTypeWithRole>();
+	const [accountData, setAccountData] = useState<UserDataType>();
 	const [name, setName] = useState<string>("");
 
 	const router = useRouter();
@@ -39,7 +39,7 @@ export default function Page() {
 	}, [router]);
 
 	async function fetchAcountData() {
-		const returnedData = (await (await fetch(`/api/dashboard/account`)).json()) as UserDataTypeWithRole;
+		const returnedData = await(await fetch(`/api/dashboard/account`)).json() as UserDataType;
 		setName(returnedData.name);
 		setAccountData(returnedData);
 	}

@@ -14,7 +14,7 @@ const poppingsFont700 = Poppins({
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
-	const [users, setUsers] = useState<UserDataTypeWithRole[]>([]);
+	const [users, setUsers] = useState<UserDataType[]>([]);
 	const [roles, setRoles] = useState<RoleDataType[]>([]);
 	const [usersCount, setUsersCount] = useState<number>(1);
 
@@ -57,7 +57,7 @@ export default function Page() {
 				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Użytkownicy</h1>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-					{users.map((userData: UserDataTypeWithRole) => (
+					{users.map((userData: UserDataType) => (
 						<UserPostTile userData={userData} roles={roles} key={userData.id} refetchUsers={() => refetchUsers()} />
 					))}
 

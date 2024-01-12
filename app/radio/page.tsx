@@ -6,7 +6,7 @@ import { compareAsc, parse } from "date-fns";
 import AnnouncementTile from "@/app/radio/announcementTile";
 import AnnouncementsSkeleton from "@/app/radio/announcementsSkeleton";
 
-type FormattedAnnouncements = { date: string; announcements: AnnouncementWithAutorDataType[] }[];
+type FormattedAnnouncements = { date: string; announcements: AnnouncementDataType[] }[];
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -22,7 +22,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchAnnouncements() {
-		const returnedAnnouncements: AnnouncementWithAutorDataType[] = await (await fetch(`/api/announcements?count=${announcementsCount * 10}`)).json();
+		const returnedAnnouncements: AnnouncementDataType[] = await(await fetch(`/api/announcements?count=${announcementsCount * 10}`)).json();
 
 		const formattedAnnouncements = formatAnnouncements(returnedAnnouncements);
 		setAnnouncements(formattedAnnouncements);
@@ -30,8 +30,8 @@ export default function Page() {
 		setAnnouncementsCount((oldCount) => oldCount + 1);
 	}
 
-	function formatAnnouncements(announcementsToFormat: AnnouncementWithAutorDataType[]): FormattedAnnouncements {
-		var newAnnouncements: { [date: string]: AnnouncementWithAutorDataType[] } = {};
+	function formatAnnouncements(announcementsToFormat: AnnouncementDataType[]): FormattedAnnouncements {
+		var newAnnouncements: { [date: string]: AnnouncementDataType[] } = {};
 		const timeStampNow = new Date();
 
 		for (var announcement of announcementsToFormat) {

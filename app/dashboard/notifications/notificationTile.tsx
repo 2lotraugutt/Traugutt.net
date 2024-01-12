@@ -23,7 +23,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function NotificationTile(props: { notificationData: NotificationWithAutorDataType; refetchNotifications: Function }) {
+export default function NotificationTile(props: { notificationData: NotificationDataType; refetchNotifications: Function }) {
 	const [title, setTitle] = useState<string>(props.notificationData.title);
 	const [content, setContent] = useState<string>(props.notificationData.content);
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wiadomość");
@@ -39,7 +39,7 @@ export default function NotificationTile(props: { notificationData: Notification
 		const data = new FormData();
 		data.set("id", props.notificationData.id);
 
-		await(
+		await (
 			await fetch(`/api/dashboard/notifications/pinNotification?toggle=${!pinned}`, {
 				body: data,
 				method: "POST",

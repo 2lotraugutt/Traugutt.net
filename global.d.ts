@@ -2,7 +2,7 @@ import { getYear } from "date-fns";
 import { Role } from "./node_modules/.prisma/client/index.d";
 
 declare global {
-	type PostDataType = {
+	type JustPostDataType = {
 		id: string;
 		title: string;
 		content: string | null;
@@ -25,7 +25,7 @@ declare global {
 		createdAt: Date;
 		views: number;
 		authorId: string;
-		author: UserDataType;
+		author: JustUserDataType;
 		published: boolean;
 		publishedById: string;
 		eventId: string?;
@@ -41,14 +41,14 @@ declare global {
 		createdAt: Date;
 		views: number;
 		authorId: string;
-		author: UserDataType;
+		author: JustUserDataType;
 		published: boolean;
 		publishedById: string?;
-		publishedBy: UserDataType?;
+		publishedBy: JustUserDataType?;
 		eventId: string?;
 	};
 
-	type UserDataType = {
+	type JustUserDataType = {
 		id: string;
 		emailVerified: Date | null;
 		email: string;
@@ -59,7 +59,7 @@ declare global {
 		changeName: Boolean;
 	};
 
-	type UserDataTypeWithRole = {
+	type UserDataType = {
 		id: string;
 		emailVerified: Date | null;
 		email: string;
@@ -75,7 +75,7 @@ declare global {
 		id: string;
 		sessionToken: string;
 		userId: string;
-		user: UserDataTypeWithRole;
+		user: UserDataType;
 		expires: string;
 	};
 
@@ -98,7 +98,7 @@ declare global {
 		manageRoles: Boolean;
 	};
 
-	type DayDataType = {
+	type JustDayDataType = {
 		date: string;
 		number: number?;
 		freeDay: boolean;
@@ -108,7 +108,7 @@ declare global {
 		timeStamp: Date;
 	};
 
-	type DayDataTypeWithEventsAndPost = {
+	type DayDataType = {
 		date: string;
 		number: number?;
 		freeDay: boolean;
@@ -117,17 +117,7 @@ declare global {
 		year: number;
 		timeStamp: Date;
 		events: EventDataTypeWithPost[];
-	};
-	type DayDataTypeWithEventsPostAnnouncements = {
-		date: string;
-		number: number?;
-		freeDay: boolean;
-		day: number;
-		month: number;
-		year: number;
-		timeStamp: Date;
-		events: EventDataTypeWithPost[];
-		announcements: AnnouncementDataType[];
+		announcements: JustAnnouncementDataType[];
 	};
 
 	type EventDataType = {
@@ -148,7 +138,7 @@ declare global {
 		date: string;
 		tags: EventTagDataType[];
 		authorId: string;
-		author: UserDataType;
+		author: JustUserDataType;
 	};
 
 	type EventDataTypeWithPost = {
@@ -159,7 +149,7 @@ declare global {
 		date: string;
 		tags: EventTagDataType[];
 		authorId: string;
-		post: PostDataType?;
+		post: JustPostDataType?;
 	};
 
 	type EventTagDataType = {
@@ -170,7 +160,7 @@ declare global {
 		authorId: string;
 	};
 
-	type NotificationDataType = {
+	type JustNotificationDataType = {
 		id: string;
 		createdAt: Date;
 		title: string;
@@ -179,13 +169,13 @@ declare global {
 		pinned: boolean;
 	};
 
-	type NotificationWithAutorDataType = {
+	type NotificationDataType = {
 		id: string;
 		createdAt: Date;
 		title: string;
 		content: string;
 		authorId: string;
-		author: UserDataType;
+		author: JustUserDataType;
 		pinned: boolean;
 	};
 
@@ -198,20 +188,20 @@ declare global {
 
 	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "docs";
 
+	type JustAnnouncementDataType = {
+		id: string;
+		createdAt: Date;
+		content: string;
+		days: JustDayDataType[];
+		authorId: string;
+	};
 	type AnnouncementDataType = {
 		id: string;
 		createdAt: Date;
 		content: string;
-		days: DayDataType[];
+		days: JustDayDataType[];
 		authorId: string;
-	};
-	type AnnouncementWithAutorDataType = {
-		id: string;
-		createdAt: Date;
-		content: string;
-		days: DayDataType[];
-		authorId: string;
-		author: UserDataType;
+		author: JustUserDataType;
 	};
 
 }

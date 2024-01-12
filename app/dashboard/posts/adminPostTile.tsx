@@ -63,7 +63,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 
 	const { data: session } = useSession();
-	const user = session?.user as UserDataType;
+	const user = session?.user as JustUserDataType;
 
 	function returnViews() {
 		const views = props.postData.views;

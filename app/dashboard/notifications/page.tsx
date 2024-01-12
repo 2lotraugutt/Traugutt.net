@@ -17,9 +17,8 @@ const plusJakartaSans800 = Plus_Jakarta_Sans({
 export default function Page() {
 	const [newTitle, setNewTitle] = useState("");
 	const [newContent, setNewContent] = useState("");
-	const [notifications, setNotifications] = useState<NotificationWithAutorDataType[]>([]);
+	const [notifications, setNotifications] = useState<NotificationDataType[]>([]);
 	const [notificationsCount, setNotificationsCount] = useState<number>(1);
-
 
 	async function upload() {
 		const data = new FormData();
@@ -97,7 +96,7 @@ export default function Page() {
 			</div>
 
 			<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-				{notifications.map((notificationData: NotificationWithAutorDataType, i) => (
+				{notifications.map((notificationData: NotificationDataType, i) => (
 					<NotificationTile notificationData={notificationData} refetchNotifications={refetchNotifications} key={i} />
 				))}
 
