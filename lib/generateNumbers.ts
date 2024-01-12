@@ -50,6 +50,6 @@ async function GenerateNumbers() {
 	console.log("Generated numbers!");
 }
 
-cron.schedule("0 0 * * 6", () => {
-	GenerateNumbers();
-});
+// cron.schedule("0 0 * * 6", () => {
+// 	GenerateNumbers();
+// });
