@@ -132,6 +132,13 @@ input::-webkit-inner-spin-button {
   @apply hidden 2xl:block
 }
 
+#newAnnouncementCalendar > *:nth-child(3){
+  @apply hidden lg:block
+}
+#newAnnouncementCalendar > *:nth-child(4){
+  @apply hidden 2xl:block
+}
+
 select {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

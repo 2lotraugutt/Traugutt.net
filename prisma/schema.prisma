@@ -44,9 +44,11 @@ model Role {
   manageEvents        Boolean @default(false)
   manageCalendar      Boolean @default(false)
   manageNumbers       Boolean @default(false)
-  manageRoles         Boolean @default(false)
   managePages         Boolean @default(false)
   manageNotifications Boolean @default(false)
+  addAnnouncements    Boolean @default(false)
+  manageAnnouncements Boolean @default(false)
+  manageRoles         Boolean @default(false)
 }
 
 model Post {

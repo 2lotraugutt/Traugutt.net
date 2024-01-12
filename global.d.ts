@@ -91,9 +91,9 @@ declare global {
 		manageEvents: Boolean;
 		manageCalendar: Boolean;
 		manageNumbers: Boolean;
-		manageRoles: Boolean;
 		manageNotifications: Boolean;
 		managePages: Boolean;
+		addAnnouncements: Boolean;
 		manageAnnouncements: Boolean;
 		manageRoles: Boolean;
 	};
