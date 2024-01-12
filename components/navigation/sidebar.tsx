@@ -107,12 +107,12 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 							</div>
 
 							<div className="flex flex-col gap-y-1">
-								<Link className={`sidebar-button ${userSession?.user.role.createPosts && "!hidden"} `} href={"/dashboard/post"} onClick={() => props.toggle()}>
+								<Link className={`sidebar-button ${userSession.user.role.createPosts && "!hidden"} `} href={"/dashboard/post"} onClick={() => props.toggle()}>
 									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>dodaj post</div>
 								</Link>
-								<button className={`sidebar-button ${userSession?.user.role.addAnnouncements && "!hidden"}`} onClick={() => toggleForm()}>
-									<FontAwesomeIcon icon={faBullhorn} className="w-6 h-6 text-white py-3 px-4" />
+								<button className={`sidebar-button ${userSession.user.role.addAnnouncements && "!hidden"}`} onClick={() => toggleForm()}>
+									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>dodaj komunikat</div>
 								</button>
 								<Link className="sidebar-button" href={"/dashboard"} onClick={() => props.toggle()}>

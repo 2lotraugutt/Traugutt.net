@@ -19,6 +19,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 	const [newContent, setNewContent] = useState("");
 	const [selectedDays, setSelectedDays] = useState<string[]>([]);
 	const today = new Date();
+	const d = today.getDay();
 	const m = today.getMonth();
 	const y = today.getFullYear();
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
@@ -86,7 +87,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 												key={j}
 												className={`w-6 h-6 md:w-7 md:h-7 rounded-lg ${isSelected ? "bg-MainColor/70" : "bg-MainDarkGray/10"} ${
 													((firstDayOfMonth + j) % 7 == 6 || (firstDayOfMonth + j) % 7 == 5) && "!bg-MainDarkGray/30"
-												}`}
+												} ${day == d && month == m && year == y ? "scale-110 border-MainColor border-2" : ""}`}
 											>
 												{day}
 											</button>
