@@ -118,6 +118,17 @@ declare global {
 		timeStamp: Date;
 		events: EventDataTypeWithPost[];
 	};
+	type DayDataTypeWithEventsPostAnnouncements = {
+		date: string;
+		number: number?;
+		freeDay: boolean;
+		day: number;
+		month: number;
+		year: number;
+		timeStamp: Date;
+		events: EventDataTypeWithPost[];
+		announcements: AnnouncementDataType[];
+	};
 
 	type EventDataType = {
 		id: string;
@@ -187,6 +198,13 @@ declare global {
 
 	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "docs";
 
+	type AnnouncementDataType = {
+		id: string;
+		createdAt: Date;
+		content: string;
+		days: DayDataType[];
+		authorId: string;
+	};
 	type AnnouncementWithAutorDataType = {
 		id: string;
 		createdAt: Date;

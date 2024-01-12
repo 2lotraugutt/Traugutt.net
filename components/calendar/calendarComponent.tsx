@@ -8,11 +8,11 @@ import ExpandingDay from "./expandingDay";
 
 
 export default function CalendarComponent(props: { today: Date; month: number; year: number; setTag: Function }) {
-	const [days, setDays] = useState<DayDataTypeWithEventsAndPost[]>([]);
+	const [days, setDays] = useState<DayDataTypeWithEventsPostAnnouncements[]>([]);
 	const [fetched, setFetched] = useState<boolean>(false);
 
 	const [expandedDay, setExpandedDay] = useState<string>();
-	const [expandedDayData, setExpandedDayData] = useState<DayDataTypeWithEventsAndPost>();
+	const [expandedDayData, setExpandedDayData] = useState<DayDataTypeWithEventsPostAnnouncements>();
 
 	const monthBegining = startOfMonth(props.today);
 	const monthEnding = endOfMonth(props.today);
@@ -53,6 +53,7 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 				events: [],
 				freeDay: false,
 				number: null,
+				announcements: [],
 			});
 		}
 	}
