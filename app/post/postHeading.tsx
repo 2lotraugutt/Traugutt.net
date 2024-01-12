@@ -18,7 +18,7 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function PostHeading(props: { post: PostDataTypeWithAuthorAndEvent }) {
+export default function PostHeading(props: { post: PostDataType }) {
 	function returnDate() {
 		const months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 

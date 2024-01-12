@@ -8,7 +8,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
 	const post = await prisma.post.findUnique({
 		where: { id: params.id },
-		include: { author: true, event: { include: { tags: true } } },
+		include: { author: true, publishedBy: true, event: { include: { tags: true } } },
 	});
 
 	if (post) {

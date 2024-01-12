@@ -14,7 +14,7 @@ const poppingsFont700 = Poppins({
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
-	const [posts, setPosts] = useState<PostDataTypeWithAuthorAndPublisher[]>();
+	const [posts, setPosts] = useState<PostDataType[]>();
 	const [postsCount, setPostsCount] = useState<number>(1);
 
 	const router = useRouter();
@@ -50,7 +50,7 @@ export default function Page() {
 				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Posty</h1>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-					{posts.map((postData: PostDataTypeWithAuthorAndPublisher) => (
+					{posts.map((postData: PostDataType) => (
 						<AdminDashboardPostTile postData={postData} key={postData.id} refetchPosts={refetchPosts} />
 					))}
 					<button

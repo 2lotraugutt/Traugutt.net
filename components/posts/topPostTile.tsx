@@ -18,7 +18,7 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function TopPostTile(props: { postData: PostDataType; index: number }) {
+export default function TopPostTile(props: { postData: JustPostDataType; index: number }) {
 	return (
 		<Link href={"/post/" + props.postData.id} className="group h-fit overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]">
 			<div

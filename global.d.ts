@@ -16,7 +16,7 @@ declare global {
 		eventId: string?;
 	};
 
-	type PostDataTypeWithAuthorAndEvent = {
+	type PostDataType = {
 		id: string;
 		title: string;
 		content: string | null;
@@ -30,22 +30,7 @@ declare global {
 		publishedById: string;
 		eventId: string?;
 		event: EventDataType;
-	};
-
-	type PostDataTypeWithAuthorAndPublisher = {
-		id: string;
-		title: string;
-		content: string | null;
-		titleImage: string;
-		gallery: string[];
-		createdAt: Date;
-		views: number;
-		authorId: string;
-		author: JustUserDataType;
-		published: boolean;
-		publishedById: string?;
 		publishedBy: JustUserDataType?;
-		eventId: string?;
 	};
 
 	type JustUserDataType = {

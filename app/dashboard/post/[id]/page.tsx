@@ -28,7 +28,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 
 		async function fetchPosts() {
-			const post = await(await fetch(`/api/posts/post/${params.id}`)).json() as PostDataTypeWithAuthorAndEvent;
+			const post = await(await fetch(`/api/posts/post/${params.id}`)).json() as PostDataType;
 
 			if (post) {
 				setId(post.id);

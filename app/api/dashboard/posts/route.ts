@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 				where: {
 					authorId: author ?? undefined,
 				},
-				include: { author: true, publishedBy: true },
+				include: { author: true, publishedBy: true, event: true },
 			});
 
 			return NextResponse.json(posts);

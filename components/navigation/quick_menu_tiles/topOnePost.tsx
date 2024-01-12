@@ -22,7 +22,7 @@ const poppingsFont400 = Poppins({
 });
 
 export default function TopOnePost() {
-	const [topOnePost, setTopOnePost] = useState<PostDataType | undefined>();
+	const [topOnePost, setTopOnePost] = useState<JustPostDataType | undefined>();
 
 	useEffect(() => {
 		fetchPost();

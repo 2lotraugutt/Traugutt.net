@@ -20,7 +20,7 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function PostTile(props: { postData: PostDataType }) {
+export default function PostTile(props: { postData: JustPostDataType }) {
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
 
 	let date = new Date(props.postData.createdAt);

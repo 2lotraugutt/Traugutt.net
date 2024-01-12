@@ -25,7 +25,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher; refetchPosts: Function }) {
+export default function DashboardPostTile(props: { postData: PostDataType; refetchPosts: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń post");
 
 	function returnViews() {
@@ -47,7 +47,7 @@ export default function DashboardPostTile(props: { postData: PostDataTypeWithAut
 				method: "DELETE",
 			})
 		).json();
-		
+
 		props.refetchPosts();
 	}
 

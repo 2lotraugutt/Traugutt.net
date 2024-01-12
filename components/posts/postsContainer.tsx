@@ -11,7 +11,7 @@ const poppingsFont600 = Poppins({
 });
 
 export default function PostContainer() {
-	const [posts, setPosts] = useState<PostDataType[]>([]);
+	const [posts, setPosts] = useState<JustPostDataType[]>([]);
 	const [count, setCount] = useState<number>(1);
 	const [firstLoad, setLoaded] = useState<boolean>(false);
 	const [button, setButton] = useState<string>("Zobacz więcej");
@@ -34,7 +34,7 @@ export default function PostContainer() {
 		<section className="w-full flex flex-col items-center gap-y-5 md:gap-y-8 xl:gap-y-10 2xl:gap-y-14 4xl:gap-y-16">
 			<div className="grid w-full grid-cols-1 gap-y-3 md:grid-cols-2 md:gap-2 lg:gap-3 xl:gap-5 4xl:gap-6 4xl:grid-cols-3">
 				{firstLoad
-					? posts.map((postData: PostDataType) => <PostTile postData={postData} key={postData.id} />)
+					? posts.map((postData: JustPostDataType) => <PostTile postData={postData} key={postData.id} />)
 					: [...Array(12)].map((n, i) => <PostTileSkeleton key={i} />)}
 			</div>
 

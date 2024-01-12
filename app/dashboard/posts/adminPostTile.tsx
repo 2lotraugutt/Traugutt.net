@@ -26,7 +26,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function DashboardPostTile(props: { postData: PostDataTypeWithAuthorAndPublisher; refetchPosts: Function }) {
+export default function DashboardPostTile(props: { postData: PostDataType; refetchPosts: Function }) {
 	const [publishButtonText, setPublishButtonText] = useState(props.postData.published ? "Ukryj post" : "Opublikuj post");
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń post");
 	const [status, setStatus] = useState(props.postData.published);

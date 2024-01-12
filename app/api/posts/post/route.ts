@@ -7,7 +7,7 @@ export async function GET(request: Request) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	const post = await prisma.post.findFirst({
-		include: { author: true },
+		include: { author: true, event: true, publishedBy: true },
 		orderBy: [
 			{
 				createdAt: "desc",
