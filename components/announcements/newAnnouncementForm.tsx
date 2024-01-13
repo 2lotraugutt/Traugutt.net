@@ -54,7 +54,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 					placeholder="Podaj treść komunikatu"
 				/>
 
-				<div id="newAnnouncementCalendar" className="flex flex-row flex-wrap gap-x-10 gap-y-8 justify-center">
+				<div id="newAnnouncementCalendar" className="flex flex-row flex-wrap gap-x-5 md:gap-x-10 gap-y-8 justify-center">
 					{[...Array(4)].map((_, i) => {
 						const monthLen = getDaysInMonth(today);
 						const firstDayOfMonth = getISODay(startOfMonth(new Date(y, m + i, 1))) - 1;
@@ -63,9 +63,9 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 							<div className="flex flex-col items-center gap-y-4" key={i}>
 								<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl ${poppingsFont500.className}`}>{monthsNames[(m + i) % 12]}</h1>
 
-								<div key={m} className="grid grid-cols-7 gap-1.5 sm:gap-2 text-sm md:text-sm lg:text-base 2xl:text-lg">
+								<div key={m} className="grid grid-cols-7 gap-2.5 text-base lg:text-base 2xl:text-lg">
 									{[...Array(firstDayOfMonth)].map((_, j) => {
-										return <div className={`w-6 h-6 md:w-7 md:h-7`} key={j}></div>;
+										return <div className={`w-7 h-7`} key={j}></div>;
 									})}
 									{[...Array(monthLen)].map((_, j) => {
 										const day = j + 1;
@@ -86,7 +86,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 													setSelectedDays(newList);
 												}}
 												key={j}
-												className={`w-6 h-6 md:w-7 md:h-7 rounded-lg ${isSelected ? "bg-MainColor/70" : "bg-MainDarkGray/10"} ${
+												className={`w-7 h-7 rounded-lg ${isSelected ? "bg-MainColor/70" : "bg-MainDarkGray/10"} ${
 													((firstDayOfMonth + j) % 7 == 6 || (firstDayOfMonth + j) % 7 == 5) && "!bg-MainDarkGray/30"
 												} ${day == d && month == m && year == y ? "scale-110 border-MainColor border-2" : ""} ${
 													m >= month && d > day && "opacity-60"
@@ -101,16 +101,16 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 						);
 					})}
 				</div>
-				<div className="flex gap-x-3">
+				<div className="flex flex-col-reverse items-center md:flex-row justify-center my-5 gap-3">
 					<button
 						onClick={() => props.toggle()}
-						className={`w-fit bg-MainDarkGray/60 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+						className={`w-full md:w-fit bg-MainDarkGray/60 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 					>
 						Anuluj
 					</button>
 					<button
 						onClick={() => addAnnouncement()}
-						className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+						className={`w-full md:w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 					>
 						Dodaj komunikat
 					</button>
