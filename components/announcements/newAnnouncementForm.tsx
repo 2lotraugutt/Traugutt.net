@@ -61,7 +61,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 
 						return (
 							<div className="flex flex-col items-center gap-y-4" key={i}>
-								<h1 className={`sm:text-lg md:text-xl lg:text-2xl ${poppingsFont500.className}`}>{monthsNames[(m + i) % 12]}</h1>
+								<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl ${poppingsFont500.className}`}>{monthsNames[(m + i) % 12]}</h1>
 
 								<div key={m} className="grid grid-cols-7 gap-1.5 sm:gap-2 text-sm md:text-sm lg:text-base 2xl:text-lg">
 									{[...Array(firstDayOfMonth)].map((_, j) => {
@@ -101,13 +101,20 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 						);
 					})}
 				</div>
-
-				<button
-					onClick={() => addAnnouncement()}
-					className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
-				>
-					Dodaj komunikat
-				</button>
+				<div className="flex gap-x-3">
+					<button
+						onClick={() => props.toggle()}
+						className={`w-fit bg-MainDarkGray/60 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					>
+						Anuluj
+					</button>
+					<button
+						onClick={() => addAnnouncement()}
+						className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					>
+						Dodaj komunikat
+					</button>
+				</div>
 			</div>
 			<div className="fixed z-20 cursor-pointer top-0 backdrop-blur-sm left-0 w-screen h-screen" onClick={() => props.toggle()}></div>
 		</>
