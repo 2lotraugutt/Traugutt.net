@@ -24,7 +24,7 @@ export default function AnnouncementsCalendar(props: { month: number; year: numb
 							let newList = [...props.selectedDays];
 							const index = props.selectedDays.indexOf(date);
 
-							if (isSelected) newList.splice(index);
+							if (isSelected) newList.splice(index, 1);
 							else newList.push(date);
 
 							props.setSelectedDays(newList);
