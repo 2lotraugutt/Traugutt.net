@@ -2,7 +2,7 @@
 
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
-import { compareAsc, parse } from "date-fns";
+import { compareAsc, endOfYesterday, parse } from "date-fns";
 import AnnouncementTile from "@/app/radio/announcementTile";
 import AnnouncementsSkeleton from "@/app/radio/announcementsSkeleton";
 
@@ -32,11 +32,10 @@ export default function Page() {
 
 	function formatAnnouncements(announcementsToFormat: AnnouncementDataType[]): FormattedAnnouncements {
 		var newAnnouncements: { [date: string]: AnnouncementDataType[] } = {};
-		const timeStampNow = new Date();
 
 		for (var announcement of announcementsToFormat) {
 			announcement.days.forEach((day) => {
-				if (new Date(day.timeStamp) > timeStampNow) {
+				if (new Date(day.timeStamp) > endOfYesterday()) {
 					const dateKey = day.date;
 
 					if (!newAnnouncements[dateKey]) {
