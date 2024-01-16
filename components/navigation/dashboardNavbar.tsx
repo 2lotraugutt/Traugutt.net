@@ -45,6 +45,13 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 				</Link>
 
 				<Link
+					href={"/dashboard/announcements"}
+					className={`${userRole.manageAnnouncements ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/announcements" ? "active-dashboard-link" : ""}`}
+				>
+					Informacje
+				</Link>
+
+				<Link
 					href={"/dashboard/notifications"}
 					className={`${userRole.manageNotifications ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/notifications" ? "active-dashboard-link" : ""}`}
 				>
