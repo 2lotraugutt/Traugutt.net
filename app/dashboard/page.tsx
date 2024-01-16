@@ -39,7 +39,7 @@ export default async function Page() {
 		{ name: "Dodaj nowy post", link: "/dashboard/post", icon: faPlus, perm: ["createPosts"] },
 		{ name: "Twoje posty", link: "/dashboard/personal-posts", icon: faAddressBook, perm: ["createPosts"] },
 		{ name: "Posty", link: "/dashboard/posts", icon: faList, perm: ["managePosts", "publishPosts"] },
-		{ name: "Wiadomości", link: "/dashboard/notifications", icon: faNewspaper, perm: ["manageNotifications"] },
+		{ name: "Informacje", link: "/dashboard/notifications", icon: faNewspaper, perm: ["manageNotifications"] },
 		{ name: "Kalendarz", link: "/dashboard/calendar", icon: faCalendar, perm: ["manageCalendar", "manageEvents"] },
 		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar", "manageNumbers"] },
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },

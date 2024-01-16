@@ -67,10 +67,10 @@ export default function Page() {
 
 	return (
 		<div className="dashboard-page">
-			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Wiadomości</h1>
+			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Informacje</h1>
 
 			<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-				<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nową wiadomość</h1>
+				<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nową informację</h1>
 				<input
 					value={newTitle}
 					onChange={(e) => setNewTitle(e.target.value)}
@@ -84,14 +84,14 @@ export default function Page() {
 					value={newContent}
 					id="content"
 					className="rounded-lg outline-none bg-white p-2 w-full text-2xs sm:text-xs md:text-sm h-20 sm:h-40 md:h-52 lg:h-60"
-					placeholder="Podaj treść wiadomości"
+					placeholder="Podaj treść informacji"
 				/>
 
 				<button
 					onClick={() => upload()}
 					className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
 				>
-					Dodaj wiadomość
+					Dodaj informację
 				</button>
 			</div>
 

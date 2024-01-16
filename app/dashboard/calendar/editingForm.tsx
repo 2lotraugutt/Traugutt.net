@@ -114,7 +114,7 @@ export default function EditingForm(props: { initialData: EventDataTypeWithAutho
 				value={newDescription}
 				id="content"
 				className="rounded-lg outline-none bg-white p-2 w-full text-2xs sm:text-xs h-20 sm:h-40 md:h-52 lg:h-60 md:text-sm"
-				placeholder="Podaj treść wiadomości"
+				placeholder="Podaj treść informacji"
 			/>
 			<div className="flex flex-col md:flex-row gap-x-10 gap-y-2 py-2 items-center">
 				<button

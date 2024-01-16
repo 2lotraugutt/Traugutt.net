@@ -106,7 +106,7 @@ export default function CreateEventForm(props: { refetchEvents: Function; tags: 
 				value={newDescription}
 				id="content"
 				className="rounded-lg outline-none bg-white p-2 w-full text-2xs sm:text-xs h-20 sm:h-40 md:h-52 lg:h-60 md:text-sm"
-				placeholder="Podaj treść wiadomości"
+				placeholder="Podaj treść informacji"
 			/>
 
 			<button

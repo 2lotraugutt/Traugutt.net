@@ -26,9 +26,9 @@ const poppingsFont700 = Poppins({
 export default function NotificationTile(props: { notificationData: NotificationDataType; refetchNotifications: Function }) {
 	const [title, setTitle] = useState<string>(props.notificationData.title);
 	const [content, setContent] = useState<string>(props.notificationData.content);
-	const [deleteButtonText, setDeleteButtonText] = useState("Usuń wiadomość");
-	const [editButtonText, setEditButtonText] = useState("Edytuj wiadomość");
-	const [pinButtonText, setPinButtonText] = useState(props.notificationData.pinned ? "Odepnij wiadomość" : "Przypnij wiadomość");
+	const [deleteButtonText, setDeleteButtonText] = useState("Usuń informację");
+	const [editButtonText, setEditButtonText] = useState("Edytuj informację");
+	const [pinButtonText, setPinButtonText] = useState(props.notificationData.pinned ? "Odepnij informację" : "Przypnij informację");
 	const [isEditing, setIsEditing] = useState<boolean>(false);
 	const [pinned, setPinned] = useState(props.notificationData.pinned);
 
@@ -65,7 +65,7 @@ export default function NotificationTile(props: { notificationData: Notification
 		).json();
 
 		await props.refetchNotifications();
-		setDeleteButtonText("Usuń wiadomość");
+		setDeleteButtonText("Usuń informację");
 	}
 
 	async function update() {
@@ -84,7 +84,7 @@ export default function NotificationTile(props: { notificationData: Notification
 
 		if (res.ok) {
 			setIsEditing(false);
-			setEditButtonText("Edytuj wiadomość");
+			setEditButtonText("Edytuj informację");
 		}
 	}
 
@@ -124,7 +124,7 @@ export default function NotificationTile(props: { notificationData: Notification
 						value={content}
 						id="content"
 						className="h-fit rounded-lg outline-none bg-white p-2 text-2xs 2xl:text-base 2xs:text-xs xs:text-sm"
-						placeholder="Podaj treść wiadomości"
+						placeholder="Podaj treść informacji"
 						rows={8}
 					/>
 				)}
