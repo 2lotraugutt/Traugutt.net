@@ -34,7 +34,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 			data.append("dates[]", date);
 		}
 
-		const res = await fetch("/api/dashboard/announcements/ ", {
+		const res = await fetch("/api/dashboard/announcement/ ", {
 			method: "POST",
 			body: data,
 		});
