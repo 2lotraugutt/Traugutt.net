@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
-import { faBullhorn, faChartLine, faClose, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChartLine, faClose, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 import SidebarNavigation from "./sidebarNavigation";
 import NewAnnouncementForm from "../announcements/newAnnouncementForm";
 
@@ -135,8 +135,13 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 								<FontAwesomeIcon icon={faMagnifyingGlass} className="w-5 h-5 text-SecondColor cursor-pointer bg-white rounded-full p-2" />
 							</div>
 
-							<div className="flex flex-col gap-y-1 sm:hidden">
-								<button className="sidebar-button" onClick={() => props.toggle()}>
+							<div className="flex flex-col gap-y-1">
+								<Link className="sidebar-button" href={"/auth/signin"} onClick={() => props.toggle()}>
+									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
+									<div className={`${poppingsFont600.className}`}>dodaj komunikat</div>
+								</Link>
+
+								<button className="sidebar-button sm:hidden" onClick={() => props.toggle()}>
 									<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>Zamknij menu</div>
 								</button>
