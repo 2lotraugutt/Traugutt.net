@@ -199,11 +199,6 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						</>
 					);
 				})}
-
-				<Link href={"/kontakt"} className="sidebar-button" onClick={() => closeNavbar()}>
-					<FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Kontakt</div>
-				</Link>
 			</motion.div>
 		</>
 	);
