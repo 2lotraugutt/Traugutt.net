@@ -161,9 +161,10 @@ model Notification {
 model Route {
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
-  name     String
-  link     String
-  category RouteCategory @default(docs)
+  createdAt DateTime      @default(now())
+  name      String
+  link      String
+  category  RouteCategory @default(docs)
 }
 
 enum RouteCategory {
