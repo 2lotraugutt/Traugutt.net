@@ -1,3 +1,5 @@
+import { MetadataRoute } from "next";
+
 export default async function sitemap() {
 	const tags = (await (await fetch(`https://traugutt.eu/api/calendar/tags`)).json()) as EventTagDataType[];
 	const tagSites = tags.map((tag) => {
@@ -8,7 +10,7 @@ export default async function sitemap() {
 		};
 	});
 
-	const posts = (await (await fetch(`https://traugutt.eu/api/posts`)).json()) as PostDataType[];
+	const posts = (await (await fetch(`https://traugutt.eu/api/posts?count=500`)).json()) as PostDataType[];
 	const postSites = posts.map((post) => {
 		return {
 			url: "https://traugutt.eu/post/" + post.id,
@@ -17,7 +19,7 @@ export default async function sitemap() {
 		};
 	});
 
-	const routes = (await (await fetch(`https://traugutt.eu/api/routes`)).json()) as RouteDataType[];
+	const routes = await(await fetch(`https://traugutt.eu/api/routes`)).json() as RouteDataType[];
 	const routeSites = routes.map((route) => {
 		return {
 			url: route.link[0] == "/" ? "https://traugutt.eu" + route.link : route.link,
@@ -26,7 +28,7 @@ export default async function sitemap() {
 		};
 	});
 
-	return [
+	const sitemap: MetadataRoute.Sitemap = [
 		{
 			url: "https://traugutt.eu/",
 			lastModified: new Date(),
@@ -121,4 +123,6 @@ export default async function sitemap() {
 		...postSites,
 		...tagSites,
 	];
+
+	return sitemap;
 }
