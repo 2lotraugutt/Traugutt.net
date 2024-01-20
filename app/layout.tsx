@@ -3,9 +3,11 @@ import Footer from "@/components/navigation/footer";
 import "./globals.css";
 import AuthProvider from "@/lib/authProvider";
 import "@/lib/generateNumbers";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
 	title: "Traugutt",
+	description: "II Liceum Ogólnokształcące im. Romualda Traugutta w Częstochowie.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
