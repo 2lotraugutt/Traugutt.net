@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Poppins } from "next/font/google";
 
 const poppingsFont700 = Poppins({

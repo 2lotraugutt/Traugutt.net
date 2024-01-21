@@ -110,6 +110,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 
 				<div className="flex gap-x-1 justify-between px-1.5 mt-2">
 					<Link
+						aria-label="Instagram link"
 						href={"https://www.instagram.com/2lotraugutt/"}
 						target="blank"
 						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
@@ -117,6 +118,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						<FontAwesomeIcon icon={faInstagram} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 					<Link
+						aria-label="Facebook link"
 						href={"https://www.facebook.com/trauguttnet"}
 						target="blank"
 						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
@@ -124,6 +126,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						<FontAwesomeIcon icon={faFacebook} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 					<Link
+						aria-label="TikTok link"
 						href={"https://www.tiktok.com/@traugutt_czestochowa"}
 						target="blank"
 						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
@@ -131,6 +134,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						<FontAwesomeIcon icon={faTiktok} className="w-6 h-6 text-white aspect-square" />
 					</Link>
 					<Link
+						aria-label="Youtube link"
 						href={"https://www.youtube.com/@IILOTraugutt"}
 						target="blank"
 						className="aspect-square flex transition-all duration-300 items-center hover:bg-MainDarkGray/30 rounded-xl text-white p-2.5"
