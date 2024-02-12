@@ -21,7 +21,7 @@ const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 });
 
 export default function ExpandingDay(props: { expandedDayData: DayDataType; expandedDay: string; hideExpanded: Function; setTag: Function }) {
-	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 	const router = useRouter();
 
 	return (

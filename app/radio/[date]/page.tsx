@@ -32,7 +32,7 @@ export default function Page({ params }: { params: { date: string } }) {
 
 	function formatDate(dateToFormat: string) {
 		if (isMatch(dateToFormat, "dd-MM-yyyy")) {
-			const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecieć", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+			const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 			const day = dateToFormat.slice(0, 2);
 			const month = monthsNames[parseInt(dateToFormat.slice(3, 5)) - 1];
