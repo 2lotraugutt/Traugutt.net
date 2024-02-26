@@ -65,10 +65,22 @@ export async function PUT(request: NextRequest) {
 
 			const id: string = data.get("id") as string;
 			const content: string = data.get("content") as string;
+			const dates = data.getAll("dates[]") as string[];
+
+			const toConnectOrCreate: any = [];
+			dates.map((date) => {
+				const day = parseInt(date.slice(0, 2));
+				const month = parseInt(date.slice(3, 5));
+				const year = parseInt(date.slice(6, 10));
+				const dateDate = new Date(year, month, day);
+				const timeStamp = zonedTimeToUtc(dateDate, "UTC");
+
+				toConnectOrCreate.push({ create: { date, day, month, year, timeStamp }, where: { date } });
+			});
 
 			await prisma.announcement.update({
 				where: { id },
-				data: { content },
+				data: { content, days: { connectOrCreate: toConnectOrCreate } },
 			});
 
 			return NextResponse.json({ success: true });

@@ -1,5 +1,7 @@
-import { faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
+import AnnouncementsCalendar from "@/components/announcements/announcementsCalendar";
+import { faBackward, faForward, faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getMonth, getYear, startOfToday } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
 
@@ -18,8 +20,8 @@ const poppingsFont400 = Poppins({
 	subsets: ["latin"],
 });
 
-const poppingsFont700 = Poppins({
-	weight: "600",
+const poppingsFont500 = Poppins({
+	weight: "500",
 	subsets: ["latin"],
 });
 
@@ -28,6 +30,9 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń komunikat");
 	const [editButtonText, setEditButtonText] = useState("Edytuj komunikat");
 	const [isEditing, setIsEditing] = useState<boolean>(false);
+	const [month, setMonth] = useState<number>(getMonth(startOfToday()));
+	const [year, setYear] = useState<number>(getYear(startOfToday()));
+	const [selectedDays, setSelectedDays] = useState<string[]>([...props.announcementData.days.map((day) => day.date)]);
 
 	async function deleteNotification() {
 		setDeleteButtonText("Usuwanie...");
@@ -52,6 +57,10 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 		data.set("id", props.announcementData.id);
 		data.set("content", content);
 
+		for (const date of selectedDays) {
+			data.append("dates[]", date);
+		}
+
 		const res = await fetch("/api/dashboard/announcement/", {
 			method: "PUT",
 			body: data,
@@ -68,6 +77,22 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
 	let date = new Date(props.announcementData.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+
+	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+
+	function changeMonth(up: boolean) {
+		if (up) {
+			if (month == 11) {
+				setMonth(0);
+				setYear((old) => old + 1);
+			} else setMonth((old) => old + 1);
+		} else {
+			if (month == 0) {
+				setMonth(11);
+				setYear((old) => old - 1);
+			} else setMonth((old) => old - 1);
+		}
+	}
 
 	return (
 		<div
@@ -94,16 +119,29 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 				)}
 			</div>
 
-			<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 ${plusJakartaSansFont500.className}`}>
-				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Utworzony: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{dateToDisplay}</div>
+			{!isEditing && (
+				<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 ${plusJakartaSansFont500.className}`}>
+					<div className="dashboardPostTileDataRow">
+						<p className="h-fit">Utworzony: </p>
+						<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{dateToDisplay}</div>
+					</div>
+					<div className="dashboardPostTileDataRow">
+						<p className="h-fit">Autor: </p>
+						<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.announcementData.author.name}</div>
+					</div>
 				</div>
-				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Autor: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.announcementData.author.name}</div>
+			)}
+
+			{isEditing && (
+				<div className="flex flex-col items-center grow gap-y-4 min-w-max">
+					<div className="flex items-center justify-between w-full">
+						<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 hover:text-MainColor transition-all" onClick={() => changeMonth(false)} />
+						<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl ${poppingsFont500.className}`}>{monthsNames[month]}</h1>
+						<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 hover:text-MainColor transition-all" onClick={() => changeMonth(true)} />
+					</div>
+					<AnnouncementsCalendar month={month} year={year} setSelectedDays={(e: string[]) => setSelectedDays(e)} selectedDays={selectedDays} />
 				</div>
-			</div>
+			)}
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
 				<button
