@@ -103,9 +103,9 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 					<FontAwesomeIcon icon={faTableList} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Dziennik elektroniczny</div>
 				</Link>
-				<Link href={"http://absolwent.traugutt.net"} target="blank" onClick={() => closeNavbar()} className="sidebar-button">
+				<Link href={"https://m.facebook.com/groups/421406146993216/?ref=share"} target="blank" onClick={() => closeNavbar()} className="sidebar-button">
 					<FontAwesomeIcon icon={faUserGraduate} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Portal absolwentów</div>
+					<div className={`${poppingsFont600.className}`}>Grupa absolwentów</div>
 				</Link>
 
 				<div className="flex gap-x-1 justify-between px-1.5 mt-2">
