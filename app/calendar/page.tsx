@@ -1,7 +1,7 @@
 "use client";
 
 import CalendarComponent from "@/components/calendar/calendarComponent";
-import EventsList from "@/components/calendar/eventsList/eventsList";
+import EventsList from "@/components/eventsList/eventsList";
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";

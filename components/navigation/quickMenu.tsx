@@ -1,7 +1,7 @@
-import TopOnePost from "./quick_menu_tiles/topOnePost";
-import LuckyNumbersTile from "./quick_menu_tiles/luckyNumbersTile";
-import CalendarTile from "./quick_menu_tiles/calendarTile";
-import NotificationsTile from "./quick_menu_tiles/notificationsTile";
+import TopOnePost from "../quickMenuTiles/topOnePost";
+import LuckyNumbersTile from "../quickMenuTiles/luckyNumbersTile";
+import CalendarTile from "../quickMenuTiles/calendarTile";
+import NotificationsTile from "../quickMenuTiles/notificationsTile";
 
 export default function QuickMenu() {
 	return (

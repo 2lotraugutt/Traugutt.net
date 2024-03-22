@@ -5,7 +5,7 @@ import { getDate, getMonth, startOfToday } from "date-fns";
 import { getYear } from "date-fns/fp";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
-import EventComponent from "../../eventsSlider/eventComponent";
+import EventComponent from "../eventsSlider/eventComponent";
 import { motion } from "framer-motion";
 
 const poppingsFont700 = Poppins({
