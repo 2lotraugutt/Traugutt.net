@@ -7,6 +7,7 @@ import Link from "next/link";
 import { faChartLine, faClose, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 import SidebarNavigation from "./sidebarNavigation";
 import NewAnnouncementForm from "../announcements/newAnnouncementForm";
+import SearchContainer from "../searchbar/searchContainer";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -25,6 +26,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 	const [userSession, setSession] = useState<SessionDataType | undefined>();
 	const [accountSettings, setAccountSettings] = useState(false);
 	const [announcementForm, setAnnouncementForm] = useState(false);
+	const [searchContainer, setSearchContainer] = useState(false);
 
 	useEffect(() => {
 		async function initFunction() {
@@ -38,6 +40,10 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 	function toggleForm() {
 		if (props.visible) props.toggle();
 		setAnnouncementForm((old) => !old);
+	}
+	function toggleSearchContainer() {
+		if (props.visible) props.toggle();
+		setSearchContainer((old) => !old);
 	}
 
 	return (
@@ -103,7 +109,11 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 									</div>
 								)}
 
-								<FontAwesomeIcon icon={faMagnifyingGlass} className="w-3 h-3 sm:w-5 sm:h-5 text-SecondColor cursor-pointer bg-white rounded-full p-1 sm:p-2" />
+								<FontAwesomeIcon
+									icon={faMagnifyingGlass}
+									onClick={() => toggleSearchContainer()}
+									className="w-3 h-3 sm:w-5 sm:h-5 text-SecondColor cursor-pointer bg-white rounded-full p-1 sm:p-2"
+								/>
 							</div>
 
 							<div className="flex flex-col gap-y-1">
@@ -132,7 +142,11 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 									<FontAwesomeIcon icon={faUser} className="border-2 bg-white text-MainColor p-3 aspect-square border-white/30 rounded-xl w-5 h-5" />
 									<div className={`text-white grow xs:text-lg leading-5 ${poppingsFont700.className}`}>Zaloguj się</div>
 								</button>
-								<FontAwesomeIcon icon={faMagnifyingGlass} className="w-5 h-5 text-SecondColor cursor-pointer bg-white rounded-full p-2" />
+								<FontAwesomeIcon
+									icon={faMagnifyingGlass}
+									onClick={() => toggleSearchContainer()}
+									className="w-5 h-5 text-SecondColor cursor-pointer bg-white rounded-full p-2"
+								/>
 							</div>
 
 							<div className="flex flex-col gap-y-1">
@@ -153,6 +167,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 				</div>
 			</div>
 			{announcementForm && <NewAnnouncementForm toggle={() => toggleForm()} />}
+			{searchContainer && <SearchContainer toggle={toggleSearchContainer} />}
 		</>
 	);
 }
