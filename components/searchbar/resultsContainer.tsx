@@ -9,7 +9,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function (props: { posts: PostDataType[]; events: EventDataTypeWithPost[]; fetched: boolean }) {
+export default function (props: { posts: PostDataType[]; events: EventDataTypeWithPost[]; fetched: boolean; searchPhrase: string }) {
 	return (
 		<motion.div
 			layout
@@ -30,7 +30,7 @@ export default function (props: { posts: PostDataType[]; events: EventDataTypeWi
 			<div className="flex flex-col gap-y-1.5">
 				<h3 className={`3xl:text-2xl ms-1 md:text-base text-xs xs:text-sm lg:text-xl ${poppingsFont700.className}`}>Wydarzenia:</h3>
 				{props.events.map((event) => (
-					<SearchEventTile event={event} />
+					<SearchEventTile event={event} searchPhrase={props.searchPhrase} />
 				))}
 
 				<AnimatePresence>{!props.fetched && <LoadingTile />}</AnimatePresence>

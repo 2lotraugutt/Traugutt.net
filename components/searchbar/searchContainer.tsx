@@ -32,7 +32,7 @@ export default function SearchContainer(props: { toggle: Function }) {
 				</div>
 
 				{input != "" && (results.posts.length > 0 || results.events.length > 0) && (
-					<ResultsContainer fetched={fetched} events={results.events} posts={results.posts} />
+					<ResultsContainer fetched={fetched} events={results.events} posts={results.posts} searchPhrase={ input} />
 				)}
 			</div>
 

@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 		},
 
 		take: count != 0 ? count : undefined,
-		include: { post: true },
+		include: { post: true, tags: true },
 		where: {
 			OR: [
 				{
