@@ -1,13 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getSession, signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import Link from "next/link";
 import { faChartLine, faClose, faMagnifyingGlass, faPlus, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
-import SidebarNavigation from "./sidebarNavigation";
-import NewAnnouncementForm from "../announcements/newAnnouncementForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AnimatePresence } from "framer-motion";
+import { getSession, signIn } from "next-auth/react";
+import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import SearchContainer from "../searchbar/searchContainer";
+import SidebarNavigation from "./sidebarNavigation";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -121,10 +121,10 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>dodaj post</div>
 								</Link>
-								<button className={`sidebar-button ${!userSession.user.role.addAnnouncements && "!hidden"}`} onClick={() => toggleForm()}>
+								{/* <button className={`sidebar-button ${!userSession.user.role.addAnnouncements && "!hidden"}`} onClick={() => toggleForm()}>
 									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>dodaj komunikat</div>
-								</button>
+								</button> */}
 								<Link className="sidebar-button" href={"/dashboard"} onClick={() => props.toggle()}>
 									<FontAwesomeIcon icon={faChartLine} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>panel sterowania</div>
@@ -150,10 +150,10 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 							</div>
 
 							<div className="flex flex-col gap-y-1">
-								<Link className="sidebar-button" href={"/auth/signin"} onClick={() => props.toggle()}>
+								{/* <Link className="sidebar-button" href={"/auth/signin"} onClick={() => props.toggle()}>
 									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
 									<div className={`${poppingsFont600.className}`}>dodaj komunikat</div>
-								</Link>
+								</Link> */}
 
 								<button className="sidebar-button sm:hidden" onClick={() => props.toggle()}>
 									<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-4" />
@@ -166,8 +166,9 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 					<SidebarNavigation toggle={props.toggle} />
 				</div>
 			</div>
-			{announcementForm && <NewAnnouncementForm toggle={() => toggleForm()} />}
-			{searchContainer && <SearchContainer toggle={toggleSearchContainer} />}
+			{/* {announcementForm && <NewAnnouncementForm toggle={() => toggleForm()} />} */}
+
+			<AnimatePresence>{searchContainer && <SearchContainer toggle={toggleSearchContainer} />}</AnimatePresence>
 		</>
 	);
 }
