@@ -76,6 +76,10 @@ input::-webkit-inner-spin-button {
   @apply flex aspect-square items-center justify-center w-6 h-6 xs:w-7 xs:h-7 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray
 }
 
+.md-editor-preview{
+  @apply !break-normal
+}
+
 #markdown-container h1{
   @apply font-bold 
 }
