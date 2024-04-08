@@ -1,15 +1,6 @@
 import { MetadataRoute } from "next";
 
-export default async function sitemap() {
-	const tags = (await (await fetch(`https://traugutt.eu/api/calendar/tags`)).json()) as EventTagDataType[];
-	const tagSites = tags.map((tag) => {
-		return {
-			url: "https://traugutt.eu/calendar?tag=" + tag.id,
-			lastModified: tag.createdAt,
-			priority: 0.6,
-		};
-	});
-
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const posts = (await (await fetch(`https://traugutt.eu/api/posts?count=500`)).json()) as PostDataType[];
 	const postSites = posts.map((post) => {
 		return {
@@ -121,7 +112,6 @@ export default async function sitemap() {
 		},
 		...routeSites,
 		...postSites,
-		...tagSites,
 	];
 
 	return sitemap;
