@@ -1,4 +1,5 @@
 "use client";
+import { HighlightSearchPhrase } from "@/lib/highlightSearchPhrase";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -22,22 +23,6 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 	let date = new Date(props.event.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 
-	function highlightSearchPhrase(text: string, searchPhrase: string): React.ReactNode {
-		// Case-insensitive search
-		const regex = new RegExp(`(${searchPhrase})`, "gi");
-		const parts = text.split(regex);
-		return parts.map((part, index) => {
-			if (index % 2 === 1) {
-				return (
-					<span key={index} className="bg-MainColor/40">
-						{part}
-					</span>
-				);
-			}
-			return part;
-		});
-	}
-
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
@@ -46,7 +31,7 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 			className="text-sm flex gap-y-0.5 flex-col bg-white lg:text-base outline-none rounded-lg md:rounded-xl w-full p-1 md:p-2 lg:p-2.5"
 		>
 			<div className="flex flex-row gap-x-2 md:gap-x-3 items-center justify-between">
-				<div>{highlightSearchPhrase(props.event.name, props.searchPhrase)}</div>
+				<div>{HighlightSearchPhrase(props.event.name, props.searchPhrase)}</div>
 
 				<div className="flex gap-x-1 ms-auto">
 					{props.event.tags.map((tag, i) => (
@@ -87,7 +72,7 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 				</div>
 			</div>
 
-			<div className="text-2xs lg:text-sm md:rounded-xs 2xl:text-base">{highlightSearchPhrase(props.event.description ?? "", props.searchPhrase)}</div>
+			<div className="text-2xs lg:text-sm md:rounded-xs 2xl:text-base">{HighlightSearchPhrase(props.event.description ?? "", props.searchPhrase)}</div>
 		</motion.div>
 	);
 }

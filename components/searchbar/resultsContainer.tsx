@@ -22,7 +22,7 @@ export default function (props: { posts: PostDataType[]; events: EventDataTypeWi
 			<div className="flex flex-col gap-y-1.5">
 				<h3 className={`3xl:text-2xl ms-1 md:text-base text-xs xs:text-sm lg:text-xl ${poppingsFont700.className}`}>Posty:</h3>
 				{props.posts.map((post) => (
-					<SearchPostTile post={post} toggle={props.toggle} />
+					<SearchPostTile post={post} toggle={props.toggle} searchPhrase={props.searchPhrase} />
 				))}
 
 				<AnimatePresence>{!props.fetched && <LoadingTile />}</AnimatePresence>
