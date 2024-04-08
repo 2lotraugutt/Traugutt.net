@@ -1,6 +1,6 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { type Adapter } from "@auth/core/adapters";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
+import { Adapter } from "next-auth/adapters";
 
 export function MyAdapter(prisma: PrismaClient): Adapter {
 	return {

@@ -1,16 +1,17 @@
+import prisma from "@/lib/prisma";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { AuthOptions } from "next-auth";
+import DiscordProvider from "next-auth/providers/discord";
 import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
-import DiscordProvider from "next-auth/providers/discord";
-import { MyAdapter } from "@/lib/prismaAdapter";
-import prisma from "@/lib/prisma";
 
 export const authOptions: AuthOptions = {
 	pages: {
 		signIn: "/auth/signin",
 		signOut: "/auth/signout",
 	},
-	adapter: MyAdapter(prisma),
+	// adapter: MyAdapter(prisma),
+	adapter: PrismaAdapter(prisma),
 	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
 		FacebookProvider({
