@@ -14,7 +14,7 @@ const plusJakartaSansFont600 = Plus_Jakarta_Sans({
 	subsets: ["latin"],
 });
 
-function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: string }) {
+function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: string; toggle: Function }) {
 	const { push } = useRouter();
 
 	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
@@ -51,7 +51,10 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 				<div className="flex gap-x-1 ms-auto">
 					{props.event.tags.map((tag, i) => (
 						<div
-							onClick={() => push("/calendar?tag=" + tag.id)}
+							onClick={() => {
+								push("/calendar?tag=" + tag.id);
+								props.toggle();
+							}}
 							key={tag.id}
 							className={`flex group cursor-pointer h-fit rounded-3xl py-0.5 gap-x-1.5 px-1.5 sm:px-2 bg-LightGray/30 items-center`}
 						>
@@ -69,7 +72,10 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 				{props.event.post && (
 					<FontAwesomeIcon
 						icon={faLink}
-						onClick={() => push("/post/" + props.event.post!.id)}
+						onClick={() => {
+							push("/post/" + props.event.post!.id);
+							props.toggle();
+						}}
 						className="bg-MainColor cursor-pointer hover:bg-SecondColor transition-all text-white rounded-full aspect-square p-1"
 					/>
 				)}
