@@ -9,7 +9,7 @@ const poppingsFont700 = Poppins({
 	subsets: ["latin"],
 });
 
-export default function (props: { posts: PostDataType[]; events: EventDataTypeWithPost[]; fetched: boolean; searchPhrase: string; toggle: Function }) {
+export default function ResultContainer(props: { posts: PostDataType[]; events: EventDataTypeWithPost[]; fetched: boolean; searchPhrase: string; toggle: Function }) {
 	return (
 		<motion.div
 			layout
@@ -22,7 +22,7 @@ export default function (props: { posts: PostDataType[]; events: EventDataTypeWi
 			<div className="flex flex-col gap-y-1.5">
 				<h3 className={`3xl:text-2xl ms-1 md:text-base text-xs xs:text-sm lg:text-xl ${poppingsFont700.className}`}>Posty:</h3>
 				{props.posts.map((post) => (
-					<SearchPostTile post={post} toggle={props.toggle} searchPhrase={props.searchPhrase} />
+					<SearchPostTile key={post.id} post={post} toggle={props.toggle} searchPhrase={props.searchPhrase} />
 				))}
 
 				<AnimatePresence>{!props.fetched && <LoadingTile />}</AnimatePresence>
@@ -30,7 +30,7 @@ export default function (props: { posts: PostDataType[]; events: EventDataTypeWi
 			<div className="flex flex-col gap-y-1.5">
 				<h3 className={`3xl:text-2xl ms-1 md:text-base text-xs xs:text-sm lg:text-xl ${poppingsFont700.className}`}>Wydarzenia:</h3>
 				{props.events.map((event) => (
-					<SearchEventTile event={event} toggle={props.toggle} searchPhrase={props.searchPhrase} />
+					<SearchEventTile key={event.id} event={event} toggle={props.toggle} searchPhrase={props.searchPhrase} />
 				))}
 
 				<AnimatePresence>{!props.fetched && <LoadingTile />}</AnimatePresence>
