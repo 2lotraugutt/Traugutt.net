@@ -57,6 +57,7 @@ model Post {
   title      String   @db.VarChar(255)
   content    String?
   published  Boolean  @default(false)
+  pinned     Boolean  @default(false)
   views      Int      @default(0)
   titleImage String
   gallery    String[] @default([])

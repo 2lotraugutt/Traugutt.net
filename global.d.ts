@@ -1,6 +1,3 @@
-import { getYear } from "date-fns";
-import { Role } from "./node_modules/.prisma/client/index.d";
-
 declare global {
 	type JustPostDataType = {
 		id: string;
@@ -12,6 +9,7 @@ declare global {
 		views: number;
 		authorId: string;
 		published: boolean;
+		pinned: boolean;
 		publishedById: string;
 		eventId: string?;
 	};
@@ -27,6 +25,7 @@ declare global {
 		authorId: string;
 		author: JustUserDataType;
 		published: boolean;
+		pinned: boolean;
 		publishedById: string;
 		eventId: string?;
 		event: EventDataType;
@@ -189,5 +188,4 @@ declare global {
 		authorId: string;
 		author: JustUserDataType;
 	};
-
 }
