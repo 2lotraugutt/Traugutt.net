@@ -1,4 +1,4 @@
-declare global {
+export declare global {
 	type JustPostDataType = {
 		id: string;
 		title: string;
