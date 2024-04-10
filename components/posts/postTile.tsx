@@ -1,8 +1,7 @@
 import removeMarkdown from "@/lib/removeMarkdown";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLink, faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
@@ -34,9 +33,10 @@ export default function PostTile(props: { postData: JustPostDataType }) {
 				{dateToDisplay}
 			</div>
 
-			{props.postData.eventId && (
-				<div className="flex items-center bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 right-4 xs:right-8 w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-6 rounded-2xl sm:py-1.5 lg:py-2 py-1 px-1.5 sm:px-3">
-					<FontAwesomeIcon icon={faLink} />
+			{(props.postData.eventId || props.postData.pinned) && (
+				<div className="flex items-center gap-4 xs:gap-5 bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 right-4 xs:right-8 w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-6 rounded-2xl sm:py-1.5 lg:py-2 py-1 px-1.5 sm:px-3">
+					{props.postData.eventId && <FontAwesomeIcon icon={faLink} />}
+					{props.postData.pinned && <FontAwesomeIcon icon={faThumbTack} />}
 				</div>
 			)}
 
