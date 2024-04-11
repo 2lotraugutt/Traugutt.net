@@ -20,13 +20,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	});
 
 	const routes = await(await fetch(`https://traugutt.net/api/routes`)).json() as RouteDataType[];
-	const routeSites = routes.map((route) => {
-		return {
-			url: route.link[0] == "/" ? "https://traugutt.net" + route.link : route.link,
-			lastModified: route.createdAt,
-			priority: 0.8,
-		};
-	});
+	const routeSites = routes
+		.filter((route) => route.link[0] == "/")
+		.map((route) => {
+			return {
+				url: "https://traugutt.net" + route.link,
+				lastModified: route.createdAt,
+				priority: 0.8,
+			};
+		});
 
 	const sitemap: MetadataRoute.Sitemap = [
 		{
@@ -38,71 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			url: "https://traugutt.net/calendar",
 			lastModified: new Date(),
 			priority: 0.8,
-		},
-		{
-			url: "https://traugutt.net/dashboard",
-			lastModified: new Date(),
-			priority: 0.8,
-		},
-		{
-			url: "https://traugutt.net/dashboard/post",
-			lastModified: new Date(),
-			priority: 0.7,
-		},
-		{
-			url: "https://traugutt.net/dashboard/personal-posts",
-			lastModified: new Date(),
-			priority: 0.6,
-		},
-		{
-			url: "https://traugutt.net/dashboard/posts",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/announcements",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/notifications",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/calendar",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/numbers",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/pages",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/routes",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/users",
-			lastModified: new Date(),
-			priority: 0.5,
-		},
-		{
-			url: "https://traugutt.net/dashboard/account",
-			lastModified: new Date(),
-			priority: 0.6,
-		},
-		{
-			url: "https://traugutt.net/auth/signout",
-			lastModified: new Date(),
-			priority: 0.6,
 		},
 		{
 			url: "https://traugutt.net/auth/signin",
