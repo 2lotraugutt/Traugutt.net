@@ -1,8 +1,9 @@
 "use client";
 
 import removeMarkdown from "@/lib/removeMarkdown";
+import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -27,7 +28,7 @@ export default function TopOnePost() {
 	useEffect(() => {
 		fetchPost();
 		async function fetchPost() {
-			const post = await(await fetch("api/posts/topPosts")).json();
+			const post = await(await fetch("api/posts/topPosts?pinned=true")).json();
 
 			setTopOnePost(post[0]);
 		}
@@ -42,7 +43,7 @@ export default function TopOnePost() {
 				<div
 					className={`bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs sm:text-base 2xl:text-xl rounded-2xl py-0.75 px-4 sm:px-8 ${plusJakartaSansFont800.className}`}
 				>
-					TOP #1
+					{topOnePost.pinned ? <FontAwesomeIcon icon={faThumbTack} /> : <> TOP #1</>}
 				</div>
 
 				<img className="w-full h-full object-cover absolute" src={topOnePost.titleImage} alt="Top 1 image" height={1080} width={1920} />
