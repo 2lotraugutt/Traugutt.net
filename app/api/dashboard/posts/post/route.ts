@@ -1,8 +1,8 @@
-import { writeFile } from "fs/promises";
-import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
+import { writeFile } from "fs/promises";
 import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuid_v4 } from "uuid";
 
 export async function POST(request: NextRequest) {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 					titleImage: imgPath,
 					gallery: imgPaths,
 					eventId: eventId,
-					published: false,
+					published: session.user.role.managePosts,
 					publishedById: session.user.role.managePosts ? session.userId : null,
 				},
 			});
@@ -71,7 +71,6 @@ export async function PUT(request: NextRequest) {
 			// const galleryNames = data.getAll("galleryNames[]") as string[];
 
 			let imgPath;
-			// let imgPaths = [];
 
 			if (image == "") imgPath = imageName;
 			else {
@@ -107,12 +106,12 @@ export async function PUT(request: NextRequest) {
 				data: {
 					title: title,
 					content: content,
-					authorId: session.user.id,
 					titleImage: imgPath,
 					eventId: eventId,
 					// gallery: imgPaths,
-					published: false,
+					published: session.user.role.managePosts,
 					publishedById: session.user.role.managePosts ? session.userId : null,
+					editedById: session.userId,
 				},
 			});
 

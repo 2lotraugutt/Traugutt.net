@@ -29,6 +29,7 @@ model User {
   event          Event[]        @relation("Event author")
   notification   Notification[]
   publishedPosts Post[]         @relation("Published")
+  editedPosts Post[]         @relation("Edited")
 }
 
 model Role {
@@ -67,6 +68,9 @@ model Post {
 
   publishedById String? @db.Uuid
   publishedBy   User?   @relation("Published", fields: [publishedById], references: [id])
+ 
+  editedById String? @db.Uuid
+  editedBy   User?   @relation("Edited", fields: [editedById], references: [id])
 
   eventId String? @unique @db.Uuid
   event   Event?  @relation("Event", fields: [eventId], references: [id])

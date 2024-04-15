@@ -10,7 +10,8 @@ export declare global {
 		authorId: string;
 		published: boolean;
 		pinned: boolean;
-		publishedById: string;
+		publishedById: string?;
+		editedById: string?;
 		eventId: string?;
 	};
 
@@ -26,7 +27,8 @@ export declare global {
 		author: JustUserDataType;
 		published: boolean;
 		pinned: boolean;
-		publishedById: string;
+		publishedById: string?;
+		editedById: string?;
 		eventId: string?;
 		event: EventDataType;
 		publishedBy: JustUserDataType?;
@@ -38,9 +40,9 @@ export declare global {
 		email: string;
 		name: string;
 		image: string;
-		verified: Boolean | null;
+		verified: boolean | null;
 		roleTag: string;
-		changeName: Boolean;
+		changeName: boolean;
 	};
 
 	type UserDataType = {
@@ -49,10 +51,10 @@ export declare global {
 		email: string;
 		name: string;
 		image: string;
-		verified: Boolean | null;
+		verified: boolean | null;
 		role: RoleDataType;
 		roleTag: string;
-		changeName: Boolean;
+		changeName: boolean;
 	};
 
 	type SessionDataType = {
@@ -67,19 +69,19 @@ export declare global {
 		tag: string;
 		name: string;
 
-		createPosts: Boolean;
-		publishPosts: Boolean;
-		managePosts: Boolean;
-		manageUsers: Boolean;
-		verifyUsers: Boolean;
-		manageEvents: Boolean;
-		manageCalendar: Boolean;
-		manageNumbers: Boolean;
-		manageNotifications: Boolean;
-		managePages: Boolean;
-		addAnnouncements: Boolean;
-		manageAnnouncements: Boolean;
-		manageRoles: Boolean;
+		createPosts: boolean;
+		publishPosts: boolean;
+		managePosts: boolean;
+		manageUsers: boolean;
+		verifyUsers: boolean;
+		manageEvents: boolean;
+		manageCalendar: boolean;
+		manageNumbers: boolean;
+		manageNotifications: boolean;
+		managePages: boolean;
+		addAnnouncements: boolean;
+		manageAnnouncements: boolean;
+		manageRoles: boolean;
 	};
 
 	type JustDayDataType = {
