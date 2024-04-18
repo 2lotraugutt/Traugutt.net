@@ -1,8 +1,7 @@
 import { faBullhorn, faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import { Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -38,7 +37,6 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 				>
 					{props.expandedDayData.day} {monthsNames[props.expandedDayData.month]} {props.expandedDayData.year}
 				</motion.div>
-
 				{props.expandedDayData.announcements.length != 0 && (
 					<Link href={"/radio/" + props.expandedDayData.date} className="ms-auto hover:text-MainColor text-xs sm:text-sm lg:text-base xl:text-lg 3xl:text-xl">
 						<FontAwesomeIcon icon={faBullhorn} />
@@ -46,11 +44,16 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 				)}
 
 				<motion.div
-					className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
-						plusJakartaSansFont800.className
-					} ${(props.expandedDayData.freeDay || !props.expandedDayData.number) && "hidden"}`}
+					className={`flex justify-center items-center gap-x-1.5 md:gap-x-3 text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
+						(props.expandedDayData.freeDay || !props.expandedDayData.number) && "hidden"
+					} ${poppingsFont500.className}`}
 				>
-					{props.expandedDayData.number}
+					Numerek:
+					<motion.div
+						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full ${plusJakartaSansFont800.className}`}
+					>
+						{props.expandedDayData.number}
+					</motion.div>
 				</motion.div>
 			</motion.div>
 
