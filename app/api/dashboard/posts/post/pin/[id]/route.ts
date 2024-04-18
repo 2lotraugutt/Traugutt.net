@@ -9,10 +9,10 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
 	if (session) {
-		if (session.user.role.publishPosts || session.user.role.managePosts) {
+		if (session.user.role.managePosts) {
 			const post = await prisma.post.update({
 				where: { id: params.id },
-				data: { published: status, publishedById: session.user.id },
+				data: { pinned: status },
 			});
 
 			return NextResponse.json(post.published);
