@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
 			allow: "/",
 			disallow: "/dashboard/",
 		},
-		sitemap: "https://traugutt.net/sitemap.xml",
+		sitemap: ["https://traugutt.net/sitemap.xml", "https://traugutt.net/postsitemap/sitemap.xml"],
 		host: "https://traugutt.net",
 	};
 }
