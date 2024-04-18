@@ -29,8 +29,8 @@ export default function Footer() {
 						lo2@edukacja.czestochowa.pl
 					</Link>
 					<br />
-					<Link href={"mailto:dyrektor-2lo@wp.pl"} className="hover:text-MainColor transition">
-						dyrektor-2lo@wp.pl
+					<Link href={"mailto:dyrektor@traugutt.net"} className="hover:text-MainColor transition">
+						dyrektor@traugutt.net
 					</Link>
 				</div>
 			</div>
