@@ -1,5 +1,5 @@
 import removeMarkdown from "@/lib/removeMarkdown";
-import { faArrowRight, faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faLink, faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
@@ -46,7 +46,7 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 	async function togglePinPost() {
 		setPinnedButtonText("Ładowanie...");
 
-		const newStatus = await (await fetch(`/api/dashboard/posts/post/pin/${props.postData.id}?toggle=${!status}`)).json();
+		const newStatus = await(await fetch(`/api/dashboard/posts/post/pin/${props.postData.id}?toggle=${!pinned}`)).json();
 
 		setPinned(newStatus);
 		setPinnedButtonText(newStatus ? "Odepnij post" : "Przypnij post");
@@ -87,7 +87,10 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 		<div className="adminPostTile h-fit w-full text-left flex-col xl:flex-row xl:items-center border-2 hover:bg-LightGray/40 transition-all duration-300 py-5 md:py-6 md:px-8 px-5 lg:py-8 lg:px-8 3xl:px-12 xl:py-9 flex gap-y-4 md:gap-y-6 lg:gap-y-10 xl:gap-x-10 rounded-2xl">
 			<div className="flex xl:max-w-[35rem] 2xl:max-w-[46.5rem] 3xl:max-w-4xl 4xl:max-w-[69rem] flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
 				<p className={`line-clamp-2 md:line-clamp-none text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl ${poppingsFont700.className}`}>
-					<span className="me-5">{props.postData.title}</span>
+					<Link href={"/post/" + props.postData.id} className="me-5 hover:underline hover:text-DarkColor">
+						{props.postData.title}
+					</Link>
+
 					<span
 						className={`px-5 hidden md:inline-block rounded-3xl text-sm lg:py-1 lg:px-7 flex-none text-center h-fit py-0.5 text-white ${
 							status ? "bg-MainColor" : "bg-SecondColor"
@@ -95,6 +98,13 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					>
 						{status ? "Publiczy" : "Nie publiczny"}
 					</span>
+
+					{(props.postData.eventId || props.postData.pinned) && (
+						<div className="hidden md:inline-flex items-center gap-4 xs:gap-5  bg-white z-10 text-MainDarkGray  w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-6 rounded-2xl sm:py-1.5 lg:py-2 py-1 px-1.5 sm:px-3">
+							{props.postData.eventId && <FontAwesomeIcon icon={faLink} />}
+							{props.postData.pinned && <FontAwesomeIcon icon={faThumbTack} />}
+						</div>
+					)}
 				</p>
 
 				<div
@@ -131,21 +141,16 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					<p className="h-fit">{status ? "Opublikowany przez: " : "Ukryty przez: "}</p>
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{edited ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
 				</div>
+
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Przypięty: </p>
 					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${pinned ? "bg-MainColor" : "bg-SecondColor"}`} /> {pinned ? "Tak" : "Nie"}
+						<div className={`w-2 h-2 rounded-full ${pinned ? "bg-MainColor" : "bg-SecondColor"}`} /> {pinned ? "Przypięty" : "Nie przypięty"}
 					</div>
 				</div>
 			</div>
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<Link href={"/post/" + props.postData.id} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					Zobacz post
-					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={faArrowRight} />
-					</div>
-				</Link>
 				<button onClick={() => togglePost()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					{publishButtonText}
 					<div className="dashboard-post-tile-icon">
