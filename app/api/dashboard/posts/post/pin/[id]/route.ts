@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 				data: { pinned: status },
 			});
 
-			return NextResponse.json(post.published);
+			return NextResponse.json(post.pinned);
 		} else return NextResponse.json({ error: "You are not allowed to do this. Permissions exceeded" }, { status: 500 });
 	} else return NextResponse.json({ error: "You are not logged in" }, { status: 500 });
 }

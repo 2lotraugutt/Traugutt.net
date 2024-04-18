@@ -1,5 +1,5 @@
 import removeMarkdown from "@/lib/removeMarkdown";
-import { faArrowRight, faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
@@ -28,17 +28,28 @@ const poppingsFont700 = Poppins({
 
 export default function DashboardPostTile(props: { postData: PostDataType; refetchPosts: Function }) {
 	const [publishButtonText, setPublishButtonText] = useState(props.postData.published ? "Ukryj post" : "Opublikuj post");
+	const [pinnedButtonText, setPinnedButtonText] = useState(props.postData.pinned ? "Odepnij post" : "Przypnij post");
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń post");
 	const [status, setStatus] = useState(props.postData.published);
+	const [pinned, setPinned] = useState(props.postData.pinned);
 	const [edited, setEdited] = useState(false);
 
 	async function togglePost() {
 		setPublishButtonText("Ładowanie...");
 
-		const newStatus = await(await fetch(`/api/dashboard/posts/post/publish/${props.postData.id}?toggle=${!status}`)).json();
+		const newStatus = await (await fetch(`/api/dashboard/posts/post/publish/${props.postData.id}?toggle=${!status}`)).json();
 
 		setStatus(newStatus);
 		setPublishButtonText(newStatus ? "Ukryj post" : "Opublikuj post");
+		setEdited(true);
+	}
+	async function togglePinPost() {
+		setPinnedButtonText("Ładowanie...");
+
+		const newStatus = await (await fetch(`/api/dashboard/posts/post/pin/${props.postData.id}?toggle=${!status}`)).json();
+
+		setPinned(newStatus);
+		setPinnedButtonText(newStatus ? "Odepnij post" : "Przypnij post");
 		setEdited(true);
 	}
 
@@ -48,7 +59,7 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 		const data = new FormData();
 		data.set("id", props.postData.id);
 
-		const post = await(
+		const post = await (
 			await fetch(`/api/dashboard/posts/post/`, {
 				body: data,
 				method: "DELETE",
@@ -120,6 +131,12 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					<p className="h-fit">{status ? "Opublikowany przez: " : "Ukryty przez: "}</p>
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{edited ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
 				</div>
+				<div className="dashboardPostTileDataRow md:hidden">
+					<p className="h-fit">Przypięty: </p>
+					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
+						<div className={`w-2 h-2 rounded-full ${pinned ? "bg-MainColor" : "bg-SecondColor"}`} /> {pinned ? "Tak" : "Nie"}
+					</div>
+				</div>
 			</div>
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
@@ -133,6 +150,12 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					{publishButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPaperPlane} />
+					</div>
+				</button>
+				<button onClick={() => togglePinPost()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+					{pinnedButtonText}
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faThumbTack} />
 					</div>
 				</button>
 				<Link href={"/dashboard/post/" + props.postData.id} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
