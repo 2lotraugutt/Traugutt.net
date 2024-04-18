@@ -1,12 +1,11 @@
 "use client";
 
+import LoadingLayout from "@/app/dashboard/loadingLayout";
 import { getSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import DashboardPostTile from "@/app/dashboard/post/postTile";
-import LoadingLayout from "@/app/dashboard/loadingLayout";
-
+import DashboardPostTile from "./postTile";
 const poppingsFont700 = Poppins({
 	weight: "700",
 	subsets: ["latin"],

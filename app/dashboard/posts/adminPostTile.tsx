@@ -100,7 +100,7 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					</span>
 
 					{(props.postData.eventId || props.postData.pinned) && (
-						<div className="hidden md:inline-flex items-center gap-4 xs:gap-5  bg-white z-10 text-MainDarkGray  w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-6 rounded-2xl sm:py-1.5 lg:py-2 py-1 px-1.5 sm:px-3">
+						<div className="ms-5 hidden md:inline-flex items-center gap-4 xs:gap-5 bg-MainColor z-10 text-white w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-6 rounded-2xl sm:py-1.5 lg:py-1.5 py-0.5 px-1.5 sm:px-3">
 							{props.postData.eventId && <FontAwesomeIcon icon={faLink} />}
 							{props.postData.pinned && <FontAwesomeIcon icon={faThumbTack} />}
 						</div>
