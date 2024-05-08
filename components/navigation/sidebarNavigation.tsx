@@ -2,7 +2,6 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faFacebook, faInstagram, faTiktok, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import {
 	faAngleRight,
-	faBullhorn,
 	faClipboardList,
 	faFile,
 	faFileWord,
@@ -203,6 +202,10 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						</>
 					);
 				})}
+				<Link href={"page/kontakt"} className={`sidebar-button bg-MainDarkGray/20 ${poppingsFont600.className}`}>
+					<FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-white py-3 px-4" />
+					<div>Kontakt</div>
+				</Link>
 			</motion.div>
 		</>
 	);
