@@ -202,7 +202,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						</>
 					);
 				})}
-				<Link href={"page/kontakt"} className={`sidebar-button bg-MainDarkGray/20 ${poppingsFont600.className}`}>
+				<Link href={"/kontakt"} className={`sidebar-button ${poppingsFont600.className}`}>
 					<FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-white py-3 px-4" />
 					<div>Kontakt</div>
 				</Link>
