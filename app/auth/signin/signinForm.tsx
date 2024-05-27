@@ -1,10 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import { signIn } from "next-auth/react";
+import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { signIn } from "next-auth/react";
 import { Poppins } from "next/font/google";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -17,6 +19,11 @@ const poppingsFont500 = Poppins({
 });
 
 export default function SigninForm(props: { redirect: string }) {
+	const [login, setLogin] = useState<string>();
+	const [password, setPassword] = useState<string>();
+	const searchParams = useSearchParams();
+
+	const search = searchParams.get("error");
 	return (
 		<div className="w-screen top-0 left-0 z-20 absolute h-screen bg-white">
 			<div className="w-full h-full absolute">
@@ -34,18 +41,26 @@ export default function SigninForm(props: { redirect: string }) {
 					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>Miło nam widzieć cię ponownie!</h2>
 
 					<div className="flex flex-col gap-y-1 sm:gap-y-2 2xl:gap-y-3">
-						<button onClick={() => signIn("google", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
-							<FontAwesomeIcon icon={faGoogle} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
-							Zaloguj się z Google
+						<input
+							className={`login-input ${poppingsFont500.className}`}
+							value={login}
+							placeholder="Podaj login"
+							type="text"
+							onChange={(e) => setLogin(e.target.value)}
+						/>
+						<input
+							className={`login-input ${poppingsFont500.className}`}
+							value={password}
+							placeholder="Podaj hasło"
+							type="password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+
+						<button onClick={async () => console.log(await signIn("credentials", { login, password }))} className={`login-button ${poppingsFont700.className}`}>
+							Zaloguj się
+							<FontAwesomeIcon icon={faArrowCircleRight} className="ms-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
 						</button>
-						{/* <button onClick={() => signIn("facebook", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
-							<FontAwesomeIcon icon={faFacebook} className="me-5 md:text-4xl text-2xl w-6 md:w-9" />
-							Zaloguj się z Facebook
-						</button> */}
-						<button onClick={() => signIn("discord", { callbackUrl: props.redirect })} className={`login-button ${poppingsFont700.className}`}>
-							<FontAwesomeIcon icon={faDiscord} className="me-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
-							Zaloguj się z Discord
-						</button>
+						{search == "CredentialsSignin" && <div className={`text-MainRed ${poppingsFont700.className}`}>Niepoprawny login lub hasło</div>}
 					</div>
 				</div>
 			</div>
