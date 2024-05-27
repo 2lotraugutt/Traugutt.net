@@ -16,30 +16,35 @@ export const authOptions: AuthOptions = {
 			},
 
 			async authorize(credentials, req) {
+				credentials = credentials as Record<"login" | "password", string>;
+
+				if (credentials.password == "undefined" || credentials.login == "undefined") return null;
+
+				// TODO
 				// Add logic here to look up the user from the credentials supplied
 				const user = { name: "WWW Smith", email: "jsmith@example.com" };
 
-				const fetchedUser: UserDataType | null = await prisma.user.findUnique({
-					where: { email: user.email },
-					include: {
-						role: true,
-					},
-				});
+						const fetchedUser: UserDataType | null = await prisma.user.findUnique({
+							where: { login: credentials!.login },
+							include: {
+								role: true,
+							},
+						});
 
-				if (fetchedUser) {
-					return fetchedUser;
-				} else {
-					const createdUser: UserDataType = await prisma.user.create({
-						data: {
-							name: user.name,
-							email: user.email,
-						},
-						include: {
-							role: true,
-						},
-					});
-					return createdUser;
-				}
+						if (fetchedUser) {
+							return fetchedUser;
+						} else {
+							const createdUser: UserDataType = await prisma.user.create({
+								data: {
+									login: credentials!.login,
+									name: user.name,
+								},
+								include: {
+									role: true,
+								},
+							});
+							return createdUser;
+						}
 			},
 		}),
 	],

@@ -26,7 +26,7 @@ input::-webkit-inner-spin-button {
 }
 
 .login-button{
-  @apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainColor px-8 xs:px-10 py-2.5
+  @apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 disabled:text-MediumGray/80 border-MainDarkGray enabled:hover:border-white/60 enabled:hover:bg-MainColor px-8 xs:px-10 py-2.5
 }
 .login-input{
   @apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full bg-white text-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray px-8 xs:px-10 py-2.5 outline-none

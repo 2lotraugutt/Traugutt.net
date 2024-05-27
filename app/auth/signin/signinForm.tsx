@@ -56,7 +56,11 @@ export default function SigninForm(props: { redirect: string }) {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 
-						<button onClick={async () => console.log(await signIn("credentials", { login, password }))} className={`login-button ${poppingsFont700.className}`}>
+						<button
+							disabled={!login || !password}
+							onClick={async () => console.log(await signIn("credentials", { login, password }))}
+							className={`login-button  ${poppingsFont700.className}`}
+						>
 							Zaloguj się
 							<FontAwesomeIcon icon={faArrowCircleRight} className="ms-5 md:text-4xl text-2xl w-6 h-6 md:h-9 md:w-9" />
 						</button>

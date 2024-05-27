@@ -1,8 +1,4 @@
-import { getServerSession } from "next-auth";
-import { Poppins } from "next/font/google";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
 	faAddressBook,
 	faAngleRight,
@@ -18,8 +14,11 @@ import {
 	faPlus,
 	faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import UnverifiedList from "./unverified-list/unverifiedList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getServerSession } from "next-auth";
+import { Poppins } from "next/font/google";
+import Link from "next/link";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const poppingsFont700 = Poppins({
 	weight: "700",
@@ -42,7 +41,7 @@ export default async function Page() {
 		{ name: "Kalendarz", link: "/dashboard/calendar", icon: faCalendar, perm: ["manageCalendar", "manageEvents"] },
 		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar", "manageNumbers"] },
 		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
-		{ name: "Weryfikacja użytkowników", link: "/dashboard#weryfikuj", icon: faListCheck, perm: ["manageUsers", "verifyUsers"] },
+		{ name: "Weryfikacja użytkowników", link: "/dashboard#weryfikuj", icon: faListCheck, perm: ["manageUsers"] },
 		{ name: "Podstrony", link: "/dashboard/pages", icon: faPager, perm: ["managePages"] },
 		{ name: "Linki", link: "/dashboard/routes", icon: faLink, perm: ["managePages"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
@@ -54,16 +53,7 @@ export default async function Page() {
 				return true;
 			} else if (
 				session.user.role[
-					perm as
-						| "createPosts"
-						| "publishPosts"
-						| "managePosts"
-						| "manageUsers"
-						| "verifyUsers"
-						| "manageEvents"
-						| "manageCalendar"
-						| "manageRoles"
-						| "manageNotifications"
+					perm as "createPosts" | "publishPosts" | "managePosts" | "manageUsers" | "manageEvents" | "manageCalendar" | "manageRoles" | "manageNotifications"
 				]
 			) {
 				return true;
@@ -97,8 +87,6 @@ export default async function Page() {
 						)
 				)}
 			</div>
-
-			<UnverifiedList />
 		</div>
 	);
 }

@@ -1,8 +1,8 @@
-import { faCancel, faL, faQuestion, faRemove, faShield, faSignOut, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
@@ -21,38 +21,8 @@ const poppingsFont700 = Poppins({
 
 export default function UserPostTile(props: { userData: UserDataType; roles: RoleDataType[]; refetchUsers: Function }) {
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń użytkownika");
-	const [verifyButtonText, setVerifyButtonText] = useState(props.userData.verified ? "Uczeń spoza szkoły" : "Uczeń ze szkoły");
-	const [changeNameButtonText, setChangeNameButtonText] = useState(props.userData.changeName ? "Anuluj prośbe" : "Poproś o zmiane nazwy");
 	const [logoutButton, setLogoutButtonText] = useState("Wyloguj");
 
-	async function verifyUser(state: boolean) {
-		if (state) setVerifyButtonText("Weryfikowanie...");
-		else setVerifyButtonText("Usuwanie roli...");
-
-		await (await fetch(`/api/dashboard/users/user/verify/${props.userData.id}?toggle=${state}`)).json();
-		props.refetchUsers();
-
-		if (state) setVerifyButtonText("Uczeń spoza szkoły");
-		else setVerifyButtonText("Uczeń ze szkoły");
-	}
-
-	async function changeName(state: boolean) {
-		if (state) setChangeNameButtonText("Wysyłanie prośby...");
-		else setChangeNameButtonText("Anulowanie prośby...");
-
-		await (await fetch(`/api/dashboard/users/user/changeName/${props.userData.id}?toggle=${state}`)).json();
-		props.refetchUsers();
-
-		if (state) setChangeNameButtonText("Anuluj prośbe");
-		else setChangeNameButtonText("Poproś o zmiane nazwy");
-	}
-
-	async function logoutUser() {
-		setLogoutButtonText("Wylogowywanie...");
-
-		await (await fetch(`/api/dashboard/users/user/signout/${props.userData.id}`)).json();
-		props.refetchUsers();
-	}
 	async function deleteUser() {
 		setDeleteButtonText("Usuwanie...");
 
@@ -77,6 +47,10 @@ export default function UserPostTile(props: { userData: UserDataType; roles: Rol
 
 			<div className={`flex flex-col lg:flex-row md:justify-between 2xl:justify-end xl:gap-10 grow gap-y-2 ${plusJakartaSansFont500.className}`}>
 				<div className="dashboardPostTileDataRow">
+					<p className="h-fit">Login: </p>
+					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.userData.login}</div>
+				</div>
+				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Email: </p>
 					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.userData.email}</div>
 				</div>
@@ -97,56 +71,9 @@ export default function UserPostTile(props: { userData: UserDataType; roles: Rol
 						})}
 					</select>
 				</div>
-
-				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Ze szkoły:</p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${props.userData.verified == null && "hidden"} ${props.userData.verified ? "bg-MainColor" : "bg-MainRed"}`} />
-						{props.userData.verified == null ? "---" : props.userData.verified ? "Tak" : "Nie"}
-					</div>
-				</div>
-
-				<div className="dashboardPostTileDataRow">
-					<p className="h-fit">Wymagana zmiana nazwy:</p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${props.userData.changeName ? "bg-MainRed" : "bg-MainColor"}`} />
-						{props.userData.changeName ? "Tak" : "Nie"}
-					</div>
-				</div>
 			</div>
 
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row 3xl:flex-col gap-x-5">
-				<button onClick={() => verifyUser(!props.userData.verified)} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					{verifyButtonText}
-					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={props.userData.verified ? faRemove : faShield} />
-					</div>
-				</button>
-
-				<button onClick={() => changeName(!props.userData.changeName)} className={`group/button dashboard-post-tile  ${plusJakartaSansFont700.className}`}>
-					{changeNameButtonText}
-					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={props.userData.changeName ? faCancel : faQuestion} />
-					</div>
-				</button>
-				{/* <button
-					onClick={() => changeName(false)}
-					className={`group/button dashboard-post-tile ${props.userData.changeName || "!hidden"} ${plusJakartaSansFont700.className}`}
-				>
-					{unChangeNameButtonText}
-
-					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={faCancel} />
-					</div>
-				</button> */}
-
-				<button onClick={() => logoutUser()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
-					{logoutButton}
-					<div className="dashboard-post-tile-icon">
-						<FontAwesomeIcon icon={faSignOut} />
-					</div>
-				</button>
-
 				<button onClick={() => deleteUser()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">

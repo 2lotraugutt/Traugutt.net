@@ -1,13 +1,13 @@
 "use client";
 
-import { getSession, signOut } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import LoadingLayout from "@/app/dashboard/loadingLayout";
-import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getSession, signOut } from "next-auth/react";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const plusJakartaSansFont700 = Plus_Jakarta_Sans({
 	weight: "700",
@@ -88,12 +88,8 @@ export default function Page() {
 
 				<div className="flex flex-col gap-y-6 sm:gap-y-8 lg:gap-y-10">
 					<div className="flex flex-col">
-						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Zweryfikowany:</p>
-						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.verified ? "Tak" : "Nie"}</p>
-					</div>
-					<div className="flex flex-col">
-						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Prośba o zmiane nazwy:</p>
-						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.changeName ? "Tak" : "Nie"}</p>
+						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Login:</p>
+						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.login}</p>
 					</div>
 					<div className="flex flex-col">
 						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Email:</p>

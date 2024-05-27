@@ -9,27 +9,22 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email         String    @unique
-  emailVerified DateTime?
-  name          String
-  image         String    @map("profilePicture") @default("/profilePicture.png")
-
-  verified   Boolean?
-  changeName Boolean  @default(false)
+  id    String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email String? @unique
+  name  String
+  login String  @unique
+  image String  @default("/profilePicture.png") @map("profilePicture")
 
   roleTag String @default("USER")
   role    Role   @relation("Role", fields: [roleTag], references: [tag])
 
   posts          Post[]         @relation("Author")
-  accounts       Account[]
-  sessions       Session[]
   announcements  Announcement[]
   tags           EventTag[]
   event          Event[]        @relation("Event author")
   notification   Notification[]
   publishedPosts Post[]         @relation("Published")
-  editedPosts Post[]         @relation("Edited")
+  editedPosts    Post[]         @relation("Edited")
 }
 
 model Role {
@@ -41,7 +36,6 @@ model Role {
   publishPosts        Boolean @default(false)
   managePosts         Boolean @default(false)
   manageUsers         Boolean @default(false)
-  verifyUsers         Boolean @default(false)
   manageEvents        Boolean @default(false)
   manageCalendar      Boolean @default(false)
   manageNumbers       Boolean @default(false)
@@ -68,47 +62,12 @@ model Post {
 
   publishedById String? @db.Uuid
   publishedBy   User?   @relation("Published", fields: [publishedById], references: [id])
- 
+
   editedById String? @db.Uuid
   editedBy   User?   @relation("Edited", fields: [editedById], references: [id])
 
   eventId String? @unique @db.Uuid
   event   Event?  @relation("Event", fields: [eventId], references: [id])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String   @db.Uuid
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-model Account {
-  id                String  @id @default(cuid())
-  userId            String  @db.Uuid
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
 }
 
 model Day {

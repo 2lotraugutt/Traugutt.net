@@ -36,25 +36,21 @@ export declare global {
 
 	type JustUserDataType = {
 		id: string;
-		emailVerified: Date | null;
-		email: string;
+		email: string | null;
 		name: string;
+		login: string;
 		image: string;
-		verified: boolean | null;
 		roleTag: string;
-		changeName: boolean;
 	};
 
 	type UserDataType = {
 		id: string;
-		emailVerified: Date | null;
-		email: string;
+		email: string | null;
 		name: string;
+		login: string;
 		image: string;
-		verified: boolean | null;
 		role: RoleDataType;
 		roleTag: string;
-		changeName: boolean;
 	};
 
 	type SessionDataType = {
@@ -73,7 +69,6 @@ export declare global {
 		publishPosts: boolean;
 		managePosts: boolean;
 		manageUsers: boolean;
-		verifyUsers: boolean;
 		manageEvents: boolean;
 		manageCalendar: boolean;
 		manageNumbers: boolean;
