@@ -1,3 +1,4 @@
+const ldap = require("ldapjs");
 import prisma from "@/lib/prisma";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -14,37 +15,53 @@ export const authOptions: AuthOptions = {
 				login: { label: "login", type: "text", placeholder: "" },
 				password: { label: "password", type: "password" },
 			},
-
 			async authorize(credentials, req) {
 				credentials = credentials as Record<"login" | "password", string>;
-
 				if (credentials.password == "undefined" || credentials.login == "undefined") return null;
 
-				// TODO
-				// Add logic here to look up the user from the credentials supplied
-				const user = { name: "WWW Smith", email: "jsmith@example.com" };
+				const LDAPuser = credentials.login.match(/[a-zA-Z0-9]*/)![0] + "@traugutt.lan";
+				var login = credentials.login.match(/[a-zA-Z0-9]*/)![0];
 
-						const fetchedUser: UserDataType | null = await prisma.user.findUnique({
-							where: { login: credentials!.login },
-							include: {
-								role: true,
-							},
+				const client = ldap.createClient({
+					url: process.env.LDAP_URI,
+				});
+
+				const bindUser = (client: any, LDAPuser: string, password: string) => {
+					return new Promise((resolve) => {
+						client.bind(LDAPuser, password, (error: Error) => {
+							if (error) {
+								resolve(true); // Authentication failed
+							} else {
+								resolve(false); // Authentication succeeded
+							}
 						});
+					});
+				};
 
-						if (fetchedUser) {
-							return fetchedUser;
-						} else {
-							const createdUser: UserDataType = await prisma.user.create({
-								data: {
-									login: credentials!.login,
-									name: user.name,
-								},
-								include: {
-									role: true,
-								},
-							});
-							return createdUser;
-						}
+				const fail = await bindUser(client, LDAPuser, credentials.password);
+				if (fail) return null;
+
+				const fetchedUser: UserDataType | null = await prisma.user.findUnique({
+					where: { login },
+					include: {
+						role: true,
+					},
+				});
+
+				if (fetchedUser) {
+					return fetchedUser;
+				} else {
+					const createdUser: UserDataType = await prisma.user.create({
+						data: {
+							login,
+							name: login,
+						},
+						include: {
+							role: true,
+						},
+					});
+					return createdUser;
+				}
 			},
 		}),
 	],

@@ -37,6 +37,7 @@
 		"framer-motion": "^10.16.4",
 		"fs": "^0.0.1-security",
 		"image-hash": "^5.3.2",
+		"ldapjs": "^3.0.7",
 		"md-editor-rt": "^4.8.3",
 		"next": "^13.5.6",
 		"next-auth": "^4.24.7",
