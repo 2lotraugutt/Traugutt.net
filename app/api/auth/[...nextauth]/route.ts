@@ -2,6 +2,13 @@ const ldap = require("ldapjs");
 import prisma from "@/lib/prisma";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import Error from "next/error";
+
+interface LDAPUser {
+	name: string;
+	email: string;
+	userType: string;
+}
 
 export const authOptions: AuthOptions = {
 	pages: {
@@ -51,10 +58,20 @@ export const authOptions: AuthOptions = {
 				if (fetchedUser) {
 					return fetchedUser;
 				} else {
+					const ldapUser: LDAPUser = await searchUser(client, LDAPuser);
+
+					var roleTag;
+					if (ldapUser.userType == "Nauczyciele") {
+						roleTag = "TEACHER";
+					} else {
+						roleTag = "STUDENT";
+					}
+
 					const createdUser: UserDataType = await prisma.user.create({
 						data: {
 							login,
-							name: login,
+							name: ldapUser.name,
+							roleTag: roleTag,
 						},
 						include: {
 							role: true,
@@ -86,3 +103,41 @@ export const authOptions: AuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+
+const searchUser = (client: any, login: string): Promise<any> => {
+	return new Promise((resolve, reject) => {
+		const searchOptions: any = {
+			filter: `(userPrincipalName=${login})`,
+			scope: "sub",
+		};
+
+		client.search("dc=traugutt,dc=lan", searchOptions, (error: any, res: any) => {
+			if (error) {
+				reject(error);
+				return;
+			}
+			let user: any = null;
+
+			res.on("searchEntry", (entry: any) => {
+				const stringified = JSON.stringify(entry.pojo);
+				const object = JSON.parse(stringified);
+				const match = object.objectName.match(/CN=([^,]+),OU=([^,]+)/);
+				const name = match[1];
+				const userType = match[2];
+				user = { name, userType };
+			});
+
+			res.on("end", (result: any) => {
+				if (result.status === 0) {
+					resolve(user);
+				} else {
+					resolve(null);
+				}
+			});
+
+			res.on("error", (err: any) => {
+				reject(err);
+			});
+		});
+	});
+};
