@@ -137,6 +137,7 @@ enum RouteCategory {
   parents
   recruitation
   exam
+  trips
   docs
 }
 
