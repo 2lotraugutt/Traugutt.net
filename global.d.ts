@@ -10,9 +10,9 @@ export declare global {
 		authorId: string;
 		published: boolean;
 		pinned: boolean;
-		publishedById: string?;
-		editedById: string?;
-		eventId: string?;
+		publishedById: ?string;
+		editedById: ?string;
+		eventId: ?string;
 	};
 
 	type PostDataType = {
@@ -27,11 +27,11 @@ export declare global {
 		author: JustUserDataType;
 		published: boolean;
 		pinned: boolean;
-		publishedById: string?;
-		editedById: string?;
-		eventId: string?;
+		publishedById: ?string;
+		editedById: ?string;
+		eventId: ?string;
 		event: EventDataType;
-		publishedBy: JustUserDataType?;
+		publishedBy: ?JustUserDataType;
 	};
 
 	type JustUserDataType = {
@@ -81,7 +81,7 @@ export declare global {
 
 	type JustDayDataType = {
 		date: string;
-		number: number?;
+		number: ?number;
 		freeDay: boolean;
 		day: number;
 		month: number;
@@ -91,7 +91,7 @@ export declare global {
 
 	type DayDataType = {
 		date: string;
-		number: number?;
+		number: ?number;
 		freeDay: boolean;
 		day: number;
 		month: number;
@@ -105,7 +105,7 @@ export declare global {
 		id: string;
 		createdAt: Date;
 		name: string;
-		description: string?;
+		description: ?string;
 		date: string;
 		tags: EventTagDataType[];
 		authorId: string;
@@ -115,7 +115,7 @@ export declare global {
 		id: string;
 		createdAt: Date;
 		name: string;
-		description: string?;
+		description: ?string;
 		date: string;
 		tags: EventTagDataType[];
 		authorId: string;
@@ -126,11 +126,11 @@ export declare global {
 		id: string;
 		createdAt: Date;
 		name: string;
-		description: string?;
+		description: ?string;
 		date: string;
 		tags: EventTagDataType[];
 		authorId: string;
-		post: JustPostDataType?;
+		post: ?JustPostDataType;
 	};
 
 	type EventTagDataType = {
@@ -168,7 +168,7 @@ export declare global {
 		category: RouteCategoryDataType;
 	};
 
-	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "docs";
+	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs" ;
 
 	type JustAnnouncementDataType = {
 		id: string;

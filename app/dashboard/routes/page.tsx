@@ -42,6 +42,7 @@ export default function Page() {
 		{ name: "Dla rodziców", route: "parents" },
 		{ name: "Rekrutacja", route: "recruitation" },
 		{ name: "Matura", route: "exam" },
+		{ name: "Wyprawy", route: "trips" },
 		{ name: "Dokumenty", route: "docs" },
 	];
 

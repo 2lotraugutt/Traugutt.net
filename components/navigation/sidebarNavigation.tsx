@@ -4,7 +4,7 @@ import {
 	faAngleRight,
 	faClipboardList,
 	faFile,
-	faFileWord,
+	faFileWord, faGlobe,
 	faGraduationCap,
 	faHome,
 	faHouseUser,
@@ -32,7 +32,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 	const [routes, setRoutes] = useState<RouteDataType[]>();
 
 	function changeState(i: number) {
-		let newOpened = [...mainNavs.map((a) => false)];
+		let newOpened = [...mainNavs.map(() => false)];
 
 		newOpened[i] = !openedList[i];
 		setOpened(newOpened);
@@ -77,6 +77,10 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 			name: "Matura",
 			icon: faFileWord,
 			routes: "exam",
+		},{
+			name: "Wyprawy",
+			icon: faGlobe,
+			routes: "trips",
 		},
 		{
 			name: "Dokumenty",
@@ -188,6 +192,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 											{routesForNav.map((route, j) => (
 												<Link
 													key={j}
+													target="_blank"
 													onClick={() => closeNavbar()}
 													className={`sidebar-button px-3 py-1.5 w-full ${poppingsFont500.className}`}
 													href={route.link}
