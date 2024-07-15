@@ -1,5 +1,3 @@
-import {NextApiHandler} from "next";
-
 const ldap = require("ldapjs");
 import prisma from "@/lib/prisma";
 import NextAuth, { AuthOptions } from "next-auth";
@@ -12,7 +10,7 @@ interface LDAPUser {
 	userType: string;
 }
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
 	pages: {
 		signIn: "/auth/signin",
 		signOut: "/auth/signout",
@@ -101,9 +99,10 @@ const authOptions: AuthOptions = {
 		},
 	},
 };
-const handler: NextApiHandler = () => NextAuth( authOptions);
 
-export default handler;
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
 
 const searchUser = (client: any, login: string): Promise<any> => {
 	return new Promise((resolve, reject) => {

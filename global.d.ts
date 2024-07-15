@@ -168,7 +168,7 @@ export declare global {
 		category: RouteCategoryDataType;
 	};
 
-	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs" ;
+	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs"  ;
 
 	type JustAnnouncementDataType = {
 		id: string;
