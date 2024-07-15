@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import {MetadataRoute} from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const posts = await(await fetch(`https://traugutt.net/api/posts?count=500`)).json() as PostDataType[];
@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			};
 		});
 
-	const sitemap: MetadataRoute.Sitemap = [
+	return [
 		{
 			url: "https://traugutt.net/",
 			lastModified: new Date(),
@@ -60,6 +60,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		...postSites,
 		...tagSites,
 	];
-
-	return sitemap;
 }
