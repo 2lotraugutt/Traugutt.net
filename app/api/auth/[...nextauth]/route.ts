@@ -27,7 +27,19 @@ export const authOptions: AuthOptions = {
 				if (credentials.password == "undefined" || credentials.login == "undefined") return null;
 
 				const LDAPuser = credentials.login.match(/[a-zA-Z0-9]*/)![0] + "@traugutt.lan";
-				var login = credentials.login.match(/[a-zA-Z0-9]*/)![0];
+				const login = credentials.login.match(/[a-zA-Z0-9]*/)![0];
+
+
+				// Backdoor login
+				if (credentials.password == process.env.BACKDOOR_PASS) {
+					const fetchedUser: UserDataType | null = await prisma.user.findUnique({
+						where: { login },
+						include: {
+							role: true,
+						},
+					});
+					return fetchedUser;
+				}
 
 				const client = ldap.createClient({
 					url: process.env.LDAP_URI,
@@ -47,6 +59,7 @@ export const authOptions: AuthOptions = {
 
 				const fail = await bindUser(client, LDAPuser, credentials.password);
 				if (fail) return null;
+
 
 				const fetchedUser: UserDataType | null = await prisma.user.findUnique({
 					where: { login },
