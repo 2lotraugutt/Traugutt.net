@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcee25f1-ba8f-4156-adcc-ddf4d5f27fb3" name="Changes" comment="Backdoor login">
-      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/post/pin/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/post/pin/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/post/publish/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/post/publish/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/post/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/post/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/route.ts" afterDir="false" />
+    <list default="true" id="bcee25f1-ba8f-4156-adcc-ddf4d5f27fb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/dashboard/posts/adminPostTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/posts/adminPostTile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/global.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,21 +50,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "proofread",
-    "ts.external.directory.path": "/Users/bartoszwiaderek/Programming/Traugutt.net/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/bartoszwiaderek/Programming/Traugutt.net/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/api/generate-sitemap.ts" />
@@ -98,6 +94,7 @@
       <workItem from="1721520757251" duration="603000" />
       <workItem from="1722531468991" duration="4318000" />
       <workItem from="1722539690021" duration="69000" />
+      <workItem from="1722540637644" duration="810000" />
     </task>
     <task id="LOCAL-00001" summary="Add new category">
       <option name="closed" value="true" />

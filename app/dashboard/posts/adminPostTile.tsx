@@ -161,7 +161,7 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 				<div className={`dashboardPostTileDataRow ${!pinned ?? "hidden"}`}>
 					<p className="h-fit">Przypięty przez: </p>
 					<div
-						className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{editedPin ? user.name : props.postData.pinnedBy!.name }</div>
+						className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{editedPin ? user.name : props.postData.pinnedBy?.name ?? "---"}</div>
 				</div>
 			</div>
 

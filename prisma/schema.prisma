@@ -24,7 +24,7 @@ model User {
   event          Event[]        @relation("Event author")
   notification   Notification[]
   publishedPosts Post[]         @relation("Published")
-  pinnedPosts Post[]         @relation("Pinned")
+  pinnedPosts    Post[]         @relation("Pinned")
   editedPosts    Post[]         @relation("Edited")
 }
 
