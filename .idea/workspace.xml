@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bcee25f1-ba8f-4156-adcc-ddf4d5f27fb3" name="Changes" comment="Backdoor login">
+      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/post/pin/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/post/pin/[id]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/post/publish/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/post/publish/[id]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/post/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/post/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/dashboard/posts/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dashboard/posts/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/posts/adminPostTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/posts/adminPostTile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WiaderekB&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/2lotraugutt/Traugutt.net.git&quot;,
+    &quot;accountId&quot;: &quot;dd630510-b337-49fa-bebc-49b77ee6f9e9&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2jCPw0ySXJApQSKM2lgnZdjyCqS" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "proofread",
+    "ts.external.directory.path": "/Users/bartoszwiaderek/Programming/Traugutt.net/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/api/generate-sitemap.ts" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.33" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bcee25f1-ba8f-4156-adcc-ddf4d5f27fb3" name="Changes" comment="" />
+      <created>1720888321677</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720888321677</updated>
+      <workItem from="1720888323954" duration="5000" />
+      <workItem from="1720888340250" duration="7000" />
+      <workItem from="1720888831797" duration="196000" />
+      <workItem from="1720985081713" duration="4661000" />
+      <workItem from="1721079311380" duration="13439000" />
+      <workItem from="1721520757251" duration="603000" />
+      <workItem from="1722531468991" duration="4318000" />
+      <workItem from="1722539690021" duration="69000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add new category">
+      <option name="closed" value="true" />
+      <created>1720987567491</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720987567491</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix RouteCategory">
+      <option name="closed" value="true" />
+      <created>1720988965894</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720988965894</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Sitemap fix">
+      <option name="closed" value="true" />
+      <created>1721080394765</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721080394765</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Remove postSitemap">
+      <option name="closed" value="true" />
+      <created>1721081413143</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721081413143</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix [...nextauth]">
+      <option name="closed" value="true" />
+      <created>1721082768378</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721082768378</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Possible fix of all errors">
+      <option name="closed" value="true" />
+      <created>1721086248847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721086248847</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Possible fix of all errors">
+      <option name="closed" value="true" />
+      <created>1721086274817</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721086274817</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Backdoor login">
+      <option name="closed" value="true" />
+      <created>1721150295285</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721150295286</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add new category" />
+    <MESSAGE value="Fix RouteCategory" />
+    <MESSAGE value="Sitemap fix" />
+    <MESSAGE value="Remove postSitemap" />
+    <MESSAGE value="Fix [...nextauth]" />
+    <MESSAGE value="Possible fix of all errors" />
+    <MESSAGE value="Backdoor login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backdoor login" />
+  </component>
+</project>

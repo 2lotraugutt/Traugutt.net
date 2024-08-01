@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-	const status = request.nextUrl.searchParams.get("toggle") == "true" ? true : false;
+	const status = request.nextUrl.searchParams.get("toggle") == "true";
 
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
 
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 		if (session.user.role.managePosts) {
 			const post = await prisma.post.update({
 				where: { id: params.id },
-				data: { pinned: status },
+				data: { pinned: status, pinnedById: session.user.id },
 			});
 
 			return NextResponse.json(post.pinned);

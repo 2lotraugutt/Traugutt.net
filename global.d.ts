@@ -11,6 +11,7 @@ export declare global {
 		published: boolean;
 		pinned: boolean;
 		publishedById: ?string;
+		pinnedById: ?string;
 		editedById: ?string;
 		eventId: ?string;
 	};
@@ -28,10 +29,12 @@ export declare global {
 		published: boolean;
 		pinned: boolean;
 		publishedById: ?string;
+		pinnedById: ?string;
 		editedById: ?string;
 		eventId: ?string;
 		event: EventDataType;
 		publishedBy: ?JustUserDataType;
+		pinnedBy: ?JustUserDataType;
 	};
 
 	type JustUserDataType = {

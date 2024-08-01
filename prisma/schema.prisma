@@ -24,6 +24,7 @@ model User {
   event          Event[]        @relation("Event author")
   notification   Notification[]
   publishedPosts Post[]         @relation("Published")
+  pinnedPosts Post[]         @relation("Pinned")
   editedPosts    Post[]         @relation("Edited")
 }
 
@@ -62,6 +63,9 @@ model Post {
 
   publishedById String? @db.Uuid
   publishedBy   User?   @relation("Published", fields: [publishedById], references: [id])
+
+  pinnedById String? @db.Uuid
+  pinnedBy   User?   @relation("Pinned", fields: [pinnedById], references: [id])
 
   editedById String? @db.Uuid
   editedBy   User?   @relation("Edited", fields: [editedById], references: [id])

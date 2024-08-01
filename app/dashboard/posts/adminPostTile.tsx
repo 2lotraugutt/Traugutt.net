@@ -32,7 +32,8 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń post");
 	const [status, setStatus] = useState(props.postData.published);
 	const [pinned, setPinned] = useState(props.postData.pinned);
-	const [edited, setEdited] = useState(false);
+	const [editedStatus, setEditedStatus] = useState(false);
+	const [editedPin, setEditedPin] = useState(false);
 
 	async function togglePost() {
 		setPublishButtonText("Ładowanie...");
@@ -41,16 +42,16 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 
 		setStatus(newStatus);
 		setPublishButtonText(newStatus ? "Ukryj post" : "Opublikuj post");
-		setEdited(true);
+		setEditedStatus(true);
 	}
 	async function togglePinPost() {
 		setPinnedButtonText("Ładowanie...");
 
-		const newStatus = await(await fetch(`/api/dashboard/posts/post/pin/${props.postData.id}?toggle=${!pinned}`)).json();
+		const newPin = await(await fetch(`/api/dashboard/posts/post/pin/${props.postData.id}?toggle=${!pinned}`)).json();
 
-		setPinned(newStatus);
-		setPinnedButtonText(newStatus ? "Odepnij post" : "Przypnij post");
-		setEdited(true);
+		setPinned(newPin);
+		setPinnedButtonText(newPin ? "Odepnij post" : "Przypnij post");
+		setEditedPin(true);
 	}
 
 	async function deletePost() {
@@ -121,8 +122,10 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 			>
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Publiczny: </p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${status ? "bg-MainColor" : "bg-SecondColor"}`} /> {status ? "Opublikowany" : "Nie opublikowany"}
+					<div
+						className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
+						<div className={`w-2 h-2 rounded-full ${status ? "bg-MainColor" : "bg-SecondColor"}`}/>
+						{status ? "Opublikowany" : "Nie opublikowany"}
 					</div>
 				</div>
 
@@ -132,7 +135,8 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Autor: </p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.author.name}</div>
+					<div
+						className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.postData.author.name}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Wyświetlenia: </p>
@@ -141,19 +145,30 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 
 				<div className={`dashboardPostTileDataRow`}>
 					<p className="h-fit">{status ? "Opublikowany przez: " : "Ukryty przez: "}</p>
-					<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{edited ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
+					<div
+						className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{editedStatus ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
 				</div>
 
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Przypięty: </p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
-						<div className={`w-2 h-2 rounded-full ${pinned ? "bg-MainColor" : "bg-SecondColor"}`} /> {pinned ? "Przypięty" : "Nie przypięty"}
+					<div
+						className={`dashboardPostTileData flex items-center gap-x-2 ${plusJakartaSansFont700.className}`}>
+						<div className={`w-2 h-2 rounded-full ${pinned ? "bg-MainColor" : "bg-SecondColor"}`}/>
+						{pinned ? "Przypięty" : "Nie przypięty"}
 					</div>
+				</div>
+
+				<div className={`dashboardPostTileDataRow ${!pinned ?? "hidden"}`}>
+					<p className="h-fit">Przypięty przez: </p>
+					<div
+						className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{editedPin ? user.name : props.postData.pinnedBy!.name }</div>
 				</div>
 			</div>
 
-			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => togglePost()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+			<div
+				className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
+				<button onClick={() => togglePost()}
+						className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
 					{publishButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPaperPlane} />

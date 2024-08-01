@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 					gallery: imgPaths,
 					eventId: eventId,
 					published: session.user.role.managePosts,
-					publishedById: session.user.role.managePosts ? session.userId : null,
+					publishedById: session.user.role.managePosts ? session.user.id : null,
 				},
 			});
 
@@ -110,7 +110,7 @@ export async function PUT(request: NextRequest) {
 					eventId: eventId,
 					// gallery: imgPaths,
 					published: session.user.role.managePosts,
-					publishedById: session.user.role.managePosts ? session.userId : null,
+					publishedById: session.user.role.managePosts ? session.user.id : null,
 					editedById: session.userId,
 				},
 			});
