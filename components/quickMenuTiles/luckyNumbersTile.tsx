@@ -16,7 +16,8 @@ const poppingsFont800 = Poppins({
 });
 
 export default function LuckyNumbersTile() {
-	const [numbers, setNumbers] = useState<{ number: number; date: string }[]>([]);
+  	const [numbers, setNumbers] = useState<{ number: number; date: string }[]>([]);
+	const [fetched, setFetched] = useState(false);
 
 	useEffect(() => {
 		fetchPost();
@@ -33,6 +34,7 @@ export default function LuckyNumbersTile() {
 
 			const numbers = await (await fetch(`api/calendar/getWeekNumbers?after=${format(after, "dd-MM-yyyy")}&before=${format(before, "dd-MM-yyyy")}`)).json();
 
+			setFetched(true);
 			setNumbers(numbers);
 		}
 	}, []);
@@ -40,7 +42,7 @@ export default function LuckyNumbersTile() {
 	const today = startOfToday();
 	const date = format(new Date(), "dd-MM-yyyy");
 
-	if (numbers.length != 0)
+	if (numbers.length > 0 && fetched)
 		return (
 			<Link href={"/calendar"} className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainColor py-2 xs:py-2 px-3 flex flex-col items-center">
 				{isSaturday(today) || isSunday(today) ? (
@@ -86,7 +88,7 @@ export default function LuckyNumbersTile() {
 				</div>
 			</Link>
 		);
-	else
+	else if (!fetched && numbers.length == 0)
 		return (
 			<div className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainColor py-2 xs:py-2 px-3 flex flex-col items-center">
 				<div className="animate-pulse flex gap-1 flex-col sm:gap-4 2xl:gap-7 2xs:flex-row lg:gap-4 2xs:gap-x-2 items-center md:gap-2 justify-between">
@@ -105,5 +107,15 @@ export default function LuckyNumbersTile() {
 					))}
 				</div>
 			</div>
+		);
+	else
+		return (
+			<Link href={"/calendar"} className="rounded-3xl md:col-span-1 xs:rounded-4xl justify-around bg-MainColor py-2 xs:py-2 px-3 flex flex-col items-center">
+				<p
+					className={`text-white text-xs 2xs:text-sm xl:text-xl md:text-lg text-center sm:text-2xl xs:text-lg 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl ${poppingsFont800.className}`}
+				>
+					Brak numerków do wyświetlenia...
+				</p>
+			</Link>
 		);
 }
