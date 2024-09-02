@@ -2,9 +2,11 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faFacebook, faInstagram, faTiktok, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import {
 	faAngleRight,
+	faBullhorn,
 	faClipboardList,
 	faFile,
-	faFileWord, faGlobe,
+	faFileWord,
+	faGlobe,
 	faGraduationCap,
 	faHome,
 	faHouseUser,
@@ -98,11 +100,11 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 				{/* <Link href={""} className="sidebar-button">
 					<FontAwesomeIcon icon={faShop} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Sklep z odzieżą</div>
-				</Link> 
+				</Link> */}
 				<Link href={"/radio/today"} className="sidebar-button" onClick={() => closeNavbar()}>
 					<FontAwesomeIcon icon={faBullhorn} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Dzisiejsze komunikaty</div>
-				</Link>*/}
+				</Link>
 				<Link href={"https://uonetplus.vulcan.net.pl/czestochowa"} onClick={() => closeNavbar()} target="blank" className="sidebar-button">
 					<FontAwesomeIcon icon={faTableList} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`${poppingsFont600.className}`}>Dziennik elektroniczny</div>

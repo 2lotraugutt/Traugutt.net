@@ -1,9 +1,9 @@
 import { endOfMonth, getDate, getDaysInMonth, getISODay, startOfMonth } from "date-fns";
-import DayTile from "./dayTile";
-import DatabaseTile from "./databaseTile";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { zonedTimeToUtc } from "date-fns-tz";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import DatabaseTile from "./databaseTile";
+import DayTile from "./dayTile";
 import ExpandingDay from "./expandingDay";
 
 
@@ -27,7 +27,7 @@ export default function CalendarComponent(props: { today: Date; month: number; y
 		async function fetchPost() {
 			setFetched(false);
 			const days = await (await fetch(`api/calendar/days?month=${props.month}&year=${props.year}`)).json();
-
+			console.log(days);
 			setDays(days);
 			setFetched(true);
 		}
