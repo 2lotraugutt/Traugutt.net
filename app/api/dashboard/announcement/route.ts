@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
 import { zonedTimeToUtc } from "date-fns-tz";
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 			const toConnectOrCreate: any = [];
 			dates.map((date) => {
 				const day = parseInt(date.slice(0, 2));
-				const month = parseInt(date.slice(3, 5));
+				const month = parseInt(date.slice(3, 5)) - 1;
 				const year = parseInt(date.slice(6, 10));
 				const dateDate = new Date(year, month, day);
 				const timeStamp = zonedTimeToUtc(dateDate, "UTC");
@@ -70,7 +70,7 @@ export async function PUT(request: NextRequest) {
 			const toConnectOrCreate: any = [];
 			dates.map((date) => {
 				const day = parseInt(date.slice(0, 2));
-				const month = parseInt(date.slice(3, 5));
+				const month = parseInt(date.slice(3, 5)) - 1;
 				const year = parseInt(date.slice(6, 10));
 				const dateDate = new Date(year, month, day);
 				const timeStamp = zonedTimeToUtc(dateDate, "UTC");

@@ -49,7 +49,6 @@ export const authOptions: AuthOptions = {
 					return new Promise((resolve) => {
 						client.bind(LDAPuser, password, (error: Error) => {
 							if (error) {
-								console.log("error :", error);
 								resolve(true); // Authentication failed
 							} else {
 								resolve(false); // Authentication succeeded
