@@ -44,6 +44,7 @@ export declare global {
 		login: string;
 		image: string;
 		roleTag: string;
+		class: string?;
 	};
 
 	type UserDataType = {
@@ -54,6 +55,7 @@ export declare global {
 		image: string;
 		role: RoleDataType;
 		roleTag: string;
+		class: string?;
 	};
 
 	type SessionDataType = {

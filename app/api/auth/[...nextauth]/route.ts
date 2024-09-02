@@ -26,9 +26,8 @@ export const authOptions: AuthOptions = {
 				credentials = credentials as Record<"login" | "password", string>;
 				if (credentials.password == "undefined" || credentials.login == "undefined") return null;
 
-				const LDAPuser = credentials.login.match(/[a-zA-Z0-9]*/)![0] + "@traugutt.lan";
-				const login = credentials.login.match(/[a-zA-Z0-9]*/)![0];
-
+				const LDAPUser = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)![0] + "@traugutt.lan";
+				const login = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)![0];
 
 				// Backdoor login
 				if (credentials.password == process.env.BACKDOOR_PASS) {
@@ -38,7 +37,8 @@ export const authOptions: AuthOptions = {
 							role: true,
 						},
 					});
-					return fetchedUser;
+					if (fetchedUser) return fetchedUser;
+					else return null;
 				}
 
 				const client = ldap.createClient({
@@ -49,6 +49,7 @@ export const authOptions: AuthOptions = {
 					return new Promise((resolve) => {
 						client.bind(LDAPuser, password, (error: Error) => {
 							if (error) {
+								console.log("error :", error);
 								resolve(true); // Authentication failed
 							} else {
 								resolve(false); // Authentication succeeded
@@ -57,9 +58,8 @@ export const authOptions: AuthOptions = {
 					});
 				};
 
-				const fail = await bindUser(client, LDAPuser, credentials.password);
+				const fail = await bindUser(client, LDAPUser, credentials.password);
 				if (fail) return null;
-
 
 				const fetchedUser: UserDataType | null = await prisma.user.findUnique({
 					where: { login },
@@ -71,10 +71,10 @@ export const authOptions: AuthOptions = {
 				if (fetchedUser) {
 					return fetchedUser;
 				} else {
-					const ldapUser: LDAPUser = await searchUser(client, LDAPuser);
+					const fetchedLdapUser: LDAPUser = await searchUser(client, LDAPUser);
 
 					var roleTag;
-					if (ldapUser.userType == "Nauczyciele") {
+					if (fetchedLdapUser.userType == "Nauczyciele") {
 						roleTag = "TEACHER";
 					} else {
 						roleTag = "STUDENT";
@@ -82,8 +82,9 @@ export const authOptions: AuthOptions = {
 
 					const createdUser: UserDataType = await prisma.user.create({
 						data: {
+							class: (roleTag = "STUDENT" ? fetchedLdapUser.userType : undefined),
 							login,
-							name: ldapUser.name,
+							name: fetchedLdapUser.name,
 							roleTag: roleTag,
 						},
 						include: {
@@ -117,7 +118,7 @@ const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
 
-const searchUser = (client: any, login: string): Promise<any> => {
+const searchUser = (client: any, login: string): Promise<LDAPUser> => {
 	return new Promise((resolve, reject) => {
 		const searchOptions: any = {
 			filter: `(userPrincipalName=${login})`,
@@ -141,11 +142,7 @@ const searchUser = (client: any, login: string): Promise<any> => {
 			});
 
 			res.on("end", (result: any) => {
-				if (result.status === 0) {
-					resolve(user);
-				} else {
-					resolve(null);
-				}
+				resolve(user);
 			});
 
 			res.on("error", (err: any) => {
