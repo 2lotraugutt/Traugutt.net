@@ -19,8 +19,8 @@ const poppingsFont500 = Poppins({
 });
 
 export default function SigninForm(props: { redirect: string }) {
-	const [login, setLogin] = useState<string>();
-	const [password, setPassword] = useState<string>();
+	const [login, setLogin] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
 	const searchParams = useSearchParams();
 
 	const search = searchParams.get("error");
