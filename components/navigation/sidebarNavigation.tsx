@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 const poppingsFont600 = Poppins({
 	weight: "600",
 	subsets: ["latin"],
@@ -46,7 +46,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 	useEffect(() => {
 		fetchRoutes();
 		async function fetchRoutes() {
-			const fetchedRoutes = await(await fetch("/api/routes")).json();
+			const fetchedRoutes = await (await fetch("/api/routes")).json();
 
 			setRoutes(fetchedRoutes);
 		}
@@ -77,7 +77,8 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 			name: "Matura",
 			icon: faFileWord,
 			routes: "exam",
-		},{
+		},
+		{
 			name: "Wyprawy",
 			icon: faGlobe,
 			routes: "trips",
@@ -158,12 +159,8 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 				{mainNavs.map((nav, i) => {
 					const routesForNav = routes?.filter((route) => route.category == nav.routes) ?? [];
 					return (
-						<>
-							<motion.button
-								key={i}
-								className={`sidebar-button ${openedList[i] && "bg-MainDarkGray/20"} ${poppingsFont600.className}`}
-								onClick={() => changeState(i)}
-							>
+						<React.Fragment key={nav.routes}>
+							<motion.button className={`sidebar-button ${openedList[i] && "bg-MainDarkGray/20"} ${poppingsFont600.className}`} onClick={() => changeState(i)}>
 								<FontAwesomeIcon icon={nav.icon} className="w-6 h-6 text-white py-3 px-4" />
 								<div>{nav.name}</div>
 
@@ -204,7 +201,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 									</motion.div>
 								)}
 							</AnimatePresence>
-						</>
+						</React.Fragment>
 					);
 				})}
 				<Link href={"/kontakt"} className={`sidebar-button ${poppingsFont600.className}`}>
