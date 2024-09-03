@@ -23,11 +23,17 @@ export const authOptions: AuthOptions = {
 				password: { label: "password", type: "password" },
 			},
 			async authorize(credentials) {
-				credentials = credentials as Record<"login" | "password", string>;
-				if (credentials.password == "undefined" || credentials.login == "undefined" || !credentials.password || !credentials.login) return null;
+     			if (!credentials || !credentials.login || !credentials.password || credentials.login.trim() === "" || credentials.password.trim() === "") {
+					return null; // Return null if credentials are not properly provided
+				}
 
-				const LDAPUser = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)![0] + "@traugutt.lan";
-				const login = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)![0];
+				// Convert login to lowercase and extract alphanumeric characters
+				const login = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)?.[0];
+				if (!login) {
+					return null; // Return null if the login could not be matched
+				}
+
+				const LDAPUser = `${login}@traugutt.lan`;
 
 				// Backdoor login
 				if (credentials.password == process.env.BACKDOOR_PASS) {
