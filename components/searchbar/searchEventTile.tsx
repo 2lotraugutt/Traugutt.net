@@ -3,17 +3,7 @@ import { HighlightSearchPhrase } from "@/lib/highlightSearchPhrase";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
-
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
-const plusJakartaSansFont600 = Plus_Jakarta_Sans({
-	weight: "600",
-	subsets: ["latin"],
-});
 
 function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: string; toggle: Function }) {
 	const { push } = useRouter();
@@ -46,7 +36,7 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 							<div className={`h-1.5 w-1.5 my-1 md:my-1.5 2xl:my-2 sm:h-2 sm:w-2 rounded-full`} style={{ backgroundColor: tag.color }} />
 
 							<p
-								className={`hidden group-hover:block whitespace-nowrap transition-all text-MainDarkGray rounded-xs text-2xs lg:text-sm md:rounded-xs 2xl:text-base ${poppingsFont500.className}`}
+								className={`hidden group-hover:block whitespace-nowrap transition-all text-MainDarkGray rounded-xs text-2xs lg:text-sm md:rounded-xs 2xl:text-base poppinsFont500`}
 							>
 								{tag.name}
 							</p>
@@ -65,9 +55,7 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 					/>
 				)}
 
-				<div
-					className={`text-white bg-DarkColor/90 w-fit text-2xs lg:text-xs 2xl:text-base rounded-2xl py-1 px-2 sm:px-3 sm:py-1.5 ${plusJakartaSansFont600.className}`}
-				>
+				<div className={`text-white bg-DarkColor/90 w-fit text-2xs lg:text-xs 2xl:text-base rounded-2xl py-1 px-2 sm:px-3 sm:py-1.5 plusJakartaSansFont600`}>
 					{dateToDisplay}
 				</div>
 			</div>

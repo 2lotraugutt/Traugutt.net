@@ -1,23 +1,8 @@
 import { faBullhorn, faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
-const poppingsFont400 = Poppins({
-	weight: "300",
-	subsets: ["latin"],
-});
-
-const plusJakartaSansFont800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
 
 export default function ExpandingDay(props: { expandedDayData: DayDataType; expandedDay: string; hideExpanded: Function; setTag: Function }) {
 	const monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
@@ -31,9 +16,9 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 		>
 			<motion.div className="flex justify-between gap-x-4 sm:gap-x-5 lg:gap-x-6 xl:gap-x-7 items-center w-full">
 				<motion.div
-					className={`xl:px-3 xl:py-1.5 py-1 3xl:p-4 p-2 text-center rounded-full text-xs sm:text-sm lg:text-base xl:text-lg 3xl:text-xl ${
-						plusJakartaSansFont800.className
-					} ${props.expandedDayData.freeDay ? "bg-[#44D375]/20 text-[#1fd15e]" : "bg-LightColor text-SecondColor"}`}
+					className={`xl:px-3 xl:py-1.5 py-1 3xl:p-4 p-2 text-center rounded-full text-xs sm:text-sm lg:text-base xl:text-lg 3xl:text-xl plusJakartaSans800 ${
+						props.expandedDayData.freeDay ? "bg-[#44D375]/20 text-[#1fd15e]" : "bg-LightColor text-SecondColor"
+					}`}
 				>
 					{props.expandedDayData.day} {monthsNames[props.expandedDayData.month]} {props.expandedDayData.year}
 				</motion.div>
@@ -46,11 +31,11 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 				<motion.div
 					className={`flex justify-center items-center gap-x-1.5 md:gap-x-3 text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
 						(props.expandedDayData.freeDay || !props.expandedDayData.number) && "hidden"
-					} ${poppingsFont500.className}`}
+					} poppinsFont500`}
 				>
 					Numerek:
 					<motion.div
-						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full ${plusJakartaSansFont800.className}`}
+						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full plusJakartaSansFont800`}
 					>
 						{props.expandedDayData.number}
 					</motion.div>
@@ -61,7 +46,7 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 				<motion.div className="flex w-full flex-col gap-y-2 md:gap-y-4 xl:gap-y-5 items-start">
 					<motion.p
 						className={`text-md lg:text-lg xl:text-xl 3xl:text-2xl text-MainDarkGray 
-						 ${plusJakartaSansFont800.className}`}
+						 plusJakartaSansFont800`}
 					>
 						Wydarzenia:
 					</motion.p>
@@ -72,7 +57,7 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 								className={`w-full flex flex-col gap-y-1 md:gap-y-1.5 lg:gap-y-2 event-container transition-all duration-300 bg-LightColor py-2 px-3 md:px-4 md:py-3 xl:px-6 xl:py-2.5 text-white rounded-xl 2xl:rounded-2xl`}
 							>
 								<div className="flex items-center justify-between grow">
-									<div className={`text-sm lg:text-base xl:text-lg 3xl:text-xl text-MainDarkGray ${poppingsFont500.className}`}>{event.name}</div>
+									<div className={`text-sm lg:text-base xl:text-lg 3xl:text-xl text-MainDarkGray poppinsFont500`}>{event.name}</div>
 
 									{event.post && (
 										<FontAwesomeIcon
@@ -93,18 +78,14 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 											className={`flex cursor-pointer h-fit rounded-3xl py-1 gap-x-2 px-2 sm:px-3 items-center transition-color duration-300 bg-white`}
 										>
 											<div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full transition-color duration-300`} style={{ backgroundColor: tag.color }} />
-											<p
-												className={`text-2xs whitespace-nowrap md:text-xs 2xl:text-sm transition-color duration-300 text-MainDarkGray ${poppingsFont500.className}`}
-											>
+											<p className={`text-2xs whitespace-nowrap md:text-xs 2xl:text-sm transition-color duration-300 text-MainDarkGray poppinsFont500`}>
 												{tag.name}
 											</p>
 										</div>
 									))}
 								</div>
 
-								{event.description && (
-									<div className={`text-xs lg:text-sm text-SecondColor xl:text-base 3xl:text-lg ${poppingsFont400.className}`}>{event.description}</div>
-								)}
+								{event.description && <div className={`text-xs lg:text-sm text-SecondColor xl:text-base 3xl:text-lg poppinsFont400`}>{event.description}</div>}
 							</motion.div>
 						))}
 					</motion.div>

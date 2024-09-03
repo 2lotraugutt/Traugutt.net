@@ -1,15 +1,11 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
-import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
 
-const poppingsFont500 = Poppins({
+const poppinsFont500 = Poppins({
 	weight: "500",
 	subsets: ["latin"],
 });
@@ -33,12 +29,12 @@ export default function Page() {
 				<div className="p-4 md:p-20 text-center items-center flex flex-col gap-6 pb-12 md:pb-40 xl:gap-y-8 lg:pb-32">
 					<Image src="/logo.png" width="250" height="100" alt="Logo icon" />
 
-					<h1 className={`text-3xl sm:text-5xl xl:text-6xl ${poppingsFont700.className}`}>Wyloguj się</h1>
-					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl ${poppingsFont500.className}`}>Czy jesteś pewien, że chcesz się wylogować?</h2>
+					<h1 className={`text-3xl sm:text-5xl xl:text-6xl poppinsFont700`}>Wyloguj się</h1>
+					<h2 className={`text-base sm:text-lg -mt-3 xl:text-xl poppinsFont500`}>Czy jesteś pewien, że chcesz się wylogować?</h2>
 
 					<button
 						onClick={() => signOut({ callbackUrl: "/" })}
-						className={`flex items-center sm:text-xl text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainColor px-10 py-2.5 ${poppingsFont700.className}`}
+						className={`flex items-center sm:text-xl text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray hover:border-white/60 hover:bg-MainColor px-10 py-2.5 poppinsFont700`}
 					>
 						Wyloguj się
 					</button>

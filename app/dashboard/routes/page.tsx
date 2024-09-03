@@ -1,32 +1,12 @@
 "use client";
 
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getSession } from "next-auth/react";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LoadingLayout from "../loadingLayout";
-import Link from "next/link";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const poppingsFont600 = Poppins({
-	weight: "600",
-	subsets: ["latin"],
-});
-const poppingsFont500 = Poppins({
-	subsets: ["latin"],
-	weight: "500",
-});
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-const plusJakartaSans800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
-
-
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
@@ -94,10 +74,10 @@ export default function Page() {
 	if (routes && userSession)
 		return (
 			<div className="dashboard-page">
-				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Linki</h1>
+				<h1 className={`dashboard-heading poppinsFont700`}>Linki</h1>
 
 				<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-					<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nowy link</h1>
+					<h1 className={`w-full sm:text-xl md:text-2xl poppinsFont700`}>Dodaj nowy link</h1>
 					<input
 						value={newName}
 						onChange={(e) => setNewName(e.target.value)}
@@ -127,7 +107,7 @@ export default function Page() {
 					<button
 						onClick={() => addRoutes()}
 						disabled={newName.trim() == "" || newLink.trim() == "" || category == ""}
-						className={`w-fit bg-MainColor hover:bg-MainDarkGray disabled:!bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+						className={`w-fit bg-MainColor hover:bg-MainDarkGray disabled:!bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl plusJakartaSans800`}
 					>
 						Dodaj link
 					</button>
@@ -141,12 +121,12 @@ export default function Page() {
 								key={i}
 								className="border-2 flex flex-col hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-2.5 px-3.5 lg:p-5 2xl:p-6 3xl:p-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl"
 							>
-								<h1 className={`w-full md:text-xl lg:text-2xl xl:text-3xl ${poppingsFont600.className}`}>{routeCategory.name}</h1>
+								<h1 className={`w-full md:text-xl lg:text-2xl xl:text-3xl poppinsFont600`}>{routeCategory.name}</h1>
 
 								{routesForNav.map((route, j) => (
 									<div key={j} className="flex flex-col">
 										<div className="flex justify-between">
-											<p className={`text-sm sm:text-base md:text-lg lg:text-xl ${poppingsFont500.className}`}>{route.name}</p>
+											<p className={`text-sm sm:text-base md:text-lg lg:text-xl poppinsFont500`}>{route.name}</p>
 											<FontAwesomeIcon
 												onClick={() => deleteRoutes(route.id)}
 												icon={faTrash}

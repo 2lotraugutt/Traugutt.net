@@ -20,11 +20,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-const poppingsFont600 = Poppins({
-	weight: "600",
-	subsets: ["latin"],
-});
-const poppingsFont500 = Poppins({
+const poppinsFont500 = Poppins({
 	weight: "500",
 	subsets: ["latin"],
 });
@@ -99,19 +95,19 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 			<div className="flex flex-col gap-y-1">
 				{/* <Link href={""} className="sidebar-button">
 					<FontAwesomeIcon icon={faShop} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Sklep z odzieżą</div>
+					<div className={`poppinsFont600`}>Sklep z odzieżą</div>
 				</Link> */}
 				<Link href={"/radio/today"} className="sidebar-button" onClick={() => closeNavbar()}>
 					<FontAwesomeIcon icon={faBullhorn} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Dzisiejsze komunikaty</div>
+					<div className={`poppinsFont600`}>Dzisiejsze komunikaty</div>
 				</Link>
 				<Link href={"https://uonetplus.vulcan.net.pl/czestochowa"} onClick={() => closeNavbar()} target="blank" className="sidebar-button">
 					<FontAwesomeIcon icon={faTableList} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Dziennik elektroniczny</div>
+					<div className={`poppinsFont600`}>Dziennik elektroniczny</div>
 				</Link>
 				<Link href={"https://m.facebook.com/groups/421406146993216/?ref=share"} target="blank" onClick={() => closeNavbar()} className="sidebar-button">
 					<FontAwesomeIcon icon={faUserGraduate} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Grupa absolwentów</div>
+					<div className={`poppinsFont600`}>Grupa absolwentów</div>
 				</Link>
 
 				<div className="flex gap-x-1 justify-between px-1.5 mt-2">
@@ -155,14 +151,14 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 			<motion.div className="flex flex-col gap-y-1">
 				<Link href={"/"} onClick={() => closeNavbar()} className="sidebar-button">
 					<FontAwesomeIcon icon={faHome} className="w-6 h-6 text-white py-3 px-4" />
-					<div className={`${poppingsFont600.className}`}>Strona główna</div>
+					<div className={`poppinsFont600`}>Strona główna</div>
 				</Link>
 
 				{mainNavs.map((nav, i) => {
 					const routesForNav = routes?.filter((route) => route.category == nav.routes) ?? [];
 					return (
 						<React.Fragment key={nav.routes}>
-							<motion.button className={`sidebar-button ${openedList[i] && "bg-MainDarkGray/20"} ${poppingsFont600.className}`} onClick={() => changeState(i)}>
+							<motion.button className={`sidebar-button ${openedList[i] && "bg-MainDarkGray/20"} poppinsFont600`} onClick={() => changeState(i)}>
 								<FontAwesomeIcon icon={nav.icon} className="w-6 h-6 text-white py-3 px-4" />
 								<div>{nav.name}</div>
 
@@ -193,7 +189,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 													key={j}
 													target="_blank"
 													onClick={() => closeNavbar()}
-													className={`sidebar-button px-3 py-1.5 w-full ${poppingsFont500.className}`}
+													className={`sidebar-button px-3 py-1.5 w-full poppinsFont500`}
 													href={route.link}
 												>
 													{route.name}
@@ -206,7 +202,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 						</React.Fragment>
 					);
 				})}
-				<Link href={"/kontakt"} className={`sidebar-button ${poppingsFont600.className}`}>
+				<Link href={"/kontakt"} className={`sidebar-button poppinsFont600`}>
 					<FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-white py-3 px-4" />
 					<div>Kontakt</div>
 				</Link>

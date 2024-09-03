@@ -1,11 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Poppins } from "next/font/google";
 import { useState } from "react";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
 
 export default function PostGallery(props: { post: PostDataType }) {
 	const [imgOpen, setImgOpen] = useState<string>();
@@ -14,7 +8,7 @@ export default function PostGallery(props: { post: PostDataType }) {
 		return (
 			<>
 				<h2
-					className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+					className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide poppinsFont700`}
 				>
 					Galeria
 				</h2>

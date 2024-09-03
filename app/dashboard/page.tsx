@@ -16,14 +16,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
-import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
 
 export default async function Page() {
 	const session = (await getServerSession(authOptions)) as SessionDataType;
@@ -64,7 +58,7 @@ export default async function Page() {
 
 	return (
 		<div className="dashboard-page">
-			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Panel sterowania</h1>
+			<h1 className={`dashboard-heading poppinsFont700`}>Panel sterowania</h1>
 
 			<div className="grid grid-cols-1 2xs:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-7">
 				{tiles.map(
@@ -77,7 +71,7 @@ export default async function Page() {
 							>
 								<div className="items-center flex gap-x-5">
 									<FontAwesomeIcon icon={tile.icon} className={`h-5 lg:h-7`} />
-									<p className={`text-xs xs:text-sm sm:text-base md:text-xl 4xl:text-2xl ${poppingsFont700.className}`}>{tile.name}</p>
+									<p className={`text-xs xs:text-sm sm:text-base md:text-xl 4xl:text-2xl poppinsFont700`}>{tile.name}</p>
 									<FontAwesomeIcon
 										icon={faAngleRight}
 										className={`h-3 text-MainDarkGray transition-all duration-300 group-hover:translate-x-3/4 lg:h-5 group-hover: ms-auto`}

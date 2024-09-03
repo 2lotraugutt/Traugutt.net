@@ -5,21 +5,9 @@ import PostHeading from "@/app/post/postHeading";
 import PostSkeleton from "@/app/post/postSkeleton";
 import PostTileSkeleton from "@/components/posts/postTileSkeleton";
 import TopPostTile from "@/components/posts/topPostTile";
-import { Poppins } from "next/font/google";
-import { useEffect, useState } from "react";
-import { MdPreview } from "md-editor-rt";
-import "md-editor-rt/lib/preview.css";
 import MarkdownDisplay from "@/lib/markdownDisplay";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-
-const poppingsFont400 = Poppins({
-	weight: "400",
-	subsets: ["latin"],
-});
+import "md-editor-rt/lib/preview.css";
+import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
 	const [post, setPost] = useState<PostDataType | undefined>();
@@ -63,7 +51,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
 			<div className="lg:mx-12 mx-3 xs:mx-7 2xs:mx-5 sm:mx-10 md:mx-5 4xl:mx-0">
 				<h2
-					className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide ${poppingsFont700.className}`}
+					className={`text-center my-5 4xl:text-5xl text-sm !leading-[150%] h-fit xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl peer line-clamp-2 tracking-wide poppinsFont700`}
 				>
 					Najpopularniejsze posty w tym miesiącu
 				</h2>

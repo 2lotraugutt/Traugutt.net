@@ -1,7 +1,7 @@
 import { format, getDate, isToday, isWeekend } from "date-fns";
+import { motion } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import WeekendTile from "./weekendTile";
-import { motion } from "framer-motion";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -19,11 +19,7 @@ export default function DayTile(props: { date: Date; differentMonth: boolean; se
 					isToday(props.date) ? "border-[1.5px] md:border-2 scale-105 md:scale-110 border-SecondColor/50" : ""
 				} ${props.setExpDay && "cursor-pointer"}`}
 			>
-				<motion.div
-					className={`day-number ${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-LightColor text-SecondColor"} ${
-						plusJakartaSansFont800.className
-					}`}
-				>
+				<motion.div className={`day-number ${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-LightColor text-SecondColor"} plusJakartaSans800`}>
 					{getDate(props.date)}
 				</motion.div>
 			</motion.div>

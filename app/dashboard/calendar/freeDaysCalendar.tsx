@@ -1,8 +1,8 @@
 import { getDaysInMonth, getISODay, startOfMonth } from "date-fns";
-import { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
+import { useEffect, useState } from "react";
 
-const poppingsFont500 = Poppins({
+const poppinsFont500 = Poppins({
 	weight: "500",
 	subsets: ["latin"],
 });
@@ -35,7 +35,7 @@ export default function FreeDaysCalendar(props: { year: number }) {
 
 	return (
 		<div className="relative">
-			<h1 className={`sticky lg:text-lg xl:text-xl bg-white rounded-lg py-1 px-3 w-fit flex items-center top-40 ${poppingsFont500.className}`}>{props.year}</h1>
+			<h1 className={`sticky lg:text-lg xl:text-xl bg-white rounded-lg py-1 px-3 w-fit flex items-center top-40 poppinsFont500`}>{props.year}</h1>
 			<div className="flex flex-row flex-wrap gap-x-10 gap-y-8 justify-center">
 				{[...Array(12)].map((n, m) => {
 					const monthLen = getDaysInMonth(new Date(props.year, m, 1));
@@ -43,7 +43,7 @@ export default function FreeDaysCalendar(props: { year: number }) {
 
 					return (
 						<div className="flex flex-col items-center gap-y-4" key={m}>
-							<h1 className={`text-2xl ${poppingsFont500.className}`}>{monthsNames[m]}</h1>
+							<h1 className={`text-2xl poppinsFont500`}>{monthsNames[m]}</h1>
 
 							<div key={m} className="grid grid-cols-7 gap-2.5">
 								{[...Array(firstDayOfMonth)].map((n, d) => {

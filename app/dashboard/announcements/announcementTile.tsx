@@ -2,28 +2,7 @@ import AnnouncementsCalendar from "@/components/announcements/announcementsCalen
 import { faBackward, faForward, faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
-
-const plusJakartaSansFont700 = Plus_Jakarta_Sans({
-	weight: "700",
-	subsets: ["latin"],
-});
-
-const plusJakartaSansFont500 = Plus_Jakarta_Sans({
-	weight: "500",
-	subsets: ["latin"],
-});
-
-const poppingsFont400 = Poppins({
-	weight: "400",
-	subsets: ["latin"],
-});
-
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function AnnouncementTile(props: { announcementData: AnnouncementDataType; refetchAnnouncements: Function }) {
 	const [content, setContent] = useState<string>(props.announcementData.content);
@@ -103,7 +82,7 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 			<div className="flex flex-col gap-y-2 xl:gap-y-5 lg:gap-y-3.5 w-full">
 				{!isEditing ? (
 					<div
-						className={`text-2xs whitespace-pre-wrap 2xl:text-base text-MainDarkGray/50 2xs:text-xs xs:text-sm 3xl:line-clamp-[7] 4xl:line-clamp-[8] line-clamp-6 ${poppingsFont400.className}`}
+						className={`text-2xs whitespace-pre-wrap 2xl:text-base text-MainDarkGray/50 2xs:text-xs xs:text-sm 3xl:line-clamp-[7] 4xl:line-clamp-[8] line-clamp-6 poppinsFont400`}
 					>
 						{content}
 					</div>
@@ -120,14 +99,14 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 			</div>
 
 			{!isEditing && (
-				<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 ${plusJakartaSansFont500.className}`}>
+				<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 plusJakartaSansFont500`}>
 					<div className="dashboardPostTileDataRow">
 						<p className="h-fit">Utworzony: </p>
-						<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{dateToDisplay}</div>
+						<div className={`dashboardPostTileData plusJakartaSansFont700`}>{dateToDisplay}</div>
 					</div>
 					<div className="dashboardPostTileDataRow">
 						<p className="h-fit">Autor: </p>
-						<div className={`dashboardPostTileData ${plusJakartaSansFont700.className}`}>{props.announcementData.author.name}</div>
+						<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.announcementData.author.name}</div>
 					</div>
 				</div>
 			)}
@@ -136,7 +115,7 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 				<div className="flex flex-col items-center grow gap-y-4 min-w-max">
 					<div className="flex items-center justify-between w-full">
 						<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 hover:text-MainColor transition-all" onClick={() => changeMonth(false)} />
-						<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl ${poppingsFont500.className}`}>{monthsNames[month]}</h1>
+						<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl poppinsFont500`}>{monthsNames[month]}</h1>
 						<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 hover:text-MainColor transition-all" onClick={() => changeMonth(true)} />
 					</div>
 					<AnnouncementsCalendar month={month} year={year} setSelectedDays={(e: string[]) => setSelectedDays(e)} selectedDays={selectedDays} />
@@ -152,7 +131,7 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 							setEditButtonText("Potwierdź edycje");
 						}
 					}}
-					className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}
+					className={`group/button dashboard-post-tile plusJakartaSansFont700`}
 				>
 					{editButtonText}
 					<div className="dashboard-post-tile-icon">
@@ -160,7 +139,7 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 					</div>
 				</button>
 
-				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

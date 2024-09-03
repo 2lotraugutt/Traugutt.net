@@ -4,24 +4,9 @@ import LoadingLayout from "@/app/dashboard/loadingLayout";
 import { faCheck, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getSession, signOut } from "next-auth/react";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const plusJakartaSansFont700 = Plus_Jakarta_Sans({
-	weight: "700",
-	subsets: ["latin"],
-});
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function Page() {
 	const [accountData, setAccountData] = useState<UserDataType>();
@@ -39,7 +24,7 @@ export default function Page() {
 	}, [router]);
 
 	async function fetchAcountData() {
-		const returnedData = await(await fetch(`/api/dashboard/account`)).json() as UserDataType;
+		const returnedData = (await (await fetch(`/api/dashboard/account`)).json()) as UserDataType;
 		setName(returnedData.name);
 		setAccountData(returnedData);
 	}
@@ -64,7 +49,7 @@ export default function Page() {
 	if (accountData)
 		return (
 			<div className="dashboard-page  max-w-3xl lg:max-w-5xl mx-auto">
-				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Konto</h1>
+				<h1 className={`dashboard-heading poppinsFont700`}>Konto</h1>
 
 				<div className="flex flex-col lg:flex-row gap-y-5 items-center gap-x-7">
 					<Image src={accountData.image} className="h-20 w-20 rounded-full" height={96} width={96} alt="Account image" />
@@ -73,7 +58,7 @@ export default function Page() {
 						<input
 							value={name}
 							onChange={(e) => setName(e.target.value)}
-							className={`border-2 rounded-lg px-5 py-1.5 bg-LightGray/20 outline-none text-sm xs:text-lg sm:text-xl xl:text-2xl ${poppingsFont700.className}`}
+							className={`border-2 rounded-lg px-5 py-1.5 bg-LightGray/20 outline-none text-sm xs:text-lg sm:text-xl xl:text-2xl poppinsFont700`}
 						/>
 
 						<FontAwesomeIcon
@@ -88,19 +73,19 @@ export default function Page() {
 
 				<div className="flex flex-col gap-y-6 sm:gap-y-8 lg:gap-y-10">
 					<div className="flex flex-col">
-						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Login:</p>
-						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.login}</p>
+						<p className={`text-xs sm:text-sm xl:text-base poppinsFont500`}>Login:</p>
+						<p className={`text-base sm:text-lg xl:text-xl poppinsFont700`}>{accountData.login}</p>
 					</div>
 					<div className="flex flex-col">
-						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Email:</p>
-						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.email}</p>
+						<p className={`text-xs sm:text-sm xl:text-base poppinsFont500`}>Email:</p>
+						<p className={`text-base sm:text-lg xl:text-xl poppinsFont700`}>{accountData.email}</p>
 					</div>
 					<div className="flex flex-col">
-						<p className={`text-xs sm:text-sm xl:text-base ${poppingsFont500.className}`}>Typ użytkownika:</p>
-						<p className={`text-base sm:text-lg xl:text-xl ${poppingsFont700.className}`}>{accountData.role.name}</p>
+						<p className={`text-xs sm:text-sm xl:text-base poppinsFont500`}>Typ użytkownika:</p>
+						<p className={`text-base sm:text-lg xl:text-xl poppinsFont700`}>{accountData.role.name}</p>
 					</div>
 				</div>
-				<button onClick={() => signOut({ callbackUrl: "/" })} className={`group/button dashboard-post-tile ${plusJakartaSansFont700.className}`}>
+				<button onClick={() => signOut({ callbackUrl: "/" })} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
 					Wyloguj się
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faSignOut} />

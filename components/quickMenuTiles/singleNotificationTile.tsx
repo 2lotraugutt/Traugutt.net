@@ -5,12 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Poppins } from "next/font/google";
 import { useState } from "react";
 
-const poppingsFont600 = Poppins({
-	weight: "600",
-	subsets: ["latin"],
-});
-
-const poppingsFont300 = Poppins({
+const poppinsFont300 = Poppins({
 	weight: "300",
 	subsets: ["latin"],
 });
@@ -28,14 +23,14 @@ export default function SingleNotificationTile(props: { notification: JustNotifi
 			<h1
 				className={`line-clamp-1 transition-all text-xs md:text-xs lg:text-sm xl:text-base 3xl:line-clamp-2 3xl:text-lg sm:text-sm duration-300 ${
 					opened ? "!line-clamp-none" : ""
-				} ${poppingsFont600.className}`}
+				} poppinsFont600`}
 			>
 				{props.notification.pinned && <FontAwesomeIcon icon={faThumbTack} className="h-3 md:h-3.5 xl:h-4" />} {props.notification.title}
 			</h1>
 			<p
 				className={`relative after:text-white text-2xs md:text-2xs xl:text-sm sm:text-xs lg:text-xs 3xl:text-base line-clamp-3 3xl:line-clamp-4 4xl:line-clamp-5 transition-all duration-300 ${
 					opened ? "!line-clamp-none" : ""
-				} ${poppingsFont300.className}`}
+				} ${poppinsFont300.className}`}
 			>
 				{props.notification.content}
 			</p>

@@ -1,18 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { getYear, startOfToday } from "date-fns";
 import { getSession } from "next-auth/react";
-import { Poppins } from "next/font/google";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CreateEventForm from "./createEventForm";
-import FreeDaysCalendar from "./freeDaysCalendar";
 import EventTile from "./eventTile";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
+import FreeDaysCalendar from "./freeDaysCalendar";
 
 export default function Page() {
 	const [events, setEvents] = useState<EventDataTypeWithAuthor[]>([]);
@@ -40,7 +34,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchTags() {
-		const returnedTags = await(await fetch(`/api/calendar/tags`)).json();
+		const returnedTags = await (await fetch(`/api/calendar/tags`)).json();
 		setTags(returnedTags);
 	}
 
@@ -57,7 +51,7 @@ export default function Page() {
 
 	return (
 		<div className="dashboard-page">
-			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Wydarzenia</h1>
+			<h1 className={`dashboard-heading poppinsFont700`}>Wydarzenia</h1>
 
 			<CreateEventForm tags={tags} refetchEvents={() => refetchEvents()} />
 
@@ -67,20 +61,20 @@ export default function Page() {
 				))}
 				<button
 					onClick={() => fetchEvents()}
-					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${poppingsFont700.className} `}
+					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl poppinsFont700 `}
 				>
 					Załaduj więcej
 				</button>
 			</div>
 
-			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Dni wolne</h1>
+			<h1 className={`dashboard-heading poppinsFont700`}>Dni wolne</h1>
 			{[...Array(yearsCount)].map((n, yearCount) => (
 				<FreeDaysCalendar year={year + yearCount} key={year + yearCount} />
 			))}
 
 			<button
 				onClick={() => setYearsCount((old) => old + 1)}
-				className={`text-MainDarkGray bg-white border-MainDarkGray border-2 text-xs xs:text-sm md:text-base xl:text-lg px-8 py-1.5 2xl:text-lg 3xl:text-xl 3xl:py-2 3xl:px-12 rounded-3xl hover:bg-MainDarkGray hover:text-white transition-all duration-200 ease-out ${poppingsFont700.className}`}
+				className={`text-MainDarkGray bg-white border-MainDarkGray border-2 text-xs xs:text-sm md:text-base xl:text-lg px-8 py-1.5 2xl:text-lg 3xl:text-xl 3xl:py-2 3xl:px-12 rounded-3xl hover:bg-MainDarkGray hover:text-white transition-all duration-200 ease-out poppinsFont700`}
 			>
 				Załaduj więcej
 			</button>

@@ -1,22 +1,13 @@
 "use client";
 
-import { getSession } from "next-auth/react";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import LoadingLayout from "@/app/dashboard/loadingLayout";
-import PageTile from "./pageTile";
 import { MdEditor } from "md-editor-rt";
 import "md-editor-rt/lib/style.css";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import PageTile from "./pageTile";
 
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-const plusJakartaSans800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
 	const [pages, setPages] = useState<{ file: string; content: string }[]>([]);
@@ -39,7 +30,7 @@ export default function Page() {
 	}, [router]);
 
 	async function fetchPages() {
-		const returnedPages = await(
+		const returnedPages = await (
 			await fetch(`/api/dashboard/pages`, {
 				cache: "no-store",
 			})
@@ -68,10 +59,10 @@ export default function Page() {
 	if (pages && userSession)
 		return (
 			<div className="dashboard-page">
-				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Podstrony</h1>
+				<h1 className={`dashboard-heading poppinsFont700`}>Podstrony</h1>
 
 				<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-					<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nową podstronę</h1>
+					<h1 className={`w-full sm:text-xl md:text-2xl poppinsFont700`}>Dodaj nową podstronę</h1>
 					<input
 						value={newPageName}
 						onChange={(e) => setNewPageName(e.target.value)}
@@ -93,7 +84,7 @@ export default function Page() {
 					<button
 						onClick={() => addPage()}
 						disabled={newContent.trim() == "" || newPageName.trim() == ""}
-						className={`w-fit bg-MainColor hover:bg-MainDarkGray disabled:!bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+						className={`w-fit bg-MainColor hover:bg-MainDarkGray disabled:!bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl plusJakartaSans800`}
 					>
 						Dodaj podstronę
 					</button>

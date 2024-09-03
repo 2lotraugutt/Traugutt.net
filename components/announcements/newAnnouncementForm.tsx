@@ -1,23 +1,10 @@
 "use client";
-import { format, getDaysInMonth, getISODay, getMonth, getYear, startOfMonth, startOfToday } from "date-fns";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import { useState } from "react";
-import AnnouncementsCalendar from "./announcementsCalendar";
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getMonth, getYear, startOfToday } from "date-fns";
+import { useState } from "react";
+import AnnouncementsCalendar from "./announcementsCalendar";
 
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
-const plusJakartaSans800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
 export default function NewAnnouncementForm(props: { toggle: Function }) {
 	const [newContent, setNewContent] = useState("");
 	const [selectedDays, setSelectedDays] = useState<string[]>([]);
@@ -61,7 +48,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 	return (
 		<>
 			<div className="fixed z-40 max-w-screen-xs sm:max-w-screen-sm top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-screen-md lg:max-w-screen-xl flex flex-col items-center text-left border-2 bg-LightGray py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-				<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nowy komunikat</h1>
+				<h1 className={`w-full sm:text-xl md:text-2xl poppinsFont700`}>Dodaj nowy komunikat</h1>
 
 				<div className="flex gap-10 w-full items-center flex-col lg:flex-row">
 					<textarea
@@ -75,7 +62,7 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 					<div className="flex flex-col items-center gap-y-4">
 						<div className="flex items-center justify-between w-full">
 							<FontAwesomeIcon icon={faBackward} className="text-MainDarkGray/80 hover:text-MainColor transition-all" onClick={() => changeMonth(false)} />
-							<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl ${poppingsFont500.className}`}>{monthsNames[month]}</h1>
+							<h1 className={`sm:text-lg md:text-xl text-center lg:text-2xl poppinsFont500`}>{monthsNames[month]}</h1>
 							<FontAwesomeIcon icon={faForward} className="text-MainDarkGray/80 hover:text-MainColor transition-all" onClick={() => changeMonth(true)} />
 						</div>
 						<AnnouncementsCalendar month={month} year={year} setSelectedDays={(e: string[]) => setSelectedDays(e)} selectedDays={selectedDays} />
@@ -85,13 +72,13 @@ export default function NewAnnouncementForm(props: { toggle: Function }) {
 				<div className="flex flex-col-reverse items-center md:flex-row justify-center my-5 gap-3">
 					<button
 						onClick={() => props.toggle()}
-						className={`w-full md:w-fit bg-MainDarkGray/60 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+						className={`w-full md:w-fit bg-MainDarkGray/60 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 py-3 text-white rounded-3xl plusJakartaSans800`}
 					>
 						Anuluj
 					</button>
 					<button
 						onClick={() => addAnnouncement()}
-						className={`w-full md:w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+						className={`w-full md:w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 py-3 text-white rounded-3xl plusJakartaSans800`}
 					>
 						Dodaj komunikat
 					</button>

@@ -1,21 +1,4 @@
 import { useState } from "react";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import { faL } from "@fortawesome/free-solid-svg-icons";
-
-const plusJakartaSans800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function EditingForm(props: { initialData: EventDataTypeWithAuthor; closeEdit: Function; tags: EventTagDataType[]; refetchEvents: Function }) {
 	const [newName, setNewName] = useState(props.initialData.name);
@@ -66,7 +49,7 @@ export default function EditingForm(props: { initialData: EventDataTypeWithAutho
 
 	return (
 		<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 flex flex-col items-center h-fit  text-left border-2 hover:bg-LightGray bg-LightGray transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-			<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nowe wydarzenie</h1>
+			<h1 className={`w-full sm:text-xl md:text-2xl poppinsFont700`}>Dodaj nowe wydarzenie</h1>
 
 			<div className="flex gap-1.5 sm:gap-2 md:gap-3 w-full">
 				<input
@@ -99,7 +82,7 @@ export default function EditingForm(props: { initialData: EventDataTypeWithAutho
 							style={{ backgroundColor: selectedTags[i] ? "white" : tag.color }}
 						/>
 						<p
-							className={`text-xs whitespace-nowrap sm:text-sm md:text-base transition-color duration-300 ${poppingsFont500.className} ${
+							className={`text-xs whitespace-nowrap sm:text-sm md:text-base transition-color duration-300 poppinsFont500 ${
 								selectedTags[i] ? "text-white" : "text-MainDarkGray"
 							}`}
 						>
@@ -119,13 +102,13 @@ export default function EditingForm(props: { initialData: EventDataTypeWithAutho
 			<div className="flex flex-col md:flex-row gap-x-10 gap-y-2 py-2 items-center">
 				<button
 					onClick={() => edit()}
-					className={`w-fit whitespace-nowrap bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					className={`w-fit whitespace-nowrap bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl plusJakartaSans800`}
 				>
 					{buttonText}
 				</button>
 				<button
 					onClick={() => props.closeEdit()}
-					className={`w-full whitespace-nowrap bg-MainDarkGray/70 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					className={`w-full whitespace-nowrap bg-MainDarkGray/70 hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl plusJakartaSans800`}
 				>
 					Anuluj
 				</button>

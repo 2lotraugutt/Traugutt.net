@@ -1,18 +1,8 @@
 "use client";
-import { getSession } from "next-auth/react";
-import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import NotificationTile from "@/app/dashboard/notifications/notificationTile";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-const plusJakartaSans800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Page() {
 	const [newTitle, setNewTitle] = useState("");
@@ -67,10 +57,10 @@ export default function Page() {
 
 	return (
 		<div className="dashboard-page">
-			<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Informacje</h1>
+			<h1 className={`dashboard-heading poppinsFont700`}>Informacje</h1>
 
 			<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-				<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nową informację</h1>
+				<h1 className={`w-full sm:text-xl md:text-2xl poppinsFont700`}>Dodaj nową informację</h1>
 				<input
 					value={newTitle}
 					onChange={(e) => setNewTitle(e.target.value)}
@@ -89,7 +79,7 @@ export default function Page() {
 
 				<button
 					onClick={() => upload()}
-					className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+					className={`w-fit bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-20 my-5 py-3 text-white rounded-3xl plusJakartaSans800`}
 				>
 					Dodaj informację
 				</button>
@@ -102,9 +92,9 @@ export default function Page() {
 
 				<button
 					onClick={() => fetchNotifications()}
-					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
-						poppingsFont700.className
-					} ${(notificationsCount - 1) * 30 > notifications.length ? "hidden" : ""}`}
+					className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl poppinsFont700 ${
+						(notificationsCount - 1) * 30 > notifications.length ? "hidden" : ""
+					}`}
 				>
 					Załaduj więcej
 				</button>

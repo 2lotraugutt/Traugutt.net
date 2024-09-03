@@ -1,16 +1,10 @@
 "use client";
 
+import LoadingLayout from "@/app/dashboard/loadingLayout";
+import UserPostTile from "@/app/dashboard/users/userTile";
 import { getSession } from "next-auth/react";
-import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import UserPostTile from "@/app/dashboard/users/userTile";
-import LoadingLayout from "@/app/dashboard/loadingLayout";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
@@ -54,7 +48,7 @@ export default function Page() {
 	if (users && userSession && roles)
 		return (
 			<div className="dashboard-page">
-				<h1 className={`dashboard-heading ${poppingsFont700.className}`}>Użytkownicy</h1>
+				<h1 className={`dashboard-heading poppinsFont700`}>Użytkownicy</h1>
 
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
 					{users.map((userData: UserDataType) => (
@@ -63,9 +57,9 @@ export default function Page() {
 
 					<button
 						onClick={() => fetchUsers()}
-						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl ${
-							poppingsFont700.className
-						} ${(usersCount - 1) * 30 > users.length ? "hidden" : ""}`}
+						className={`text-center h-fit w-full border-2 text-xl hover:bg-LightGray/20 transition-all duration-300 p-4 px-8 rounded-2xl poppinsFont700${
+							(usersCount - 1) * 30 > users.length ? "hidden" : ""
+						}`}
 					>
 						Załaduj więcej
 					</button>

@@ -1,13 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
-
-const poppingsFont600 = Poppins({
-	weight: "600",
-	subsets: ["latin"],
-});
 
 export default function DashboardNavbar(props: { session: SessionDataType }) {
 	const pathname = usePathname();
@@ -16,7 +10,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 
 	return (
 		<div className="w-screen bg-white z-20 h-fit fixed border-b-2 left-0 lg:px-12 px-2 md:px-5 4xl:px-0">
-			<div className={`flex overflow-x-auto mx-auto w-full gap-x-1 sm:gap-x-2 flex-row max-w-screen-4xl ${poppingsFont600.className}`}>
+			<div className={`flex overflow-x-auto mx-auto w-full gap-x-1 sm:gap-x-2 flex-row max-w-screen-4xl poppinsFont600`}>
 				<Link href={"/dashboard"} className={`dashboard-link ${pathname == "/dashboard" ? "active-dashboard-link" : ""}`}>
 					Panel sterowania
 				</Link>

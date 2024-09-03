@@ -1,17 +1,11 @@
 "use client";
 
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDate, getMonth, getYear, startOfToday } from "date-fns";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import EventComponent from "./eventComponent";
-import { Poppins } from "next/font/google";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
 
 export default function EventsSlider() {
 	const [events, setEvents] = useState<EventDataTypeWithPost[]>([]);
@@ -60,7 +54,7 @@ export default function EventsSlider() {
 				>
 					{dates.map((date, i) => (
 						<div className="flex flex-col w-fit gap-y-3" key={date}>
-							<p className={`sticky left-0 w-fit text-base xs:text-lg lg:text-xl ${poppingsFont700.className}`}>
+							<p className={`sticky left-0 w-fit text-base xs:text-lg lg:text-xl poppinsFont700`}>
 								{monthsNames[parseInt(date.slice(0, 2)) - 1]} {date.slice(3, 8)}
 							</p>
 
@@ -78,12 +72,12 @@ export default function EventsSlider() {
 										} flex rounded-3xl items-center border-[1px] border-SecondColor border-dotted p-3.5 lg:p-7 gap-x-5`}
 									>
 										<p
-											className={`w-[48px] sm:w-[52px] text-lg sm:text-xl lg:text-2xl text-SecondColor bg-LightColor rounded-full p-2.5 sm:p-3 lg:p-3.5 lg:w-[60px] text-center ${poppingsFont700.className}`}
+											className={`w-[48px] sm:w-[52px] text-lg sm:text-xl lg:text-2xl text-SecondColor bg-LightColor rounded-full p-2.5 sm:p-3 lg:p-3.5 lg:w-[60px] text-center poppinsFont700`}
 										>
 											<FontAwesomeIcon icon={faEllipsis} />
 										</p>
 
-										<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg ${poppingsFont700.className}`}>Zobacz więcej</p>
+										<p className={`whitespace-nowrap text-sm sm:text-base lg:text-lg poppinsFont700`}>Zobacz więcej</p>
 									</button>
 								)}
 							</div>

@@ -1,14 +1,8 @@
 "use client";
 
-import { Poppins } from "next/font/google";
-import PostTile from "./postTile";
 import { useEffect, useState } from "react";
+import PostTile from "./postTile";
 import PostTileSkeleton from "./postTileSkeleton";
-
-const poppingsFont600 = Poppins({
-	weight: "600",
-	subsets: ["latin"],
-});
 
 export default function PostContainer() {
 	const [posts, setPosts] = useState<JustPostDataType[]>([]);
@@ -40,7 +34,7 @@ export default function PostContainer() {
 
 			<button
 				onClick={() => fetchPosts()}
-				className={`text-MainDarkGray bg-white border-MainDarkGray border-2 text-xs xs:text-sm md:text-base xl:text-lg px-8 py-1.5 2xl:text-lg 3xl:text-xl 3xl:py-2 3xl:px-12 rounded-3xl hover:bg-MainDarkGray hover:text-white transition-all duration-200 ease-out ${poppingsFont600.className}`}
+				className={`text-MainDarkGray bg-white border-MainDarkGray border-2 text-xs xs:text-sm md:text-base xl:text-lg px-8 py-1.5 2xl:text-lg 3xl:text-xl 3xl:py-2 3xl:px-12 rounded-3xl hover:bg-MainDarkGray hover:text-white transition-all duration-200 ease-out poppinsFont600`}
 			>
 				{button}
 			</button>

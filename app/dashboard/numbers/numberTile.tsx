@@ -1,12 +1,12 @@
 "use client";
 
-import { getDate, getMonth, getYear, isWeekend } from "date-fns";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import DayTile from "./dayTile";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getDate, getMonth, getYear, isWeekend } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import { useState } from "react";
+import DayTile from "./dayTile";
 
 const plusJakartaSansFont800 = Plus_Jakarta_Sans({
 	weight: "800",
@@ -37,7 +37,7 @@ export default function NumberTile(props: { day: number; number?: number; date: 
 		return (
 			<div className={`relative day-tile !justify-between bg-LightColor/20 `}>
 				<div className="flex justify-center sm:justify-between items-center w-full">
-					<div className={`day-number ${plusJakartaSansFont800.className} bg-LightColor text-SecondColor`}>{props.day}</div>
+					<div className={`day-number plusJakartaSansFont800 bg-LightColor text-SecondColor`}>{props.day}</div>
 					<div
 						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
 							plusJakartaSansFont800.className

@@ -1,21 +1,5 @@
 "use client";
 import { useState } from "react";
-import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
-
-const poppingsFont700 = Poppins({
-	weight: "700",
-	subsets: ["latin"],
-});
-
-const poppingsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
-
-const plusJakartaSans800 = Plus_Jakarta_Sans({
-	weight: "800",
-	subsets: ["latin"],
-});
 
 export default function CreateEventForm(props: { refetchEvents: Function; tags: EventTagDataType[] }) {
 	const [newName, setNewName] = useState("");
@@ -58,7 +42,7 @@ export default function CreateEventForm(props: { refetchEvents: Function; tags: 
 
 	return (
 		<div className="flex flex-col items-center h-fit w-full text-left border-2 hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 3xl:px-10 xl:py-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl">
-			<h1 className={`w-full sm:text-xl md:text-2xl ${poppingsFont700.className}`}>Dodaj nowe wydarzenie</h1>
+			<h1 className={`w-full sm:text-xl md:text-2xl poppinsFont700`}>Dodaj nowe wydarzenie</h1>
 
 			<div className="flex gap-1.5 sm:gap-2 md:gap-3 w-full">
 				<input
@@ -91,7 +75,7 @@ export default function CreateEventForm(props: { refetchEvents: Function; tags: 
 							style={{ backgroundColor: selectedTags[i] ? "white" : tag.color }}
 						/>
 						<p
-							className={`text-xs whitespace-nowrap sm:text-sm md:text-base transition-color duration-300 ${poppingsFont500.className} ${
+							className={`text-xs whitespace-nowrap sm:text-sm md:text-base transition-color duration-300 poppinsFont500 ${
 								selectedTags[i] ? "text-white" : "text-MainDarkGray"
 							}`}
 						>
@@ -111,7 +95,7 @@ export default function CreateEventForm(props: { refetchEvents: Function; tags: 
 
 			<button
 				onClick={() => upload()}
-				className={`w-fit whitespace-nowrap bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl ${plusJakartaSans800.className}`}
+				className={`w-fit whitespace-nowrap bg-MainColor hover:bg-MainDarkGray transition-all duration-300 ease-out text-xs sm:text-sm md:text-base lg:text-lg px-12 sm:px-20 py-2 sm:py-3 text-white rounded-3xl plusJakartaSans800`}
 			>
 				{buttonText}
 			</button>
