@@ -19,7 +19,7 @@ const poppingsFont400 = Poppins({
 
 export default function PostHeading(props: { post: PostDataType }) {
 	function returnDate() {
-		const months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+	const months = ["Stycznia", "Lutego", "Marca", "Kwietnia", "Maja", "Czerwca", "Lipca", "Sierpnia", "Września", "Października", "Listopada", "Grudnia"];
 
 		let date = new Date(props.post.createdAt);
 		return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();

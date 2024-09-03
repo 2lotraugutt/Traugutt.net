@@ -1,4 +1,4 @@
-import { faL, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { parse } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
@@ -35,7 +35,7 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 	const [isEditing, setIsEditing] = useState(false);
 
 	function returnDate(date: string) {
-		const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+		const months = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
 
 		let newDate = new Date(date);
 

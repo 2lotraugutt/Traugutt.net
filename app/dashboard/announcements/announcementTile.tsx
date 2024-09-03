@@ -1,5 +1,5 @@
 import AnnouncementsCalendar from "@/components/announcements/announcementsCalendar";
-import { faBackward, faForward, faPaperPlane, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBackward, faForward, faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
@@ -74,7 +74,7 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 		}
 	}
 
-	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+	const months = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
 	let date = new Date(props.announcementData.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 

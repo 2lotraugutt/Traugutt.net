@@ -20,7 +20,7 @@ const poppingsFont400 = Poppins({
 });
 
 export default function PostTile(props: { postData: JustPostDataType }) {
-	const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+	const months = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
 
 	let date = new Date(props.postData.createdAt);
 	const dateToDisplay = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
