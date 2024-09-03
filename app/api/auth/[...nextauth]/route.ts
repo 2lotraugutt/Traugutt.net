@@ -72,16 +72,14 @@ export const authOptions: AuthOptions = {
 				} else {
 					const fetchedLdapUser: LDAPUser = await searchUser(client, LDAPUser);
 
-					var roleTag;
+					var roleTag = "STUDENT";
 					if (fetchedLdapUser.userType == "Nauczyciele") {
 						roleTag = "TEACHER";
-					} else {
-						roleTag = "STUDENT";
 					}
 
 					const createdUser: UserDataType = await prisma.user.create({
 						data: {
-							class: (roleTag = "STUDENT" ? fetchedLdapUser.userType : undefined),
+							class: roleTag == "STUDENT" ? fetchedLdapUser.userType : undefined,
 							login,
 							name: fetchedLdapUser.name,
 							roleTag: roleTag,
