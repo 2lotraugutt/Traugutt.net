@@ -24,7 +24,7 @@ export const authOptions: AuthOptions = {
 			},
 			async authorize(credentials) {
 				credentials = credentials as Record<"login" | "password", string>;
-				if (credentials.password == "undefined" || credentials.login == "undefined") return null;
+				if (credentials.password == "undefined" || credentials.login == "undefined" || !credentials.password || !credentials.login) return null;
 
 				const LDAPUser = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)![0] + "@traugutt.lan";
 				const login = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)![0];
