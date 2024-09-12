@@ -1,14 +1,8 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
-import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function Page() {
 	const { data: session, status } = useSession();

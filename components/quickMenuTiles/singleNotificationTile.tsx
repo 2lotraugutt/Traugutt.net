@@ -2,13 +2,7 @@
 
 import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Poppins } from "next/font/google";
 import { useState } from "react";
-
-const poppinsFont300 = Poppins({
-	weight: "300",
-	subsets: ["latin"],
-});
 
 export default function SingleNotificationTile(props: { notification: JustNotificationDataType }) {
 	const [opened, setOpened] = useState(false);
@@ -28,9 +22,9 @@ export default function SingleNotificationTile(props: { notification: JustNotifi
 				{props.notification.pinned && <FontAwesomeIcon icon={faThumbTack} className="h-3 md:h-3.5 xl:h-4" />} {props.notification.title}
 			</h1>
 			<p
-				className={`relative after:text-white text-2xs md:text-2xs xl:text-sm sm:text-xs lg:text-xs 3xl:text-base line-clamp-3 3xl:line-clamp-4 4xl:line-clamp-5 transition-all duration-300 ${
+				className={`relative after:text-white text-2xs md:text-2xs xl:text-sm sm:text-xs lg:text-xs 3xl:text-base line-clamp-3 3xl:line-clamp-4 4xl:line-clamp-5 transition-all duration-300 poppinsFont400 ${
 					opened ? "!line-clamp-none" : ""
-				} ${poppinsFont300.className}`}
+				}`}
 			>
 				{props.notification.content}
 			</p>

@@ -1,11 +1,5 @@
 import { getDaysInMonth, getISODay, startOfMonth } from "date-fns";
-import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
-
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function FreeDaysCalendar(props: { year: number }) {
 	const [days, setDays] = useState<DayDataType[]>([]);

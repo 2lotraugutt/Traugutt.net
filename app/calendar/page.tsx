@@ -6,13 +6,8 @@ import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";
 import { motion } from "framer-motion";
-import { Poppins } from "next/font/google";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function Page() {
 	const searchParams = useSearchParams();

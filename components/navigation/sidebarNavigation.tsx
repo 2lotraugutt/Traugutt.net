@@ -17,13 +17,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
-import { Poppins } from "next/font/google";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function SidebarNavigation(props: { toggle: Function }) {
 	const [openedList, setOpened] = useState<boolean[]>([]);

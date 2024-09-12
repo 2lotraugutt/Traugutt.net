@@ -1,12 +1,6 @@
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
-
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function EventComponent(props: { event: EventDataTypeWithPost }) {
 	const router = useRouter();

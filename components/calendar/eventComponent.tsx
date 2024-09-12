@@ -1,10 +1,3 @@
-import { Poppins } from "next/font/google";
-
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
-
 export default function EventComponent(props: { event: EventDataType; len: number }) {
 	return (
 		<div

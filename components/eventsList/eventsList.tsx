@@ -4,14 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDate, getMonth, startOfToday } from "date-fns";
 import { getYear } from "date-fns/fp";
 import { motion } from "framer-motion";
-import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import EventComponent from "../eventsSlider/eventComponent";
-
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function EventsList(props: { searchTagId: string | null }) {
 	const [events, setEvents] = useState<EventDataTypeWithPost[]>([]);

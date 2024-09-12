@@ -4,14 +4,10 @@ import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";
 import { getSession } from "next-auth/react";
-import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import NumbersCalendar from "./numbersCalendar";
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
+
 
 export default function Page() {
 	const [today, setToday] = useState<Date>(startOfToday());

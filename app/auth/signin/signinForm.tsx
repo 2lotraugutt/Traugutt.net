@@ -3,16 +3,9 @@
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signIn } from "next-auth/react";
-import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-
-
-const poppinsFont500 = Poppins({
-	weight: "500",
-	subsets: ["latin"],
-});
 
 export default function SigninForm(props: { redirect: string }) {
 	const [login, setLogin] = useState<string>("");
