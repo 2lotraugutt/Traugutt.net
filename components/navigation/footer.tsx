@@ -11,7 +11,7 @@ export default function Footer() {
 				<p className={`text-lg xl:text-xl 3xl:text-2xl poppinsFont700`}>II LO. TRAUGUTT</p>
 			</div>
 
-			<div className={`w-full flex flex-col items-center justify-center text-center text-sm xl:text-lg md:text-base 3xl:text-xl gap-y-4 plusJakartaSansFont700`}>
+			<div className={`w-full flex flex-col items-center justify-center text-center text-sm xl:text-lg md:text-base 3xl:text-xl gap-y-4 plusJakartaSans700`}>
 				<p>tel. 34-361-25-68</p>
 				<div>
 					<Link href={"mailto:lo2@edukacja.czestochowa.pl"} className="hover:text-MainColor transition">

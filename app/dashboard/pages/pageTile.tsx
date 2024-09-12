@@ -67,14 +67,14 @@ export default function PageTile(props: { pageData: { file: string; content: str
 			</div>
 
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => toggleEditing()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => toggleEditing()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{editing ? "Potwierdź zmiany" : "Edytuj podstronę"}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={editing ? faCheck : faPen} />
 					</div>
 				</button>
 				{editing && (
-					<button onClick={() => setEditing(false)} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+					<button onClick={() => setEditing(false)} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 						Anuluj edycję
 						<div className="dashboard-post-tile-icon">
 							<FontAwesomeIcon icon={faCancel} />
@@ -82,7 +82,7 @@ export default function PageTile(props: { pageData: { file: string; content: str
 					</button>
 				)}
 
-				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

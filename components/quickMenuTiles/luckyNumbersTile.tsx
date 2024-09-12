@@ -42,7 +42,7 @@ export default function LuckyNumbersTile() {
 				) : (
 					<div className="flex gap-1 flex-col sm:gap-4 2xl:gap-7 2xs:flex-row lg:gap-4 2xs:gap-x-2 items-center md:gap-2 justify-between">
 						<p
-							className={`text-MainDarkGray rounded-full 3xl:text-6xl 4xl:p-5 3xl:w-[100px] 4xl:w-[100px] xs:text-3xl 2xl:p-4 lg:p-2.5 3xl:p-5 lg:w-[60px] lg:text-4xl sm:text-4xl md:p-1 sm:p-3.5 xs:p-2.5 md:text-2xl text-lg 2xl:text-5xl 2xl:w-[80px] bg-white xs:w-14 sm:w-[68px] text-center md:w-10 w-[36px] p-1 plusJakartaSansFont800`}
+							className={`text-MainDarkGray rounded-full 3xl:text-6xl 4xl:p-5 3xl:w-[100px] 4xl:w-[100px] xs:text-3xl 2xl:p-4 lg:p-2.5 3xl:p-5 lg:w-[60px] lg:text-4xl sm:text-4xl md:p-1 sm:p-3.5 xs:p-2.5 md:text-2xl text-lg 2xl:text-5xl 2xl:w-[80px] bg-white xs:w-14 sm:w-[68px] text-center md:w-10 w-[36px] p-1 plusJakartaSans800`}
 						>
 							{numbers.filter((number) => number.date == date)[0]?.number ?? "-"}
 						</p>

@@ -74,7 +74,7 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					<span
 						className={`px-5 hidden md:inline-block rounded-3xl text-sm lg:py-1 lg:px-7 flex-none text-center h-fit py-0.5 text-white ${
 							status ? "bg-MainColor" : "bg-SecondColor"
-						} plusJakartaSansFont700`}
+						} plusJakartaSans700`}
 					>
 						{status ? "Publiczy" : "Nie publiczny"}
 					</span>
@@ -92,10 +92,10 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 				</div>
 			</div>
 
-			<div className={`flex flex-col md:justify-between grow md:grid grid-cols-2 lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 plusJakartaSansFont500`}>
+			<div className={`flex flex-col md:justify-between grow md:grid grid-cols-2 lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 plusJakartaSans500`}>
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Publiczny: </p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSansFont700`}>
+					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSans700`}>
 						<div className={`w-2 h-2 rounded-full ${status ? "bg-MainColor" : "bg-SecondColor"}`} />
 						{status ? "Opublikowany" : "Nie opublikowany"}
 					</div>
@@ -103,25 +103,25 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Utworzony: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{dateToDisplay}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{dateToDisplay}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Autor: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.postData.author.name}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{props.postData.author.name}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Wyświetlenia: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{returnViews()}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{returnViews()}</div>
 				</div>
 
 				<div className={`dashboardPostTileDataRow`}>
 					<p className="h-fit">{status ? "Opublikowany przez: " : "Ukryty przez: "}</p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{editedStatus ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{editedStatus ? user.name : props.postData.publishedBy?.name ?? "---"}</div>
 				</div>
 
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Przypięty: </p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSansFont700`}>
+					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSans700`}>
 						<div className={`w-2 h-2 rounded-full ${pinned ? "bg-MainColor" : "bg-SecondColor"}`} />
 						{pinned ? "Przypięty" : "Nie przypięty"}
 					</div>
@@ -129,30 +129,30 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 
 				<div className={`dashboardPostTileDataRow ${!pinned ?? "hidden"}`}>
 					<p className="h-fit">Przypięty przez: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{editedPin ? user.name : props.postData.pinnedBy?.name ?? "---"}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{editedPin ? user.name : props.postData.pinnedBy?.name ?? "---"}</div>
 				</div>
 			</div>
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => togglePost()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => togglePost()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{publishButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPaperPlane} />
 					</div>
 				</button>
-				<button onClick={() => togglePinPost()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => togglePinPost()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{pinnedButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faThumbTack} />
 					</div>
 				</button>
-				<Link href={"/dashboard/post/" + props.postData.id} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<Link href={"/dashboard/post/" + props.postData.id} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					Edytuj post
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</Link>
-				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

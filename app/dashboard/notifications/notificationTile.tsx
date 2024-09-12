@@ -109,14 +109,14 @@ export default function NotificationTile(props: { notificationData: Notification
 				)}
 			</div>
 
-			<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 plusJakartaSansFont500`}>
+			<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 plusJakartaSans500`}>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Utworzony: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{dateToDisplay}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{dateToDisplay}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Autor: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.notificationData.author.name}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{props.notificationData.author.name}</div>
 				</div>
 			</div>
 
@@ -129,7 +129,7 @@ export default function NotificationTile(props: { notificationData: Notification
 							setEditButtonText("Potwierdź edycje");
 						}
 					}}
-					className={`group/button dashboard-post-tile plusJakartaSansFont700`}
+					className={`group/button dashboard-post-tile plusJakartaSans700`}
 				>
 					{editButtonText}
 					<div className="dashboard-post-tile-icon">
@@ -137,14 +137,14 @@ export default function NotificationTile(props: { notificationData: Notification
 					</div>
 				</button>
 
-				<button onClick={() => togglePin()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => togglePin()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{pinButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faThumbTack} />
 					</div>
 				</button>
 
-				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => deleteNotification()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

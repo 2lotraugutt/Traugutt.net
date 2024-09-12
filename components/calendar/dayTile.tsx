@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import WeekendTile from "./weekendTile";
 
-const plusJakartaSansFont800 = Plus_Jakarta_Sans({
+const plusJakartaSans800 = Plus_Jakarta_Sans({
 	weight: "800",
 	subsets: ["latin"],
 });

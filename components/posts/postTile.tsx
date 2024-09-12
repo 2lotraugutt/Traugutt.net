@@ -12,7 +12,7 @@ export default function PostTile(props: { postData: JustPostDataType }) {
 	return (
 		<Link href={"/post/" + props.postData.id} className="group h-fit overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]">
 			<div
-				className={`bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-8 rounded-2xl sm:py-1 py-0.75 px-3 sm:px-6 plusJakartaSansFont800`}
+				className={`bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs xl:text-base 4xl:text-base 2xl:text-lg 3xl:px-8 rounded-2xl sm:py-1 py-0.75 px-3 sm:px-6 plusJakartaSans800`}
 			>
 				{dateToDisplay}
 			</div>

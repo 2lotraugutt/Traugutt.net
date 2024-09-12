@@ -55,29 +55,29 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 				</div>
 			</div>
 
-			<div className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 flex-wrap plusJakartaSansFont500`}>
+			<div className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 flex-wrap plusJakartaSans500`}>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Data: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{returnDate(props.eventData.date)}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{returnDate(props.eventData.date)}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Utworzony: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{returnDate(props.eventData.createdAt.toString())}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{returnDate(props.eventData.createdAt.toString())}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Autor: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.eventData.author.name}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{props.eventData.author.name}</div>
 				</div>
 			</div>
 
 			<div className="flex sm:grid sm:grid-cols-2 md:flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<button onClick={() => setIsEditing(true)} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => setIsEditing(true)} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					Edytuj wydarzenie
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</button>
-				<button onClick={() => deleteEvent()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => deleteEvent()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

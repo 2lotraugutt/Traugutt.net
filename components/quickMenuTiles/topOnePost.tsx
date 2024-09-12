@@ -25,7 +25,7 @@ export default function TopOnePost() {
 				className="group col-span-2 row-span-2 md:col-span-2 overflow-hidden cursor-pointer relative rounded-3xl xs:rounded-4xl aspect-[25/16]"
 			>
 				<div
-					className={`bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs sm:text-base 2xl:text-xl rounded-2xl py-0.75 px-4 sm:px-8 plusJakartaSansFont800`}
+					className={`bg-white z-10 text-MainDarkGray absolute top-4 xs:top-8 left-4 xs:left-8 w-fit text-xs sm:text-base 2xl:text-xl rounded-2xl py-0.75 px-4 sm:px-8 plusJakartaSans800`}
 				>
 					{topOnePost.pinned ? <FontAwesomeIcon icon={faThumbTack} /> : <> TOP #1</>}
 				</div>

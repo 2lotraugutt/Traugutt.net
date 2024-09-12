@@ -29,14 +29,14 @@ export default function UserPostTile(props: { userData: UserDataType; roles: Rol
 				</p>
 			</div>
 
-			<div className={`flex flex-col lg:flex-row md:justify-between 2xl:justify-end xl:gap-10 grow gap-y-2 plusJakartaSansFont500`}>
+			<div className={`flex flex-col lg:flex-row md:justify-between 2xl:justify-end xl:gap-10 grow gap-y-2 plusJakartaSans500`}>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Login: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.userData.login}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{props.userData.login}</div>
 				</div>
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Email: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.userData.email}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{props.userData.email}</div>
 				</div>
 
 				<div className="dashboardPostTileDataRow">
@@ -44,7 +44,7 @@ export default function UserPostTile(props: { userData: UserDataType; roles: Rol
 
 					<select
 						onChange={async (e) => await fetch(`/api/dashboard/users/user/setRole/${props.userData.id}?role=${e.target.value}`)}
-						className={`outline-none bg-LightGray/40 transition-all duration-300 hover:!bg-LightGray group-hover:bg-white !py-1 !px-5 !border-none dashboardPostTileData plusJakartaSansFont700`}
+						className={`outline-none bg-LightGray/40 transition-all duration-300 hover:!bg-LightGray group-hover:bg-white !py-1 !px-5 !border-none dashboardPostTileData plusJakartaSans700`}
 					>
 						{props.roles.map((role, index) => {
 							return (
@@ -58,7 +58,7 @@ export default function UserPostTile(props: { userData: UserDataType; roles: Rol
 			</div>
 
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row 3xl:flex-col gap-x-5">
-				<button onClick={() => deleteUser()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => deleteUser()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

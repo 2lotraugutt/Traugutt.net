@@ -35,7 +35,7 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 				>
 					Numerek:
 					<motion.div
-						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full plusJakartaSansFont800`}
+						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full plusJakartaSans800`}
 					>
 						{props.expandedDayData.number}
 					</motion.div>
@@ -46,7 +46,7 @@ export default function ExpandingDay(props: { expandedDayData: DayDataType; expa
 				<motion.div className="flex w-full flex-col gap-y-2 md:gap-y-4 xl:gap-y-5 items-start">
 					<motion.p
 						className={`text-md lg:text-lg xl:text-xl 3xl:text-2xl text-MainDarkGray 
-						 plusJakartaSansFont800`}
+						 plusJakartaSans800`}
 					>
 						Wydarzenia:
 					</motion.p>

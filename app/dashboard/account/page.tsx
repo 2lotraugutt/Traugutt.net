@@ -85,7 +85,7 @@ export default function Page() {
 						<p className={`text-base sm:text-lg xl:text-xl poppinsFont700`}>{accountData.role.name}</p>
 					</div>
 				</div>
-				<button onClick={() => signOut({ callbackUrl: "/" })} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => signOut({ callbackUrl: "/" })} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					Wyloguj się
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faSignOut} />

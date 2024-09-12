@@ -55,7 +55,7 @@ function SearchEventTile(props: { event: EventDataTypeWithPost; searchPhrase: st
 					/>
 				)}
 
-				<div className={`text-white bg-DarkColor/90 w-fit text-2xs lg:text-xs 2xl:text-base rounded-2xl py-1 px-2 sm:px-3 sm:py-1.5 plusJakartaSansFont600`}>
+				<div className={`text-white bg-DarkColor/90 w-fit text-2xs lg:text-xs 2xl:text-base rounded-2xl py-1 px-2 sm:px-3 sm:py-1.5 plusJakartaSans600`}>
 					{dateToDisplay}
 				</div>
 			</div>

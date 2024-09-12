@@ -51,7 +51,7 @@ export default function CalendarTile() {
 			</div>
 
 			{event && (
-				<div className={`w-full xl:flex hidden gap-x-3 2xl:gap-x-5 flex-row items-center plusJakartaSansFont700`}>
+				<div className={`w-full xl:flex hidden gap-x-3 2xl:gap-x-5 flex-row items-center plusJakartaSans700`}>
 					<FontAwesomeIcon
 						icon={faBell}
 						className="text-MainDarkGray aspect-square bg-white h-5 w-5 2xl:w-7 2xl:h-7 3xl:w-9 2xl:p-2 4xl:p-3 3xl:h-9 4xl:w-10 4xl:h-10 p-1.5 rounded-full"

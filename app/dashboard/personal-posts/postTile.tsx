@@ -43,7 +43,7 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 					<span
 						className={`px-5 hidden md:inline-block rounded-3xl text-sm lg:py-1 lg:px-7 flex-none text-center h-fit py-0.5 text-white ${
 							props.postData.published ? "bg-MainColor" : "bg-SecondColor"
-						} plusJakartaSansFont700`}
+						} plusJakartaSans700`}
 					>
 						{props.postData.published ? "Publiczy" : "Nie publiczny"}
 					</span>
@@ -64,11 +64,11 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 			<div
 				className={`flex flex-col md:flex-row md:justify-between xl:justify-evenly xl:gap-5 grow gap-y-2 ${
 					props.postData.publishedBy && props.postData.published ? "flex-wrap" : ""
-				} plusJakartaSansFont500`}
+				} plusJakartaSans500`}
 			>
 				<div className="dashboardPostTileDataRow md:hidden ">
 					<p className="h-fit">Publiczny: </p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSansFont700`}>
+					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSans700`}>
 						<div className={`w-2 h-2 rounded-full ${props.postData.published ? "bg-MainColor" : "bg-SecondColor"}`} />{" "}
 						{props.postData.published ? "Opublikowany" : "Nie opublikowany"}
 					</div>
@@ -76,22 +76,22 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Utworzony: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{dateToDisplay}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{dateToDisplay}</div>
 				</div>
 
 				<div className="dashboardPostTileDataRow">
 					<p className="h-fit">Wyświetlenia: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{returnViews()}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{returnViews()}</div>
 				</div>
 
 				<div className={`dashboardPostTileDataRow ${props.postData.publishedBy && props.postData.published ? "" : "!hidden"}`}>
 					<p className="h-fit">Opublikowany przez: </p>
-					<div className={`dashboardPostTileData plusJakartaSansFont700`}>{props.postData.publishedBy?.name}</div>
+					<div className={`dashboardPostTileData plusJakartaSans700`}>{props.postData.publishedBy?.name}</div>
 				</div>
 
 				<div className="dashboardPostTileDataRow md:hidden">
 					<p className="h-fit">Przypięty: </p>
-					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSansFont700`}>
+					<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSans700`}>
 						<div className={`w-2 h-2 rounded-full ${props.postData.pinned ? "bg-MainColor" : "bg-SecondColor"}`} />{" "}
 						{props.postData.pinned ? "Przypięty" : "Nie przypięty"}
 					</div>
@@ -99,19 +99,19 @@ export default function DashboardPostTile(props: { postData: PostDataType; refet
 			</div>
 
 			<div className="flex justify-between xl:justify-normal gap-y-2 2xl:gap-y-3 flex-col md:flex-row xl:flex-col gap-x-5">
-				<Link href={"/post/" + props.postData.id} className={`${props.postData.published ? "" : "hidden"} group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<Link href={"/post/" + props.postData.id} className={`${props.postData.published ? "" : "hidden"} group/button dashboard-post-tile plusJakartaSans700`}>
 					Zobacz post
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faArrowRight} />
 					</div>
 				</Link>
-				<Link href={"/dashboard/post/" + props.postData.id} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<Link href={"/dashboard/post/" + props.postData.id} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					Edytuj post
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faPen} />
 					</div>
 				</Link>
-				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile plusJakartaSansFont700`}>
+				<button onClick={() => deletePost()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
 					{deleteButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={faTrash} />

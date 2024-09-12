@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import EventsContainer from "./eventsContainer";
 
-const plusJakartaSansFont800 = Plus_Jakarta_Sans({
+const plusJakartaSans800 = Plus_Jakarta_Sans({
 	weight: "800",
 	subsets: ["latin"],
 });
@@ -17,11 +17,7 @@ export default function WeekendTile(props: { date: Date; events?: EventDataType[
 				isToday(props.date) ? "!border-[1.5px] md:!border-2 scale-105 md:scale-110 border-MainDarkGray/30" : ""
 			}`}
 		>
-			<div
-				className={`${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-MediumGray text-MainDarkGray/70"} day-number ${
-					plusJakartaSansFont800.className
-				}`}
-			>
+			<div className={`${props.differentMonth ? "bg-LightGray text-MainDarkGray/50" : "bg-MediumGray text-MainDarkGray/70"} day-number ${plusJakartaSans800.className}`}>
 				{getDate(props.date)}
 			</div>
 			{props.events ? <EventsContainer events={props.events} /> : <></>}
@@ -29,7 +25,7 @@ export default function WeekendTile(props: { date: Date; events?: EventDataType[
 			{props.events && props.events.length != 0 && (
 				<div className="flex absolute left-1/2 -translate-x-1/2 2xs:bottom-1 md:hidden xs:bottom-2 -bottom-1.5 items-center gap-x-1">
 					<motion.div className="h-1 w-1 xs:w-1.5 xs:h-1.5 sm:h-2 sm:w-2 rounded-full bg-MainDarkGray/60"></motion.div>
-					<p className={`hidden sm:block text-xs plusJakartaSansFont800`}>{props.events.length}</p>
+					<p className={`hidden sm:block text-xs plusJakartaSans800`}>{props.events.length}</p>
 				</div>
 			)}
 		</motion.div>
