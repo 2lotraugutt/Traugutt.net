@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	output: "standalone",
 	images: {
 		domains: ["2lo.traugutt.net", "lh3.googleusercontent.com", "cdn.discordapp.com", "traugutt.net"],
 	},

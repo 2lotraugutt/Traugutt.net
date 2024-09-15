@@ -18,7 +18,7 @@ model User {
   roleTag String @default("USER")
   role    Role   @relation("Role", fields: [roleTag], references: [tag])
 
-  class String? 
+  class String?
 
   posts          Post[]         @relation("Author")
   announcements  Announcement[]
