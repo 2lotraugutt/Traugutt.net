@@ -26,7 +26,7 @@ export default function Page() {
 	}, []);
 
 	async function fetchNCM() {
-		const fetchedData = await (await fetch("/api/ncm", { cache: "no-cache" })).json();
+		const fetchedData = await(await fetch("/api/ncm", { cache: "no-store" })).json();
 		setNetworkStatus(fetchedData);
 		setTimeout(() => fetchNCM(), 1000);
 	}
