@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 			const name = uuid_v4() + "." + image.name.split(".").pop();
 			const path = `./postImages/${name}`;
 			const imgPath = `https://traugutt.eu/postImages/${name}`;
-			await writeFile(path, buffer);
+			await writeFile(path, new Uint8Array(buffer));
 
 			for (const image of gallery) {
 				const name = uuid_v4() + "." + image.name.split(".").pop();
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 				const buffer = Buffer.from(bytes);
 				const path = `./postImages/${name}`;
 				imgPaths.push(`https://traugutt.eu/postImages/${name}`);
-				await writeFile(path, buffer);
+				await writeFile(path, new Uint8Array(buffer));
 			}
 
 			await prisma.post.create({
@@ -79,7 +79,7 @@ export async function PUT(request: NextRequest) {
 				const name = uuid_v4() + "." + image.name.split(".").pop();
 				const path = `./postImages/${name}`;
 				imgPath = `https://traugutt.eu/postImages/${name}`;
-				await writeFile(path, buffer);
+				await writeFile(path, new Uint8Array(buffer));
 			}
 
 			// Editing photos is #TODO

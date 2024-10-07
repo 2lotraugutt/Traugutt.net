@@ -27,7 +27,7 @@ export default function Page() {
 
 	async function fetchNCM() {
 		try {
-			const response = await fetch("/api/ncm");
+			const response = await fetch("/api/ncm", { cache: "no-cache" });
 
 			// Check if the response is not empty or invalid
 			if (!response.ok) {
