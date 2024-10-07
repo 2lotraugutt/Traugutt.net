@@ -6,40 +6,16 @@ services:
       - "3000:3000"
     env_file:
       - .env
-    depends_on:
-      - postgres
     volumes:
       - .:/app
     networks:
       - app-network
     command: >
       sh -c "
-        until nc -z postgres.trauguttnet.orb.local 5432; do
-          echo 'Waiting for PostgreSQL...';
-          sleep 1;
-        done;
-        echo 'PostgreSQL is up';
         npx prisma db push
         npm run build
         npm run start
       "
-
-  postgres:
-    image: postgres:15-alpine
-    container_name: postgres_db
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    networks:
-      - app-network
-
-volumes:
-  pgdata:
 
 networks:
   app-network:

@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Install netcat
-RUN apk add --no-cache netcat-openbsd
+# RUN apk add --no-cache netcat-openbsd
 
 # Set the working directory
 WORKDIR /app
