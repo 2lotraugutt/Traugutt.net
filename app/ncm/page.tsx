@@ -41,20 +41,25 @@ export default function Page() {
 							<h3 className={`ms-1 text-base xs:text-lg sm:text-xl 2xl:text-lg text-center 4xl:text-xl poppinsFont700 mb-3`}>{locationName}</h3>
 							<div className="flex flex-col gap-y-1.5 sm:gap-2 md:gap-3">
 								{Object.entries(devices).map(([deviceName, deviceData], j) => {
-									return (
-										<div
-											key={j}
-											className={`flex justify-center flex-col items-center w-full p-1 rounded-lg
-												${deviceData.last_seen_d == 0 ? "border-[#1fd15d]" : deviceData.last_seen_d < 5 ? "border-orange-400" : "border-MainRed"}
-												${deviceData.type == "critical" ? "border-[2.5px]" : "border-2"}
-												${deviceData.type == "critical" && deviceData.last_seen_d > 5 && "bg-LightRed"}`}
-										>
-											<p className="plusJakartaSans500 text-sm md:text-base">{deviceName}</p>
-											<p className="text-MainDarkGray/70 text-xs md:text-sm xl:text-base ">
-												{deviceData.last_seen_d == 0 ? <> {deviceData.rtt / 1000}ms </> : <>Last seen: {deviceData.last_seen_d}s</>}
-											</p>
-										</div>
-									);
+									if (deviceData.type == "optional" && deviceData.last_seen_d > 10) return null;
+									else
+										return (
+											<div
+												key={j}
+												className={`flex justify-center flex-col items-center w-full p-1 rounded-lg 
+												${deviceData.rtt > 3000 && "border-yellow-400"} 
+												${deviceData.last_seen_d <= 1 ? "border-[#1fd15d]" : deviceData.last_seen_d < 7 ? "border-orange-400" : "border-MainRed"} 
+												${deviceData.type == "critical" ? "border-[2.5px]" : "border-2"} 
+												${deviceData.type == "critical" && deviceData.rtt > 3000 && "bg-[#FFFFC2]"} 
+												${deviceData.type == "critical" && deviceData.last_seen_d > 5 && "bg-LightRed"}
+												`}
+											>
+												<p className="plusJakartaSans500 text-sm md:text-base">{deviceName}</p>
+												<p className="text-MainDarkGray/70 text-xs md:text-sm xl:text-base ">
+													{deviceData.last_seen_d <= 1 ? <> {deviceData.rtt / 1000}ms </> : <>Last seen: {deviceData.last_seen_d}s</>}
+												</p>
+											</div>
+										);
 								})}
 							</div>
 						</div>
