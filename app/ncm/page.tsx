@@ -31,6 +31,26 @@ export default function Page() {
 		setTimeout(() => fetchNCM(), 1000);
 	}
 
+	function formatUnixTimestamp(unixTimestamp: number): string {
+		const date = new Date(unixTimestamp * 1000);
+		const now = new Date();
+
+		// Compare the year, month, and date
+		const isSameDay = date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate();
+
+		// Options for time and date formatting
+		const timeOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
+		const dateOptions: Intl.DateTimeFormatOptions = { year: "numeric", month: "2-digit", day: "2-digit" };
+
+		if (isSameDay) {
+			// Format time only
+			return "Last seen: " + date.toLocaleTimeString([], timeOptions);
+		} else {
+			// Format date and time
+			return `${date.toLocaleTimeString([], timeOptions)} ${date.toLocaleDateString([], dateOptions)}`;
+		}
+	}
+
 	return (
 		<div className={`w-full grid gap-y-5 3xl:grid-flow-col grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 lg:grid-cols-4 3xl:auto-cols-fr`}>
 			{Object.entries(networkStatus).map(
@@ -41,7 +61,7 @@ export default function Page() {
 							<h3 className={`ms-1 text-base xs:text-lg sm:text-xl 2xl:text-lg text-center 4xl:text-xl poppinsFont700 mb-3`}>{locationName}</h3>
 							<div className="flex flex-col gap-y-1.5 sm:gap-2 md:gap-3">
 								{Object.entries(devices).map(([deviceName, deviceData], j) => {
-									if (deviceData.type == "optional" && deviceData.last_seen_d > 10) return null;
+									if (deviceData.type == "optional" && deviceData.last_seen_d > 300) return null;
 									else
 										return (
 											<div
@@ -56,7 +76,13 @@ export default function Page() {
 											>
 												<p className="plusJakartaSans500 text-sm md:text-base">{deviceName}</p>
 												<p className="text-MainDarkGray/70 text-xs md:text-sm xl:text-base ">
-													{deviceData.last_seen_d <= 1 ? <> {deviceData.rtt / 1000}ms </> : <>Last seen: {deviceData.last_seen_d}s</>}
+													{deviceData.last_seen_d <= 1 ? (
+														<> {deviceData.rtt / 1000}ms </>
+													) : deviceData.last_seen_d < 180 ? (
+														<>Last seen: {deviceData.last_seen_d}</>
+													) : (
+														formatUnixTimestamp(deviceData.last_seen)
+													)}
 												</p>
 											</div>
 										);
