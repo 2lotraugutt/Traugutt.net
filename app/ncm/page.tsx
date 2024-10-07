@@ -53,15 +53,16 @@ export default function Page() {
 	return (
 		<div className={`w-full grid gap-y-5 3xl:grid-flow-col grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 lg:grid-cols-4 3xl:auto-cols-fr`}>
 			{Object.entries(networkStatus).map(
-				([locationName, devices]) =>
+				([locationName, devices], i) =>
 					locationName != "" &&
 					devices && (
-						<div className={`px-2`}>
+						<div key={i} className={`px-2`}>
 							<h3 className={`ms-1 text-md xs:text-lg sm:text-xl 2xl:text-lg text-center 4xl:text-xl poppinsFont700 mb-3`}>{locationName}</h3>
 							<div className=" flex flex-col gap-y-3">
-								{Object.entries(devices).map(([deviceName, deviceData]) => {
+								{Object.entries(devices).map(([deviceName, deviceData], j) => {
 									return (
 										<div
+											key={j}
 											className={`flex justify-center flex-col items-center w-full rounded-lg
 												${deviceData.last_seen_d == 0 ? "border-[#1fd15d]" : deviceData.last_seen_d < 5 ? "border-orange-400" : "border-MainRed"}
 												${deviceData.type == "critical" ? "border-[2.5px]" : "border-2"}
