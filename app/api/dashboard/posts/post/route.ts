@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 			const buffer = Buffer.from(bytes);
 			const name = uuid_v4() + "." + image.name.split(".").pop();
 			const path = `./postImages/${name}`;
-			const imgPath = `https://traugutt.eu/postImages/${name}`;
+			const imgPath = `https://traugutt.net/postImages/${name}`;
 			await writeFile(path, new Uint8Array(buffer));
 
 			for (const image of gallery) {
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 				const bytes = await image.arrayBuffer();
 				const buffer = Buffer.from(bytes);
 				const path = `./postImages/${name}`;
-				imgPaths.push(`https://traugutt.eu/postImages/${name}`);
+				imgPaths.push(`https://traugutt.net/postImages/${name}`);
 				await writeFile(path, new Uint8Array(buffer));
 			}
 
@@ -78,7 +78,7 @@ export async function PUT(request: NextRequest) {
 				const buffer = Buffer.from(bytes);
 				const name = uuid_v4() + "." + image.name.split(".").pop();
 				const path = `./postImages/${name}`;
-				imgPath = `https://traugutt.eu/postImages/${name}`;
+				imgPath = `https://traugutt.net/postImages/${name}`;
 				await writeFile(path, new Uint8Array(buffer));
 			}
 

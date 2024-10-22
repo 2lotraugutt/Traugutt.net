@@ -135,7 +135,7 @@ export default function Page() {
 										</div>
 										<Link
 											target="blank"
-											href={route.link[0] == "/" ? "https://traugutt.eu" + route.link : route.link}
+											href={route.link[0] == "/" ? "https://traugutt.net" + route.link : route.link}
 											className="text-xs sm:text-sm md:text-base lg:text-lg hover:text-MainColor transition-all"
 										>
 											{route.link}
