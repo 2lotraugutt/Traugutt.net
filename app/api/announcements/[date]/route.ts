@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { date: string } }) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
@@ -19,7 +19,14 @@ export async function GET(request: NextRequest, { params }: { params: { date: st
 				orderBy: { timeStamp: "asc" },
 			},
 		},
-		where: { days: { some: { date: date } } },
+		where: {
+			AND: [
+				{ days: { some: { date: date } } },
+				{
+					published: true,
+				},
+			],
+		},
 	});
 
 	return NextResponse.json(announcements);

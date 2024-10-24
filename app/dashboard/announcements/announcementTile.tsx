@@ -2,9 +2,11 @@ import AnnouncementsCalendar from "@/components/announcements/announcementsCalen
 import { faBackward, faForward, faPaperPlane, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMonth, getYear, startOfToday } from "date-fns";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 export default function AnnouncementTile(props: { announcementData: AnnouncementDataType; refetchAnnouncements: Function }) {
+	const [publishButtonText, setPublishButtonText] = useState(props.announcementData.published ? "Ukryj post" : "Opublikuj post");
 	const [content, setContent] = useState<string>(props.announcementData.content);
 	const [deleteButtonText, setDeleteButtonText] = useState("Usuń komunikat");
 	const [editButtonText, setEditButtonText] = useState("Edytuj komunikat");
@@ -12,6 +14,8 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 	const [month, setMonth] = useState<number>(getMonth(startOfToday()));
 	const [year, setYear] = useState<number>(getYear(startOfToday()));
 	const [selectedDays, setSelectedDays] = useState<string[]>([...props.announcementData.days.map((day) => day.date)]);
+	const [status, setStatus] = useState(props.announcementData.published);
+	const [editedStatus, setEditedStatus] = useState(false);
 
 	async function deleteNotification() {
 		setDeleteButtonText("Usuwanie...");
@@ -29,7 +33,15 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 		await props.refetchAnnouncements();
 		setDeleteButtonText("Usuń komunikat");
 	}
+	async function toggleAnnouncement() {
+		setPublishButtonText("Ładowanie...");
 
+		const newStatus = await(await fetch(`/api/dashboard/announcement/publish/${props.announcementData.id}?toggle=${!status}`)).json();
+
+		setStatus(newStatus);
+		setPublishButtonText(newStatus ? "Ukryj post" : "Opublikuj post");
+		setEditedStatus(true);
+	}
 	async function update() {
 		setEditButtonText("Edytowanie...");
 		const data = new FormData();
@@ -52,6 +64,9 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 			setEditButtonText("Edytuj komunikat");
 		}
 	}
+
+	const { data: session } = useSession();
+	const user = session?.user as JustUserDataType;
 
 	const months = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
 	let date = new Date(props.announcementData.createdAt);
@@ -101,12 +116,23 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 			{!isEditing && (
 				<div className={`flex flex-col md:justify-between grow lg:gap-y-5 2xl:gap-y-7 xl:gap-y-9 md:gap-x-5 gap-y-2 plusJakartaSans500`}>
 					<div className="dashboardPostTileDataRow">
+						<p className="h-fit">Publiczny: </p>
+						<div className={`dashboardPostTileData flex items-center gap-x-2 plusJakartaSans700`}>
+							<div className={`w-2 h-2 rounded-full ${status ? "bg-MainColor" : "bg-SecondColor"}`} />
+							{status ? "Opublikowany" : "Nie opublikowany"}
+						</div>
+					</div>
+					<div className="dashboardPostTileDataRow">
 						<p className="h-fit">Utworzony: </p>
 						<div className={`dashboardPostTileData plusJakartaSans700`}>{dateToDisplay}</div>
 					</div>
 					<div className="dashboardPostTileDataRow">
 						<p className="h-fit">Autor: </p>
 						<div className={`dashboardPostTileData plusJakartaSans700`}>{props.announcementData.author.name}</div>
+					</div>
+					<div className="dashboardPostTileDataRow">
+						<p className="h-fit">{status ? "Opublikowany przez: " : "Ukryty przez: "}</p>
+						<div className={`dashboardPostTileData plusJakartaSans700`}>{editedStatus ? user.name : props.announcementData.publishedBy?.name ?? "---"}</div>{" "}
 					</div>
 				</div>
 			)}
@@ -136,6 +162,13 @@ export default function AnnouncementTile(props: { announcementData: Announcement
 					{editButtonText}
 					<div className="dashboard-post-tile-icon">
 						<FontAwesomeIcon icon={isEditing ? faPaperPlane : faPen} />
+					</div>
+				</button>
+
+				<button onClick={() => toggleAnnouncement()} className={`group/button dashboard-post-tile plusJakartaSans700`}>
+					{publishButtonText}
+					<div className="dashboard-post-tile-icon">
+						<FontAwesomeIcon icon={faPaperPlane} />
 					</div>
 				</button>
 

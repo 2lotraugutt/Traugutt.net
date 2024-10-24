@@ -20,14 +20,15 @@ model User {
 
   class String?
 
-  posts          Post[]         @relation("Author")
-  announcements  Announcement[]
-  tags           EventTag[]
-  event          Event[]        @relation("Event author")
-  notification   Notification[]
-  publishedPosts Post[]         @relation("Published")
-  pinnedPosts    Post[]         @relation("Pinned")
-  editedPosts    Post[]         @relation("Edited")
+  posts                  Post[]         @relation("Author")
+  announcements          Announcement[]
+  tags                   EventTag[]
+  event                  Event[]        @relation("Event author")
+  notification           Notification[]
+  publishedPosts         Post[]         @relation("Published post")
+  publishedAnnouncements Announcement[] @relation("Published announcement")
+  pinnedPosts            Post[]         @relation("Pinned")
+  editedPosts            Post[]         @relation("Edited")
 }
 
 model Role {
@@ -64,7 +65,7 @@ model Post {
   author   User   @relation("Author", fields: [authorId], references: [id])
 
   publishedById String? @db.Uuid
-  publishedBy   User?   @relation("Published", fields: [publishedById], references: [id])
+  publishedBy   User?   @relation("Published post", fields: [publishedById], references: [id])
 
   pinnedById String? @db.Uuid
   pinnedBy   User?   @relation("Pinned", fields: [pinnedById], references: [id])
@@ -148,10 +149,13 @@ enum RouteCategory {
 }
 
 model Announcement {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt DateTime @default(now())
-  content   String
-  days      Day[]
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt     DateTime @default(now())
+  published     Boolean  @default(false)
+  content       String
+  days          Day[]
+  publishedById String?  @db.Uuid
+  publishedBy   User?    @relation("Published announcement", fields: [publishedById], references: [id])
 
   authorId String @db.Uuid
   author   User   @relation(fields: [authorId], references: [id])
