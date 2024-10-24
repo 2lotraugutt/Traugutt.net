@@ -1,20 +1,19 @@
 services:
-  nextjs-app:
+  traugutt-net-web-image:
     build: .
-    container_name: nextjs_app
+    container_name: traugutt-net-website
     ports:
       - "3000:3000"
     env_file:
       - .env
     depends_on:
-      - postgres
+      - traugutt-net-post-image
     volumes:
       - .:/app
-    networks:
-      - app-network
+      - /hdd/postImages:/app/postImages
     command: >
       sh -c "
-        until nc -z postgres.trauguttnet.orb.local 5432; do
+        until nc -z 10.11.1.11 5432; do
           echo 'Waiting for PostgreSQL...';
           sleep 1;
         done;
@@ -23,10 +22,13 @@ services:
         npm run build
         npm run start
       "
+    networks:
+      global:
+        ipv4_address: 10.11.1.10
 
-  postgres:
+  traugutt-net-post-image:
     image: postgres:15-alpine
-    container_name: postgres_db
+    container_name: traugutt-net-postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -36,11 +38,16 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - app-network
+      global:
+        ipv4_address: 10.11.1.11
 
 volumes:
-  pgdata:
+    pgdata:
 
 networks:
-  app-network:
+  global:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 10.11.0.0/16
+          gateway: 10.11.0.1
