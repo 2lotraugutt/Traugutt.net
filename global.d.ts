@@ -181,6 +181,7 @@ export declare global {
 		content: string;
 		days: JustDayDataType[];
 		authorId: string;
+		published: boolean;
 	};
 	type AnnouncementDataType = {
 		id: string;
@@ -189,5 +190,7 @@ export declare global {
 		days: JustDayDataType[];
 		authorId: string;
 		author: JustUserDataType;
+		published: boolean;
+		publishedBy: ?JustUserDataType;
 	};
 }

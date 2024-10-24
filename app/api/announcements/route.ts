@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { endOfYesterday } from "date-fns";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	const count = parseInt(request.nextUrl.searchParams.get("count") || "0");
@@ -20,7 +20,14 @@ export async function GET(request: NextRequest) {
 				orderBy: { timeStamp: "asc" },
 			},
 		},
-		where: { days: { some: { timeStamp: { gte: startOn } } } },
+		where: {
+			AND: [
+				{
+					days: { some: { timeStamp: { gte: startOn } } },
+				},
+				{ published: true },
+			],
+		},
 	});
 
 	return NextResponse.json(announcements);

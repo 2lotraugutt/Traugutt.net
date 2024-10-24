@@ -11,6 +11,7 @@ import {
 	faHome,
 	faHouseUser,
 	faPhone,
+	faPiggyBank,
 	faSchool,
 	faTableList,
 	faUserGraduate,
@@ -99,6 +100,10 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 				<Link href={"https://uonetplus.vulcan.net.pl/czestochowa"} onClick={() => closeNavbar()} target="blank" className="sidebar-button">
 					<FontAwesomeIcon icon={faTableList} className="w-6 h-6 text-white py-3 px-4" />
 					<div className={`poppinsFont600`}>Dziennik elektroniczny</div>
+				</Link>
+				<Link href={"https://fundacja2lotraugutt.pl/"} target="blank" onClick={() => closeNavbar()} className="sidebar-button">
+					<FontAwesomeIcon icon={faPiggyBank} className="w-6 h-6 text-white py-3 px-4" />
+					<div className={`poppinsFont600`}>Fundacja Szkolna Traugutta</div>
 				</Link>
 				<Link href={"https://m.facebook.com/groups/421406146993216/?ref=share"} target="blank" onClick={() => closeNavbar()} className="sidebar-button">
 					<FontAwesomeIcon icon={faUserGraduate} className="w-6 h-6 text-white py-3 px-4" />

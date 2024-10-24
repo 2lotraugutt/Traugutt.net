@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
 	content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -9,7 +9,7 @@ const config: Config = {
 			},
 			colors: {
 				MainColor: "#6F9CEB",
-				SecondColor: "#306BAC",
+				SecondColor: "#004E98",
 				LightColor: "#e0ecff",
 				DarkColor: "#141B41",
 
@@ -39,4 +39,4 @@ const config: Config = {
 	},
 	plugins: [],
 };
-export default config
+export default config;
