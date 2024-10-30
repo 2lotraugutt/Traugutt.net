@@ -6,6 +6,7 @@ import { getSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import LoadingLayout from "../loadingLayout";
 
 export default function Page() {
@@ -58,16 +59,37 @@ export default function Page() {
 			method: "POST",
 		});
 
-		fetchRoutes();
-
 		setNewLink("");
 		setNewName("");
+
+		fetchRoutes();
+	}
+
+	async function editIndex(index: number, id: string) {
+		const data = new FormData();
+		data.set("index", index.toString());
+
+		await fetch(`/api/dashboard/routes/${id}`, {
+			body: data,
+			method: "PUT",
+		});
+
+		fetchRoutes();
 	}
 
 	async function deleteRoutes(id: string) {
 		await fetch(`/api/dashboard/routes/${id}`, {
 			method: "DELETE",
 		});
+		fetchRoutes();
+	}
+
+	function onDragEnd(result: any) {
+		// dropped outside the list
+		if (!result.destination) {
+			return;
+		}
+		editIndex(result.destination.index, result.draggableId);
 		fetchRoutes();
 	}
 
@@ -122,26 +144,38 @@ export default function Page() {
 								className="border-2 flex flex-col hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-2.5 px-3.5 lg:p-5 2xl:p-6 3xl:p-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl"
 							>
 								<h1 className={`w-full md:text-xl lg:text-2xl xl:text-3xl poppinsFont600`}>{routeCategory.name}</h1>
-
-								{routesForNav.map((route, j) => (
-									<div key={j} className="flex flex-col">
-										<div className="flex justify-between">
-											<p className={`text-sm sm:text-base md:text-lg lg:text-xl poppinsFont500`}>{route.name}</p>
-											<FontAwesomeIcon
-												onClick={() => deleteRoutes(route.id)}
-												icon={faTrash}
-												className="h-4 w-4 cursor-pointer text-MainDarkGray hover:text-MainRed transition-all"
-											/>
-										</div>
-										<Link
-											target="blank"
-											href={route.link[0] == "/" ? "https://traugutt.net" + route.link : route.link}
-											className="text-xs sm:text-sm md:text-base lg:text-lg hover:text-MainColor transition-all"
-										>
-											{route.link}
-										</Link>
-									</div>
-								))}
+								<DragDropContext onDragEnd={onDragEnd}>
+									<Droppable droppableId="droppable">
+										{(provided) => (
+											<div {...provided.droppableProps} ref={provided.innerRef}>
+												{routesForNav.map((route, j) => (
+													<Draggable key={route.id} draggableId={route.id} index={j}>
+														{(provided) => (
+															<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="flex flex-col">
+																<div className="flex justify-between">
+																	<p className={`text-sm sm:text-base md:text-lg lg:text-xl poppinsFont500`}>{route.name}</p>
+																	<FontAwesomeIcon
+																		onClick={() => deleteRoutes(route.id)}
+																		icon={faTrash}
+																		className="h-4 w-4 cursor-pointer text-MainDarkGray hover:text-MainRed transition-all"
+																	/>
+																</div>
+																<Link
+																	target="blank"
+																	href={route.link[0] == "/" ? "https://traugutt.net" + route.link : route.link}
+																	className="text-xs sm:text-sm md:text-base lg:text-lg hover:text-MainColor transition-all"
+																>
+																	{route.link}
+																</Link>
+															</div>
+														)}
+													</Draggable>
+												))}
+												{provided.placeholder}
+											</div>
+										)}
+									</Droppable>
+								</DragDropContext>
 							</div>
 						);
 					})}

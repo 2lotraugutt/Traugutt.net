@@ -136,6 +136,7 @@ model Route {
   name      String
   link      String
   category  RouteCategory @default(docs)
+  index     Int           @default(autoincrement())
 }
 
 enum RouteCategory {

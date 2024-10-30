@@ -171,6 +171,7 @@ export declare global {
 		link: string;
 		createdAt: Date;
 		category: RouteCategoryDataType;
+		index: number;
 	};
 
 	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs"  ;
