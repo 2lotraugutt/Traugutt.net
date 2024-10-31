@@ -1,13 +1,10 @@
 "use client";
 
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getSession } from "next-auth/react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import LoadingLayout from "../loadingLayout";
+import CategoryComponent from "./categoryComponent";
 
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
@@ -84,15 +81,6 @@ export default function Page() {
 		fetchRoutes();
 	}
 
-	function onDragEnd(result: any) {
-		// dropped outside the list
-		if (!result.destination) {
-			return;
-		}
-		editIndex(result.destination.index, result.draggableId);
-		fetchRoutes();
-	}
-
 	if (routes && userSession)
 		return (
 			<div className="dashboard-page">
@@ -139,44 +127,14 @@ export default function Page() {
 					{routesCategories.map((routeCategory, i) => {
 						const routesForNav = routes?.filter((route) => route.category == routeCategory.route) ?? [];
 						return (
-							<div
+							<CategoryComponent
+								deleteRoutes={deleteRoutes}
+								fetchRoutes={fetchRoutes}
+								routeCategory={routeCategory}
+								editIndex={editIndex}
+								routesForNav={routesForNav}
 								key={i}
-								className="border-2 flex flex-col hover:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 py-2.5 px-3.5 lg:p-5 2xl:p-6 3xl:p-8 gap-y-1.5 sm:gap-2 md:gap-3 rounded-2xl"
-							>
-								<h1 className={`w-full md:text-xl lg:text-2xl xl:text-3xl poppinsFont600`}>{routeCategory.name}</h1>
-								<DragDropContext onDragEnd={onDragEnd}>
-									<Droppable droppableId="droppable">
-										{(provided) => (
-											<div {...provided.droppableProps} ref={provided.innerRef}>
-												{routesForNav.map((route, j) => (
-													<Draggable key={route.id} draggableId={route.id} index={j}>
-														{(provided) => (
-															<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="flex flex-col">
-																<div className="flex justify-between">
-																	<p className={`text-sm sm:text-base md:text-lg lg:text-xl poppinsFont500`}>{route.name}</p>
-																	<FontAwesomeIcon
-																		onClick={() => deleteRoutes(route.id)}
-																		icon={faTrash}
-																		className="h-4 w-4 cursor-pointer text-MainDarkGray hover:text-MainRed transition-all"
-																	/>
-																</div>
-																<Link
-																	target="blank"
-																	href={route.link[0] == "/" ? "https://traugutt.net" + route.link : route.link}
-																	className="text-xs sm:text-sm md:text-base lg:text-lg hover:text-MainColor transition-all"
-																>
-																	{route.link}
-																</Link>
-															</div>
-														)}
-													</Draggable>
-												))}
-												{provided.placeholder}
-											</div>
-										)}
-									</Droppable>
-								</DragDropContext>
-							</div>
+							></CategoryComponent>
 						);
 					})}
 				</div>
