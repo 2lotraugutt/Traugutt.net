@@ -68,7 +68,7 @@ export default function Page() {
 						onChange={(e) => setNewPageName(e.target.value)}
 						type="text"
 						id="PageName"
-						placeholder="Podaj tytuł (bez spacji)"
+						placeholder="Podaj nazwę (bez spacji i znaków specjalnych, po utworzeniu będzie widoczna tylko w linku)"
 						className="bg-white rounded-lg p-2 outline-none w-full text-xs sm:text-sm md:text-base"
 					/>
 

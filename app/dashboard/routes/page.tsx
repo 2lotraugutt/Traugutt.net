@@ -9,6 +9,7 @@ import CategoryComponent from "./categoryComponent";
 export default function Page() {
 	const [userSession, setSession] = useState<SessionDataType>();
 	const [routes, setRoutes] = useState<RouteDataType[]>([]);
+	const [pages, setPages] = useState<{ file: string; content: string }[]>([]);
 
 	const [newName, setNewName] = useState("");
 	const [newLink, setNewLink] = useState("");
@@ -34,6 +35,7 @@ export default function Page() {
 				if (session.user.role.managePages) {
 					fetchRoutes();
 					setSession(session);
+					fetchPages();
 				} else router.push("/dashboard");
 			} else router.push("/");
 		}
@@ -81,6 +83,15 @@ export default function Page() {
 		fetchRoutes();
 	}
 
+	async function fetchPages() {
+		const returnedPages = await (
+			await fetch(`/api/dashboard/pages`, {
+				cache: "no-store",
+			})
+		).json();
+		setPages(returnedPages);
+	}
+	const filteredSuggestions = pages.filter((page) => page.file.toLowerCase().includes(newLink.toLowerCase())).slice(0, 5);
 	if (routes && userSession)
 		return (
 			<div className="dashboard-page">
@@ -92,16 +103,29 @@ export default function Page() {
 						value={newName}
 						onChange={(e) => setNewName(e.target.value)}
 						type="text"
-						placeholder="Podaj nazwę"
+						placeholder="Podaj tytuł (będzie widoczny w menu bocznym)"
 						className="bg-white rounded-lg p-2 outline-none w-full text-xs sm:text-sm md:text-base"
 					/>
 					<input
 						value={newLink}
 						onChange={(e) => setNewLink(e.target.value)}
 						type="text"
-						placeholder="Podaj link lub '/page/nazwa-pliku'"
+						placeholder="Podaj link lub nazwę strony (/page/nazwa-pliku)"
 						className="bg-white rounded-lg p-2 outline-none w-full text-xs sm:text-sm md:text-base"
 					/>
+					{newLink.length > 0 && filteredSuggestions.length > 0 && (
+						<ul className="bg-white border rounded-lg w-full p-2 text-xs sm:text-sm md:text-base">
+							{filteredSuggestions.map((page, index) => (
+								<li
+									key={index}
+									onClick={() => setNewLink("/page/" + page.file.slice(0, -4))}
+									className="px-2 py-1 hover:bg-gray-100 rounded-lg cursor-pointer"
+								>
+									/page/{page.file.slice(0, -4)}
+								</li>
+							))}
+						</ul>
+					)}
 					<select
 						value={category}
 						onChange={(e) => setCategory(e.target.value)}

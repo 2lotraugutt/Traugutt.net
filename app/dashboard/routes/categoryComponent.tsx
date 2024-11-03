@@ -47,9 +47,7 @@ export default function CategoryComponent(props: {
 									{(provided) => (
 										<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="flex flex-col relative">
 											<div className="flex justify-between">
-												<p className={`text-sm sm:text-base md:text-lg flex flex-row lg:text-xl poppinsFont500`}>
-													{route.name} {route.index}
-												</p>
+												<p className={`text-sm sm:text-base md:text-lg flex flex-row lg:text-xl poppinsFont500`}>{route.name}</p>
 												<div>
 													{/* <FontAwesomeIcon
 														onClick={() => {}}
