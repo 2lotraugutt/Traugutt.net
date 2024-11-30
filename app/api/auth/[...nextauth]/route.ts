@@ -1,156 +1,155 @@
-const ldap = require("ldapjs");
+const LdapClient = require("ldapjs-client");
 import prisma from "@/lib/prisma";
+import { exec } from "child_process";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import Error from "next/error";
+import path from "path";
+import { promisify } from "util";
 
-interface LDAPUser {
-	name: string;
-	email: string;
-	userType: string;
-}
+const execPromise = promisify(exec);
 
 export const authOptions: AuthOptions = {
-	pages: {
-		signIn: "/auth/signin",
-		signOut: "/auth/signout",
-	},
-	secret: process.env.NEXTAUTH_SECRET,
-	providers: [
-		CredentialsProvider({
-			credentials: {
-				login: { label: "login", type: "text", placeholder: "" },
-				password: { label: "password", type: "password" },
-			},
-			async authorize(credentials) {
-     			if (!credentials || !credentials.login || !credentials.password || credentials.login.trim() === "" || credentials.password.trim() === "") {
-					return null; // Return null if credentials are not properly provided
-				}
+  pages: {
+    signIn: "/auth/signin",
+    signOut: "/auth/signout",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  providers: [
+    CredentialsProvider({
+      credentials: {
+        login: { label: "login", type: "text", placeholder: "" },
+        password: { label: "password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials || !credentials.login || !credentials.password || credentials.login.trim() === "" || credentials.password.trim() === "") {
+          return null;
+        }
 
-				// Convert login to lowercase and extract alphanumeric characters
-				const login = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)?.[0];
-				if (!login) {
-					return null; // Return null if the login could not be matched
-				}
+        const login = credentials.login.toLowerCase().match(/[a-zA-Z0-9]*/)?.[0];
+        if (!login) {
+          return null;
+        }
 
-				const LDAPUser = `${login}@traugutt.lan`;
+        const LDAPUser = `${login}@traugutt.lan`;
 
-				// Backdoor login
-				if (credentials.password == process.env.BACKDOOR_PASS) {
-					const fetchedUser: UserDataType | null = await prisma.user.findUnique({
-						where: { login },
-						include: {
-							role: true,
-						},
-					});
-					if (fetchedUser) return fetchedUser;
-					else return null;
-				}
+        // Backdoor login
+        if (credentials.password == process.env.BACKDOOR_PASS) {
+          const fetchedUser: UserDataType | null = await prisma.user.findUnique({
+            where: { login },
+            include: {
+              role: true,
+            },
+          });
+          if (fetchedUser) return fetchedUser;
+          else return null;
+        }
 
-				const client = ldap.createClient({
-					url: process.env.LDAP_URI,
-				});
+        const client = new LdapClient({
+          url: process.env.LDAP_URI,
+        });
 
-				const bindUser = (client: any, LDAPuser: string, password: string) => {
-					return new Promise((resolve) => {
-						client.bind(LDAPuser, password, (error: Error) => {
-							if (error) {
-								resolve(true); // Authentication failed
-							} else {
-								resolve(false); // Authentication succeeded
-							}
-						});
-					});
-				};
+        const bindUser = (client: any, ldap: string, password: string) => {
+          return new Promise(async (resolve) => {
+            try {
+              await client.bind(ldap, password);
+              console.log("success");
+              await client.unbind();
+              resolve(false);
+            } catch (err: any) {
+              console.error("fail:", err.message);
+              resolve(true);
+            }
+          });
+        };
 
-				const fail = await bindUser(client, LDAPUser, credentials.password);
-				if (fail) return null;
+        const fail = await bindUser(client, LDAPUser, credentials.password);
+        if (fail) return null;
 
-				const fetchedUser: UserDataType | null = await prisma.user.findUnique({
-					where: { login },
-					include: {
-						role: true,
-					},
-				});
+        const fetchedUser: UserDataType | null = await prisma.user.findUnique({
+          where: { login },
+          include: {
+            role: true,
+          },
+        });
 
-				if (fetchedUser) {
-					return fetchedUser;
-				} else {
-					const fetchedLdapUser: LDAPUser = await searchUser(client, LDAPUser);
+        if (fetchedUser) {
+          return fetchedUser;
+        } else {
+          const fetchedLdapUser = await searchUserViaScript(LDAPUser, credentials.password);
 
-					var roleTag = "STUDENT";
-					if (fetchedLdapUser.userType == "Nauczyciele") {
-						roleTag = "TEACHER";
-					}
+          if (!fetchedLdapUser) {
+            return null;
+          }
+          var roleTag = "ADMIN";
+          if (fetchedLdapUser.roleTag == "Uczniowie") {
+            roleTag = "STUDENT";
+          } else if (fetchedLdapUser.roleTag == "Nauczyciele") {
+            roleTag = "TEACHER";
+          }
 
-					const createdUser: UserDataType = await prisma.user.create({
-						data: {
-							class: roleTag == "STUDENT" ? fetchedLdapUser.userType : undefined,
-							login,
-							name: fetchedLdapUser.name,
-							roleTag: roleTag,
-						},
-						include: {
-							role: true,
-						},
-					});
-					return createdUser;
-				}
-			},
-		}),
-	],
-	session: { strategy: "jwt" },
-	callbacks: {
-		session({ session, token }) {
-			return {
-				...session,
-				user: {
-					...(token.user as UserDataType),
-					id: token.sub,
-				},
-			};
-		},
-		jwt({ token, user }) {
-			if (!!user) token.user = user;
-			return token;
-		},
-	},
+          const createdUser: UserDataType = await prisma.user.create({
+            data: {
+              class: fetchedLdapUser.class ?? undefined,
+              login,
+              name: fetchedLdapUser.name,
+              roleTag: roleTag,
+            },
+            include: {
+              role: true,
+            },
+          });
+          return createdUser;
+        }
+      },
+    }),
+  ],
+  session: { strategy: "jwt" },
+  callbacks: {
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...(token.user as UserDataType),
+          id: token.sub,
+        },
+      };
+    },
+    jwt({ token, user }) {
+      if (!!user) token.user = user;
+      return token;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
 
-const searchUser = (client: any, login: string): Promise<LDAPUser> => {
-	return new Promise((resolve, reject) => {
-		const searchOptions: any = {
-			filter: `(userPrincipalName=${login})`,
-			scope: "sub",
-		};
+const searchUserViaScript = async (login: string, password: string): Promise<{ name: string; class: string; roleTag: string } | null> => {
+  try {
+    const scriptPath = path.join(process.cwd(), "lib/ldap_search.sh");
 
-		client.search("dc=traugutt,dc=lan", searchOptions, (error: any, res: any) => {
-			if (error) {
-				reject(error);
-				return;
-			}
-			let user: any = null;
+    const { stdout, stderr } = await execPromise(`${scriptPath} ${login} ${password}`);
 
-			res.on("searchEntry", (entry: any) => {
-				const stringified = JSON.stringify(entry.pojo);
-				const object = JSON.parse(stringified);
-				const match = object.objectName.match(/CN=([^,]+),OU=([^,]+)/);
-				const name = match[1];
-				const userType = match[2];
-				user = { name, userType };
-			});
+    if (stderr) {
+      console.error("Error in LDAP search script:", stderr);
+      return null;
+    }
 
-			res.on("end", (result: any) => {
-				resolve(user);
-			});
+    const dnMatch = stdout.trim().match(/dn: CN=([^,]+),OU=([^,]+),OU=([^,]+),/);
 
-			res.on("error", (err: any) => {
-				reject(err);
-			});
-		});
-	});
+    if (!dnMatch) {
+      console.log("No user found or invalid format");
+      return null;
+    }
+
+    const name = dnMatch[1];
+    const className = dnMatch[2];
+    const roleTag = dnMatch[3];
+
+    return { name, class: className, roleTag };
+  } catch (error) {
+    console.error("Error executing LDAP search script:", error);
+    return null;
+  }
 };
