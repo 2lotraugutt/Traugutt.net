@@ -125,7 +125,7 @@ const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
 
-const searchUserViaScript = async (login: string, password: string): Promise<{ name: string; class: string; roleTag: string } | null> => {
+const searchUserViaScript = async (login: string, password: string): Promise<{ name: string; class?: string; roleTag: string } | null> => {
   try {
     const scriptPath = path.join(process.cwd(), "lib/ldap_search.sh");
 
@@ -139,8 +139,14 @@ const searchUserViaScript = async (login: string, password: string): Promise<{ n
     const dnMatch = stdout.trim().match(/dn: CN=([^,]+),OU=([^,]+),OU=([^,]+),/);
 
     if (!dnMatch) {
-      console.log("No user found or invalid format");
-      return null;
+      const dnMatch2 = stdout.trim().match(/dn: CN=([^,]+),CN=([^,]+),DC=[^,]+,DC=[^,]+/);
+      if (!dnMatch2) {
+        console.log("No user found or invalid format");
+        return null;
+      }
+      const name = dnMatch2[1];
+      const role = dnMatch2[2];
+      return { name, role };
     }
 
     const name = dnMatch[1];
