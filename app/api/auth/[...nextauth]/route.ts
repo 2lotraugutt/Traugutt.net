@@ -146,7 +146,7 @@ const searchUserViaScript = async (login: string, password: string): Promise<{ n
       }
       const name = dnMatch2[1];
       const role = dnMatch2[2];
-      return { name, role };
+      return { name, roleTag: role };
     }
 
     const name = dnMatch[1];

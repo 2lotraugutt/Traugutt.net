@@ -10,7 +10,7 @@
 		"deploy": "next build && next export"
 	},
 	"devDependencies": {
-		"@prisma/client": "^5.19.1",
+		"@prisma/client": "^6.0.1",
 		"@types/node": "20.5.0",
 		"@types/node-cron": "^3.0.8",
 		"@types/react": "18.2.20",
@@ -18,7 +18,7 @@
 		"@types/sortablejs": "^1.15.8",
 		"i": "^0.3.7",
 		"npm": "^10.8.2",
-		"prisma": "^5.20.0",
+		"prisma": "^6.0.1",
 		"prisma-client": "^0.0.0",
 		"typescript": "5.1.6"
 	},
