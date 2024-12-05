@@ -35,11 +35,7 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 
 	return (
 		<>
-			<div
-				className={`fixed z-40 top-0 h-screen w-full 2xs:w-96 duration-500 ease-out transition-all right-0 p-2 ${
-					props.visible ? "translate-x-0" : "translate-x-full"
-				}`}
-			>
+			<div className={`fixed z-40 top-0 h-screen w-full 2xs:w-96 duration-500 ease-out transition-all right-0 p-2 ${props.visible ? "translate-x-0" : "translate-x-full"}`}>
 				<div className="w-full gap-y-4 h-full flex sm:ps-7 sm:pe-8 sm:py-6 ps-6 pe-7 py-5 flex-col bg-SecondColor overflow-y-auto rounded-l-2xl rounded-r-4xl">
 					{userSession ? (
 						<>
@@ -136,17 +132,10 @@ export default function Sidebar(props: { visible: boolean; toggle: Function }) {
 								/>
 							</div>
 
-							<div className="flex flex-col gap-y-1">
-								<Link className="sidebar-button" href={"/auth/signin"} onClick={() => props.toggle()}>
-									<FontAwesomeIcon icon={faPlus} className="w-6 h-6 text-white py-3 px-4" />
-									<div className={`poppinsFont600`}>dodaj komunikat</div>
-								</Link>
-
-								<button className="sidebar-button sm:hidden" onClick={() => props.toggle()}>
-									<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-4" />
-									<div className={`poppinsFont600`}>Zamknij menu</div>
-								</button>
-							</div>
+							<button className="sidebar-button sm:hidden" onClick={() => props.toggle()}>
+								<FontAwesomeIcon icon={faClose} className="w-6 h-6 text-white py-3 px-4" />
+								<div className={`poppinsFont600`}>Zamknij menu</div>
+							</button>
 						</>
 					)}
 
