@@ -25,7 +25,7 @@ const config: Config = {
 				"0.75": "3px",
 			},
 			gap: { "50px": "50px" },
-			borderRadius: { "4xl": "3rem" },
+			borderRadius: { "4xl": "2rem" },
 			screens: {
 				"4xl": "2048px",
 				"3xl": "1792px",
