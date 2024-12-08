@@ -13,6 +13,7 @@ export default function Page() {
 	const [pages, setPages] = useState<{ file: string; content: string }[]>([]);
 	const [newPageName, setNewPageName] = useState("");
 	const [newContent, setNewContent] = useState("");
+	const [filter, setFilter] = useState("");
 
 	const router = useRouter();
 	useEffect(() => {
@@ -78,7 +79,7 @@ export default function Page() {
 						language="en-US"
 						noUploadImg
 						placeholder="Podaj treść podstrony"
-						className="rounded-lg outline-none bg-white p-2 w-full  h-20 sm:h-40 md:h-52 lg:h-60"
+						className="rounded-lg outline-none bg-white p-2 w-full h-20 sm:h-40 md:h-52 lg:h-60"
 					/>
 
 					<button
@@ -90,10 +91,30 @@ export default function Page() {
 					</button>
 				</div>
 
+				<input
+					value={filter}
+					onChange={(e) => setFilter(e.target.value)}
+					placeholder="Filtruj strony"
+					className="bg-white border-2 focus:bg-LightGray/40 bg-LightGray/20 transition-all duration-300 rounded-lg p-2 outline-none w-full text-xs sm:text-sm md:text-base lg:text-lg py-4 md:py-5 md:px-7 px-4 lg:py-7 lg:px-7 sm:gap-2 md:gap-3"
+				/>
+
 				<div className="flex w-full flex-col gap-y-3 md:gap-2 lg:gap-3 xl:gap-4 4xl:gap-6">
-					{pages.map((pageData, i) => (
-						<PageTile pageData={pageData} key={i} refetchPages={() => fetchPages()} />
-					))}
+					{pages
+						.filter((pageData) => pageData.file.includes(filter))
+						.map((pageData, i) => (
+							<PageTile pageData={pageData} key={i} refetchPages={() => fetchPages()} />
+						))}
+
+					{filter != "" && (
+						<>
+							<hr />
+							{pages
+								.filter((pageData) => pageData.content.includes(filter))
+								.map((pageData, i) => (
+									<PageTile pageData={pageData} key={i} refetchPages={() => fetchPages()} />
+								))}
+						</>
+					)}
 				</div>
 			</div>
 		);
