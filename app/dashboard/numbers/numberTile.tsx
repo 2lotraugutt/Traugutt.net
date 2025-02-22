@@ -35,13 +35,13 @@ export default function NumberTile(props: { day: number; number?: number; date: 
 		return <DayTile day={props.day} isWeekend={true} />;
 	} else
 		return (
-			<div className={`relative day-tile !justify-between bg-LightColor/20 `}>
-				<div className="flex justify-center sm:justify-between items-center w-full">
+			<div className={`relative day-tile !aspect-square lg:!aspect-[5/4] p-2 !justify-between bg-LightColor/20 `}>
+				<div className="flex justify-between items-center w-full">
 					<div className={`day-number plusJakartaSans800 bg-LightColor text-SecondColor`}>{props.day}</div>
 					<div
 						className={`outline-[3px] lg:outline-4 outline-LightColor me-0.5 lg:me-1 outline bg-LightColor/40 text-center w-[19px] md:w-6 lg:w-7 xl:w-9 3xl:w-10 4xl:w-11 h-fit p-0.5 md:p-1 xl:p-1.5 4xl:p-2 rounded-full text-2xs md:text-xs lg:text-sm xl:text-base 3xl:text-xl text-MainDarkGray ${
 							plusJakartaSans800.className
-						} ${!props.number ? "hidden" : "hidden sm:block"}`}
+						} ${!props.number ? "hidden" : "block"}`}
 					>
 						{props.number}
 					</div>
@@ -49,7 +49,7 @@ export default function NumberTile(props: { day: number; number?: number; date: 
 
 				<div className="flex lg:gap-x-3 gap-x-0.5 md:gap-2 w-full items-center justify-between">
 					<input
-						className="w-full outline-none border-[1px] p-0.5 md:px-2 md:py-0.5 rounded-lg border-DarkColor text-2xs xs:text-xs sm:text-sm md:text-base 3xl:text-xl"
+						className="w-full outline-none border-[1px] p-0.5 md:px-2 md:py-0.5 rounded-lg border-DarkColor text-2xs sm:text-xs md:text-base 3xl:text-xl"
 						type="text"
 						value={number}
 						min={1}

@@ -1,13 +1,12 @@
-import path from "path";
-import fs from "fs";
-import cron from "node-cron";
-import { format, getDate, getMonth, getYear, nextDay, startOfToday } from "date-fns";
 import prisma from "@/lib/prisma";
+import { format, getDate, getMonth, getYear, nextDay, startOfToday } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
+import fs from "fs";
+import path from "path";
 
 type RangeType = 1 | 2 | 3 | 4 | 5;
 
-const dataFilePath = path.join(process.cwd(), "data.json");
+const dataFilePath = path.join(process.cwd(), "lucky_numbers.json");
 
 let leftNumbers: number[] = Array.from({ length: 35 }, (v, k) => k + 1);
 
