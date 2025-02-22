@@ -1,15 +1,14 @@
 "use client";
 
-import StageFive from "@/components/postStages/stageFive";
+import EditPostStageSeven from "@/components/postStages/editPostStageSeven";
+import EditPostStageZero from "@/components/postStages/editPostStageZero";
 import StageFour from "@/components/postStages/stageFour";
 import StageOne from "@/components/postStages/stageOne";
+import StageSix from "@/components/postStages/stageSix";
 import StageThree from "@/components/postStages/stageThree";
 import StageTwo from "@/components/postStages/stageTwo";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import EditPostStageZero from "@/components/postStages/editPostStageZero";
-import EditPostStageSeven from "@/components/postStages/editPostStageSeven";
-import StageSix from "@/components/postStages/stageSix";
+import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
 	const [stage, setStage] = useState(0);
@@ -28,7 +27,7 @@ export default function Page({ params }: { params: { id: string } }) {
 		fetchPosts();
 
 		async function fetchPosts() {
-			const post = await(await fetch(`/api/posts/post/${params.id}`)).json() as PostDataType;
+			const post = (await (await fetch(`/api/posts/post/${params.id}`)).json()) as PostDataType;
 
 			if (post) {
 				setId(post.id);

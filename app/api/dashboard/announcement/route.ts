@@ -26,9 +26,6 @@ export async function GET(request: NextRequest) {
 						orderBy: { timeStamp: "asc" },
 					},
 				},
-				where: {
-					days: { some: { timeStamp: { gte: startOn } } },
-				},
 			});
 
 			return NextResponse.json(announcements);

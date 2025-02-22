@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	const month = parseInt(request.nextUrl.searchParams.get("month") || "20");
@@ -14,7 +13,11 @@ export async function GET(request: NextRequest) {
 		],
 		include: {
 			events: { include: { tags: true, post: true } },
-			announcements: true,
+			announcements: {
+				where: {
+					published: true,
+				},
+			},
 		},
 		where: {
 			year: year != 0 ? year : undefined,

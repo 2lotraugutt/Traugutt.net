@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
 import { zonedTimeToUtc } from "date-fns-tz";
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 	const session = (await getServerSession(authOptions)) as SessionDataType | undefined;
@@ -118,6 +118,18 @@ export async function PUT(request: NextRequest) {
 			const day = parseInt(date.slice(0, 2));
 			const month = parseInt(date.slice(3, 5)) - 1;
 			const year = parseInt(date.slice(6, 10));
+
+			await prisma.day.upsert({
+				where: { date: date },
+				update: {},
+				create: {
+					day: day,
+					year: year,
+					month: month,
+					timeStamp: zonedTimeToUtc(new Date(year, month, day), "UTC"),
+					date: date,
+				},
+			});
 
 			await prisma.event.update({
 				where: { id },

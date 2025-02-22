@@ -11,9 +11,8 @@ export default function EventTile(props: { eventData: EventDataTypeWithAuthor; r
 	function returnDate(date: string) {
 		const months = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
 
-		let newDate = new Date(date);
-
-		if (isNaN(newDate.getTime())) newDate = parse(date, "dd-MM-yyyy", new Date());
+		let newDate = parse(date, "dd-MM-yyyy", new Date());
+		if (isNaN(newDate.getTime())) newDate = new Date(date);
 
 		return newDate.getDate() + " " + months[newDate.getMonth()] + " " + newDate.getFullYear();
 	}

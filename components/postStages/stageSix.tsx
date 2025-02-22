@@ -24,11 +24,10 @@ export default function StageSix(props: { down: Function; up: Function; setEvent
 	}, []);
 
 	function returnDate(date: string) {
-		const months = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+		const months = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
 
-		let newDate = new Date(date);
-
-		if (isNaN(newDate.getTime())) newDate = parse(date, "dd-MM-yyyy", new Date());
+		let newDate = parse(date, "dd-MM-yyyy", new Date());
+		if (isNaN(newDate.getTime())) newDate = new Date(date);
 
 		return newDate.getDate() + " " + months[newDate.getMonth()] + " " + newDate.getFullYear();
 	}
