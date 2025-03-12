@@ -1,12 +1,43 @@
 "use client";
-
+import { Accessibility } from "accessibility";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 
 export default function Navbar() {
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+
+	var labels = {
+		resetTitle: "Resetuj",
+		closeTitle: "Zamknij",
+		menuTitle: "Opcje",
+		increaseText: "Zwiększ rozmiar tekstu",
+		decreaseText: "Zmniejsz rozmiar tekstu",
+		increaseTextSpacing: "Większe odstępy",
+		decreaseTextSpacing: "Mniejsze odstępy",
+		increaseLineHeight: "Zwiększ wysokość linii",
+		decreaseLineHeight: "Zmniejsz wysokość linii",
+		invertColors: "Odwróć kolory",
+		grayHues: "Odcienie szarości",
+		underlineLinks: "Podkreśl linki",
+		bigCursor: "Duży kursor",
+		readingGuide: "Przewodnik do czytania",
+		textToSpeech: "Tekst na mowę",
+		speechToText: "Mowa na tekst",
+		disableAnimations: "Wyłącz animacje",
+		hotkeyPrefix: "Skrót klawiszowy:",
+	};
+	var options: any = {
+		labels: labels,
+		icon: {
+			img: ["accessible"],
+		},
+	};
+
+	useEffect(() => {
+		new Accessibility(options);
+	}, []);
 
 	return (
 		<>

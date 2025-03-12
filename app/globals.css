@@ -2,271 +2,280 @@
 @tailwind components;
 @tailwind utilities;
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+body {
+	--_access-icon-border-radius: 50%;
 }
 
-.hide-scrollbar{  
-  -ms-overflow-style: none; 
-  scrollbar-width: none;
+.hide-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.hide-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
-.day-number{
- @apply xl:p-1.5 3xl:p-2 p-1 text-center w-7 xl:w-10 rounded-full text-sm xs:text-base xs:w-8 sm:w-7 sm:text-sm md:w-8 lg:w-9 3xl:w-[52px] md:text-base lg:text-lg xl:text-xl 3xl:text-3xl
+.day-number {
+	@apply xl:p-1.5 3xl:p-2 p-1 text-center w-7 xl:w-10 rounded-full text-sm xs:text-base xs:w-8 sm:w-7 sm:text-sm md:w-8 lg:w-9 3xl:w-[52px] md:text-base lg:text-lg xl:text-xl 3xl:text-3xl;
 }
 
-.day-tile{
-  @apply aspect-square sm:aspect-[14/15] sm:p-2 lg:p-3 xl:p-3.5 3xl:p-5 rounded-3xl flex flex-col justify-center sm:items-start sm:justify-start items-center xl:justify-between
+.day-tile {
+	@apply aspect-square sm:aspect-[14/15] sm:p-2 lg:p-3 xl:p-3.5 3xl:p-5 rounded-3xl flex flex-col justify-center sm:items-start sm:justify-start items-center xl:justify-between;
 }
 
-.login-button{
-  @apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 disabled:text-MediumGray/80 border-MainDarkGray enabled:hover:border-white/60 enabled:hover:bg-MainColor px-8 xs:px-10 py-2.5
+.login-button {
+	@apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full text-white bg-MainDarkGray transition-all duration-300 rounded-full border-4 disabled:text-MediumGray/80 border-MainDarkGray enabled:hover:border-white/60 enabled:hover:bg-MainColor px-8 xs:px-10 py-2.5;
 }
-.login-input{
-  @apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full bg-white text-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray px-8 xs:px-10 py-2.5 outline-none
-}
-
-.dashboard-link{
-  @apply text-MainDarkGray/70 xs:text-xs sm:text-sm text-2xs whitespace-nowrap transition-all hover:bg-LightGray/50 py-1 px-1.5 md:px-3 rounded relative before:block before:absolute before:transition-all before:bg-transparent before:w-full before:h-0.5 before:left-0 before:-bottom-2 my-2
+.login-input {
+	@apply flex justify-center text-sm items-center xs:text-base sm:text-lg md:text-lg lg:text-xl w-full bg-white text-MainDarkGray transition-all duration-300 rounded-full border-4 border-MainDarkGray px-8 xs:px-10 py-2.5 outline-none;
 }
 
-.active-dashboard-link{
-  @apply text-MainDarkGray before:bg-SecondColor
+.dashboard-link {
+	@apply text-MainDarkGray/70 xs:text-xs sm:text-sm text-2xs whitespace-nowrap transition-all hover:bg-LightGray/50 py-1 px-1.5 md:px-3 rounded relative before:block before:absolute before:transition-all before:bg-transparent before:w-full before:h-0.5 before:left-0 before:-bottom-2 my-2;
 }
 
-.dashboard-heading{
-  @apply text-MainDarkGray text-center text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+.active-dashboard-link {
+	@apply text-MainDarkGray before:bg-SecondColor;
 }
 
-.dashboard-page{
-  @apply flex flex-col gap-y-10 sm:gap-y-12 py-16 sm:py-20 md:py-28 lg:py-36 xl:py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0 
+.dashboard-heading {
+	@apply text-MainDarkGray text-center text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
 }
 
-.sidebar-button{
-  @apply flex transition-all duration-300 items-center whitespace-nowrap gap-x-4 hover:bg-MainDarkGray/30 rounded-xl text-white grow text-sm 2xl:text-lg sm:text-base leading-5 
+.dashboard-page {
+	@apply flex flex-col gap-y-10 sm:gap-y-12 py-16 sm:py-20 md:py-28 lg:py-36 xl:py-40 3xl:gap-y-24 lg:gap-y-16 2xl:gap-y-20 md:gap-y-14 lg:px-12 px-2 md:px-5 4xl:px-0;
 }
 
-.dashboard-post-page{
-  @apply w-screen h-screen absolute left-0 top-0 z-30 bg-white flex flex-col items-center
+.sidebar-button {
+	@apply flex transition-all duration-300 items-center whitespace-nowrap gap-x-4 hover:bg-MainDarkGray/30 rounded-xl text-white grow text-sm 2xl:text-lg sm:text-base leading-5;
+}
+
+.dashboard-post-page {
+	@apply w-screen h-screen absolute left-0 top-0 z-30 bg-white flex flex-col items-center;
 }
 
 .dashboardPostTileDataRow {
-  @apply flex justify-between whitespace-nowrap xl:flex-col xl:h-full xl:justify-start md:gap-x-2 items-center text-2xs xs:text-xs md:text-sm 2xl:text-base border-t-2 md:border-0 md:p-0 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0 text-MainDarkGray/60
+	@apply flex justify-between whitespace-nowrap xl:flex-col xl:h-full xl:justify-start md:gap-x-2 items-center text-2xs xs:text-xs md:text-sm 2xl:text-base border-t-2 md:border-0 md:p-0 border-LightGray first-of-type:border-t-0 pt-2 first-of-type:pt-0 text-MainDarkGray/60;
 }
 
 .adminPostTile .dashboardPostTileDataRow {
-  @apply md:border-b-2 md:pb-2 lg:pb-5 xl:border-0 xl:pb-0
+	@apply md:border-b-2 md:pb-2 lg:pb-5 xl:border-0 xl:pb-0;
 }
 .adminPostTile .dashboardPostTileDataRow:nth-of-type(4),
-.adminPostTile .dashboardPostTileDataRow:nth-of-type(5)  {
-  @apply md:border-b-0 md:pb-0 
+.adminPostTile .dashboardPostTileDataRow:nth-of-type(5) {
+	@apply md:border-b-0 md:pb-0;
 }
 
 .dashboardPostTileData {
-  @apply text-MainDarkGray text-2xs 2xs:text-xs 2xl:text-xl 4xl:text-2xl xs:text-sm rounded-lg md:text-base lg:text-lg p-0
+	@apply text-MainDarkGray text-2xs 2xs:text-xs 2xl:text-xl 4xl:text-2xl xs:text-sm rounded-lg md:text-base lg:text-lg p-0;
 }
 
-.dashboard-post-tile{
-  @apply xl:w-48 2xl:w-56 3xl:w-60 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 grow
+.dashboard-post-tile {
+	@apply xl:w-48 2xl:w-56 3xl:w-60 whitespace-nowrap transition-all duration-200 hover:bg-MainDarkGray hover:text-white items-center flex text-2xs 2xs:text-xs xs:text-sm gap-x-2 border-2 border-MainDarkGray justify-center text-MainDarkGray rounded-3xl py-1.5 grow;
 }
-.dashboard-post-tile-icon{
-  @apply flex aspect-square items-center justify-center w-6 h-6 xs:w-7 xs:h-7 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray
-}
-
-.md-editor-preview{
-  @apply !break-normal
+.dashboard-post-tile-icon {
+	@apply flex aspect-square items-center justify-center w-6 h-6 xs:w-7 xs:h-7 bg-MainDarkGray text-white transition-all duration-200 p-1 sm:p-1.5 lg:p-2 rounded-full group-hover/button:bg-white group-hover/button:text-MainDarkGray;
 }
 
-#markdown-container h1{
-  @apply font-bold 
-}
-
-#markdown-container a{
-  @apply text-SecondColor font-semibold hover:underline
-}
-
-#markdown-container ul {
-  @apply ps-4 md:ps-5 lg:ps-6 list-none 
-}
-#markdown-container ol {
-  @apply list-inside list-none 
-}
-
-#markdown-container  ul > li {
-  @apply list-disc my-0.5
-}
-#markdown-container ol > li {
-  @apply list-decimal my-0.5
-}
-
-#markdown-container p, ul, ol , .block-quote, textarea{
-  @apply 3xl:text-xl text-xs 2xs:text-sm sm:text-base md:text-base xl:text-lg
-}
-
-#markdown-container .block-quote{
-  @apply italic px-5 border-l-2 border-SecondColor py-2 my-2 sm:my-3.5 md:my-6 sm:py-5 xs:px-8 md:py-7 xl:py-8 2xs:px-6 sm:px-10 lg:px-14 lg:py-6 bg-LightGray/30 font-light
-}
-
-#markdown-container .inline-code{
-  @apply  bg-LightGray w-fit px-1 xl:px-2 py-0.5 xl:py-1 rounded
-}
-
-#markdown-container h1 , h2, h3 {
-  @apply w-full tracking-wide
+.md-editor-preview {
+	@apply !break-normal;
 }
 
 #markdown-container h1 {
-  @apply 4xl:text-6xl text-base !leading-[150%] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl my-1 lg:my-4
+	@apply font-bold;
+}
+
+#markdown-container a {
+	@apply text-SecondColor font-semibold hover:underline;
+}
+
+#markdown-container ul {
+	@apply ps-4 md:ps-5 lg:ps-6 list-none;
+}
+#markdown-container ol {
+	@apply list-inside list-none;
+}
+
+#markdown-container ul > li {
+	@apply list-disc my-0.5;
+}
+#markdown-container ol > li {
+	@apply list-decimal my-0.5;
+}
+
+#markdown-container p,
+ul,
+ol,
+.block-quote,
+textarea {
+	@apply 3xl:text-xl text-xs 2xs:text-sm sm:text-base md:text-base xl:text-lg;
+}
+
+#markdown-container .block-quote {
+	@apply italic px-5 border-l-2 border-SecondColor py-2 my-2 sm:my-3.5 md:my-6 sm:py-5 xs:px-8 md:py-7 xl:py-8 2xs:px-6 sm:px-10 lg:px-14 lg:py-6 bg-LightGray/30 font-light;
+}
+
+#markdown-container .inline-code {
+	@apply bg-LightGray w-fit px-1 xl:px-2 py-0.5 xl:py-1 rounded;
+}
+
+#markdown-container h1,
+h2,
+h3 {
+	@apply w-full tracking-wide;
+}
+
+#markdown-container h1 {
+	@apply 4xl:text-6xl text-base !leading-[150%] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl my-1 lg:my-4;
 }
 #markdown-container h2 {
-  @apply !leading-[130%] text-sm 4xl:text-5xl sm:text-base md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl my-1 lg:my-3.5
+	@apply !leading-[130%] text-sm 4xl:text-5xl sm:text-base md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl my-1 lg:my-3.5;
 }
 #markdown-container h3 {
-  @apply text-xs 4xl:text-4xl sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-1 lg:my-3
+	@apply text-xs 4xl:text-4xl sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-1 lg:my-3;
 }
 
-#top-posts-container > *:nth-child(2){
-  @apply hidden md:block
+#top-posts-container > *:nth-child(2) {
+	@apply hidden md:block;
 }
 
-#top-posts-container > *:nth-child(3){
-  @apply hidden 2xl:block
+#top-posts-container > *:nth-child(3) {
+	@apply hidden 2xl:block;
 }
 
-#newAnnouncementCalendar > *:nth-child(3){
-  @apply hidden lg:block
+#newAnnouncementCalendar > *:nth-child(3) {
+	@apply hidden lg:block;
 }
-#newAnnouncementCalendar > *:nth-child(4){
-  @apply hidden 2xl:block
+#newAnnouncementCalendar > *:nth-child(4) {
+	@apply hidden 2xl:block;
 }
 
 select {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
 @media screen and (max-width: 1024px) {
-.event-container:nth-child(n + 3){
-  display: none;
-  }
-
+	.event-container:nth-child(n + 3) {
+		display: none;
+	}
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
+	font-family: "Poppins";
+	src: url("/fonts/Poppins-Black.ttf") format("truetype");
+	font-weight: 900;
+	font-style: normal;
 }
 .poppinsFont900 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+	font-family: "Poppins", sans-serif;
+	font-weight: 900;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
+	font-family: "Poppins";
+	src: url("/fonts/Poppins-ExtraBold.ttf") format("truetype");
+	font-weight: 800;
+	font-style: normal;
 }
 .poppinsFont800 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
+	font-family: "Poppins", sans-serif;
+	font-weight: 800;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+	font-family: "Poppins";
+	src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
 }
 .poppinsFont700 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+	font-family: "Poppins", sans-serif;
+	font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
+	font-family: "Poppins";
+	src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
 }
 .poppinsFont600 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+	font-family: "Poppins";
+	src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
 }
 .poppinsFont500 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Poppins";
+	src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
 }
 .poppinsFont400 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
+	font-family: "Plus Jakarta Sans";
+	src: url("/fonts/PlusJakartaSans-ExtraBold.ttf") format("truetype");
+	font-weight: 800;
+	font-style: normal;
 }
-.plusJakartaSans800{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-.plusJakartaSans700{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
+.plusJakartaSans800 {
+	font-family: "Plus Jakarta Sans", sans-serif;
+	font-weight: 800;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
+	font-family: "Plus Jakarta Sans";
+	src: url("/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
 }
-.plusJakartaSans600{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
+.plusJakartaSans700 {
+	font-family: "Plus Jakarta Sans", sans-serif;
+	font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+	font-family: "Plus Jakarta Sans";
+	src: url("/fonts/PlusJakartaSans-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
 }
-.plusJakartaSans500{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
+.plusJakartaSans600 {
+	font-family: "Plus Jakarta Sans", sans-serif;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Plus Jakarta Sans";
+	src: url("/fonts/PlusJakartaSans-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+}
+.plusJakartaSans500 {
+	font-family: "Plus Jakarta Sans", sans-serif;
+	font-weight: 500;
 }
