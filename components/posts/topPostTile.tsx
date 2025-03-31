@@ -14,9 +14,9 @@ export default function TopPostTile(props: { postData: JustPostDataType; index: 
 
 			<div className="w-full rounded-3xl xs:rounded-4xl aspect-[25/16] bg-MainDarkGray "></div>
 
-			<div className="bg-MainDarkGray/80 flex flex-col text-white 2xs:group-hover:-translate-y-full duration-300 ease-out transition-all -translate-y-10">
+			<div className="from-MainDarkGray/95 to-MainDarkGray bg-gradient-to-b flex flex-col text-white 2xs:group-hover:-translate-y-full duration-300 ease-out transition-all -translate-y-10">
 				<h3
-					className={`from-MainDarkGray/0 via-MainDarkGray/50 bg-gradient-to-b 3xl:text-4xl line-clamp-2 md:text-lg 4xl:text-3xl to-MainDarkGray/80 pt-4 w-full text-base xs:text-2xl lg:text-3xl absolute 2xs:-translate-y-full -translate-y-2/3 xs:px-6 md:px-8 left-0 px-3 poppinsFont700`}
+					className={`from-MainDarkGray/0 via-MainDarkGray/80 bg-gradient-to-b 3xl:text-4xl line-clamp-2 md:text-lg 4xl:text-3xl to-MainDarkGray/95 pt-4 w-full text-base xs:text-2xl lg:text-3xl absolute 2xs:-translate-y-full -translate-y-2/3 xs:px-6 md:px-8 left-0 px-3 poppinsFont700`}
 				>
 					{props.postData.title}
 				</h3>
