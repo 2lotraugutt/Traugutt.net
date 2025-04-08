@@ -161,3 +161,15 @@ model Announcement {
   authorId String @db.Uuid
   author   User   @relation(fields: [authorId], references: [id])
 }
+
+model Teacher {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt   DateTime @default(now())
+  title       String?
+  name        String
+  email       String?  @unique
+  image       String   @default("/teacherDefault.png")
+  description String?
+  subjects    String[]
+  class       String?
+}

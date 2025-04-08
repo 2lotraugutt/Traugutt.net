@@ -2,7 +2,7 @@ export declare global {
 	type JustPostDataType = {
 		id: string;
 		title: string;
-		content: string | null;
+		content: string?;
 		titleImage: string;
 		gallery: string[];
 		createdAt: Date;
@@ -19,7 +19,7 @@ export declare global {
 	type PostDataType = {
 		id: string;
 		title: string;
-		content: string | null;
+		content: string?;
 		titleImage: string;
 		gallery: string[];
 		createdAt: Date;
@@ -39,7 +39,7 @@ export declare global {
 
 	type JustUserDataType = {
 		id: string;
-		email: string | null;
+		email: string?;
 		name: string;
 		login: string;
 		image: string;
@@ -49,7 +49,7 @@ export declare global {
 
 	type UserDataType = {
 		id: string;
-		email: string | null;
+		email: string?;
 		name: string;
 		login: string;
 		image: string;
@@ -174,7 +174,7 @@ export declare global {
 		index: number;
 	};
 
-	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs"  ;
+	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs";
 
 	type JustAnnouncementDataType = {
 		id: string;
@@ -195,3 +195,15 @@ export declare global {
 		publishedBy: ?JustUserDataType;
 	};
 }
+
+type TeacherDataType = {
+	id: string;
+	createdAt: Date;
+	title: string?;
+	name: string;
+	email: string?;
+	image: string;
+	description: string?;
+	subjects: string[];
+	class: string?;
+};
