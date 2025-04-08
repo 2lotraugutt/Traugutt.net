@@ -4,10 +4,10 @@ import {
 	faAngleRight,
 	faBullhorn,
 	faCalendar,
+	faChalkboardTeacher,
 	faGift,
 	faLink,
 	faList,
-	faListCheck,
 	faNewspaper,
 	faPager,
 	faPeopleGroup,
@@ -34,10 +34,10 @@ export default async function Page() {
 		{ name: "Informacje", link: "/dashboard/notifications", icon: faNewspaper, perm: ["manageNotifications"] },
 		{ name: "Kalendarz", link: "/dashboard/calendar", icon: faCalendar, perm: ["manageCalendar", "manageEvents"] },
 		{ name: "Szczęśliwe numerki", link: "/dashboard/numbers", icon: faGift, perm: ["manageCalendar", "manageNumbers"] },
-		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
-		{ name: "Weryfikacja użytkowników", link: "/dashboard#weryfikuj", icon: faListCheck, perm: ["manageUsers"] },
+		{ name: "Kadra", link: "/dashboard/teachers", icon: faChalkboardTeacher, perm: ["manageTeachers"] },
 		{ name: "Podstrony", link: "/dashboard/pages", icon: faPager, perm: ["managePages"] },
 		{ name: "Linki", link: "/dashboard/routes", icon: faLink, perm: ["managePages"] },
+		{ name: "Użytkownicy", link: "/dashboard/users", icon: faPeopleGroup, perm: ["manageUsers"] },
 		{ name: "Twoje konto", link: "/dashboard/account", icon: faUser, perm: [""] },
 	];
 
@@ -45,11 +45,7 @@ export default async function Page() {
 		for (let perm of perms) {
 			if (perm == "") {
 				return true;
-			} else if (
-				session.user.role[
-					perm as "createPosts" | "publishPosts" | "managePosts" | "manageUsers" | "manageEvents" | "manageCalendar" | "manageRoles" | "manageNotifications"
-				]
-			) {
+			} else if (session.user.role[perm as keyof typeof session.user.role]) {
 				return true;
 			}
 		}

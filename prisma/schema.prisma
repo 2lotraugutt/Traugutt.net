@@ -48,6 +48,7 @@ model Role {
   addAnnouncements    Boolean @default(false)
   manageAnnouncements Boolean @default(false)
   manageRoles         Boolean @default(false)
+  manageTeachers      Boolean @default(false)
 }
 
 model Post {

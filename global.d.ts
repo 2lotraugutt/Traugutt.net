@@ -82,6 +82,7 @@ export declare global {
 		addAnnouncements: boolean;
 		manageAnnouncements: boolean;
 		manageRoles: boolean;
+		manageTeachers: boolean;
 	};
 
 	type JustDayDataType = {

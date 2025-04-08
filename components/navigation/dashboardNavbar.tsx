@@ -15,10 +15,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 					Panel sterowania
 				</Link>
 
-				<Link
-					href={"/dashboard/post"}
-					className={`${userRole.createPosts ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/post" ? "active-dashboard-link" : ""}`}
-				>
+				<Link href={"/dashboard/post"} className={`${userRole.createPosts ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/post" ? "active-dashboard-link" : ""}`}>
 					Nowy post
 				</Link>
 
@@ -31,9 +28,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 
 				<Link
 					href={"/dashboard/posts"}
-					className={`${userRole.managePosts || userRole.publishPosts ? "" : "hidden"} dashboard-link ${
-						pathname == "/dashboard/posts" ? "active-dashboard-link" : ""
-					}`}
+					className={`${userRole.managePosts || userRole.publishPosts ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/posts" ? "active-dashboard-link" : ""}`}
 				>
 					Posty
 				</Link>
@@ -54,26 +49,26 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 
 				<Link
 					href={"/dashboard/calendar"}
-					className={`${userRole.manageEvents || userRole.manageCalendar ? "" : "hidden"} dashboard-link ${
-						pathname == "/dashboard/calendar" ? "active-dashboard-link" : ""
-					}`}
+					className={`${userRole.manageEvents || userRole.manageCalendar ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/calendar" ? "active-dashboard-link" : ""}`}
 				>
 					Kalendarz
 				</Link>
 
 				<Link
 					href={"/dashboard/numbers"}
-					className={`${userRole.manageCalendar || userRole.manageNumbers ? "" : "hidden"} dashboard-link ${
-						pathname == "/dashboard/numbers" ? "active-dashboard-link" : ""
-					}`}
+					className={`${userRole.manageCalendar || userRole.manageNumbers ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/numbers" ? "active-dashboard-link" : ""}`}
 				>
 					Szczęśliwe numerki
 				</Link>
 
 				<Link
-					href={"/dashboard/pages"}
-					className={`${userRole.managePages ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/pages" ? "active-dashboard-link" : ""}`}
+					href={"/dashboard/teachers"}
+					className={`${userRole.manageTeachers ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/teachers" ? "active-dashboard-link" : ""}`}
 				>
+					Kadra
+				</Link>
+
+				<Link href={"/dashboard/pages"} className={`${userRole.managePages ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/pages" ? "active-dashboard-link" : ""}`}>
 					Podstrony
 				</Link>
 				<Link
@@ -83,10 +78,7 @@ export default function DashboardNavbar(props: { session: SessionDataType }) {
 					Linki
 				</Link>
 
-				<Link
-					href={"/dashboard/users"}
-					className={`${userRole.manageUsers ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/users" ? "active-dashboard-link" : ""}`}
-				>
+				<Link href={"/dashboard/users"} className={`${userRole.manageUsers ? "" : "hidden"} dashboard-link ${pathname == "/dashboard/users" ? "active-dashboard-link" : ""}`}>
 					Użytkownicy
 				</Link>
 

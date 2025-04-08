@@ -1,7 +1,7 @@
 "use client";
 import { TeacherDataType } from "@/global";
 import { useEffect, useState } from "react";
-import TeacherCard from "./TeacherCard";
+import TeacherCard from "./teacherCard";
 
 export default function TeacherSection() {
 	const [teachersData, setTeachersData] = useState<TeacherDataType[]>([]);
