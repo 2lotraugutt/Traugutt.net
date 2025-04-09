@@ -2,10 +2,11 @@ import { TeacherDataType } from "@/global";
 import { useState } from "react";
 
 export default function EditingForm(props: { initialData: TeacherDataType; closeEdit: Function; refetchTeachers: Function }) {
-	const [image, setImage] = useState(props.initialData.image ?? "");
+	const [image, setImage] = useState(props.initialData.image);
 	const [title, setTitle] = useState(props.initialData.title ?? "");
 	const [className, setClassName] = useState(props.initialData.class ?? "");
 	const [name, setName] = useState(props.initialData.name);
+	const [lastName, setLastName] = useState(props.initialData.lastName);
 	const [email, setEmail] = useState(props.initialData.email ?? "");
 	const [description, setDescription] = useState(props.initialData.description ?? "");
 	const [subjects, setSubjects] = useState<string[]>(props.initialData.subjects || []);
@@ -19,12 +20,13 @@ export default function EditingForm(props: { initialData: TeacherDataType; close
 
 		const data = new FormData();
 		data.set("id", props.initialData.id);
-		if (name !== "") data.set("name", name);
-		if (email !== "") data.set("email", email);
-		if (description !== "") data.set("description", description);
-		if (image !== "") data.set("image", image);
-		if (title !== "") data.set("title", title);
-		if (className !== "") data.set("class", className);
+		data.set("name", name);
+		data.set("lastName", lastName);
+		data.set("email", email);
+		data.set("description", description);
+		data.set("image", image);
+		data.set("title", title);
+		data.set("class", className);
 		data.append("subjects", JSON.stringify(subjects));
 
 		const res = await fetch("/api/dashboard/teachers", {
@@ -53,11 +55,11 @@ export default function EditingForm(props: { initialData: TeacherDataType; close
 
 	function validateEmail(email: string) {
 		const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-		setEmailValid(emailRegex.test(email));
+		setEmailValid(emailRegex.test(email) || email === "");
 	}
 
 	return (
-		<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 flex flex-col items-center h-fit border-2 bg-LightGray py-6 px-6 gap-4 rounded-2xl">
+		<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 flex flex-col items-center h-fit border-2 bg-LightGray py-6 px-6 gap-2 3xl:gap-3.5 rounded-2xl">
 			<h1 className="w-full text-xl md:text-2xl poppinsFont700">Edytuj nauczyciela</h1>
 
 			{/* Title and Name Section */}
@@ -75,7 +77,14 @@ export default function EditingForm(props: { initialData: TeacherDataType; close
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						type="text"
-						placeholder="Imię i nazwisko"
+						placeholder="Imię"
+						className="bg-white rounded-lg p-2 outline-none w-full text-sm sm:text-base"
+					/>
+					<input
+						value={lastName}
+						onChange={(e) => setLastName(e.target.value)}
+						type="text"
+						placeholder="Nazwisko"
 						className="bg-white rounded-lg p-2 outline-none w-full text-sm sm:text-base"
 					/>
 				</div>
@@ -137,19 +146,18 @@ export default function EditingForm(props: { initialData: TeacherDataType; close
 			</div>
 
 			{/* Description Section */}
-			<div className="w-full">
-				<h2 className="text-sm sm:text-base font-semibold text-gray-700 mb-1 mt-1">Opis</h2>
-				<textarea
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
-					placeholder="Opis nauczyciela (opcjonalnie)"
-					className="rounded-lg outline-none bg-white p-2 w-full text-sm sm:text-base h-32 sm:h-40"
-				/>
-			</div>
+			<div className="w-full flex flex-col gap-3">
+				<h2 className="text-sm sm:text-base font-semibold text-gray-700 mb-1 mt-1">Opis i zdjęcie</h2>
+				<div className="flex flex-row w-full gap-3">
+					<textarea
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+						placeholder="Opis nauczyciela (opcjonalnie)"
+						className="rounded-lg outline-none bg-white p-2 w-full text-sm sm:text-base h-32 sm:h-40"
+					/>
+					{image && !imageError && <img src={image} alt="Podgląd zdjęcia" className="w-32 h-32 object-cover rounded-xl border mt-2" onError={() => setImageError(true)} />}
+				</div>
 
-			{/* Image Section */}
-			<div className="w-full">
-				<h2 className="text-sm sm:text-base font-semibold text-gray-700 mb-1 mt-1">Zdjęcie</h2>
 				<input
 					value={image}
 					onChange={(e) => {
@@ -160,7 +168,6 @@ export default function EditingForm(props: { initialData: TeacherDataType; close
 					placeholder="Link do zdjęcia"
 					className="bg-white rounded-lg p-2 outline-none w-full text-sm sm:text-base"
 				/>
-				{image && !imageError && <img src={image} alt="Podgląd zdjęcia" className="w-32 h-32 object-cover rounded-xl border mt-2" onError={() => setImageError(true)} />}
 			</div>
 
 			{/* Action Buttons */}

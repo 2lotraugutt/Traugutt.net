@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
 	const teachers = await prisma.teacher.findMany({
 		orderBy: [
+			{ lastName: "asc" },
 			{ name: "asc" },
 			{
 				createdAt: "desc",

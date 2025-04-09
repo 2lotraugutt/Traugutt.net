@@ -37,7 +37,7 @@ export default function AnnouncementTile(props: { teacherData: TeacherDataType; 
 					<div className="flex flex-col gap-y-1.5 sm:gap-y-2 lg:gap-y-3 xl:gap-y-4 w-full">
 						<p className={`line-clamp-1 md:line-clamp-2 text-sm 2xs:text-lg xs:text-lg sm:text-xl md:text-2xl 4xl:text-3xl poppinsFont700`}>
 							<span className="text-MainDarkGray/60 text-2xs sm:text-base md:text-lg 4xl:text-xl mr-0.5">{props.teacherData.title}</span>
-							{props.teacherData.name}
+							{props.teacherData.name} {props.teacherData.lastName}
 						</p>
 						<div className="flex items-center gap-x-2 sm:gap-x-3 hide-scrollbar overflow-x-auto w-full">
 							{props.teacherData.subjects.map((subj, i) => (

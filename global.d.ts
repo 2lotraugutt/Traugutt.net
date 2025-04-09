@@ -202,6 +202,7 @@ type TeacherDataType = {
 	createdAt: Date;
 	title: string?;
 	name: string;
+	lastName: string;
 	email: string?;
 	image: string;
 	description: string?;

@@ -14,19 +14,21 @@ export default function TeacherCard(props: { teacher: TeacherDataType }) {
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 		>
-			<img src={props.teacher.image} alt={props.teacher.name} className="w-full h-60 object-cover" />
+			<img src={props.teacher.image} alt={props.teacher.name + " " + props.teacher.lastName} className="w-full h-60 object-cover" />
 			<div className="p-6 flex flex-col gap-2">
 				<h3 className="text-xl font-semibold text-MainDarkGray flex items-end">
 					{props.teacher.title && <span className="text-MainDarkGray/60 text-base mr-0.5">{props.teacher.title}</span>}
-					{props.teacher.name}
+					{props.teacher.name} {props.teacher.lastName}
 				</h3>
 				<a href={`mailto:${props.teacher.email}`} className="text-sm text-MainColor hover:text-SecondColor transition">
 					{props.teacher.email}
 				</a>
 				<div className="text-sm text-gray-700 space-y-1">
-					<p>
-						<span className="font-semibold">Przedmioty:</span> {props.teacher.subjects.join(", ")}
-					</p>
+					{props.teacher.subjects.length > 0 && (
+						<p>
+							<span className="font-semibold">Przedmioty:</span> {props.teacher.subjects.join(", ")}
+						</p>
+					)}
 					{props.teacher.class && (
 						<p>
 							<span className="font-semibold">Wychowawca:</span> {props.teacher.class}

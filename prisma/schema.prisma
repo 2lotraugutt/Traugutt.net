@@ -168,7 +168,8 @@ model Teacher {
   createdAt   DateTime @default(now())
   title       String?
   name        String
-  email       String?  @unique
+  lastName    String
+  email       String?
   image       String   @default("/teacherDefault.png")
   description String?
   subjects    String[]

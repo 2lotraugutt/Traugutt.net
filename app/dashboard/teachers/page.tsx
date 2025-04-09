@@ -7,6 +7,7 @@ import TeacherTile from "./teacherTile";
 
 export default function TeacherDashboardPage() {
 	const [newName, setNewName] = useState("");
+	const [newLastName, setNewLastName] = useState("");
 	const [newDescription, setNewDescription] = useState("");
 	const [newTitle, setNewTitle] = useState("");
 	const [newEmail, setNewEmail] = useState("");
@@ -56,8 +57,8 @@ export default function TeacherDashboardPage() {
 	}
 
 	function validateEmail(email: string) {
-		const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		setEmailValid(regex.test(email));
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		setEmailValid(emailRegex.test(email) || email === "");
 	}
 
 	async function upload() {
@@ -66,6 +67,7 @@ export default function TeacherDashboardPage() {
 		const data = new FormData();
 		data.append("image", newImage);
 		data.append("name", newName);
+		data.append("lastName", newLastName);
 		data.append("title", newTitle);
 		data.append("description", newDescription);
 		data.append("email", newEmail);
@@ -81,6 +83,7 @@ export default function TeacherDashboardPage() {
 
 		if (res.ok) {
 			setNewName("");
+			setNewLastName("");
 			setNewTitle("");
 			setNewDescription("");
 			setNewEmail("");
@@ -90,6 +93,15 @@ export default function TeacherDashboardPage() {
 			setSubjectInput("");
 			fetchTeachers();
 		}
+	}
+
+	function cleanEmail(email: string) {
+		return email
+			.trim()
+			.toLowerCase()
+			.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/ł/g, "l");
 	}
 
 	return (
@@ -107,21 +119,14 @@ export default function TeacherDashboardPage() {
 							onChange={(e) => setNewTitle(e.target.value)}
 							type="text"
 							placeholder="Tytuł naukowy (opcjonalnie)"
-							className="bg-white rounded-lg p-2 outline-none w-full text-sm 2xl:text-base basis-2/5"
+							className="bg-white rounded-lg p-2 outline-none w-full text-sm 2xl:text-base"
 						/>
 						<input
 							value={newName}
 							onChange={(e) => {
 								setNewName(e.target.value);
-								if (e.target.value.length > 0) {
-									const defaultEmail =
-										e.target.value
-											.trim()
-											.toLowerCase()
-											.normalize("NFD")
-											.replace(/[\u0300-\u036f]/g, "")
-											.replace(/ł/g, "l")
-											.replace(" ", ".") + "@traugutt.net";
+								if (e.target.value && newLastName) {
+									const defaultEmail = `${cleanEmail(e.target.value)}.${cleanEmail(newLastName)}@traugutt.net`;
 									setNewEmail(defaultEmail);
 									validateEmail(defaultEmail);
 								} else {
@@ -130,7 +135,24 @@ export default function TeacherDashboardPage() {
 								}
 							}}
 							type="text"
-							placeholder="Imię i nazwisko"
+							placeholder="Imię"
+							className="bg-white rounded-lg p-2 outline-none w-full text-sm 2xl:text-base"
+						/>
+						<input
+							value={newLastName}
+							onChange={(e) => {
+								setNewLastName(e.target.value);
+								if (e.target.value && newName) {
+									const defaultEmail = `${cleanEmail(newName)}.${cleanEmail(e.target.value)}@traugutt.net`;
+									setNewEmail(defaultEmail);
+									validateEmail(defaultEmail);
+								} else {
+									setNewEmail("");
+									setEmailValid(true);
+								}
+							}}
+							type="text"
+							placeholder="Nazwisko"
 							className="bg-white rounded-lg p-2 outline-none w-full text-sm 2xl:text-base"
 						/>
 					</div>
@@ -194,19 +216,19 @@ export default function TeacherDashboardPage() {
 				</div>
 
 				{/* Sekcja opisu */}
-				<div className="w-full">
-					<h2 className="text-sm 2xl:text-base sm:text-base font-semibold text-gray-700 mb-1 mt-1">Opis</h2>
-					<textarea
-						value={newDescription}
-						onChange={(e) => setNewDescription(e.target.value)}
-						placeholder="Opis nauczyciela (opcjonalnie)"
-						className="rounded-lg outline-none bg-white p-2 w-full text-sm 2xl:text-base h-32 sm:h-40"
-					/>
-				</div>
-
-				{/* Sekcja zdjęcia */}
-				<div className="w-full">
-					<h2 className="text-sm 2xl:text-base sm:text-base font-semibold text-gray-700 mb-1 mt-1">Zdjęcie</h2>
+				<div className="w-full flex flex-col gap-3">
+					<h2 className="text-sm 2xl:text-base sm:text-base font-semibold text-gray-700 mb-1 mt-1">Opis i zdjęcie</h2>
+					<div className="flex flex-row gap-3">
+						<textarea
+							value={newDescription}
+							onChange={(e) => setNewDescription(e.target.value)}
+							placeholder="Opis nauczyciela (opcjonalnie)"
+							className="rounded-lg outline-none bg-white p-2 w-full text-sm 2xl:text-base h-32 sm:h-40"
+						/>
+						{newImage != "" && !imageError && (
+							<img src={newImage} alt="Podgląd zdjęcia" className="w-32 h-32 object-cover rounded-xl border mt-2" onError={() => setImageError(true)} />
+						)}
+					</div>
 					<input
 						value={newImage}
 						onChange={(e) => {
@@ -217,10 +239,6 @@ export default function TeacherDashboardPage() {
 						placeholder="Link do zdjęcia"
 						className="bg-white rounded-lg p-2 outline-none w-full text-sm 2xl:text-base"
 					/>
-
-					{newImage != "" && !imageError && (
-						<img src={newImage} alt="Podgląd zdjęcia" className="w-32 h-32 object-cover rounded-xl border mt-2" onError={() => setImageError(true)} />
-					)}
 				</div>
 
 				{/* Przycisk */}
