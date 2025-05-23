@@ -21,6 +21,7 @@ export default function Page() {
 		{ name: "Dla rodziców", route: "parents" },
 		{ name: "Rekrutacja", route: "recruitation" },
 		{ name: "Matura", route: "exam" },
+		{ name: "Gazetka LOT", route: "lot" },
 		{ name: "Wyprawy", route: "trips" },
 		{ name: "Dokumenty", route: "docs" },
 	];
@@ -116,21 +117,13 @@ export default function Page() {
 					{newLink.length > 0 && filteredSuggestions.length > 0 && (
 						<ul className="bg-white border rounded-lg w-full p-2 text-xs sm:text-sm md:text-base">
 							{filteredSuggestions.map((page, index) => (
-								<li
-									key={index}
-									onClick={() => setNewLink("/page/" + page.file.slice(0, -4))}
-									className="px-2 py-1 hover:bg-gray-100 rounded-lg cursor-pointer"
-								>
+								<li key={index} onClick={() => setNewLink("/page/" + page.file.slice(0, -4))} className="px-2 py-1 hover:bg-gray-100 rounded-lg cursor-pointer">
 									/page/{page.file.slice(0, -4)}
 								</li>
 							))}
 						</ul>
 					)}
-					<select
-						value={category}
-						onChange={(e) => setCategory(e.target.value)}
-						className="bg-white rounded-lg p-2 outline-none w-full text-xs sm:text-sm md:text-base"
-					>
+					<select value={category} onChange={(e) => setCategory(e.target.value)} className="bg-white rounded-lg p-2 outline-none w-full text-xs sm:text-sm md:text-base">
 						{routesCategories.map((routeCategory, i) => (
 							<option key={i} value={routeCategory.route}>
 								{routeCategory.name}

@@ -10,6 +10,7 @@ import {
 	faGraduationCap,
 	faHome,
 	faHouseUser,
+	faNewspaper,
 	faPhone,
 	faPiggyBank,
 	faSchool,
@@ -71,6 +72,11 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 			name: "Matura",
 			icon: faFileWord,
 			routes: "exam",
+		},
+		{
+			name: "Gazetka LOT",
+			icon: faNewspaper,
+			routes: "lot",
 		},
 		{
 			name: "Wyprawy",
@@ -163,10 +169,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 								<div>{nav.name}</div>
 
 								{routes && routesForNav.length != 0 && (
-									<FontAwesomeIcon
-										icon={faAngleRight}
-										className={`w-5 h-5 transition-all duration-300 ms-auto text-white px-4 ${openedList[i] && "rotate-90"}`}
-									/>
+									<FontAwesomeIcon icon={faAngleRight} className={`w-5 h-5 transition-all duration-300 ms-auto text-white px-4 ${openedList[i] && "rotate-90"}`} />
 								)}
 							</motion.button>
 
@@ -185,13 +188,7 @@ export default function SidebarNavigation(props: { toggle: Function }) {
 										</div>
 										<div className="flex flex-col gap-y-1 grow">
 											{routesForNav.map((route, j) => (
-												<Link
-													key={j}
-													target="_blank"
-													onClick={() => closeNavbar()}
-													className={`sidebar-button px-3 py-1.5 w-full poppinsFont500`}
-													href={route.link}
-												>
+												<Link key={j} target="_blank" onClick={() => closeNavbar()} className={`sidebar-button px-3 py-1.5 w-full poppinsFont500`} href={route.link}>
 													{route.name}
 												</Link>
 											))}

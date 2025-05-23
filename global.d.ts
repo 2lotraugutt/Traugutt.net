@@ -175,7 +175,7 @@ export declare global {
 		index: number;
 	};
 
-	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "trips" | "docs";
+	type RouteCategoryDataType = "school" | "student" | "parents" | "recruitation" | "exam" | "lot" | "trips" | "docs";
 
 	type JustAnnouncementDataType = {
 		id: string;
