@@ -1,5 +1,5 @@
 # Use official Node.js image
-FROM node:18-alpine3
+FROM node:18-alpine
 
 # Install netcat
 RUN apk add --no-cache netcat-openbsd openldap-clients
